@@ -7,38 +7,24 @@ use PDO;
 
 class UserManager extends DbManager
 {
+    public function login($login, $password){
 
-    public function getUser(){
-        $req = $this->getBdd()->prepare("SELECT * FROM user");
-        $req->execute();
-        $datas = $req->fetchAll(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-        return $datas;
-    }
+        $user = null;
+        $req = $this->getBdd()->prepare("SELECT * FROM user WHERE login = :login");
+        $req->execute([
+            'username'=> $login
+        ]);
 
-    private function getPasswordUser($login){
-        $req = "SELECT password FROM user WHERE login = :login";
-        $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
-        $stmt->execute();
-        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->closeCursor();
-        return $resultat['password'];
-    }
+        $resultat = $req->fetch();
 
-    public function isCombinaisonValide($login,$password){
-        $passwordBD = $this->getPasswordUser($login);
-        return password_verify($password,$passwordBD);
-    }
+        if($resultat){
+            if(password_verify($password, $resultat['password'])){
+                $utilisateur = new User($resultat['login'], $resultat['password'], $resultat['id']);
+            }
+        }
 
-    public function estCompteActive($login){
-        $req = "SELECT est_valide FROM user WHERE login = :login";
-        $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue(":login",$login,PDO::PARAM_STR);
-        $stmt->execute();
-        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt->closeCursor();
-        return ((int)$resultat['is_valide'] === 1) ? true : false;
+        return $user;
+
     }
 
 }

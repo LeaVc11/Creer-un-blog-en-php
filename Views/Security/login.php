@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../Public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../Public/css/style.css">
 
 </head>
 <body>
@@ -23,7 +23,7 @@ if(!empty($errors)):?>
         <div class="login px-5 py-2">
             <h1 class="text-secondary text-center m-2">S'identifier</h1>
 
-            <form class="form-bloc text-center " method="post" action="../index.php">
+            <form class="form-bloc text-center " method="post" action="../../index.php">
                 <div class="form-groupe ">
                     <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control" type="login"
                            name="login"

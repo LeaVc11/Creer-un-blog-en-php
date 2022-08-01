@@ -2,7 +2,7 @@
     "name": "vinag/p5_blog_php",
     "autoload": {
         "psr-4": {
-            "App\\": "src"
+            "App\\": ""
 
         }
     },
