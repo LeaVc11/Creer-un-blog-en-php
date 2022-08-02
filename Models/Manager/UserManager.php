@@ -10,11 +10,11 @@ class UserManager extends DbManager
 {
     public function login($email, $password){
 
-//        dd($email);
-//        var_dump($username);
-//        var_dump($email);
-//        var_dump($password);
-//        die();
+        dd($email);
+        var_dump($username);
+        var_dump($email);
+        var_dump($password);
+        die();
         $user = null;
         $req = $this->getBdd()->prepare("SELECT * FROM user WHERE email = :email");
         $req->bindParam(':email', $email);
