@@ -7,22 +7,20 @@ use Cassandra\Tinyint;
 class User
 {
 private int $id;
-private string $login;
 private string $password;
 private string $email;
 private tinyint $role;
 
     /**
      * @param int $id
-     * @param string $login
+
      * @param string $password
      * @param string $email
      *
      */
-    public function __construct( int $id , string $login,string $email, string $password, tinyint $role)
+    public function __construct( int $id,string $email, string $password, tinyint $role)
     {
         $this->id = $id;
-        $this->login = $login;
         $this->password = $password;
         $this->email = $email;
         $this->role = $role;
@@ -44,24 +42,6 @@ private tinyint $role;
     public function setId(int $id): User
     {
         $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLogin(): string
-    {
-        return $this->login;
-    }
-
-    /**
-     * @param string $login
-     * @return User
-     */
-    public function setlogin(string $login): User
-    {
-        $this->login = $login;
         return $this;
     }
 
