@@ -1,12 +1,11 @@
 <?php
+
 namespace App\Controllers;
 
-
-use App\models\Manager\DbManager;
+use App\Models\Manager\DbManager;
 use App\Models\UserManager;
 
-
-class UserController extends DbManager
+class UserControllers extends DbManager
 {
     private $userManager;
 
@@ -16,6 +15,5 @@ class UserController extends DbManager
     }
 
 
-
-
 }
+
