@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use DateTime;
 
@@ -12,7 +12,7 @@ class Article
     private string $content;
     private string $author;
     private string $slug;
-    private DateTime $createdAt;
+    private DateTime $created_at;
 
     /**
      * @param int $id
@@ -20,9 +20,9 @@ class Article
      * @param string $title
      * @param string $content
      * @param string $author
-     * @param DateTime $createdAt
+     * @param DateTime $created_at
      */
-    public function __construct(int $id, string $image_link, string $title, string $content, string $author,string $slug,DateTime $createdAt)
+    public function __construct(int $id, string $image_link, string $title, string $content, string $author,string $slug,DateTime $created_at)
     {
         $this->id = $id;
         $this->image_link = $image_link;
@@ -30,7 +30,7 @@ class Article
         $this->content = $content;
         $this->author = $author;
         $this->slug = $slug;
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
     }
 
     /**
@@ -145,18 +145,18 @@ class Article
     /**
      * @return DateTime
      */
-    public function getCreatedAt(): DateTime
+    public function getCreated_at(): DateTime
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
-     * @param DateTime $createdAt
+     * @param DateTime $created_at
      * @return Article
      */
-    public function setCreatedAt(DateTime $createdAt): Article
+    public function setCreated_at(DateTime $created_at): Article
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
 
         return $this;
     }

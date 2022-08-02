@@ -1,9 +1,9 @@
 <?php
 
-namespace App\models;
+namespace App\Models\Manager;
 
 
-use App\models\Manager\DbManager;
+use App\Models\Article;
 use DateTime;
 use Exception;
 use PDO;
@@ -40,6 +40,7 @@ class ArticleManager extends DbManager
         $articles = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
+//        dd($articles);
         foreach ($articles as $article) {
             $a = $this->createdObjectArticle($article);
             $this->addArticles($a);

@@ -39,7 +39,7 @@
             </ul>
             <ul class="navbar-nav w-100 d-flex justify-content-end">
                 <li class="nav-item">
-                    <a  class="text-decoration-none text-secondary" href="<?= URL ?>security/login">Connexion</a> |
+                    <a  class="text-decoration-none text-secondary" href="<?= URL ?>Security/login">Connexion</a> |
 
                 </li>
             </ul>

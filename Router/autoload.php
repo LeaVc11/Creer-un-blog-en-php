@@ -2,9 +2,11 @@
 spl_autoload_register(function ($class_name) {
     $folders = [
         'Models/',
+        'Models/Manager/',
         'Controller/',
         'Controller/Security',
-        'Models/Manager/'
+        'Router/'
+
     ];
 
     foreach ($folders as $folder){

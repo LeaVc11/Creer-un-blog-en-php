@@ -1,0 +1,17 @@
+<?php
+
+namespace App\controllers;
+
+class Toolbox
+{
+    public const COULEUR_ROUGE = "alert-danger";
+    public const COULEUR_ORANGE = "alert-warning";
+    public const COULEUR_VERTE = "alert-success";
+
+    public static function addMessageAlerte($message,$type){
+        $_SESSION['alert'][]=[
+            "message" => $message,
+            "type" => $type
+        ];
+    }
+}

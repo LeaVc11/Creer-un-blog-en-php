@@ -1,9 +1,9 @@
 <?php
 
-namespace App\controllers;
+namespace App\Controllers;
 
-use App\models\Article;
-use App\models\ArticleManager;
+
+use App\Models\Manager\ArticleManager;
 use Exception;
 
 class ArticlesController
@@ -16,7 +16,9 @@ class ArticlesController
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
+
         $this->articleManager->loadingArticles();
+//        dd($this->articleManager);
     }
 
     /**
@@ -25,7 +27,9 @@ class ArticlesController
     public function displayArticles(): void
 
     {
+
         $articles = $this->articleManager->getArticles();
+
         require "Views/Articles/articles.view.php";
     }
 

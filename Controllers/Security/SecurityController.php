@@ -1,22 +1,26 @@
 <?php
-namespace App\controllers\Security;
+namespace App\Controllers\Security;
+
+use App\Models\UserManager;
 
 class SecurityController {
 
-    private $userManager;
+    private UserManager $userManager;
 
     public function __construct(){
-        $this->userManager = new \App\models\UserManager();
+
+        $this->userManager = new UserManager();
     }
 
-    public function login(){
+    public function login(): void
+    {
 
         $errors = [];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            if(empty($_POST['username'])){
-                $errors[] = 'Veuillez saisir un username';
+            if(empty($_POST['login'])){
+                $errors[] = 'Veuillez saisir un login';
             }
 
             if(empty($_POST['password'])){
@@ -24,7 +28,7 @@ class SecurityController {
             }
 
             if(count($errors) == 0){
-                $resultat = $this->userManager->login($_POST['username'], $_POST['password']);
+                $resultat = $this->userManager->login($_POST['login'], $_POST['password']);
 
                 if(!is_null($resultat)){
                     $_SESSION['user'] = serialize($resultat);
@@ -35,7 +39,6 @@ class SecurityController {
             }
 
         }
-
         require 'Views/Security/login.php';
     }
 

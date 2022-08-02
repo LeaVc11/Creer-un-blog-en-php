@@ -1,16 +1,23 @@
 <?php
 
-use App\controllers\ArticlesController;
-use App\controllers\Security\SecurityController;
+use App\Controllers\ArticlesController;
+use App\Controllers\Security\SecurityController;
+
+
 
 include 'vendor/autoload.php';
+require 'Router/autoload.php';
+
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
+
+
 try {
     if (empty($_GET['page'])) {
         require "Views/accueil.view.php";
     } else {
         $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
         match ($url[0]) {
+
             'accueil' => require "Views/accueil.view.php",
             'articles' => getDisplayArticle(),
             'article' => actionArticle($url[1], $url[2]),
@@ -30,6 +37,7 @@ function getDisplayArticle(): void
     $articles = new ArticlesController();
     $articles->displayArticles();
 }
+
 /**
  * @param string $parameter
  * @param int $id
@@ -53,14 +61,11 @@ function actionArticle(string $parameter, int $id): void
         throw new Exception("La page n'existe pas");
     }
 }
-/**
- * @param string $parameter
- *
- * @return void
- */
+
 function security(string $parameter): void
 {
     $controller = new SecurityController();
+
     if ($parameter === 'login') {
         $controller->login();
     }
