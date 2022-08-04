@@ -8,14 +8,12 @@ class Route
     private $callable;
     private $matches = [];
     private $params = [];
-
     /**
      * @param $path
      * @param $callable
      */
     public function __construct($path, $callable)
     {
-
         $this->path = trim($path, '/');
         $this->callable = $callable;
     }
@@ -53,6 +51,10 @@ class Route
     public function call()
     {
         return call_user_func_array($this->callable, $this->matches);
+    }
+
+    private function preg_replace_collback(string $string, array $array, string $path)
+    {
     }
 
 
