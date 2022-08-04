@@ -2,12 +2,16 @@
 
 namespace App\Routing;
 
+/**
+ * @method preg_replace_collback(string $string, array $array, string $path)
+ */
 class Route
 {
     private string $path;
     private $callable;
     private $matches = [];
     private $params = [];
+
     /**
      * @param $path
      * @param $callable
@@ -24,7 +28,7 @@ class Route
         return $this;
     }
 
-    public function match($url): bool
+    public function match($url)
     {
         $url = trim($url, '/');
         $path = $this->preg_replace_collback('#:(\w+)#', [$this, 'paramMatch'], $this->path);
@@ -37,25 +41,36 @@ class Route
         array_shift($matches);
         $this->matches = $matches;
         return true;
-
     }
 
-    public function paramMatch($match)
+    public function paramMatch($match): string
     {
         if (isset($this->params[$match[1]])) {
             return '(' . $this->params[$match[1]] . ')';
         }
-        return  '([^/]+';
+        return '([^/]+';
     }
 
     public function call()
     {
-        return call_user_func_array($this->callable, $this->matches);
+        if (is_string($this->callable)) {
+            $params = explode('#', $this->callable);
+            $controller = "App\\Controllers\\" . $params[0] . "Controllers";
+            $controller = new $controller();
+            return call_user_func_array([$controller, $params[1]],$this->matches);
+        } else {
+            return call_user_func_array($this->callable, $this->matches);
+        }
     }
 
-    private function preg_replace_collback(string $string, array $array, string $path)
+
+    public function getUrl($params)
     {
+        $path = $this->path;
+        foreach ($params as $key => $value) {
+            $path = str_replace(":sk", $value, $path);
+        }
+        return $path;
     }
-
 
 }

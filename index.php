@@ -15,12 +15,11 @@ $router->get('/', function () {
 $router->get('/posts', function () {
     echo 'Tous les articles';
 });
-$router->get('/posts/:id-slug', function ($id) {
-    echo 'Article $slug : $id';
-})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
+$router->get('/article/:id-:slug', function ($id, $slug) use ($router){
+    echo $router->url('posts.show',['id' => 1, 'slug']);
+}, 'posts.show')->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
 
-$router->get('/posts/:id', function ($id) {
-});
+$router->get('/posts/:id', "Posts#show");
 
 $router->get('/posts/:id', function ($id) {
     echo 'Poster pour l\' article' . $id;

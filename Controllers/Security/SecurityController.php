@@ -27,7 +27,8 @@ class SecurityController
 //            if ($user){
 //                // on verifie les identifiant et on connect le user si c'est bon
 //            }
-            $errors[]
+//            $errors[];
         require "Views/Security/login.php";
+    }
     }
 }
