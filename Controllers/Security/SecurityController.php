@@ -27,7 +27,9 @@ class SecurityController
 //            if ($user){
 //                // on verifie les identifiant et on connect le user si c'est bon
 //            }
-            $errors[]
+            $errors[] = 'Mauvais identifiants';
+        }
         require "Views/Security/login.php";
     }
+
 }
