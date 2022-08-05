@@ -3,17 +3,34 @@
 namespace App\Controllers\Security;
 
 
-class SecurityController
+use App\models\Manager\DbManager;
+use App\models\UserManager;
+
+class SecurityController extends DbManager
 {
+    private $userManager;
+
+    /**
+     * @param $userManager
+     */
+    public function __construct()
+    {
+        $this->userManager = new UserManager();
+    }
+
+
     /**
      * @return void
      */
     public function login(): void
     {
-//        dd($_POST);
+        if (!empty($_SESSION['username'])) {
+            header('Location: article.php');
+        }
         if (!empty($_POST)) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             extract($post);
+
             $errors = [];
 
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -23,12 +40,9 @@ class SecurityController
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis.';
             }
-//            var_dump($errors);
-//            if ($user){
-//                // on verifie les identifiant et on connect le user si c'est bon
-//            }
-//            $errors[];
+
+        }
         require "Views/Security/login.php";
     }
-    }
+
 }

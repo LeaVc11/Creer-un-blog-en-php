@@ -5,9 +5,10 @@ use App\Controllers\ArticlesController;
 use App\Controllers\Security\SecurityController;
 
 require 'vendor/autoload.php';
+//
+//dd($_GET);
 
 $router = new App\Routing\Router($_GET['page']);
-
 
 $router->get('/', function () {
     echo "Template";
@@ -32,7 +33,9 @@ try {
     if (empty($_GET['page'])) {
         require "Views/accueil.view.php";
     } else {
+
         $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
+//        dd($url);
         match ($url[0]) {
 
             'accueil' => require "Views/accueil.view.php",
@@ -84,6 +87,7 @@ function security(string $parameter): void
     $controller = new SecurityController();
 
     if ($parameter === 'login') {
+//        var_dump($controller);
         $controller->login();
     }
 

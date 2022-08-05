@@ -42,8 +42,6 @@ if(!empty($errors)):?>
                     </button>
                 </div>
             </form>
-<!--            <p class=" text-center text-warning m-3 px-3">Première visite sur mon blog ? <a-->
-<!--                        href="--><?//= URL ?><!--security/register" class=" text-decoration-none">Inscrivez-vous</a></p>-->
         </div>
     </div>
 

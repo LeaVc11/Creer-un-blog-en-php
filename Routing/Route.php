@@ -3,7 +3,7 @@
 namespace App\Routing;
 
 /**
- * @method preg_replace_collback(string $string, array $array, string $path)
+ * @method preg_replace_callback(string $string, array $array, string $path)
  */
 class Route
 {

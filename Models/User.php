@@ -6,23 +6,22 @@ use Cassandra\Tinyint;
 
 class User
 {
-private int $id;
-private string $password;
-private string $email;
-private tinyint $role;
+    private int $id;
+    private string $email;
+    private string $password;
+    private tinyint $role;
 
     /**
      * @param int $id
-
      * @param string $password
      * @param string $email
      *
      */
-    public function __construct( int $id,string $email, string $password, tinyint $role)
+    public function __construct(int $id, string $email, string $password, tinyint $role)
     {
         $this->id = $id;
-        $this->password = $password;
         $this->email = $email;
+        $this->password = $password;
         $this->role = $role;
 
     }

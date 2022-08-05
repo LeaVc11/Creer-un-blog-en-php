@@ -9,8 +9,8 @@ class UserManager extends DbManager
 {
     public function login($username, $password)
     {
-//        var_dump($username);
-//        var_dump($password);
+        var_dump($username);
+        var_dump($password);
 
         $request = $this->getBdd()->prepare('SELECT * FROM User WHERE email = :email');
         $request->bindValue(':email', $email, PDO::PARAM_STR);
