@@ -13,8 +13,7 @@ private tinyint $role;
 
     /**
      * @param int $id
-
-     * @param string $password
+ * @param string $password
      * @param string $email
      *
      */

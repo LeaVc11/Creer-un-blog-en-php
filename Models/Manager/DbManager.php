@@ -8,10 +8,6 @@ abstract class DbManager
 {
     private static $pdo;
 
-    public function pageError($msg): void
-    {
-    }
-
     /**
      * @return void
      */

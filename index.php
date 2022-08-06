@@ -82,6 +82,7 @@ function actionArticle(string $parameter, int $id): void
 
 function security(string $parameter): void
 {
+
     $controller = new SecurityController();
 
     if ($parameter === 'login') {
