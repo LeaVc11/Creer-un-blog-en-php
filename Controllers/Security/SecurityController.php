@@ -20,30 +20,38 @@ class SecurityController
 
     public function login()
     {
-        // variables qui servira à stocker les erreurs de validation du formulaire
 
+        $errors = [];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Je fais les vérifications de mon formulaire
             if (!empty($_POST)) {
                 $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 extract($post);
-                $errors = [];
 
                 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $errors[] = 'L\'adresse email n\'est pas valide';
                 }
-//            if (empty($_POST['email'])) {
-//                $errors[] = 'Veuillez saisir un email';
             }
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis';
             }
             var_dump($errors);
 
-        }
+            if (count($errors) == 0) {
+                $resultat = $this->userManager->login($_POST['email'], $_POST['password']);
 
-        // Affichage du formulaire de login
-        require 'Views/security/login.php';
+                if (!is_null($resultat)) {
+                    $_SESSION['user'] = serialize($resultat);
+                    header('Location: article.php');
+                } else {
+                    $errors[] = 'Les identifiants sont incorrectes !';
+                }
+
+            }
+
+            // Affichage du formulaire de login
+            require 'Views/security/login.php';
+        }
     }
 }

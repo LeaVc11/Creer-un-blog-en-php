@@ -6,11 +6,11 @@ use PDO;
 
 class UsernameManager extends DbManager
 {
-    public function login($email, $password, $errors)
+    public function login($email, $password)
     {
 
-        var_dump($email);
-        var_dump($password);
+//        var_dump($email);
+//        var_dump($password);
 
         $user = null;
         $req = $this->getBdd()->prepare("SELECT * FROM user WHERE email = :email");
@@ -22,13 +22,12 @@ class UsernameManager extends DbManager
         $user = $req->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-//            if (password_verify($password, $user['password'])) {
-//                $user = new User($user['email'], $user['password']);
+            $_SESSION['user'] = $user;
+            header('Location: article.php');
+
         }
-        $errors[] = 'Mauvais identifiants';
     }
 
-//return $user;
 
 
 
