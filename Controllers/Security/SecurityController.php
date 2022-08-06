@@ -39,12 +39,15 @@ class SecurityController
             var_dump($errors);
 
             if (count($errors) == 0) {
-                $resultat = $this->userManager->login($_POST['email'], $_POST['password']);
+                $user = $this->userManager->login($_POST['email'], $_POST['password']);
 
-                if (!is_null($resultat)) {
-                    $_SESSION['user'] = serialize($resultat);
-                    header('Location: article.php');
+//                var_dump($user);
+                if (!is_null($user)) {
+                    var_dump($user);
+                    $_SESSION['user'] = serialize($user);
+                    header('Location: dashboard.php');
                 } else {
+                    var_dump($errors);
                     $errors[] = 'Les identifiants sont incorrectes !';
                 }
 
