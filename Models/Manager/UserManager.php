@@ -2,7 +2,7 @@
 
 namespace App\models\Manager;
 
-class UsernameManager extends DbManager
+class UserManager extends DbManager
 {
     public function login($email, $password)
     {
@@ -17,6 +17,7 @@ class UsernameManager extends DbManager
 //die();
 
         $resultat = $req->fetch();
+
         return $resultat;
 
 

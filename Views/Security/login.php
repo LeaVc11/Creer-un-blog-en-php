@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php
+require_once "Models/Article.php";
+ob_start(); ?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -8,6 +8,11 @@ require 'vendor/autoload.php';
 
 //var_dump(md5('johndoe'));die(); //prend le resultat du hashage
 
+//var_dump($_SESSION['user']);
+if (!empty($_SESSION['user'])){
+    header('Location: dashboard.php');
+}
+
 //$router = new App\Routing\Router($_GET['page']);
 //
 //
@@ -69,7 +74,10 @@ function getDisplayArticle(): void
 function actionArticle(string $parameter, int $id): void
 {
     $articles = new ArticlesController();
-    if ($parameter === "s") {
+    if ($parameter === "homepage") {
+        $articles->homePage();
+    }
+    else if ($parameter === "s") {
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();

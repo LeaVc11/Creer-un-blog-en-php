@@ -23,7 +23,7 @@ ob_start(); ?>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="Public/images/Ponta-da-Piedade-Lagos.jpg" class="d-block w-100" alt="plage Portugal">
+                    <img src="../Public/images/Ponta-da-Piedade-Lagos.jpg" class="d-block w-100" alt="plage Portugal">
                     <h5 class="card-title text-center mt-4 mb-4">Ponte da Piedade, Lagos </h5>
                     <p class="card-text pb-4">Ponta da Piedade se définie par ses falaises creusées dans la roche qui
                         abritent des tunnels naturels et des cavernes secrètes. Ces falaises de couleur doré contrastent
@@ -33,7 +33,7 @@ ob_start(); ?>
                         Batata.. </p>
                 </div>
                 <div class="carousel-item">
-                    <img src="Public/images/istockphoto-658446924-612x612.jpg" class="d-block w-100" alt="...">
+                    <img src="../Public/images/istockphoto-658446924-612x612.jpg" class="d-block w-100" alt="...">
                     <h5 class="card-title text-center mt-4 mb-4">Praia do Gigi, Quinta do lago</h5>
                     <p class="card-text pb-4 ">Joli paysage au Portugal.
                         Si vous aimez la tranquillité, cette plage est pour vous. Vous devez traverser à pied un pont
@@ -41,7 +41,7 @@ ob_start(); ?>
 
                 </div>
                 <div class="carousel-item">
-                    <img src="Public/images/portugal-Algarve.jpg" class="d-block w-100" alt="...">
+                    <img src="../Public/images/portugal-Algarve.jpg" class="d-block w-100" alt="...">
                     <h5 class="card-title text-center mt-4 mb-4">Praia do Gigi, Quinta do lago</h5>
                     <p class="card-text pb-4 ">Joli paysage au Portugal.
                         Si vous aimez la tranquillité, cette plage est pour vous. Vous devez traverser à pied un pont
@@ -62,10 +62,10 @@ ob_start(); ?>
 
         <!--     card-->
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
-    <?php
+            <?php
 
 
-    for ($i = 0; $i < count($articles); $i++) {
+            for ($i = 0; $i < count($articles); $i++) {
                 ?>
                 <div class="col">
                     <div class="card h-100">
