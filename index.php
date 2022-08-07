@@ -6,6 +6,8 @@ use App\Controllers\Security\SecurityController;
 
 require 'vendor/autoload.php';
 
+//var_dump(md5('johndoe'));die(); //prend le resultat du hashage
+
 //$router = new App\Routing\Router($_GET['page']);
 //
 //

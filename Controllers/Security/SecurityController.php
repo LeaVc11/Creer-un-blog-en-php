@@ -42,17 +42,21 @@ class SecurityController
             }
 //     dd($errors);
         if(count($errors) == 0){
-
             $resultat = $this->userManager->login($_POST['email'], $_POST['password']);
-            var_dump($resultat);
-            die();
-            if($resultat){
-                if(Password_verify(bcrypt($password),$resultat['password'])){
+
+            //if password_verify (password, hash))
+            //if password_verify (password, hash))
+            if ($resultat) {
+//                var_dump($resultat['password']);
+//                die();
+                if (md5($_POST['password']) === $resultat['password']) {
                     $user = new User($resultat['email'], $resultat['password']);
                 }
+                $_SESSION['user'] = serialize($resultat);
+                header('Location: dashboard.php');
+            } else {
+                $errors[] = 'Les identifiants sont incorrectes !';
             }
-            return $user;
-
         }
             // Affichage du formulaire de login
             require 'Views/security/login.php';
