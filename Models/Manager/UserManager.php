@@ -6,36 +6,61 @@ use App\entity\User;
 
 class UserManager extends DbManager
 {
-    public function login($email,$role, $password)
-    {
-//        var_dump($email);
-//        var_dump($password);
-        $user = null;
-        // Je retrouve un utilisateur en fonction de son username
-        $user1 = $this->findByEmail($email);
-        $user->setPassword(md5($user->getPassword(), PASSWORD_DEFAULT));
-        $req = $this->getBdd()->prepare("INSERT INTO user ( email, role, password)
-        VALUES (:email,:role , :password )");
-        $resultat = $req->execute([
-            'email' => $email->getEmail(),
-            'password' => $password->getPassword(),
-            'role' => $role->getRole()
+//    public function login($email,$role, $password)
+//    {
+////        var_dump($email);
+////        var_dump($password);
+//        $user = null;
+//        // Je retrouve un utilisateur en fonction de son username
+//        $user1 = $this->findByEmail($email);
+//        if($user){
+//            // Il a trouvé un utilisateur il vérifie si le hash correspond
+//            if(password_verify($password,  $user->getPassword())){
+//                $user = $user1;
+//            }
+//        }
+//        $req = $this->getBdd()->prepare("INSERT INTO user ( email, role, password)
+//        VALUES (:email,:role , :password )");
+//        $resultat = $req->execute([
+//            'email' => $email,
+//            'password' => $password,
+//            'role' => $role
+//        ]);
+////var_dump($req->fetch);
+////die();
+//
+//
+//        $resultat = $req->fetch();
+//
+//        return $resultat;
+//
+//
+//    }
 
+    public function login($email,$role, $password){
+
+        // De base mon utilisateur est nulle
+        $user = null;
+
+        // Je retrouve un utilisateur en fonction de son email
+        $user = $this->findByEmail($email);
+
+        $req = $this->getBdd()->prepare("INSERT INTO user (email,role,password)
+        VALUES (:email,:role, :password )");
+
+        $res = $req->execute([
+
+            'email'=> $email,
+            'role'=>$role,
+            'password'=> $password
         ]);
-//var_dump($req->fetch);
-//die();
-        if($user){
-            // Il a trouvé un utilisateur il vérifie si le hash correspond
-            if(password_verify($password,  $user->getPassword())){
-                $user = $user1;
-            }
-        }
 
         $resultat = $req->fetch();
-
-        return $resultat;
-
-
+        if($resultat){
+            if(password_verify($password, $resultat['password'])){
+                $user = new User($resultat['email'], $resultat['password'], $resultat['role']);
+            }
+        }
     }
 
     // Selectionne un utilisateur en fonction de son username
@@ -58,16 +83,6 @@ class UserManager extends DbManager
             // Retourne null si pas d'utilisateur avec cet ID sinon retourne l'utilisateur
             return $user;
     }
-    // Fonction retourne true si un utilisateur à déjà cet email
-    // Sinon elle retourne false
-    public function testExistUserByEmail($email){
-        $user = $this->findByEmail($email);
 
-        if($user){
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 }

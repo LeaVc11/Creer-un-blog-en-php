@@ -44,13 +44,8 @@ class SecurityController
 //     dd($errors);
             if (count($errors) == 0) {
 
-                $resultat = $this->userManager->testExistUserByEmail($_POST['email']);
-                //        //Quand le utilisateur est connecté
-                if (!empty($_SESSION['user'])) {
-                    header('Location:article.view.php');
-                }
 
-                $resultat = $this->userManager->login($_POST['email'], $_POST['password'],$_POST['role']);
+                $resultat = $this->userManager->login($_POST['email'],$_POST['role'],$_POST['password']);
                 //if(password_verify(password, hash))
                 if ($resultat) {
                     //var_dump($resultat['password']);die();
