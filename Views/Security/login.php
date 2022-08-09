@@ -1,5 +1,5 @@
 <?php
-require_once "Models/Article.php";
+require_once "Entity/Article.php";
 ob_start(); ?>
 
 <!DOCTYPE html>

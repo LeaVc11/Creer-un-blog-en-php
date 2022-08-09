@@ -1,6 +1,6 @@
 <?php
 
-use App\models\Article;
+use App\entity\Article;
 
 ob_start();
 /** @var Article $article */

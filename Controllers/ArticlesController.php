@@ -20,10 +20,7 @@ class ArticlesController
         $this->articleManager->loadingArticles();
 //        dd($this->articleManager);
     }
-    public function homePage(){
-        $articles= $this->articleManagerManager->loadingArticles();
-        require 'Views/Articles/homepage.php';
-    }
+
     /**
      * @return void
      */

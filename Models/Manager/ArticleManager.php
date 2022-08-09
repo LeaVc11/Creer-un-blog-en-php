@@ -3,7 +3,7 @@
 namespace App\Models\Manager;
 
 
-use App\Models\Article;
+use App\Entity\Article;
 use DateTime;
 use Exception;
 use PDO;
@@ -71,7 +71,7 @@ class ArticleManager extends DbManager
      *
      * @throws Exception
      */
-    private function createdObjectArticle(array $article): Article
+    public function createdObjectArticle(array $article): Article
     {
 
         return new Article(

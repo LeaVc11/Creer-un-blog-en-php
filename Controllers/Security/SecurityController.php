@@ -3,8 +3,8 @@
 namespace App\controllers\Security;
 
 
+use App\entity\User;
 use App\models\Manager\UserManager;
-use App\models\User;
 
 
 class SecurityController
@@ -21,10 +21,7 @@ class SecurityController
 
     public function login()
     {
-//        //Quand le utilisateur est connecté
-        if (!empty($_SESSION['user'])) {
-            header('Location:homePage.php');
-        }
+
         $errors = [];
         $user = null;
 //        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -47,12 +44,18 @@ class SecurityController
 //     dd($errors);
             if (count($errors) == 0) {
 
-                $resultat = $this->userManager->login($_POST['email'], $_POST['password']);
+                $resultat = $this->userManager->testExistUserByEmail($_POST['email']);
+                //        //Quand le utilisateur est connecté
+                if (!empty($_SESSION['user'])) {
+                    header('Location:article.view.php');
+                }
+
+                $resultat = $this->userManager->login($_POST['email'], $_POST['password'],$_POST['role']);
                 //if(password_verify(password, hash))
                 if ($resultat) {
                     //var_dump($resultat['password']);die();
                     if (md5($_POST['password']) === $resultat['password']) {
-                        $user = new User($resultat['id'], $resultat['email'], $resultat['password']);
+                        $user = new User($resultat['id'], $resultat['email'], $resultat['role'],$resultat['password']);
                     }
                 }
 
