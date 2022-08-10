@@ -98,5 +98,8 @@ function security(string $parameter): void
     if ($parameter === 'login') {
         $controller->login();
     }
+    if ($parameter === 'register') {
+        $controller->register();
+    }
 
 }
