@@ -46,45 +46,23 @@ class SecurityController
                     $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
                 }
 
-
 //     dd($errors);
                 // Aucune erreur, je vais enregistrer mon utilisateur
                 if (count($errors) == 0) {
-
-//dd($resultat);
-//                $resultat = $this->userManager->login($_POST['email'],$_POST['password']);
-//                //if(password_verify(password, hash))
-//                if ($resultat) {
-//                    //var_dump($resultat['password']);die();
-//                    if (md5($_POST['password']) === $resultat['password']) {
-//                        $user = new User($resultat['id'], $resultat['email'],$resultat['password']);
-//                    }
-//                }
-//
-//                return $user;
                     $role = 'user';
-
                     if ($_POST['isAdmin'] == 'on')
                         $role = 'administrator';
-                    // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
+//dd($resultat);
                     $user = new User($_POST['email'], $_POST['password'], $role);
-//
-//                    if ($customer) {
-////                        var_dump($customer['password']);die();
-//                        if (md5($_POST['password']) === $customer['password']) {
-//                            $user = new User($custonmer['id'], $custonmer['email'], $customer['password'], $custonmer['role'],);
-//                        }
-//                    }
-                    // J'appel mon manager pour enregistrer en base l'utilisateur
-                    // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
-                    $this->userManager->login($email, $password, $role);
-
+                    dd($user);
+//                    var_dump($user);
+//                    die();
+                    $this->userManager->login($email,$password,$role);
+                    // Affichage du formulaire de login
+                    require 'Views/security/login.php';
                 }
-
             }
-            // Affichage du formulaire de login
-            require 'Views/security/login.php';
-        }
 
+        }
     }
 }

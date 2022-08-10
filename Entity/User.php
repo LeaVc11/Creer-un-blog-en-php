@@ -20,7 +20,7 @@ class User
 
     // Nous permettra de créer nos objets. Nous passons un paramètre optionnel (id)
     // Il est optionnel car dans certains cas c'est la BDD qui nous le générera
-    public function __construct( string $email, string $password, $role = "user")
+    public function __construct(string $email, string $password, $role ='user')
     {
         $this->password = $password;
         $this->email = $email;
