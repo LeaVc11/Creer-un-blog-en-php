@@ -54,7 +54,7 @@ class UserManager extends DbManager
         }
     }
 
-    public function register(User $user)
+    public function register()
     {
 //var_dump($user);
 //die();
