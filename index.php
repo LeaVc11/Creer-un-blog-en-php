@@ -8,7 +8,9 @@ require 'vendor/autoload.php';
 //
 //dd($_GET);
 
-$router = new App\Routing\Router($_GET['page']);
+//var_dump($_GET);
+//die();
+$router = new App\Routing\Router($_GET);
 
 $router->get('/', function () {
     echo "Template";
@@ -17,10 +19,10 @@ $router->get('/posts', function () {
     echo 'Tous les articles';
 });
 $router->get('/article/:id-:slug', function ($id, $slug) use ($router){
-    echo $router->url('posts.show',['id' => 1, 'slug']);
+    echo $router->url('articles.getDisplayArticle',['id' => 1, 'slug']);
 }, 'posts.show')->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
 
-$router->get('/posts/:id', "Posts#show");
+$router->get('/posts/:id', "Posts#getDisplayArticle");
 
 $router->get('/posts/:id', function ($id) {
     echo 'Poster pour l\' article' . $id;
