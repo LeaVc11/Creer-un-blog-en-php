@@ -13,13 +13,13 @@ ob_start(); ?>
 <!---->
 <?php
 //    var_dump($errors);
-if(!empty($errors)):?>
+if (!empty($errors)):?>
     <div class=" m-3 fw-bold alert alert-danger">
-        <?php foreach($errors as $error):?>
-            <p><?=$error;?></p>
-        <?php endforeach;?>
+        <?php foreach ($errors as $error): ?>
+            <p><?= $error; ?></p>
+        <?php endforeach; ?>
     </div>
-<?php endif;?>
+<?php endif; ?>
 
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md">
     <div class="m-5 rounded-3 opacity-25 bg-dark ">
@@ -43,6 +43,10 @@ if(!empty($errors)):?>
                     <button class="btn btn-danger text-white  m-3 p-2 w-100 rounded-1 border border-dark form-control"
                             type="submit">Se connecter
                     </button>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="isAdmin" id="flexCheckDefault" class="form-check-input">
+                    <label for="flexCheckDefault" class="form-check-label text-white"> Utilisateur administration</label>
                 </div>
             </form>
 

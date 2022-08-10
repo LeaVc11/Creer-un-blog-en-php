@@ -3,7 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Manager\DbManager;
-use App\Models\UserManager;
+use App\models\Manager\UserManager;
+
 
 class UserControllers extends DbManager
 {

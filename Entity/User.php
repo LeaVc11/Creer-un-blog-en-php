@@ -2,8 +2,8 @@
 
 namespace App\entity;
 
-//use Cassandra\Tinyint;
-
+// Nos classes représentent les champs de notre BDD sous forme d'objet.
+// Nous aurons en général 1 attribut pour chaque colonne
 class User
 {
     private int $id;
@@ -17,15 +17,19 @@ class User
      * @param string $email
      *
      */
-    public function __construct( string $email, string $password, $role = 'user', int $id )
+
+    // Nous permettra de créer nos objets. Nous passons un paramètre optionnel (id)
+    // Il est optionnel car dans certains cas c'est la BDD qui nous le générera
+    public function __construct( string $email, string $password, $role = "user")
     {
-        $this->id = $id;
         $this->password = $password;
         $this->email = $email;
         $this->role = $role;
 
     }
 
+    // Toutes les méthodes publiques qui nous permettront de modifier et réccupérer
+    // les valeurs de nos attributs privés.
     /**
      * @return int
      */

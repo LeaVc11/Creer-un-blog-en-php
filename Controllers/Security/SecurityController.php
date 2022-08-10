@@ -24,43 +24,67 @@ class SecurityController
 
         $errors = [];
         $user = null;
-//        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//        var_dump($_POST);
+//        die();
+//        dd($_POST);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        //Je fais les vérifications de mon formulaire
-        if (!empty($_POST)) {
+            //Je fais les vérifications de mon formulaire
+            if (!empty($_POST)) {
 
-            //J'ai mis tout le code dans ce grand if(!empty($_POST))
-            $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            extract($post);
+                //J'ai mis tout le code dans ce grand if(!empty($_POST))
+                $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                extract($post);
 
-            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors[] = 'L\'adresse email n\'est pas valide';
-            }
-            if (empty($password)) {
-                $errors[] = 'Le mot de passe est requis';
-            }
+                if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $errors[] = 'L\'adresse email n\'est pas valide';
+                }
+                if (empty($password)) {
+                    $errors[] = 'Le mot de passe est requis';
+                } elseif (strlen($_POST['password']) < 5) {
+
+                    $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
+                }
 
 
 //     dd($errors);
-            if (count($errors) == 0) {
+                // Aucune erreur, je vais enregistrer mon utilisateur
+                if (count($errors) == 0) {
 
+//dd($resultat);
+//                $resultat = $this->userManager->login($_POST['email'],$_POST['password']);
+//                //if(password_verify(password, hash))
+//                if ($resultat) {
+//                    //var_dump($resultat['password']);die();
+//                    if (md5($_POST['password']) === $resultat['password']) {
+//                        $user = new User($resultat['id'], $resultat['email'],$resultat['password']);
+//                    }
+//                }
+//
+//                return $user;
+                    $role = 'user';
 
-                $resultat = $this->userManager->login($_POST['email'],$_POST['role'],$_POST['password']);
-                //if(password_verify(password, hash))
-                if ($resultat) {
-                    //var_dump($resultat['password']);die();
-                    if (md5($_POST['password']) === $resultat['password']) {
-                        $user = new User($resultat['id'], $resultat['email'], $resultat['role'],$resultat['password']);
-                    }
+                    if ($_POST['isAdmin'] == 'on')
+                        $role = 'administrator';
+                    // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
+                    $user = new User($_POST['email'], $_POST['password'], $role);
+//
+//                    if ($customer) {
+////                        var_dump($customer['password']);die();
+//                        if (md5($_POST['password']) === $customer['password']) {
+//                            $user = new User($custonmer['id'], $custonmer['email'], $customer['password'], $custonmer['role'],);
+//                        }
+//                    }
+                    // J'appel mon manager pour enregistrer en base l'utilisateur
+                    // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
+                    $this->userManager->login($email, $password, $role);
+
                 }
 
-                return $user;
-
             }
-
+            // Affichage du formulaire de login
+            require 'Views/security/login.php';
         }
-        // Affichage du formulaire de login
-        require 'Views/security/login.php';
-    }
 
+    }
 }
