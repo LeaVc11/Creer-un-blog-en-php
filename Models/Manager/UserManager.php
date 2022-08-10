@@ -3,7 +3,6 @@
 namespace App\models\Manager;
 
 use App\models\User;
-use JetBrains\PhpStorm\NoReturn;
 
 class UserManager extends DbManager
 {
@@ -57,8 +56,8 @@ class UserManager extends DbManager
 
     public function register(User $user)
     {
-var_dump($user);
-die();
+//var_dump($user);
+//die();
         $customer->setPassword(password_hash($customer->getPassword(), PASSWORD_DEFAULT));
 
         $query = $this->getBdd()->prepare("INSERT INTO user ( email, password)
