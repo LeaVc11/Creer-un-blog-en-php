@@ -3,6 +3,7 @@
 namespace App\models\Manager;
 
 use App\models\User;
+use JetBrains\PhpStorm\NoReturn;
 
 class UserManager extends DbManager
 {

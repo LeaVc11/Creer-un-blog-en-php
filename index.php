@@ -103,3 +103,11 @@ function security(string $parameter): void
     }
 
 }
+
+if($_GET['controller'] == 'error' && $_GET['action'] == 'not-found'){
+    $controller = new ExceptionController();
+    $controller->pageIntrouvable();
+}
+
+
+
