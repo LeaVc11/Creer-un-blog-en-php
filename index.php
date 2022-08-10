@@ -90,5 +90,10 @@ function security(string $parameter): void
 //        var_dump($controller);
         $controller->login();
     }
+    if ($parameter === 'register') {
+//        var_dump($controller);
+        $controller->register();
+    }
+
 
 }

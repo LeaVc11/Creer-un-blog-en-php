@@ -76,4 +76,5 @@ class ArticlesController
     {
         require "Views/Articles/edit.article.view.php";
     }
+
 }

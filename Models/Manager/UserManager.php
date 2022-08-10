@@ -7,9 +7,9 @@ use PDO;
 
 class UserManager extends DbManager
 {
-    public function login($username, $password)
+    public function login($email, $password)
     {
-        var_dump($username);
+        var_dump($email);
         var_dump($password);
 
         $request = $this->getBdd()->prepare('SELECT * FROM User WHERE email = :email');

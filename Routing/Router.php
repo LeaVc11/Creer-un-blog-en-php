@@ -60,7 +60,7 @@ class Router
     {
         if (!isset($this->nameRoutes[$name])) {
             throw new RouterException('No route match this name');
-}
+        }
         return $this->nameRoutes[$name]->getUrl($params);
     }
 }
