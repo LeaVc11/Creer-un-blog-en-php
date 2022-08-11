@@ -3,9 +3,10 @@
 namespace App\Controllers\Security;
 
 
+use App\Models\Class\User;
 use App\models\Manager\DbManager;
 use App\models\Manager\UserManager;
-use App\models\User;
+
 
 
 class SecurityController extends DbManager
@@ -69,8 +70,7 @@ class SecurityController extends DbManager
 
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis.';
-            }elseif (strlen($_POST['password'])<5){
-
+            }elseif (strlen($password)<5){
                 $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
             }
             // Si j'ai pas d'erreurs je vais aller vérifier si il n'y a pas un utilisateur qui a

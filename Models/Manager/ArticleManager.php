@@ -3,7 +3,8 @@
 namespace App\Models\Manager;
 
 
-use App\Models\Article;
+
+use App\Models\Class\Article;
 use DateTime;
 use Exception;
 use PDO;

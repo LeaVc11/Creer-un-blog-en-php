@@ -10,9 +10,6 @@ require 'vendor/autoload.php';
 //
 //var_dump($_SESSION['user']);
 
-if (!empty($_SESSION['user'])){
-    header('Location: dashboard.php');
-}
 
 $router = new App\Routing\Router($_GET);
 

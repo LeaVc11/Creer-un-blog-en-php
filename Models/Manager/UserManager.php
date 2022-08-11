@@ -2,7 +2,9 @@
 
 namespace App\models\Manager;
 
-use App\models\User;
+
+
+use App\Models\Class\User;
 
 class UserManager extends DbManager
 {

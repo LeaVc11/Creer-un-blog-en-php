@@ -1,6 +1,6 @@
 <?php
 
-require_once "Models/Article.php";
+require_once "Models/Class/Article.php";
 
 
 ob_start(); ?>

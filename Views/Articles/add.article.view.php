@@ -1,6 +1,6 @@
 <?php
 
-use App\models\Article;
+use App\Models\Class\Article;
 
 ob_start();
 /** @var Article $article */
@@ -33,6 +33,7 @@ ob_start();
                                       id="txt" cols="45" rows="10"
                                       placeholder ="Votre commentaire"></textarea>
                         </div>
+
 
                         <div class="form-groupe  fw-bold  text-center">
                             <input class=" button-sub hover-overlay  w-auto p-2  border border-2  btn btn-outline-dark rounded-pill align-center"
