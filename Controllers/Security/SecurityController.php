@@ -8,23 +8,28 @@ use App\models\Manager\DbManager;
 use App\models\Manager\UserManager;
 
 
-
 class SecurityController extends DbManager
 {
     private $userManager;
 
-    /**
-     * @param $userManager
-     */
+/*
+* @param $userManager
+*/
     public function __construct()
     {
         $this->userManager = new UserManager();
     }
 
 
-    /**
-     * @return void
-     */
+    public function logout(){
+        // Détruit la session
+        session_destroy();
+        // Redirige l'utilisateur vers la page de login
+        header('Location: login.php');
+    }
+/*
+* @return void
+*/
     public function login(): void
     {
         if (!empty($_SESSION['email'])) {
@@ -45,19 +50,27 @@ class SecurityController extends DbManager
             }
             // J'appel mon manager pour enregistrer en base l'utilisateur
             // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
-            $this->userManager->login($email,$password);
+            $loggedUser = $this->userManager->login($email, $password);
 
+            // Si jamais j'ai un utilisateur :
+            // C'est ok je l'ajoute dans ma session et je redirige vers une page sécurisée
+            if($loggedUser){
+                $_SESSION['user'] = serialize($loggedUser);
+                header('Location: ../articles');
+            } else {
+                // Sinon, les identifiants ne sont pas correctes
+                $errors[] = 'Indentifiants incorrects';
+            }
         }
         require "Views/Security/login.php";
-    }
+        }
+
     /**
      * @return void
      */
     public function register(): void
     {
-        if (!empty($_SESSION['email'])) {
-            header('Location: article.php');
-        }
+
         if (!empty($_POST)) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             extract($post);
@@ -70,35 +83,35 @@ class SecurityController extends DbManager
 
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis.';
-            }elseif (strlen($password)<5){
+            } elseif (strlen($password) < 5) {
+
                 $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
             }
             // Si j'ai pas d'erreurs je vais aller vérifier si il n'y a pas un utilisateur qui a
             // Cet username et ce password
-            if(count($errors) == 0){
-
+            if (count($errors) == 0) {
                 $testByEmail = $this->userManager->testExistUserByEmail($_POST['email']);
 
-                if($testByEmail){
+                if ($testByEmail) {
                     $errors[] = 'Email déjà existant !';
-                    unset($lastSaisie['email']);
-                }
-                // Aucune erreur, je vais enregistrer mon utilisateur
-                if(count($errors) == 0){
-
-                    // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
-                    $user = new User( $_POST['email'], $_POST['password']);
-
-                    // J'appel mon manager pour enregistrer en base l'utilisateur
-                    // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
-                    $this->userManager->register();
-
-                    // Mon utilisateur est enregistré, je redirige donc vers le login
-                    header('Location: security/login');
                 }
             }
+            // Aucune erreur, je vais enregistrer mon utilisateur
+            if (count($errors) == 0) {
+
+                // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
+                $user = new User($_POST['email'], $_POST['password']);
+
+                // J'appel mon manager pour enregistrer en base l'utilisateur
+                // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
+                $this->userManager->register($user);
+
+                // Mon utilisateur est enregistré, je redirige donc vers le login
+//                header('Location: security/login');
+            }
+
         }
         require "Views/Security/register.php";
-    }
 
+    }
 }

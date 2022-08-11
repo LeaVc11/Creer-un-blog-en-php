@@ -99,6 +99,11 @@ function security(string $parameter): void
     if ($parameter === 'register') {
         $controller->register();
     }
+    // J'appel la fonction logout de mon SecurityController
+    if ($parameter == 'logout'){
+        $controller->logout();
+    }
+
 
 }
 //

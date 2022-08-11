@@ -2,14 +2,14 @@
 
 namespace App\Models\Class;
 
-//use Cassandra\Tinyint;
+
 
 class User
 {
 private int $id;
 private string $password;
 private string $email;
-//private tinyint $role;
+
 
     /**
      * @param int $id
@@ -17,9 +17,9 @@ private string $email;
      * @param string $email
      *
      */
-    public function __construct( int $id,string $email, string $password,/* tinyint $role*/)
+    public function __construct( string $email, string $password/*,int $id = null*/)
     {
-        $this->id = $id;
+/*        $this->id = $id ;*/
         $this->password = $password;
         $this->email = $email;
 //        $this->role = $role;
