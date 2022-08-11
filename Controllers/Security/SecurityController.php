@@ -42,6 +42,9 @@ class SecurityController extends DbManager
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis.';
             }
+            // J'appel mon manager pour enregistrer en base l'utilisateur
+            // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
+            $this->userManager->login($email,$password);
 
         }
         require "Views/Security/login.php";
@@ -80,9 +83,6 @@ class SecurityController extends DbManager
                     $errors[] = 'Email déjà existant !';
                     unset($lastSaisie['email']);
                 }
-
-
-
                 // Aucune erreur, je vais enregistrer mon utilisateur
                 if(count($errors) == 0){
 
