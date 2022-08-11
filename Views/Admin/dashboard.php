@@ -6,7 +6,7 @@ require_once "Models/Class/Article.php";
 ob_start(); ?>
 
 <!--section projet-->
-
+<h1>Bonjour , </h1>
 <section class="border-bottom mb-5">
     <div class="container mb-5 pb-5">
         <h2 class="text-center mt-mb-5 mt-4 display-4">Algarve</h2>
@@ -62,10 +62,10 @@ ob_start(); ?>
 
         <!--     card-->
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
-    <?php
+            <?php
 
 
-    for ($i = 0; $i < count($articles); $i++) {
+            for ($i = 0; $i < count($articles); $i++) {
                 ?>
                 <div class="col">
                     <div class="card h-100">
@@ -78,6 +78,8 @@ ob_start(); ?>
 
                         <div class="card-body text-center">
 
+                            <a href="<?= URL?>article/e/<?= $articles[$i]->getId() ?>" class="btn btn-primary text-center m-1" target="_blank">Modifier</a>
+                            <a href="<?= URL?>article/d/<?= $articles[$i]->getId() ?>" class="btn btn-success text-center m-1" target="_blank">Supprimer</a>
                             <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning text-center m-1" target="_blank">Ajouter</a>
                         </div>
 

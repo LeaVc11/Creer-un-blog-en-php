@@ -32,12 +32,15 @@ if(!empty($errors)):?>
                            name="email"
                            placeholder="Votre email"
                            value="<?= $email ?? ''; ?>"
-
                 </div>
                 <div class="form-groupe">
                     <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control" type="password"
                            name="password"
                            placeholder="Votre password"/>
+                </div
+                <div class="form-check form-switch ">
+                    <input class="form-check-input" name="isAdmin" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label text-white" for="flexSwitchCheckDefault">Administrateur</label>
                 </div>
                 <div class="form-groupe m-3 px-5 ">
                     <button class="button bg-danger text-white  m-3 p-2 w-100 rounded-1 border border-dark form-control form-control-lg" type="submit">Se connecter</button>

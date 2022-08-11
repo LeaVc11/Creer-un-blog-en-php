@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Controllers\AdminController;
 use App\Controllers\ArticlesController;
 use App\Controllers\Security\SecurityController;
 
@@ -31,6 +32,10 @@ $router->get('/posts/:id', function ($id) {
     echo 'Poster pour l\' article' . $id;
 });
 
+$router->get('/admin', function () {
+    echo 'Tous les admin';
+});
+
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
 
@@ -45,6 +50,7 @@ try {
             'articles' => getDisplayArticle(),
             'article' => actionArticle($url[1], $url[2]),
             'security' => security($url[1]),
+            'admin' => admin($url[1]),
             default => throw new Exception("La page n'existe pas"),
         };
     }
@@ -103,9 +109,15 @@ function security(string $parameter): void
     if ($parameter == 'logout'){
         $controller->logout();
     }
-
-
 }
+
+function admin ($parameter):void{
+    $controller = new AdminController();
+    if ($parameter === 'dashboard') {
+        $controller->dashboard();
+    }
+}
+
 //
 //if($_GET['controller'] == 'error' && $_GET['action'] == 'not-found'){
 //    $controller = new ExceptionController();

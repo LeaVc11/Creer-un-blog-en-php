@@ -12,24 +12,26 @@ class SecurityController extends DbManager
 {
     private $userManager;
 
-/*
-* @param $userManager
-*/
+    /*
+    * @param $userManager
+    */
     public function __construct()
     {
         $this->userManager = new UserManager();
     }
 
 
-    public function logout(){
+    public function logout()
+    {
         // Détruit la session
         session_destroy();
         // Redirige l'utilisateur vers la page de login
         header('Location: login.php');
     }
-/*
-* @return void
-*/
+
+    /*
+    * @return void
+    */
     public function login(): void
     {
         if (!empty($_SESSION['email'])) {
@@ -54,23 +56,24 @@ class SecurityController extends DbManager
 
             // Si jamais j'ai un utilisateur :
             // C'est ok je l'ajoute dans ma session et je redirige vers une page sécurisée
-            if($loggedUser){
+            if ($loggedUser) {
                 $_SESSION['user'] = serialize($loggedUser);
                 header('Location: ../articles');
             } else {
                 // Sinon, les identifiants ne sont pas correctes
-                $errors[] = 'Indentifiants incorrects';
+                $errors[] = 'Identifiants incorrects';
             }
         }
         require "Views/Security/login.php";
-        }
+    }
 
     /**
      * @return void
      */
     public function register(): void
     {
-
+//        var_dump($_POST);
+//        die();
         if (!empty($_POST)) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             extract($post);
@@ -99,19 +102,25 @@ class SecurityController extends DbManager
             // Aucune erreur, je vais enregistrer mon utilisateur
             if (count($errors) == 0) {
 
+                $role = 'user';
+
+                if ($_POST['isAdmin'] == 'on') {
+                    $role = "admin";
+                }
                 // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
-                $user = new User($_POST['email'], $_POST['password']);
+                $user = new User($_POST['email'], $_POST['password'], $role);
 
                 // J'appel mon manager pour enregistrer en base l'utilisateur
                 // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
                 $this->userManager->register($user);
-
-                // Mon utilisateur est enregistré, je redirige donc vers le login
-//                header('Location: security/login');
+//
+//                 Mon utilisateur est enregistré, je redirige donc vers le login
+                header('Location: ../security/login');
             }
 
         }
         require "Views/Security/register.php";
 
     }
+
 }

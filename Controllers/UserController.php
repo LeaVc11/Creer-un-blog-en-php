@@ -6,7 +6,7 @@ use App\Models\Manager\DbManager;
 use App\models\Manager\UserManager;
 
 
-class UserControllers extends DbManager
+class UserController extends DbManager
 {
     private $userManager;
 
