@@ -50,7 +50,7 @@ try {
             'articles' => getDisplayArticle(),
             'article' => actionArticle($url[1], $url[2]),
             'security' => security($url[1]),
-            'admin' => admin($url[1]),
+            'admin' => admin($url[2]),
             default => throw new Exception("La page n'existe pas"),
         };
     }
@@ -66,7 +66,6 @@ function getDisplayArticle(): void
     $articles = new ArticlesController();
     $articles->displayArticles();
 }
-
 /**
  * @param string $parameter
  * @param int $id
@@ -83,15 +82,8 @@ function actionArticle(string $parameter, int $id): void
     }
     else if ($parameter === "s") {
         $articles->showArticle($id);
-    } else if ($parameter === "a") {
-        $articles->addArticle();
-    } else if ($parameter === "e") {
-        $articles->editArticle();
-    } else if ($parameter === "d") {
-        $articles->deleteArticle($id);
-    } else {
+    } else
         throw new Exception("La page n'existe pas");
-    }
 }
 
 function security(string $parameter): void
@@ -113,8 +105,18 @@ function security(string $parameter): void
 
 function admin ($parameter):void{
     $controller = new AdminController();
-    if ($parameter === 'dashboard') {
-        $controller->dashboard();
+    if ($parameter === "dashboard") {
+        $articles->dashboard();
+    } else if ($parameter === "s") {
+        $articles->showArticle($id);
+    } else if ($parameter === "a") {
+        $articles->addArticle();
+    } else if ($parameter === "e") {
+        $articles->editArticle();
+    } else if ($parameter === "d") {
+        $articles->deleteArticle($id);
+    } else {
+        throw new Exception("La page n'existe pas");
     }
 }
 

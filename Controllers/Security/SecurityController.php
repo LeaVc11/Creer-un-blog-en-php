@@ -63,6 +63,11 @@ class SecurityController extends DbManager
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
             }
+            $role = 'user';
+
+            if ($_POST['isAdmin'] == 'on') {
+                $role = "admin";
+            }
         }
         require "Views/Security/login.php";
     }
