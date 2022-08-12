@@ -73,16 +73,8 @@ ob_start(); ?>
 
                             <img src="public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 p-3" alt="Plage">
                             <p class="card-text text-center fw-bold"><a  class="text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
-
                         </div>
-
-                        <div class="card-body text-center">
-
-                            <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning text-center m-1" target="_blank">Ajouter</a>
-                        </div>
-
                     </div>
-
                 </div>
             <?php } ?>
 

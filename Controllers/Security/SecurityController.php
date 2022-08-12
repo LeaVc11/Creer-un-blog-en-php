@@ -42,6 +42,9 @@ class SecurityController extends DbManager
             extract($post);
 
             $errors = [];
+            if(empty($_POST['username'])){
+                $errors[] = 'Veuillez saisir un username';
+            }
 
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = 'L\'adresse email n\'est pas valide.';
@@ -88,7 +91,9 @@ class SecurityController extends DbManager
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = 'L\'adresse email n\'est pas valide.';
             }
-
+            if(empty($_POST['username'])){
+                $errors[] = 'Veuillez saisir un nom d\'utilisateur';
+            }
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis.';
             } elseif (strlen($password) < 5) {

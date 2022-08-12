@@ -34,9 +34,14 @@ if(!empty($errors)):?>
                            value="<?= $email ?? ''; ?>"
                 </div>
                 <div class="form-groupe">
-                    <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control" type="password"
+                    <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control" type="text"
                            name="password"
                            placeholder="Votre password"/>
+                </div
+                <div class="form-groupe">
+                    <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control" type="password"
+                           name="username"
+                           placeholder="Votre username"/>
                 </div
                 <div class="form-check form-switch ">
                     <input class="form-check-input" name="isAdmin" type="checkbox" id="flexSwitchCheckDefault">
