@@ -10,18 +10,15 @@ require 'vendor/autoload.php';
 //
 //var_dump($_SESSION['user']);
 
-
-$router = new App\Routing\Router($_GET);
-
+$router = new App\Routing\Router($_GET['page']);
 
 $router->get('/', function () {
-    echo "Template";
+    require "Views/accueil.view.php";
 });
-$router->get('/posts', function () {
-    echo 'Tous les articles';
+$router->get('/articles', function () {
+    getDisplayArticle();
 });
-$router->get('/posts/:id-slug', function ($id) {
-    echo 'Article $slug : $id';
+$router->get('/articles/:id-slug', function ($id) {
 })->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
 
 $router->get('/posts/:id', function ($id) {
@@ -31,27 +28,33 @@ $router->get('/posts/:id', function ($id) {
     echo 'Poster pour l\' article' . $id;
 });
 
+try {
+    $router->run();
+} catch (Exception $e) {
+}
+
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
 
-try {
-    if (empty($_GET['page'])) {
-        require "Views/accueil.view.php";
-    } else {
-        $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
-        match ($url[0]) {
+//try {
+//    if (empty($_GET['page'])) {
+//        require "Views/accueil.view.php";
+//    } else {
+//        $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
+//        match ($url[0]) {
+//
+//            'accueil' => require "Views/accueil.view.php",
+//            'articles' => getDisplayArticle(),
+//            'article' => actionArticle($url[1], $url[2]),
+//            'security' => security($url[1]),
+//            default => throw new Exception("La page n'existe pas"),
+//        };
+//    }
+//} catch
+//(Exception $e) {
+//    echo $e->getMessage();
+//}
 
-            'accueil' => require "Views/accueil.view.php",
-            'articles' => getDisplayArticle(),
-            'article' => actionArticle($url[1], $url[2]),
-            'security' => security($url[1]),
-            default => throw new Exception("La page n'existe pas"),
-        };
-    }
-} catch
-(Exception $e) {
-    echo $e->getMessage();
-}
 /**
  * @return void
  */
