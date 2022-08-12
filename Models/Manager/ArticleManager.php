@@ -18,6 +18,8 @@ class ArticleManager extends DbManager
      * @param Article $article
      * @return void
      */
+
+
     public function addArticles(Article $article): void
     {
         $this->articles[] = $article;

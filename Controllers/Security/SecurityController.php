@@ -34,6 +34,7 @@ class SecurityController extends DbManager
     */
     public function login(): void
     {
+
         if (!empty($_SESSION['email'])) {
             header('Location: article.php');
         }
@@ -71,6 +72,7 @@ class SecurityController extends DbManager
             if ($_POST['isAdmin'] == 'on') {
                 $role = "admin";
             }
+            // connection admin/dashboard.php
         }
         require "Views/Security/login.php";
     }

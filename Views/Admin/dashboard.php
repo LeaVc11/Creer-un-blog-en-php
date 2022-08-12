@@ -6,7 +6,7 @@ require_once "Models/Class/Article.php";
 ob_start(); ?>
 
 <!--section projet-->
-<h1>Bonjour , </h1>
+<h1>Bonjour , echo $user->getUsername()</h1>
 <section class="border-bottom mb-5">
     <div class="container mb-5 pb-5">
         <h2 class="text-center mt-mb-5 mt-4 display-4">Algarve</h2>

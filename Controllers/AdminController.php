@@ -2,19 +2,16 @@
 
 namespace App\Controllers;
 
-use App\Models\Manager\AdminManager;
-
 
 class AdminController
 {
-    private AdminManager $adminManager;
+    private $user;
 
     /**
      * @throws \Exception
      */
     public function __construct()
     {
-      $this->adminManager = new AdminManager;
 
         if (!$this->adminManager->isAdmin($user)) {
             header('Location: dashboard.php');
@@ -24,6 +21,8 @@ class AdminController
         $articles= $this->articleManager->loadingArticles();
         require 'Views/Admin/dashboard.php';
     }
+
+    //affiche un article après avoir récu un user
 
 
 

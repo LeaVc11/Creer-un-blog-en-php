@@ -50,6 +50,7 @@ try {
             'articles' => getDisplayArticle(),
             'article' => actionArticle($url[1], $url[2]),
             'security' => security($url[1]),
+            'admin' => admin($url[1]),
             default => throw new Exception("La page n'existe pas"),
         };
     }
