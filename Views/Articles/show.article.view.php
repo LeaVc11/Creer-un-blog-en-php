@@ -6,14 +6,13 @@ ob_start();
 /** @var Article $article */
 ?>
     <div class="row">
-        <p class="text-start fw-bold text-info display-6 m-5"><?= $article->getContent(); ?></p>
-        <div class="col-6 mt-auto">
-
-            <img src="<?= URL?>/public/images/<?= $article->getImageLink() ?>" class="w-100 p-3" alt="Plage">
-        </div>
+<!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
         <div class="col-6 mt-5">
-            <p><?= $article->getTitle(); ?>
-                <p class="text-end text-secondary"><?= $article->getCreated_at()->format('d/m/Y - H:i:s') ?></p>
+            <img src="<?= URL?>/public/images/<?= $article->getImageLink() ?>" class="w-100 p-3" alt="html&css">
+        </div>
+        <div class="col-6 mt-5 p-5 text-center fw-bold ">
+            <h4><?= $article->getTitle(); ?>
+                <p class="text-end text-secondary mt-5"><?= $article->getCreated_at()->format('d/m/Y - H:i:s') ?></p>
 
         </div>
     </div>

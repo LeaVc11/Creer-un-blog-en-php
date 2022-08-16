@@ -57,13 +57,14 @@ class UserManager extends DbManager
 //die();
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
-        $query = $this->getBdd()->prepare("INSERT INTO user (`email`,`role`,`password`)
+        $query = $this->getBdd()->prepare("INSERT INTO user (`email`,`password`,`role`,`username`)
         VALUES (:email, :role,  :password )");
 
         $res = $query->execute([
             'email'=> $user->getEmail(),
             'password'=> $user->getPassword(),
-            'role'=> $user->getRole()
+            'role'=> $user->getRole(),
+            'username'=> $user->getUsername(),
         ]);
 
     }

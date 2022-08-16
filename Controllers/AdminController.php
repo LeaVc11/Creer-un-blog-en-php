@@ -7,6 +7,10 @@ class AdminController
 {
     private $user;
 
+    public function dashboard(){
+        require 'Views/Admin/dashboard.php';
+    }
+
     /**
      * @throws \Exception
      */
@@ -16,10 +20,6 @@ class AdminController
         if (!$this->adminManager->isAdmin($user)) {
             header('Location: dashboard.php');
         }
-    }
-    public function dashboard(){
-        $articles= $this->articleManager->loadingArticles();
-        require 'Views/Admin/dashboard.php';
     }
 
     //affiche un article après avoir récu un user

@@ -35,6 +35,19 @@ $router->get('/posts/:id', function ($id) {
 $router->get('/admin', function () {
     echo 'Tous les admin';
 });
+$router->get('/admin', function () {
+    echo 'Article $slug : $id';
+})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
+$router->get('/admin/posts/:id', function ($id) {
+});
+
+$router->get('/admin/posts/:id', function ($id) {
+    echo 'Poster pour l\' article' . $id;
+});
+$router->get('/errors/error' ,function(){
+    echo 'Page Introuvable ';
+});
+
 
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
@@ -110,31 +123,34 @@ function security(string $parameter): void
         $controller->register();
     }
     // J'appel la fonction logout de mon SecurityController
-    if ($parameter == 'logout'){
+    if ($parameter == 'logout') {
         $controller->logout();
     }
 }
 
-function admin ($parameter):void{
+function admin($parameter): void
+{
     $controller = new AdminController();
     if ($parameter === 'dashboard') {
         $controller->dashboard();
-    } else if ($parameter === "a") {
-        $articles->addArticle();
-    } else if ($parameter === "e") {
-        $articles->editArticle();
-    } else if ($parameter === "d") {
-        $articles->deleteArticle($id);
+    } else {
+        throw new Exception("La page n'existe pas");
+    }
+}
+function errors($parameter): void
+{
+    $controller = new ExceptionController();
+    if ($parameter === 'errors') {
+        $controller->pageIntrouvable();
     } else {
         throw new Exception("La page n'existe pas");
     }
 }
 
-//
-//if($_GET['controller'] == 'error' && $_GET['action'] == 'not-found'){
+//if ($_GET['controller'] == 'error' && $_GET['action'] == 'not-found') {
 //    $controller = new ExceptionController();
 //    $controller->pageIntrouvable();
 //}
-//
+
 
 

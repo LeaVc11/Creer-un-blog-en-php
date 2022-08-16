@@ -9,6 +9,6 @@
         }
          http_response_code(404);
 
-        require 'Views/errors/404.php';
+        require 'Views/errors/error.php';
      }
  }
