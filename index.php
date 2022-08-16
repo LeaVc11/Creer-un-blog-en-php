@@ -44,7 +44,7 @@ $router->get('/admin/posts/:id', function ($id) {
 $router->get('/admin/posts/:id', function ($id) {
     echo 'Poster pour l\' article' . $id;
 });
-$router->get('/errors/error' ,function(){
+$router->get('/errors/error', function () {
     echo 'Page Introuvable ';
 });
 
@@ -90,15 +90,14 @@ function getDisplayArticle(): void
  */
 function actionArticle(string $parameter, int $id): void
 {
+    if (empty($_SESSION) || !$_SESSION['user']) {
+        // Si je ne l'ai pas je redirige ver la page de login
+        header('Location: login');
+    }
     $articles = new ArticlesController();
     if ($parameter === "homepage") {
         $articles->homePage();
-    }
-//    $articles = new AdminController();
-//    if ($parameter === "dashboard") {
-//        $articles->dashboard();
-//    }
-    else if ($parameter === "s") {
+    } else if ($parameter === "s") {
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();
@@ -130,13 +129,18 @@ function security(string $parameter): void
 
 function admin($parameter): void
 {
-    $controller = new AdminController();
-    if ($parameter === 'dashboard') {
-        $controller->dashboard();
+    $user = unserialize($_SESSION['user']);
+    if (!$user->isAdmin()) {
+        header('Location: articles');
     } else {
-        throw new Exception("La page n'existe pas");
+        $controller = new AdminController();
+        if ($parameter === 'dashboard') {
+            $controller->dashboard();
+        }
     }
+
 }
+
 function errors($parameter): void
 {
     $controller = new ExceptionController();

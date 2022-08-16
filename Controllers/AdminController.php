@@ -7,9 +7,6 @@ class AdminController
 {
     private $user;
 
-    public function dashboard(){
-        require 'Views/Admin/dashboard.php';
-    }
 
     /**
      * @throws \Exception
@@ -17,13 +14,17 @@ class AdminController
     public function __construct()
     {
 
+
         if (!$this->adminManager->isAdmin($user)) {
-            header('Location: dashboard.php');
+            header('Location: dashboard');
         }
     }
-
     //affiche un article après avoir récu un user
 
+    public function dashboard(){
+        $articles=$this->articleManager->getArticles();
+        require 'Views/Admin/dashboard.php';
+    }
 
 
 }

@@ -34,6 +34,7 @@ class UserManager extends DbManager
         if($customerFromBdd) {
             $customer = new User(
                 $customerFromBdd['email'],
+                $customerFromBdd['role'],
                 $customerFromBdd['password']);
         }
 
