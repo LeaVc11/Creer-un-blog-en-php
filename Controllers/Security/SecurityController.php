@@ -120,11 +120,12 @@ class SecurityController extends DbManager
             // Aucune erreur, je vais enregistrer mon utilisateur
             if (count($errors) == 0) {
 
+//
+//                if ($_POST['isAdmin'] == 'on') {
+//                    $role = "admin";
+//                }
                 $role = 'user';
 
-                if ($_POST['isAdmin'] == 'on') {
-                    $role = "admin";
-                }
                 // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
                 $user = new User($_POST['email'],$_POST['username'], $_POST['password'], $role);
 
