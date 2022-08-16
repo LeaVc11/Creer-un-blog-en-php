@@ -9,8 +9,11 @@ ob_start(); ?>
 
 <section class="border-bottom mb-5">
     <div class="container m-5 pb-5">
-        <p class="card-text text-center display-6 text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur d'application - PHP/Symfony et mes créations personnelles.
+        <p class="card-text text-center text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur d'application
         </p>
+        <p class="card-text text-center text-primary fw-bold">PHP/Symfony et mes créations personnelles.
+        </p>
+
 <!--        <p class="fs-5 text-dark mb-md-5 mb-3 text-center">Le Portugal </p>-->
 
         <!--  carousel-->

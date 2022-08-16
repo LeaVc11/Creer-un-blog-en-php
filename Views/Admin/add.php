@@ -1,13 +1,17 @@
 <?php
 ob_start();
 ?>
-    <form method="POST" action="<?= URL ?>articles/av" enctype="multipart/form-data">
+    <form method="POST" action="<?= URL ?>articles/a" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="titre">Image : </label>
+            <input type="text" class="form-control" id="titre" name="titre">
+        </div>
         <div class="form-group">
             <label for="titre">Titre : </label>
             <input type="text" class="form-control" id="titre" name="titre">
         </div>
         <div class="form-group">
-            <label for="nbPages">Nombre de pages : </label>
+            <label for="nbPages">Commentaires : </label>
             <input type="number" class="form-control" id="nbPages" name="nbPages">
         </div>
         <div class="form-group">

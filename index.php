@@ -131,7 +131,7 @@ function admin($parameter): void
 {
     $user = unserialize($_SESSION['user']);
     if (!$user->isAdmin()) {
-        header('Location: articles');
+        header('Location: dashboard');
     } else {
         $controller = new AdminController();
         if ($parameter === 'dashboard') {
