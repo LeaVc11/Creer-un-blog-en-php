@@ -12,41 +12,44 @@ require 'vendor/autoload.php';
 //var_dump($_SESSION['user']);
 
 
-$router = new App\Routing\Router($_GET);
 
-
-$router->get('/', function () {
-    echo "Template";
-});
-$router->get('/posts', function () {
-    echo 'Tous les articles';
-});
-$router->get('/posts/:id-slug', function ($id) {
-    echo 'Article $slug : $id';
-})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
-
-$router->get('/posts/:id', function ($id) {
-});
-
-$router->get('/posts/:id', function ($id) {
-    echo 'Poster pour l\' article' . $id;
-});
-
-$router->get('/admin', function () {
-    echo 'Tous les admin';
-});
-$router->get('/admin', function () {
-    echo 'Article $slug : $id';
-})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
-$router->get('/admin/posts/:id', function ($id) {
-});
-
-$router->get('/admin/posts/:id', function ($id) {
-    echo 'Poster pour l\' article' . $id;
-});
-$router->get('/errors/error', function () {
-    echo 'Page Introuvable ';
-});
+//$router = new App\Routing\Router($_GET);
+//
+//$router->get('/', function () {
+//    require "Views/accueil.view.php";
+//});
+//$router->get('/articles', function () {
+//    getDisplayArticle();
+//});
+//$router->get('/articles/:id-slug', function ($id) {
+//})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
+//
+//$router->get('/posts/:id', function ($id) {
+//});
+//
+//$router->get('/posts/:id', function ($id) {
+//    echo 'Poster pour l\' article' . $id;
+//});
+//
+//try {
+//    $router->run();
+//} catch (Exception $e) {
+//}
+//$router->get('/admin', function () {
+//    echo 'Tous les admin';
+//});
+//$router->get('/admin', function () {
+//    echo 'Article $slug : $id';
+//})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
+//$router->get('/admin/posts/:id', function ($id) {
+//});
+//
+//$router->get('/admin/posts/:id', function ($id) {
+//    echo 'Poster pour l\' article' . $id;
+//});
+//$router->get('/errors/error' ,function(){
+//    echo 'Page Introuvable ';
+//});
 
 
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
@@ -64,6 +67,7 @@ try {
             'article' => actionArticle($url[1], $url[2]),
             'security' => security($url[1]),
             'admin' => admin($url[1]),
+
             default => throw new Exception("La page n'existe pas"),
         };
     }
@@ -90,14 +94,12 @@ function getDisplayArticle(): void
  */
 function actionArticle(string $parameter, int $id): void
 {
-    if (empty($_SESSION) || !$_SESSION['user']) {
-        // Si je ne l'ai pas je redirige ver la page de login
-        header('Location: login');
-    }
     $articles = new ArticlesController();
     if ($parameter === "homepage") {
         $articles->homePage();
-    } else if ($parameter === "s") {
+    }
+
+    else if ($parameter === "s") {
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();
@@ -126,7 +128,6 @@ function security(string $parameter): void
         $controller->logout();
     }
 }
-
 function admin($parameter): void
 {
     $user = unserialize($_SESSION['user']);
@@ -140,7 +141,6 @@ function admin($parameter): void
     }
 
 }
-
 function errors($parameter): void
 {
     $controller = new ExceptionController();
@@ -151,10 +151,7 @@ function errors($parameter): void
     }
 }
 
-//if ($_GET['controller'] == 'error' && $_GET['action'] == 'not-found') {
-//    $controller = new ExceptionController();
-//    $controller->pageIntrouvable();
-//}
+
 
 
 

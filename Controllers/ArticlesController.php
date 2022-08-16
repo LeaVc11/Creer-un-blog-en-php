@@ -24,7 +24,6 @@ class ArticlesController
         $articles= $this->articleManager->loadingArticles();
         require 'Views/Articles/articles.view.php';
     }
-
     /**
      * @return void
      */

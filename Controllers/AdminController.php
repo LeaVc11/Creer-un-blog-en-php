@@ -7,7 +7,7 @@ class AdminController
 {
 
     public function dashboard(){
-
+        $articles=$this->articleManager->loadingArticles();
         require 'Views/Admin/dashboard.php';
     }
 
