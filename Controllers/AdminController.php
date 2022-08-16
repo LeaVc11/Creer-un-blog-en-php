@@ -3,23 +3,28 @@
 namespace App\Controllers;
 
 
+use App\Models\Manager\ArticleManager;
+
 class AdminController
 {
 
-    public function dashboard(){
-        $articles=$this->articleManager->loadingArticles();
-        require 'Views/Admin/dashboard.php';
-    }
+    private $articleManager;
 
     /**
      * @throws \Exception
      */
     public function __construct()
     {
+        $this->articleManager = new ArticleManager;
 
-        if (!$this->adminManager->isAdmin($user)) {
-            header('Location: Admin/dashboard');
-        }
+        $this->articleManager->loadingArticles();
+//        dd($this->articleManager);
+    }
+    public function dashboard(){
+        $articles= $this->articleManager->loadingArticles();
+        require 'Views/Admin/dashboard.php';
     }
 
 }
+
+

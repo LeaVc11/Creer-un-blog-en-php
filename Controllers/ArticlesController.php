@@ -24,13 +24,12 @@ class ArticlesController
         $articles= $this->articleManager->loadingArticles();
         require 'Views/Articles/articles.view.php';
     }
+
     /**
      * @return void
      */
     public function displayArticles(): void
-
     {
-
         $articles = $this->articleManager->getArticles();
 
         require "Views/Articles/articles.view.php";

@@ -62,7 +62,7 @@ class SecurityController extends DbManager
             // C'est ok je l'ajoute dans ma session et je redirige vers une page sécurisée
             if ($loggedUser) {
                 $_SESSION['user'] = serialize($loggedUser);
-                header('Location: ../articles');
+                header('Location: articles');
             } else {
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
@@ -71,8 +71,9 @@ class SecurityController extends DbManager
 
             if ($_POST['isAdmin'] == 'on') {
                 $role = "admin";
+//                header('Location: Admin/dashboard.php');
             }
-            // connection admin/dashboard.php
+
         }
         require "Views/Security/login.php";
     }

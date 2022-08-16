@@ -41,7 +41,7 @@ if(!empty($errors)):?>
                 </div>
                 <div class="form-groupe  ">
                     <button class="btn btn-danger text-white  m-3 p-2 w-100 rounded-1 border border-dark form-control"
-                            type="submit">Se connecter
+                            type="submit"><a  class="text-decoration-none text-secondary" href="<?= URL ?>admin/dashboard">Se connecter</a>
                     </button>
                 </div>
             </form>

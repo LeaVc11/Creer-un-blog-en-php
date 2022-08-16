@@ -3,6 +3,7 @@
 
 use App\Controllers\AdminController;
 use App\Controllers\ArticlesController;
+use App\Controllers\HomeController;
 use App\Controllers\Security\SecurityController;
 
 require 'vendor/autoload.php';
@@ -67,6 +68,7 @@ try {
             'article' => actionArticle($url[1], $url[2]),
             'security' => security($url[1]),
             'admin' => admin($url[1]),
+            'home' => home($url[1]),
 
             default => throw new Exception("La page n'existe pas"),
         };
@@ -98,7 +100,6 @@ function actionArticle(string $parameter, int $id): void
     if ($parameter === "homepage") {
         $articles->homePage();
     }
-
     else if ($parameter === "s") {
         $articles->showArticle($id);
     } else if ($parameter === "a") {
@@ -128,19 +129,23 @@ function security(string $parameter): void
         $controller->logout();
     }
 }
+
 function admin($parameter): void
 {
-    $user = unserialize($_SESSION['user']);
-    if (!$user->isAdmin()) {
-        header('Location: dashboard');
-    } else {
         $controller = new AdminController();
         if ($parameter === 'dashboard') {
             $controller->dashboard();
         }
-    }
+//    }
 
 }
+function home($parameter):void{
+    $homecontroller = new HomeController();
+    if ($parameter === 'home')
+    $homecontroller->displayDashboard();
+
+}
+
 function errors($parameter): void
 {
     $controller = new ExceptionController();
