@@ -3,6 +3,7 @@
 namespace App\Controllers\Security;
 
 
+use App\Models\Class\Article;
 use App\Models\Class\User;
 use App\models\Manager\DbManager;
 use App\models\Manager\UserManager;
@@ -60,19 +61,23 @@ class SecurityController extends DbManager
 
             // Si jamais j'ai un utilisateur :
             // C'est ok je l'ajoute dans ma session et je redirige vers une page sécurisée
+//            var_dump($loggedUser);
+//            die();
+            if ($loggedUser->isAdmin())  {
+                $role = "admin";
+                header('Location: ../admin/dashboard');
+                exit();
+            }
             if ($loggedUser) {
                 $_SESSION['user'] = serialize($loggedUser);
-                header('Location: articles');
+                header('Location: ../articles');
             } else {
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
             }
             $role = 'user';
 
-            if ($_POST['isAdmin'] == 'on') {
-                $role = "admin";
-//                header('Location: Admin/dashboard.php');
-            }
+
 
         }
         require "Views/Security/login.php";
@@ -121,7 +126,7 @@ class SecurityController extends DbManager
                     $role = "admin";
                 }
                 // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
-                $user = new User($_POST['email'], $_POST['password'], $role);
+                $user = new User($_POST['email'],$_POST['username'], $_POST['password'], $role);
 
                 // J'appel mon manager pour enregistrer en base l'utilisateur
                 // Je lui passe l'utilisateur que je souhaite ajouter en paramètre

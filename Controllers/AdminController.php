@@ -25,6 +25,7 @@ class AdminController
         require 'Views/Admin/dashboard.php';
     }
 
+
 }
 
 

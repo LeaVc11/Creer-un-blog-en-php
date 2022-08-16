@@ -21,9 +21,9 @@ class User
     public function __construct(string $email, $username, string $password/*,int $id = null*/, $role = 'user')
     {
         /*        $this->id = $id ;*/
-        $this->password = $password;
-        $this->user = $username;
         $this->email = $email;
+        $this->username = $username;
+        $this->password = $password;
         $this->role = $role;
 
     }
@@ -101,12 +101,12 @@ class User
 
     /**
      * @param string $password
-     * @return User
+
      */
-    public function setPassword(string $password): User
+    public function setPassword(string $password): void
     {
         $this->password = $password;
-        return $this;
+
     }
 
     /**

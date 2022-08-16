@@ -34,8 +34,10 @@ class UserManager extends DbManager
         if($customerFromBdd) {
             $customer = new User(
                 $customerFromBdd['email'],
-                $customerFromBdd['role'],
-                $customerFromBdd['password']);
+                $customerFromBdd['username'],
+                $customerFromBdd['password'],
+                $customerFromBdd['role']);
+
         }
 
         return $customer;
@@ -54,18 +56,19 @@ class UserManager extends DbManager
     }
     public function register(User $user)
     {
-//var_dump($user);
-//die();
+var_dump($user);
+die();
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
-        $query = $this->getBdd()->prepare("INSERT INTO user (`email`,`password`,`role`,`username`)
+        $query = $this->getBdd()->prepare("INSERT INTO user (`email`,`username`,`password`,`role`)
         VALUES (:email, :role,  :password )");
 
         $res = $query->execute([
             'email'=> $user->getEmail(),
+            'username'=> $user->getUsername(),
             'password'=> $user->getPassword(),
             'role'=> $user->getRole(),
-            'username'=> $user->getUsername(),
+
         ]);
 
     }

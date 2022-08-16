@@ -3,7 +3,6 @@
 
 use App\Controllers\AdminController;
 use App\Controllers\ArticlesController;
-use App\Controllers\HomeController;
 use App\Controllers\Security\SecurityController;
 
 require 'vendor/autoload.php';
@@ -11,7 +10,6 @@ require 'vendor/autoload.php';
 //var_dump(md5('johndoe'));die(); //prend le resultat du hashage
 //
 //var_dump($_SESSION['user']);
-
 
 
 //$router = new App\Routing\Router($_GET);
@@ -99,8 +97,7 @@ function actionArticle(string $parameter, int $id): void
     $articles = new ArticlesController();
     if ($parameter === "homepage") {
         $articles->homePage();
-    }
-    else if ($parameter === "s") {
+    } else if ($parameter === "s") {
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();
@@ -132,19 +129,29 @@ function security(string $parameter): void
 
 function admin($parameter): void
 {
-        $controller = new AdminController();
-        if ($parameter === 'dashboard') {
-            $controller->dashboard();
-        }
-//    }
+    $articles = new AdminController();
+    if ($parameter === 'dashboard') {
+        $articles->dashboard();
+    } else if ($parameter === "s") {
+        $articles->showArticle($id);
+    } else if ($parameter === "a") {
+        $articles->addArticle();
+    } else if ($parameter === "e") {
+        $articles->editArticle();
+    } else if ($parameter === "d") {
+        $articles->deleteArticle($id);
+    } else {
+        throw new Exception("La page n'existe pas");
+    }
 
 }
-function home($parameter):void{
-    $homecontroller = new HomeController();
-    if ($parameter === 'home')
-    $homecontroller->displayDashboard();
 
-}
+//function home($parameter):void{
+//    $homecontroller = new HomeController();
+//    if ($parameter === 'home')
+//    $homecontroller->displayDashboard();
+//
+//}
 
 function errors($parameter): void
 {

@@ -5,6 +5,7 @@ use App\Models\Class\Article;
 ob_start();
 /** @var Article $article */
 ?>
+
 <body style="background : #f7f1e3">
     <section class=" w-100 h-100 rounded mt-5 p-1" style="background : #f7f1e3">
 

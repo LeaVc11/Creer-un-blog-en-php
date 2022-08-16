@@ -58,6 +58,7 @@ ob_start(); ?>
                             <p class="card-text text-center fw-bold"><a  class="text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
                         </div>
                     </div>
+
                 </div>
             <?php } ?>
 
