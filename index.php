@@ -37,6 +37,10 @@ $router->get('/admin/:id-slug', function ($id) {
 $router->get('/admin/:id', function ($id) use ($router, $url) {
     actionArticle($url[1], $url[2]);
 
+$router->get('default ', function () {
+    throw new Exception("La page n'existe pas");
+    });
+
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
 
