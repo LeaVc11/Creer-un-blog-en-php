@@ -49,8 +49,8 @@ ob_start(); ?>
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
             <?php
 
-var_dump($articles);
-die();
+//var_dump($articles);
+//die();
             for ($i = 0; $i < count($articles); $i++) {
                 ?>
                 <div class="col">

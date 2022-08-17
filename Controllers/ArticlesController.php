@@ -45,7 +45,7 @@ class ArticlesController
     public function showArticle(int $id): void
     {
         $article = $this->articleManager->showArticle($id);
-        require "Views/Articles/show.article.view.php";
+        require "Views/Admin/show.article.view.php";
     }
 
     /**
@@ -53,7 +53,7 @@ class ArticlesController
      */
     public function addArticle(): void
     {
-        require "Views/Articles/add.article.view.php";
+        require "Views/Articles/comment.view.php";
     }
 
     /**
@@ -76,6 +76,6 @@ class ArticlesController
      */
     public function editArticle(): void
     {
-        require "Views/Articles/edit.article.view.php";
+        require "Views/Admin/edit.article.view.php";
     }
 }

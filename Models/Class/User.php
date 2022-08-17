@@ -6,18 +6,13 @@ namespace App\Models\Class;
 class User
 {
     private int $id;
+    private string $email;
     private string $username;
     private string $password;
-    private string $email;
     private mixed $role;
 
 
-    /**
-     * @param int $id
-     * @param string $password
-     * @param string $email
-     *
-     */
+
     public function __construct(string $email, $username, string $password/*,int $id = null*/, $role = 'user')
     {
         /*        $this->id = $id ;*/

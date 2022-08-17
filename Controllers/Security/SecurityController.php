@@ -3,7 +3,6 @@
 namespace App\Controllers\Security;
 
 
-use App\Models\Class\Article;
 use App\Models\Class\User;
 use App\models\Manager\DbManager;
 use App\models\Manager\UserManager;
@@ -11,7 +10,7 @@ use App\models\Manager\UserManager;
 
 class SecurityController extends DbManager
 {
-    private $userManager;
+    private UserManager $userManager;
 
     /*
     * @param $userManager
@@ -44,7 +43,7 @@ class SecurityController extends DbManager
             extract($post);
 
             $errors = [];
-            if(empty($_POST['username'])){
+            if (empty($_POST['username'])) {
                 $errors[] = 'Veuillez saisir un username';
             }
 
@@ -59,26 +58,22 @@ class SecurityController extends DbManager
             // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
             $loggedUser = $this->userManager->login($email, $password);
 
-            // Si jamais j'ai un utilisateur :
-            // C'est ok je l'ajoute dans ma session et je redirige vers une page sécurisée
+            if ($loggedUser) {
+                // Si jamais j'ai un utilisateur :
+                // C'est ok je l'ajoute dans ma session et je redirige vers une page sécurisée
 //            var_dump($loggedUser);
 //            die();
-            if ($loggedUser->isAdmin())  {
-                $role = "admin";
-                header('Location: ../admin/dashboard');
-                exit();
-            }
-            if ($loggedUser) {
                 $_SESSION['user'] = serialize($loggedUser);
+                if ($loggedUser->isAdmin()) {
+                    header('Location: ../admin/dashboard');
+                    exit();
+                }
                 header('Location: ../articles');
+
             } else {
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
             }
-            $role = 'user';
-
-
-
         }
         require "Views/Security/login.php";
     }
@@ -99,7 +94,7 @@ class SecurityController extends DbManager
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = 'L\'adresse email n\'est pas valide.';
             }
-            if(empty($_POST['username'])){
+            if (empty($_POST['username'])) {
                 $errors[] = 'Veuillez saisir un nom d\'utilisateur';
             }
             if (empty($password)) {
@@ -120,26 +115,26 @@ class SecurityController extends DbManager
             // Aucune erreur, je vais enregistrer mon utilisateur
             if (count($errors) == 0) {
 
-//
-//                if ($_POST['isAdmin'] == 'on') {
-//                    $role = "admin";
-//                }
-                $role = 'user';
+                $role = 'user'; // role par défaut
 
-                // Je cré un nouvel objet utilisateur sans id. Ce dernier sera généré par la BDD
-                $user = new User($_POST['email'],$_POST['username'], $_POST['password'], $role);
+                if ($_POST['isAdmin']) { // Si la case est coché
+                    $role = "admin"; // on change le role par celui d'admin
+                }
 
-                // J'appel mon manager pour enregistrer en base l'utilisateur
-                // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
+// Création de l'utilisateur sans id. Ce dernier sera généré par la BDD
+                $user = new User($_POST['email'], $_POST['username'], $_POST['password'], $role);
+
+// J'appel mon manager pour enregistrer en base l'utilisateur
+// Je lui passe l'utilisateur que je souhaite ajouter en paramètre
                 $this->userManager->register($user);
-//
-//                 Mon utilisateur est enregistré, je redirige donc vers le login
+
+// Mon utilisateur est enregistré, je redirige donc vers le login
                 header('Location: ../security/login');
+                exit();
+
             }
 
         }
         require "Views/Security/register.php";
-
     }
-
 }

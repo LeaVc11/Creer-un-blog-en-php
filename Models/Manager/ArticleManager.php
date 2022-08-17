@@ -38,7 +38,7 @@ class ArticleManager extends DbManager
      */
     public function loadingArticles()
     {
-        $req = $this->getBdd()->prepare("SELECT * FROM Articles");
+        $req = $this->getBdd()->prepare("SELECT * FROM articles");
         $req->execute();
         $articles = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
@@ -48,6 +48,7 @@ class ArticleManager extends DbManager
             $a = $this->createdObjectArticle($article);
             $this->addArticles($a);
         }
+        return $this->articles;
     }
 
     /**
@@ -59,7 +60,7 @@ class ArticleManager extends DbManager
      */
     public function showArticle(int $id): Article
     {
-        $request = $this->getBdd()->prepare('SELECT * FROM Articles WHERE id = :id');
+        $request = $this->getBdd()->prepare('SELECT * FROM articles WHERE id = :id');
         $request->bindParam(':id', $id);
         $request->execute();
         $article = $request->fetch(PDO::FETCH_ASSOC);
@@ -121,7 +122,7 @@ class ArticleManager extends DbManager
      */
     public function deleteArticle(int $id){
         $req = "
-        Delete from Articles where id = :idArticle
+        Delete from articles where id = :idArticle
         ";
         // debug une requete
 //        print_r($req); die();
