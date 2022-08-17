@@ -53,29 +53,29 @@ class ArticlesController
      */
     public function addArticle(): void
     {
-        require "Views/Articles/comment.view.php";
+        require "Views/Admin/add.php";
     }
 
-    /**
-     * @param int $id
-     *
-     * @return void
-     *
-     * @throws Exception
-     */
-    public function deleteArticle( int $id): void
-    {
-        $article = $this->articleManager->deleteArticle($id);
-
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return void
-     */
-    public function editArticle(): void
-    {
-        require "Views/Admin/edit.article.view.php";
-    }
+//    /**
+//     * @param int $id
+//     *
+//     * @return void
+//     *
+//     * @throws Exception
+//     */
+//    public function deleteArticle( int $id): void
+//    {
+//        $article = $this->articleManager->deleteArticle($id);
+//
+//    }
+//
+//    /**
+//     * @param int $id
+//     *
+//     * @return void
+//     */
+//    public function editArticle(): void
+//    {
+//        require "Views/Admin/edit.article.view.php";
+//    }
 }

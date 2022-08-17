@@ -39,6 +39,6 @@
 
 </div>
 
-    <script rel="script" src="Public/js/404.js"></script>
+    <script rel="script" src="../../Public/js/404.js"></script>
 </body>
 </html>

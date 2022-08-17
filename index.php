@@ -101,10 +101,10 @@ function actionArticle(string $parameter, int $id): void
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();
-    } else if ($parameter === "e") {
-        $articles->editArticle();
-    } else if ($parameter === "d") {
-        $articles->deleteArticle($id);
+//    } else if ($parameter === "e") {
+//        $articles->editArticle();
+//    } else if ($parameter === "d") {
+//        $articles->deleteArticle($id);
     } else {
         throw new Exception("La page n'existe pas");
     }

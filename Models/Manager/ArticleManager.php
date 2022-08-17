@@ -12,7 +12,7 @@ use PDO;
 
 class ArticleManager extends DbManager
 {
-    private array $articles;
+    private array $articles = [];
 
     /**
      * @param Article $article

@@ -14,22 +14,21 @@ ob_start(); ?>
         <p class="card-text text-center text-primary fw-bold">PHP/Symfony et mes créations personnelles.
         </p>
 
-        <!--        <p class="fs-5 text-dark mb-md-5 mb-3 text-center">Le Portugal </p>-->
 
         <!--  carousel-->
         <div id="carouselExampleControls" class="carousel slide text-center " data-bs-ride="carousel">
-            <div class="carousel-inner p-5">
-                <div class="carousel-item active">
-                    <img src="Public/images/htmlcss-logo-title.svg" class=" w-50 " alt="html&css">
+            <div class="carousel-inner mb-5 p-5">
+                <div class="carousel-item active ">
+                    <img src="../../Public/images/htmlcss-logo-title.svg" class=" w-50 " alt="html&css">
 
                 </div>
                 <div class="carousel-item ">
-                    <img src="Public/images/wordpress-blue.svg" class=" w-25 " alt="wordpress">
+                    <img src="../../Public/images/wordpress-blue.svg" class="w-25 " alt="wordpress">
 
 
                 </div>
-                <div class="carousel-item ">
-                    <img src="Public/images/php-1.svg" class=" w-50  " alt="blog">
+                <div class="carousel-item">
+                    <img src="../../Public/images/php-1.svg" class=" w-50  " alt="php">
 
                 </div>
             </div>
@@ -46,7 +45,7 @@ ob_start(); ?>
         </div>
 
         <!--     card-->
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
 
 //var_dump($articles);
@@ -56,14 +55,15 @@ ob_start(); ?>
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <img src="public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 p-3" alt="html&css">
+                            <img src="../Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 p-3" alt="html&css">
                             <p class="card-text text-center fw-bold"><a  class="text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
                         </div>
                         <div class="card-body text-center">
 
+                            <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning text-center m-1" target="_blank">Ajouter</a>
                             <a href="<?= URL?>article/e/<?= $articles[$i]->getId() ?>" class="btn btn-primary text-center m-1" target="_blank">Modifier</a>
                             <a href="<?= URL?>article/d/<?= $articles[$i]->getId() ?>" class="btn btn-success text-center m-1" target="_blank">Supprimer</a>
-                            <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning text-center m-1" target="_blank">Ajouter</a>
+
                         </div>
                     </div>
 

@@ -14,7 +14,6 @@ ob_start(); ?>
         <p class="card-text text-center text-primary fw-bold">PHP/Symfony et mes créations personnelles.
         </p>
 
-<!--        <p class="fs-5 text-dark mb-md-5 mb-3 text-center">Le Portugal </p>-->
 
         <!--  carousel-->
         <div id="carouselExampleControls" class="carousel slide text-center " data-bs-ride="carousel">
@@ -47,15 +46,20 @@ ob_start(); ?>
 
         <!--     card-->
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
-    <?php
+            <?php
 
-    for ($i = 0; $i < count($articles); $i++) {
+            //var_dump($articles);
+            //die();
+            for ($i = 0; $i < count($articles); $i++) {
                 ?>
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <img src="public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 p-3" alt="html&css">
-                            <p class="card-text text-center fw-bold"><a  class="text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
+                            <img src="Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 mb-5 p-3" alt="html&css">
+                            <p class="card-text text-center fw-bold"><a  class=" btn btn-primary text-center m-1 text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
+                        </div>
+                        <div class="card-body text-center">
+
                         </div>
                     </div>
 
