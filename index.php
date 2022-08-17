@@ -22,16 +22,20 @@ $router->get('/articles', function () {
 $router->get('/articles/:id-slug', function ($id) {
 })->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
 
-$router->get('/posts/:id', function ($id) {
+$router->get('/posts/:id', function ($id) use ($url) {
+    actionArticle($url[1], $url[2]);
 });
-
-$router->get('/posts/:id', function ($id) {
-    echo 'Poster pour l\' article' . $id;
+$router->get('/security', function () use ($url) {
+    security($url[1]);
 });
-
 $router->get('/admin', function () {
-    echo 'Tous les admin';
+    getDisplayArticle();
 });
+$router->get('/admin/:id-slug', function ($id) {
+})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
+
+$router->get('/admin/:id', function ($id) use ($router, $url) {
+    actionArticle($url[1], $url[2]);
 
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
