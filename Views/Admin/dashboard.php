@@ -7,43 +7,57 @@ ob_start(); ?>
 
 <!--section projet-->
 
-<section class="border-bottom mb-5">
-    <div class="container m-5 pb-5">
-        <p class="card-text text-center text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur d'application
-        </p>
-        <p class="card-text text-center text-primary fw-bold">PHP/Symfony et mes créations personnelles.
-        </p>
+<div class="mb-5 pb-5">
+    <h2 class="text-secondary">Articles</h2>
+    <p class="lead">Administrez ici les articles du blog.</p>
+    <div class="d-flex justify-content-end">
+        <a href="" class="btn btn-link">Ajouter </a>
+    </div>
+    <table class="table table-hover mb-5">
+        <caption>Liste des articles</caption>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Chapô</th>
+            <th scope="col">Slug</th>
+            <th scope="col">Date de création</th>
+            <th scope="col">Date de modification</th>
+            <th scope="col">Auteur</th>
+            <th scope="col" colspan="5">Edition</th>
+        </tr>
+        </thead>
+        <tbody>
 
+        <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
 
-        <!--  carousel-->
-        <div id="carouselExampleControls" class="carousel slide text-center " data-bs-ride="carousel">
-            <div class="carousel-inner mb-5 p-5">
-                <div class="carousel-item active ">
-                    <img src="../../Public/images/htmlcss-logo-title.svg" class=" w-50 " alt="html&css">
+            </td>
+            <td>
+                <a href="" class="btn btn-primary" role="button">Voir</a>
+            </td>
+            <td>
+                <a href="" class="btn btn-secondary" role="button">Editer</a>
+            </td>
+            <td>
+                <a  href="" class="btn btn-danger" role="button">Supprimer</a>
+            </td>
+        </tr>
 
-                </div>
-                <div class="carousel-item ">
-                    <img src="../../Public/images/wordpress-blue.svg" class="w-25 " alt="wordpress">
+        </tbody>
+    </table>
+</div>
+<?php
+$content = ob_get_clean();
 
-
-                </div>
-                <div class="carousel-item">
-                    <img src="../../Public/images/php-1.svg" class=" w-50  " alt="php">
-
-                </div>
-            </div>
-            <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                <span class="visually-hidden ">Previous</span>
-            </button>
-            <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
+require "Views/template.php";
+?>
         <!--     card-->
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
