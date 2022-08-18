@@ -1,10 +1,10 @@
-
 <?php
-$user=unserialize($_SESSION['user']);
+$user = unserialize($_SESSION['user']);
 
-if ($user->isAdmin()){
-    echo ('<a href="admin/dashboard">Administrateur</a>');
+if ($user->isAdmin()) {
+    echo('<a href="admin/dashboard">Administrateur</a>');
 }
-    echo('Bonjour '. unserialize($_SESSION['user'])->getUsername());
+    echo('Bonjour ' . unserialize($_SESSION['user'])->getUsername());
+    echo('<a href="admin/logout">Se déconnecter</a>');
 
 

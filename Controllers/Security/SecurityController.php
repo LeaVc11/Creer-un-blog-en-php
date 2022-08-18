@@ -20,15 +20,6 @@ class SecurityController extends DbManager
         $this->userManager = new UserManager();
     }
 
-
-    public function logout()
-    {
-        // Détruit la session
-        session_destroy();
-        // Redirige l'utilisateur vers la page de login
-        header('Location: login.php');
-    }
-
     /*
     * @return void
     */
@@ -76,6 +67,10 @@ class SecurityController extends DbManager
             }
         }
         require "Views/Security/login.php";
+    }
+    public function logout(){
+        session_destroy();
+        header('Location: login');
     }
 
     /**

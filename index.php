@@ -141,8 +141,6 @@ function admin($parameter): void
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();
-    } else if ($parameter === "av") {
-        $articles->addArticleValidation();
     } else if ($parameter === "e") {
         $articles->editArticle();
     } else if ($parameter === "d") {

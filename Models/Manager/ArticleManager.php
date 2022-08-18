@@ -91,7 +91,7 @@ class ArticleManager extends DbManager
     /**
      * @throws Exception
      */
-    public function addArticle($image_link, $title,$content, $author,$slug,$created_at)
+    public function addArticle($imageLink, $title,$content, $author,$slug,$created_at,$updated_at)
     {
         // recupérer les infos du form
         $imageLink = '';
@@ -100,9 +100,10 @@ class ArticleManager extends DbManager
         $author = '';
         $slug = '';
         $created_at = '';
+        $updated_at= '';
 
 
-        $req = $this->getBdd()->prepare('INSERT INTO articles (`image_link`, `content`, `title` , `author`, `slug`, `created_at`)
+        $req = $this->getBdd()->prepare('INSERT INTO `articles` (`image_link`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
         VALUES (:image_link, :content, :title, :author, :slug, :createdAt)');
         $req->bindParam(':image_link', $imageLink);
         $req->bindParam(':content', $content);
@@ -110,35 +111,13 @@ class ArticleManager extends DbManager
         $req->bindParam(':author', $author);
         $req->bindParam(':slug', $slug);
         $req->bindParam(':created_at', $created_at);
+        $req->bindParam(':updated_at', $updated_at);
 
         $req->execute();
         $req->closeCursor();
 
-        if ($req > 0) {
-            $article = new Article($this->getBdd()->lastInsertId(),$image_link, $title,$content, $author,$slug,$created_at);
-            $this->addArticle($article);
-        }
 
     }
 
-    /**
-     * @param int $id
-     *
-     *
-     * @throws Exception
-     */
-    public function deleteArticle(int $id)
-    {
-
-        $req = "Delete from articles where id = :idArticle";
-        // debug une requete
-//        print_r($req); die();
-        $stmt = $this->getBdd()->prepare($req);
-//        dd($stmt);
-        $stmt->bindValue(":idArticle", $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $stmt->closeCursor();
-
-    }
 
 }

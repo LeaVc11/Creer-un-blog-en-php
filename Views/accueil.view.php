@@ -33,6 +33,8 @@
 
                                 <a class="btn btn-success btn-lg rounded mt-5 ms-4" role="button" type="submit"
                                    href="https://monportfolio.carine-dev.fr/ " target="_blank">Mon Site </a>
+                                <a class="btn btn-primary btn-lg rounded mt-5" role="button" type="submit"
+                                   href="Public/images/Carine%20Vinagre.pdf " target="_blank">Mon CV</a>
                                 <a class="btn btn-info btn-lg rounded mt-5" role="button" type="submit"
                                    href="https://github.com/vcarine" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
