@@ -91,7 +91,7 @@ class ArticleManager extends DbManager
     /**
      * @throws Exception
      */
-    public function addArticle( )
+    public function addArticle($image_link, $title,$content, $author,$slug,$created_at)
     {
         // recupérer les infos du form
         $imageLink = '';
@@ -103,7 +103,7 @@ class ArticleManager extends DbManager
 
 
         $req = $this->getBdd()->prepare('INSERT INTO articles (`image_link`, `content`, `title` , `author`, `slug`, `created_at`)
-VALUES (:image_link, :content, :title, :author, :slug, :createdAt)');
+        VALUES (:image_link, :content, :title, :author, :slug, :createdAt)');
         $req->bindParam(':image_link', $imageLink);
         $req->bindParam(':content', $content);
         $req->bindParam(':title', $title);
@@ -129,6 +129,7 @@ VALUES (:image_link, :content, :title, :author, :slug, :createdAt)');
      */
     public function deleteArticle(int $id)
     {
+
         $req = "Delete from articles where id = :idArticle";
         // debug une requete
 //        print_r($req); die();
@@ -138,23 +139,6 @@ VALUES (:image_link, :content, :title, :author, :slug, :createdAt)');
         $stmt->execute();
         $stmt->closeCursor();
 
-    }
-
-    public function addArticle($titre, $nbPages, $image)
-    {
-        $req = "INSERT INTO articles (titre, nbPages, image)
-        values (:titre, :nbPages, :image)";
-        $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
-        $stmt->bindValue(":nbPages", $nbPages, PDO::PARAM_INT);
-        $stmt->bindValue(":image", $image, PDO::PARAM_STR);
-        $resultat = $stmt->execute();
-        $stmt->closeCursor();
-
-        if ($resultat > 0) {
-            $livre = new Livre($this->getBdd()->lastInsertId(), $titre, $nbPages, $image);
-            $this->ajoutLivre($livre);
-        }
     }
 
 }

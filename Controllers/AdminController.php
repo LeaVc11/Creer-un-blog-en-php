@@ -46,7 +46,7 @@ class AdminController
     /**
      * @return void
      */
-    public function addArticle(): void
+    public function addArticles(): void
     {
         $article = $this->articleManager->addArticle($id);
         require "Views/Admin/add.php";
