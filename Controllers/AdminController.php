@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 use App\Models\Manager\ArticleManager;
+use Exception;
 
 class AdminController
 {
@@ -48,9 +49,12 @@ class AdminController
     public function addArticle(): void
     {
         $article = $this->articleManager->addArticle($id);
-        require "Views/Articles/comment.view.php";
+        require "Views/Admin/add.php";
     }
 
+    /**
+     * @throws Exception
+     */
     public function addArticleValidation(): void
     {
         $file = $_FILES['image'];
@@ -83,7 +87,8 @@ class AdminController
         require "Views/Admin/edit.article.view.php";
     }
 
-    private function addImage($file, $dir){
+    private function addImage($file, $dir): string
+    {
         if(!isset($file['name']) || empty($file['name']))
             throw new Exception("Vous devez indiquer une image");
 
@@ -105,7 +110,6 @@ class AdminController
             throw new Exception("l'ajout de l'image n'a pas fonctionné");
         else return ($random."_".$file['name']);
     }
-}
 }
 
 
