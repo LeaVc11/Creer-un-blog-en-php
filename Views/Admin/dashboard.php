@@ -5,29 +5,27 @@ require_once "Models/Class/Article.php";
 
 ob_start(); ?>
 
-<!--section projet-->
+<h2 class="text-secondary m-5 ">Articles</h2>
+<p class="lead">Administrez ici les articles du blog.</p>
 
-<div class="mb-5 pb-5">
-    <h2 class="text-secondary">Articles</h2>
-    <p class="lead">Administrez ici les articles du blog.</p>
+<table class="table text-center">
+    <tr class="table-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Chapô</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Date de modification</th>
+        <th scope="col">Auteur</th>
+        <th scope="col" colspan="5">Edition</th>
+    </tr>
     <div class="d-flex justify-content-end">
-        <a href="" class="btn btn-link">Ajouter </a>
+        <?php
+        for($i=0; $i < count($articles);$i++) :
+        ?>
+        <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning  m-1">Ajouter</a>
     </div>
-    <table class="table table-hover mb-5">
-        <caption>Liste des articles</caption>
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Titre</th>
-            <th scope="col">Chapô</th>
-            <th scope="col">Slug</th>
-            <th scope="col">Date de création</th>
-            <th scope="col">Date de modification</th>
-            <th scope="col">Auteur</th>
-            <th scope="col" colspan="5">Edition</th>
-        </tr>
-        </thead>
-        <tbody>
 
         <tr>
             <th scope="row"></th>
@@ -40,7 +38,8 @@ ob_start(); ?>
 
             </td>
             <td>
-                <a href="" class="btn btn-primary" role="button">Voir</a>
+                <a  href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>" class="btn btn-primary text-center m-1" target="_blank" role="button"
+                    >Voir</a>
             </td>
             <td>
                 <a href="" class="btn btn-secondary" role="button">Editer</a>
@@ -49,42 +48,9 @@ ob_start(); ?>
                 <a  href="" class="btn btn-danger" role="button">Supprimer</a>
             </td>
         </tr>
+    <?php endfor; ?>
+</table>
 
-        </tbody>
-    </table>
-</div>
-<?php
-$content = ob_get_clean();
-
-require "Views/template.php";
-?>
-        <!--     card-->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <?php
-
-//var_dump($articles);
-//die();
-            for ($i = 0; $i < count($articles); $i++) {
-                ?>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <img src="../Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 p-3" alt="html&css">
-                            <p class="card-text text-center fw-bold"><a  class="text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
-                        </div>
-                        <div class="card-body text-center">
-
-                            <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning text-center m-1" target="_blank">Ajouter</a>
-                            <a href="<?= URL?>article/e/<?= $articles[$i]->getId() ?>" class="btn btn-primary text-center m-1" target="_blank">Modifier</a>
-                            <a href="<?= URL?>article/d/<?= $articles[$i]->getId() ?>" class="btn btn-success text-center m-1" target="_blank">Supprimer</a>
-
-                        </div>
-                    </div>
-
-                </div>
-            <?php } ?>
-
-</section>
 
 <!--contact-->
 

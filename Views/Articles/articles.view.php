@@ -9,43 +9,16 @@ ob_start(); ?>
 
 <section class="border-bottom mb-5">
     <div class="container m-5 pb-5">
-        <p class="card-text text-center text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur d'application
+        <p class="card-text text-center text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur
+            d'application
         </p>
         <p class="card-text text-center text-primary fw-bold">PHP/Symfony et mes créations personnelles.
         </p>
 
-
-        <!--  carousel-->
-        <div id="carouselExampleControls" class="carousel slide text-center " data-bs-ride="carousel">
-            <div class="carousel-inner p-5">
-                <div class="carousel-item active">
-                    <img src="Public/images/htmlcss-logo-title.svg" class=" w-50 " alt="html&css">
-
-                </div>
-                <div class="carousel-item ">
-                    <img src="Public/images/wordpress-blue.svg" class=" w-25 " alt="wordpress">
-
-
-                </div>
-                <div class="carousel-item ">
-                    <img src="Public/images/php-1.svg" class=" w-50  " alt="blog">
-
-                </div>
-            </div>
-            <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                <span class="visually-hidden ">Previous</span>
-            </button>
-            <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
         <!--     card-->
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+
+
             <?php
 
             //var_dump($articles);
@@ -54,13 +27,15 @@ ob_start(); ?>
                 ?>
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body">
-                            <img src="Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 mb-5 p-3" alt="html&css">
-                            <p class="card-text text-center fw-bold"><a  class=" btn btn-primary text-center m-1 text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
-                        </div>
                         <div class="card-body text-center">
-
+                            <img src="Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-75 mb-5 p-3"
+                                 alt="">
+                            <p class="card-text text-center fw-bold">
+                                <a class=" btn btn-primary text-center m-1 text-decoration-none"
+                                   href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a>
+                            </p>
                         </div>
+
                     </div>
 
                 </div>

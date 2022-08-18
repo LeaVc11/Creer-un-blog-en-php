@@ -2,39 +2,36 @@
 ob_start();
 ?>
 <h1 class="m-3 text-center text-primary">Ajouter un article</h1>
-    <form method="POST" action="<?= URL ?>articles/a" enctype="multipart/form-data">
+    <form method="POST" action="<?= URL ?>articles/av" enctype="multipart/form-data">
         <div class="row m-5">
-            <div class="col text-primary fw-bold text-decoration-underline">
+            <div class="col text-primary fw-bold ">
                 <label for="titre">Titre : </label>
                 <input type="text" class="form-control" id="titre" name="titre">
             </div>
-            <div class="col text-primary fw-bold text-decoration-underline">
+            <div class="col text-primary fw-bold ">
                 <label for="chapô">Chapô : </label>
                 <input type="text" class="form-control" id="chapô" name="chapô">
             </div>
         </div>
         <div class="row m-5">
-            <div class="col text-primary fw-bold text-decoration-underline">
+            <div class="col text-primary fw-bold">
                 <label for="titre">Slug : </label>
                 <input type="text" class="form-control" id="titre" name="titre">
             </div>
-            <div class="col text-primary fw-bold text-decoration-underline">
-                <label for="chapô">Chapô : </label>
-                <input type="text" class="form-control" id="chapô" name="chapô">
+            <div class="col text-primary fw-bold ">
+                <label for="auteur">Auteur: </label>
+                <input type="text" class="form-control" id="auteur" name="auteur">
             </div>
         </div>
         <div class="row m-5">
-            <div class="col text-primary fw-bold text-decoration-underline">
-                <label for="auteur">Auteur: </label>
-                <input type="number" class="form-control" id="auteur" name="auteur">
-            </div>
-            <div class="col text-primary fw-bold text-decoration-underline">
-                <label for="image">Image : </label>
+
+            <div class="col text-primary fw-bold">
+                <label for="image">Image :</label>
                 <input type="file" class="form-control-file" id="image" name="image">
             </div>
         </div>
         <div class="row m-5">
-            <div class="col text-primary fw-bold text-decoration-underline">
+            <div class="col  text-primary fw-bold ">
                 <label for="image">Date de création: </label>
                 <input type="date" class="form-control" id="image" name="image">
             </div>

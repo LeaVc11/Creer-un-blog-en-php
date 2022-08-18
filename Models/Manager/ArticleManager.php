@@ -132,9 +132,22 @@ class ArticleManager extends DbManager
         $stmt->execute();
         $stmt->closeCursor();
 
+    }
+    public function addArticleBdd($titre,$nbPages,$image){
+        $req = "
+        INSERT INTO articles (titre, nbPages, image)
+        values (:titre, :nbPages, :image)";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":titre",$titre,PDO::PARAM_STR);
+        $stmt->bindValue(":nbPages",$nbPages,PDO::PARAM_INT);
+        $stmt->bindValue(":image",$image,PDO::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
 
-
-
+        if($resultat > 0){
+            $livre = new Livre($this->getBdd()->lastInsertId(),$titre,$nbPages,$image);
+            $this->ajoutLivre($livre);
+        }
     }
 
 }

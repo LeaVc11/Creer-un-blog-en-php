@@ -46,6 +46,7 @@ require 'vendor/autoload.php';
 //$router->get('/admin/posts/:id', function ($id) {
 //    echo 'Poster pour l\' article' . $id;
 //});
+
 //$router->get('/errors/error' ,function(){
 //    echo 'Page Introuvable ';
 //});
@@ -101,6 +102,7 @@ function actionArticle(string $parameter, int $id): void
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();
+
 //    } else if ($parameter === "e") {
 //        $articles->editArticle();
 //    } else if ($parameter === "d") {
@@ -127,6 +129,9 @@ function security(string $parameter): void
     }
 }
 
+/**
+ * @throws Exception
+ */
 function admin($parameter): void
 {
     $articles = new AdminController();
@@ -136,6 +141,8 @@ function admin($parameter): void
         $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticle();
+    } else if ($parameter === "av") {
+        $articles->addArticleValidation();
     } else if ($parameter === "e") {
         $articles->editArticle();
     } else if ($parameter === "d") {

@@ -7,8 +7,8 @@ ob_start();
 ?>
     <div class="row">
 <!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
-        <div class="col-6 mt-5">
-            <img src="<?= URL?>/public/images/<?= $article->getImageLink() ?>" class="w-100 p-3" alt="html&css">
+        <div class="col-6 mt-5 text-center">
+            <img src="<?= URL?>/Public/images/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">
             <h4><?= $article->getTitle(); ?>
