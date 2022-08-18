@@ -60,7 +60,7 @@ class AdminController
         $file = $_FILES['image'];
         $repertoire = "Public/images/";
         $nomImageAjoute = $this->addImage($file,$repertoire);
-        $this->articleManager->addArticleBdd( $_POST['title'],$_POST['content'], $_POST['author'],$_POST['slug'],$_POST['created_at'], $nomImageAjoute);
+        $this->articleManager->addArticle( $_POST['title'],$_POST['content'], $_POST['author'],$_POST['slug'],$_POST['created_at'], $nomImageAjoute);
         header('Location: '. URL . "articles");
     }
 
