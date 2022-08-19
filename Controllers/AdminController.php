@@ -71,7 +71,17 @@ class AdminController
         require 'Views/Admin/add.php';
 
     }
+    public function delete($id){
 
+        $article = $this->articleManager->getOne($id);
+        if(is_null($article)){
+            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
+            die();
+        } else {
+            $this->articleManager->delete($article);
+            header('Location: dashboard');
+        }
+    }
     private function getFormErrors($id = null)
     {
         $errors = [];
@@ -111,7 +121,7 @@ class AdminController
     /**
      * @throws \Exception
      */
-    public function editArticle($id){
+    public function editArticle(){
 
         $errors = [];
         $article = $this->articleManager->getOne($id);
@@ -149,7 +159,7 @@ class AdminController
                 }
             }
         }
-        require 'Vue/equipe/edit.php';
+        require 'Views/admin/edit.php';
     }
 
 

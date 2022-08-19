@@ -135,7 +135,7 @@ class ArticleManager extends DbManager
         return $article;
 
     }
-    public function editArticle(Article $article){
+    public function editArticle(int $id): Article{
         $req = $this->getBdd()->prepare("UPDATE `articles`
 SET image_link = :imageLink, chapo = :chapo,
     content = :content, title = :title,slug = :slug,
@@ -154,6 +154,11 @@ SET image_link = :imageLink, chapo = :chapo,
             'updated_at'=> $article->getUpdatedAt()->format('Y-m-d H:i:s'),
 
         ]);
+    }
+    public function delete(Article $article){
+        $req = $this->getBdd()->prepare('DELETE FROM `articles WHERE id = :id');
+
+        $req->execute(['id'=> $article->getId()]);
     }
 
 }

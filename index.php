@@ -144,7 +144,9 @@ function admin($parameter): void
     }
 
 }
-
+/**
+ * @throws Exception
+ */
 function errors($parameter): void
 {
     $controller = new ExceptionController();
