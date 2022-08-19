@@ -50,12 +50,12 @@ ob_start(); ?>
             <?php
 //dd($article->getId());
             ?>
-            <a href="<?= URL ?>admin/s/<?= $article->getId(); ?>" class="btn btn-primary text-center m-1"
+            <a href="<?= URL ?>article/s/<?= $article->getId(); ?>" class="btn btn-primary text-center m-1"
                target="_blank" role="button">Voir</a>
         </td>
         <td>
             <a href="<?= URL ?>admin/e/<?= $article->getId(); ?>" class="btn btn-secondary"
-               role="button">Editer</a>
+               role="button">Modifier</a>
         </td>
         <td>
             <a href="" class="btn btn-danger" role="button">Supprimer</a>
