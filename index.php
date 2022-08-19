@@ -100,8 +100,8 @@ function actionArticle(string $parameter, int $id): void
         $articles->homePage();
     } else if ($parameter === "s") {
         $articles->showArticle($id);
-    } else if ($parameter === "a") {
-        $articles->addArticle();
+//    } else if ($parameter === "a") {
+//        $articles->addArticle();
 
 //    } else if ($parameter === "e") {
 //        $articles->editArticle();
@@ -140,7 +140,7 @@ function admin($parameter): void
     } else if ($parameter === "s") {
         $articles->showArticle($id);
     } else if ($parameter === "a") {
-        $articles->addArticle();
+        $articles->addArticles();
     } else if ($parameter === "e") {
         $articles->editArticle();
     } else if ($parameter === "d") {

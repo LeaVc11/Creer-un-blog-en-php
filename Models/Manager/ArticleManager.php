@@ -34,7 +34,7 @@ class ArticleManager extends DbManager
 //        dd($articles);
         foreach ($articles as $article) {
             $a = $this->createdObjectArticle($article);
-            $this->addArticles($a);
+            $this->articles[]= $a;
         }
         return $this->articles;
     }
@@ -48,7 +48,8 @@ class ArticleManager extends DbManager
      */
     private function createdObjectArticle(array $article): Article
     {
-
+//var_dump($article);
+//die();
         return new Article(
             $article['id'],
             $article['image_link'],
@@ -56,7 +57,8 @@ class ArticleManager extends DbManager
             $article['title'],
             $article['author'],
             $article['slug'],
-            new DateTime($article['created_at'])
+            new DateTime($article['created_at']),
+            new DateTime($article['updated_at'])
         );
     }
 
@@ -65,11 +67,6 @@ class ArticleManager extends DbManager
      * @return void
      */
 
-
-    public function addArticles(Article $article): void
-    {
-        $this->articles[] = $article;
-    }
 
     /**
      * @param int $id
@@ -88,35 +85,38 @@ class ArticleManager extends DbManager
         return $this->createdObjectArticle($article);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function addArticle($imageLink, $title,$content, $author,$slug,$created_at,$updated_at)
+    public function addArticles(Article $article)
     {
-        // recupérer les infos du form
-        $imageLink = '';
-        $content = '';
-        $title = '';
-        $author = '';
-        $slug = '';
-        $created_at = '';
-        $updated_at= '';
 
+        $req = $this->getBdd()->prepare("INSERT INTO `articles`
+    (`image_link`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
+    VALUE (:image_link, :content, :title, :author, :slug, :created_at, :updated_at )");
+//        var_dump($article->getUpdatedAt()->format('Y-m-d H:i:s'));
+//        die();
 
-        $req = $this->getBdd()->prepare('INSERT INTO `articles` (`image_link`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
-        VALUES (:image_link, :content, :title, :author, :slug, :createdAt)');
-        $req->bindParam(':image_link', $imageLink);
-        $req->bindParam(':content', $content);
-        $req->bindParam(':title', $title);
-        $req->bindParam(':author', $author);
-        $req->bindParam(':slug', $slug);
-        $req->bindParam(':created_at', $created_at);
-        $req->bindParam(':updated_at', $updated_at);
-
-        $req->execute();
-        $req->closeCursor();
-
-
+        $req->execute([
+            'image_link' => $article->getImageLink(),
+            'title' => $article->getTitle(),
+            'content' => $article->getContent(),
+            'author' => $article->getAuthor(),
+            'slug' => $article->getSlug(),
+            'created_at' => $article->getCreatedAt()->format('Y-m-d H:i:s'),
+            'updated_at' => $article->getUpdatedAt()->format('Y-m-d H:i:s'),
+        ]);
+    }
+    public function getByTitle($title): ?Article
+    {
+        $article = null;
+        $req = $this->getBdd()->prepare('SELECT * FROM `articles` WHERE title = :title');
+        $req->execute([
+            'title' => $title
+        ]);
+        $resultat = $req->fetch();
+        if ($resultat) {
+            $article = new Article( $resultat['id'],$resultat['image_link'],$resultat['content'], $resultat['title'],$resultat['author'],
+                $resultat['slug'], $resultat['created_at'], $resultat['updated_at']);
+        }
+        return $article;
     }
 
 

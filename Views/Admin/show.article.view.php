@@ -12,7 +12,8 @@ ob_start();
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">
             <h4><?= $article->getTitle(); ?>
-                <p class="text-end text-secondary mt-5"><?= $article->getCreated_at()->format('d/m/Y - H:i:s') ?></p>
+                <p class="text-end text-secondary mt-5"><?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></p>
+                <p class="text-end text-secondary mt-5"><?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></p>
 
         </div>
     </div>

@@ -1,13 +1,14 @@
 <?php ob_start(); ?>
 
     <div class="  d-flex flex-column  mt-5">
+
         <div class="row ">
             <div class="col ">
                 <div class=" mb-5 px-1 py-4">
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="portrait text-center col-lg-5 ">
-                                <img src="../Public/images/Maphoto.jpg" class="rounded-circle" alt="photo img">
+                                <img src="Public/images/photo/Maphoto.jpg" class="rounded-circle" alt="photo img">
                             </div>
                             <p class="text-animation"></p>
                         </div>

@@ -20,6 +20,10 @@ class ArticlesController
         $this->articleManager->loadingArticles();
 //        dd($this->articleManager);
     }
+
+    /**
+     * @throws Exception
+     */
     public function homePage(){
         $articles= $this->articleManager->loadingArticles();
         require 'Views/Articles/articles.view.php';
@@ -27,11 +31,15 @@ class ArticlesController
 
     /**
      * @return void
+     * @throws Exception
      */
     public function displayArticles(): void
     {
-        $articles = $this->articleManager->getArticles();
 
+        $articles= $this->articleManager->loadingArticles();
+
+var_dump($articles);
+die();
         require "Views/Articles/articles.view.php";
     }
 
@@ -48,35 +56,4 @@ class ArticlesController
         require "Views/Admin/show.article.view.php";
     }
 
-    /**
-     * @return void
-     */
-    public function addArticle(): void
-    {
-        require "Views/Admin/add.php";
-    }
-
-
-//    /**
-//     * @param int $id
-//     *
-//     * @return void
-//     *
-//     * @throws Exception
-//     */
-//    public function deleteArticle( int $id): void
-//    {
-//        $article = $this->articleManager->deleteArticle($id);
-//
-//    }
-//
-//    /**
-//     * @param int $id
-//     *
-//     * @return void
-//     */
-//    public function editArticle(): void
-//    {
-//        require "Views/Admin/edit.article.view.php";
-//    }
 }

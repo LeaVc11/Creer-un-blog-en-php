@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="../Public/css/style.css">
 
+    <link rel="icon" type="image/jpg" href="image/Photo.jpg">
+
 
 </head>
 <body>

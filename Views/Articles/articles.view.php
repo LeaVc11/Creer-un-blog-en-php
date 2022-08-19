@@ -28,8 +28,13 @@ ob_start(); ?>
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body text-center">
-                            <img src="Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-75 mb-5 p-3"
-                                 alt="">
+                            <?php
+//var_dump($articles);
+//die();
+                            ?>
+                            <img src="../Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-75 mb-5 p-3"
+                                 alt="image">
+
                             <p class="card-text text-center fw-bold">
                                 <a class=" btn btn-primary text-center m-1 text-decoration-none"
                                    href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a>

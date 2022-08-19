@@ -25,10 +25,11 @@ ob_start(); ?>
         <th scope="col" colspan="5">Edition</th>
     </tr>
     <div class="d-flex justify-content-end">
+        <a href="<?= URL?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
         <?php
         for($i=0; $i < count($articles);$i++) :
         ?>
-        <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning  m-1">Ajouter</a>
+
     </div>
 
         <tr>
