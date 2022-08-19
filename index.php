@@ -4,6 +4,7 @@
 use App\Controllers\AdminController;
 use App\Controllers\ArticlesController;
 use App\Controllers\Security\SecurityController;
+use App\Routing\Router;
 
 require 'vendor/autoload.php';
 
@@ -11,71 +12,39 @@ require 'vendor/autoload.php';
 //
 //var_dump($_SESSION['user']);
 
+$router = new Router($_GET['url']);
 
-//$router = new App\Routing\Router($_GET);
-//
-//$router->get('/', function () {
-//    require "Views/accueil.view.php";
-//});
-//$router->get('/articles', function () {
-//    getDisplayArticle();
-//});
-//$router->get('/articles/:id-slug', function ($id) {
-//})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
-//
-//$router->get('/posts/:id', function ($id) {
-//});
-//
-//$router->get('/posts/:id', function ($id) {
-//    echo 'Poster pour l\' article' . $id;
-//});
-//
-//try {
-//    $router->run();
-//} catch (Exception $e) {
-//}
-//$router->get('/admin', function () {
-//    echo 'Tous les admin';
-//});
-//$router->get('/admin', function () {
-//    echo 'Article $slug : $id';
-//})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
-//$router->get('/admin/posts/:id', function ($id) {
-//});
-//
-//$router->get('/admin/posts/:id', function ($id) {
-//    echo 'Poster pour l\' article' . $id;
-//});
-
-//$router->get('/errors/error' ,function(){
-//    echo 'Page Introuvable ';
-//});
-
-
-define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
-
+$router->get('/', 'Home#index');
+$router->get('/articles', 'Articles#displayArticles');
+$router->get('/posts/:id', 'Articles#showArticle');
 
 try {
-    if (empty($_GET['page'])) {
-        require "Views/accueil.view.php";
-    } else {
-        $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
-        match ($url[0]) {
-
-            'accueil' => require "Views/accueil.view.php",
-            'articles' => getDisplayArticle(),
-            'article' => actionArticle($url[1], $url[2]),
-            'security' => security($url[1]),
-            'admin' => admin($url[1]),
-//            'home' => home($url[1]),
-
-            default => throw new Exception("La page n'existe pas"),
-        };
-    }
-} catch
-(Exception $e) {
-    echo $e->getMessage();
+    $router->run();
+} catch (Exception $e) {
 }
+
+
+//try {
+//    if (empty($_GET['page'])) {
+//        require "Views/accueil.view.php";
+//    } else {
+//        $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
+//        match ($url[0]) {
+//
+//            'accueil' => require "Views/accueil.view.php",
+//            'articles' => getDisplayArticle(),
+//            'article' => actionArticle($url[1], $url[2]),
+//            'security' => security($url[1]),
+//            'admin' => admin($url[1]),
+////            'home' => home($url[1]),
+//
+//            default => throw new Exception("La page n'existe pas"),
+//        };
+//    }
+//} catch
+//(Exception $e) {
+//    echo $e->getMessage();
+//}
 /**
  * @return void
  */

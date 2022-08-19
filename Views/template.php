@@ -30,10 +30,10 @@
         <div class="collapse navbar-collapse  " id="navbarColor01">
             <ul class="navbar-nav w-100 d-flex justify-content-start ">
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= URL ?>accueil">Carine VINAGRE</a>
+                    <a class="nav-link " href="/">Carine VINAGRE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= URL ?>articles">Article</a>
+                    <a class="nav-link" href="/articles">Article</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact</a>
@@ -45,14 +45,14 @@
                     <?php
                     if (!isset($_SESSION['id'])) {
                         ?>
-                        <a class="text-decoration-none text-secondary" href="<?= URL ?>security/login">Connexion</a> |
+                        <a class="text-decoration-none text-secondary" href="/security/login">Connexion</a> |
 
-                        <a class="text-decoration-none text-secondary" href="<?= URL ?>security/register">Inscription</a>
+                        <a class="text-decoration-none text-secondary" href="/security/register">Inscription</a>
                         <?php
                     } else {
-                    ?>
-                        <a class="text-decoration-none text-secondary" href="<?= URL ?>security/logout">Déconnexion</a>
-                    <?php
+                        ?>
+                        <a class="text-decoration-none text-secondary" href="/security/logout">Déconnexion</a>
+                        <?php
                     }
                     ?>
 
@@ -85,5 +85,3 @@
 <script src="app.js"></script>
 </body>
 </html>
-
-
