@@ -36,18 +36,21 @@ ob_start(); ?>
         <?php
         foreach ($articles as $article) {
         ?>
+
         <td><?= $article->getTitle() ?></td>
         <td><?= $article->getImageLink() ?></td>
-        <td><?= $article->getSlug() ?></td>
+        <td><?= $article->getChapo() ?></td>
         <td><?= $article->getSlug() ?></td>
         <td><?= $article->getContent() ?></td>
         <td><?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></td>
         <td><?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></td>
-        <td><?= $article->getContent() ?></td>
         <td><?= $article->getAuthor() ?></td>
         <td>
             <?php
             }
+            ?>
+            <?php
+//dd($article->getId());
             ?>
             <a href="<?= URL ?>article/s/<?= $article->getId(); ?>" class="btn btn-primary text-center m-1"
                target="_blank" role="button">Voir</a>
