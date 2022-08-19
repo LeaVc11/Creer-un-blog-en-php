@@ -1,12 +1,3 @@
-<?php
-
-require_once "Models/Class/Article.php";
-
-
-ob_start(); ?>
-
-<!--section projet-->
-
 <section class="border-bottom mb-5">
     <div class="container m-5 pb-5">
         <p class="card-text text-center text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur
@@ -20,34 +11,22 @@ ob_start(); ?>
 
 
             <?php
+            foreach ($articles as $article): ?>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
+                             alt="image">
 
-            //var_dump($articles);
-            //die();
-
-            // TODO foreach
-            for ($i = 0; $i < count($articles); $i++) {
-                ?>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <?php
-//var_dump($articles);
-//die();
-                            ?>
-                            <img src="Public/uploads/<?= $articles[$i]->getImageLink() ?>" class="w-50 mb-5 p-3"
-                                 alt="image">
-
-                            <p class="card-text text-center fw-bold">
-                                <a class=" btn btn-primary text-center m-1 text-decoration-none"
-                                   href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a>
-                            </p>
-                        </div>
-
+<!-- todo: modifier -->
+<!--                        <p class="card-text text-center fw-bold">-->
+<!--                            <a class=" btn btn-primary text-center m-1 text-decoration-none"-->
+<!--                               href="--><?//= URL ?><!--article/s/--><?//= $article->getId(); ?><!--">--><?//= $article->getContent() ?><!--</a>-->
+<!--                        </p>-->
                     </div>
-
                 </div>
-            <?php } ?>
-
+            </div>
+            <?php endforeach; ?>
 </section>
 
 <!--contact-->
@@ -80,10 +59,5 @@ ob_start(); ?>
         </form>
     </div>
 </section>
-
-<?php
-$content = ob_get_clean();
-require "Views/template.php";
-?>
 
 

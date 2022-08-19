@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
-class HomeController
+class HomeController extends AbstractController
 {
     public function index(): void
     {
-        require "Views/accueil.view.php";
+        $this->render('accueil.view');
     }
-
 }

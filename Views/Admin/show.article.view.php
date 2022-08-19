@@ -1,9 +1,4 @@
 <?php
-
-use App\Models\Class\Article;
-
-ob_start();
-/** @var Article $article */
 ?>
     <div class="row">
 <!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
@@ -95,11 +90,3 @@ ob_start();
         </form>
     </div>
 </section>
-
-
-<?php
-
-$content = ob_get_clean();
-require "Views/template.php";
-
-?>

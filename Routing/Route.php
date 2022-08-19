@@ -6,39 +6,32 @@ namespace App\Routing;
      */
 class Route
 {
-    private string $path;
+    private $path;
     private $callable;
     private $matches = [];
     private $params = [];
 
-    /**
-     * @param $path
-     * @param $callable
-     */
-    public function __construct($path, $callable)
-    {
+    public function __construct($path, $callable){
         $this->path = trim($path, '/');
         $this->callable = $callable;
     }
 
-    public function with($param, $regex)
+    public function with($param, $regex): static
     {
         $this->params[$param] = $regex;
         return $this;
     }
 
-    public function match($url)
+    public function match($url): bool
     {
         $url = trim($url, '/');
-        $path = $this->preg_replace_collback('#:(\w+)#', [$this, 'paramMatch'], $this->path);
-//        var_dump($path);
-        $regex = "#^$path#i";
-        //        var_dump($regex);
-        if (preg_match($regex, $url, $matches)) {
+        $path = preg_replace('#:([\w]+)#', '([^/]+)', $this->path);
+        $regex = "#^$path$#i";
+        if(!preg_match($regex, $url, $matches)){
             return false;
         }
         array_shift($matches);
-        $this->matches = $matches;
+        $this->matches = $matches;  // On sauvegarde les paramètre dans l'instance pour plus tard
         return true;
     }
 
@@ -54,7 +47,7 @@ class Route
     {
         if (is_string($this->callable)) {
             $params = explode('#', $this->callable);
-            $controller = "App\\Controllers\\" . $params[0] . "Controllers";
+            $controller = "App\\Controllers\\" . $params[0] . "Controller";
             $controller = new $controller();
             return call_user_func_array([$controller, $params[1]],$this->matches);
         } else {
