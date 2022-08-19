@@ -46,21 +46,21 @@ ob_start(); ?>
         <td><?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></td>
         <td><?= $article->getAuthor() ?></td>
         <td>
-            <?php } ?>
+
             <?php
 //dd($article->getId());
             ?>
-            <a href="<?= URL ?>admin/s/<?= $articles->getId(); ?>" class="btn btn-primary text-center m-1"
+            <a href="<?= URL ?>admin/s/<?= $article->getId(); ?>" class="btn btn-primary text-center m-1"
                target="_blank" role="button">Voir</a>
         </td>
         <td>
-            <a href="<?= URL ?>admin/e/<?= $articles->getId(); ?>" class="btn btn-secondary"
+            <a href="<?= URL ?>admin/e/<?= $article->getId(); ?>" class="btn btn-secondary"
                role="button">Editer</a>
         </td>
         <td>
             <a href="" class="btn btn-danger" role="button">Supprimer</a>
         </td>
-
+        <?php } ?>
 
     </tr>
 

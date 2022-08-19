@@ -114,9 +114,9 @@ class AdminController
     public function editArticle($id){
 
         $errors = [];
-        $equipe = $this->articleManager->getOne($id);
+        $article = $this->articleManager->getOne($id);
 
-        if(is_null($equipe)){
+        if(is_null($article)){
             echo('Erreur article introuvable !');
             die();
         }
@@ -129,7 +129,7 @@ class AdminController
                     $errors = $upload['errors'];
                     $imageFileName = $upload['filename'];
                 } else {
-                    $imageFileName = $equipe->getImageLink();
+                    $imageFileName = $article->getImageLink();
                 }
                 if(count($errors) == 0){
                     $article = new Article(null,

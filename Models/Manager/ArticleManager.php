@@ -112,7 +112,7 @@ class ArticleManager extends DbManager
      */
     public function getOne($id){
         $article = null;
-        $req = $this->getBdd()->prepare('SELECT * FROM `article` WHERE id = :id');
+        $req = $this->getBdd()->prepare('SELECT * FROM `articles` WHERE id = :id');
 
         $req->execute([
             'id'=> $id

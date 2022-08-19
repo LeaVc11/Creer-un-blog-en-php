@@ -100,13 +100,7 @@ function actionArticle(string $parameter, int $id): void
         $articles->homePage();
     } else if ($parameter === "s") {
         $articles->showArticle($id);
-//    } else if ($parameter === "a") {
-//        $articles->addArticle();
 
-//    } else if ($parameter === "e") {
-//        $articles->editArticle();
-//    } else if ($parameter === "d") {
-//        $articles->deleteArticle($id);
     } else {
         throw new Exception("La page n'existe pas");
     }
@@ -150,13 +144,6 @@ function admin($parameter): void
     }
 
 }
-
-//function home($parameter):void{
-//    $homecontroller = new HomeController();
-//    if ($parameter === 'home')
-//    $homecontroller->displayDashboard();
-//
-//}
 
 function errors($parameter): void
 {

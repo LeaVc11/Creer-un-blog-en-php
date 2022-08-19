@@ -20,25 +20,29 @@ ob_start(); ?>
 
 
             <?php
+//            dd($article);
             foreach ($articles as $article) {
+            //var_dump($articles);
+            //die();
                 ?>
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body text-center">
-                            <?php
-                            //var_dump($articles);
-                            //die();
-                            ?>
+
+<!--//var_dump($articles);-->
+<!--//die();-->
+
                             <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
                                  alt="image">
 
                             <p class="card-text text-center fw-bold">
-                                <a class=" btn btn-primary text-center m-1 text-decoration-none"
-                                   href="<?= URL ?>article/s/<?= $articles->getId(); ?>"><?= $article->getContent() ?></a>
+                                <a href="<?= URL ?>article/s/<?= $article->getId(); ?>" class="btn btn-primary">Voir</a>
                             </p>
+
                         </div>
 
                     </div>
+
 
                 </div>
             <?php } ?>
