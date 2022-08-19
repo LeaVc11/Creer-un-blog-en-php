@@ -142,7 +142,7 @@ function admin($parameter): void
     } else if ($parameter === "a") {
         $articles->addArticles();
     } else if ($parameter === "e") {
-        $articles->editArticle();
+        $articles->editArticle($id);
     } else if ($parameter === "d") {
         $articles->deleteArticle($id);
     } else {
