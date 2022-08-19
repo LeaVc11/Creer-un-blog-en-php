@@ -43,6 +43,8 @@
             <ul class="navbar-nav w-100 d-flex justify-content-end">
                 <li class="nav-item">
                     <?php
+//                    var_dump($_SESSION['user']);
+//                    die();
                     if (!isset($_SESSION['id'])) {
                         ?>
                         <a class="text-decoration-none text-secondary" href="<?= URL ?>security/login">Connexion</a> |

@@ -23,42 +23,46 @@ ob_start(); ?>
         <th scope="col">Date de création</th>
         <th scope="col">Date de modification</th>
         <th scope="col">Auteur</th>
-        <th scope="col" colspan="5">Edition</th>
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo('<th>Edition</th>');
+        }
+        ?>
     </tr>
     <div class="d-flex justify-content-end">
-        <a href="<?= URL?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
-        <?php
-        for($i=0; $i < count($articles);$i++) :
-        ?>
-
+        <a href="<?= URL ?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
     </div>
+    <tr>
+        <?php
+        foreach ($articles as $article) {
+        ?>
+        <td><?= $article->getTitle() ?></td>
+        <td><?= $article->getImageLink() ?></td>
+        <td><?= $article->getSlug() ?></td>
+        <td><?= $article->getSlug() ?></td>
+        <td><?= $article->getContent() ?></td>
+        <td><?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></td>
+        <td><?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></td>
+        <td><?= $article->getContent() ?></td>
+        <td><?= $article->getAuthor() ?></td>
+        <td>
+            <?php
+            }
+            ?>
+            <a href="<?= URL ?>article/s/<?= $article->getId(); ?>" class="btn btn-primary text-center m-1"
+               target="_blank" role="button">Voir</a>
+        </td>
+        <td>
+            <a href="<?= URL ?>article/e/<?= $article->getId(); ?>" class="btn btn-secondary"
+               role="button">Editer</a>
+        </td>
+        <td>
+            <a href="" class="btn btn-danger" role="button">Supprimer</a>
+        </td>
 
-        <tr>
 
-            <td><?= $articles[$i]->getTitle() ?></td>
-            <td><?= $articles[$i]->getImageLink() ?></td>
-            <td><?= $articles[$i]->getSlug() ?></td>
-            <td><?= $articles[$i]->getSlug() ?></td>
-            <td><?= $articles[$i]->getContent() ?></td>
-            <td><?= $articles[$i]->getCreatedAt()->format('d/m/Y - H:i:s')  ?></td>
-            <td><?= $articles[$i]->getContent()  ?></td>
-            <td><?= $articles[$i]->getAuthor() ?></td>
+    </tr>
 
-            <td>
-
-            </td>
-            <td>
-                <a  href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>" class="btn btn-primary text-center m-1" target="_blank" role="button"
-                    >Voir</a>
-            </td>
-            <td>
-                <a href="<?= URL ?>article/e/<?= $articles[$i]->getId(); ?>" class="btn btn-secondary" role="button">Editer</a>
-            </td>
-            <td>
-                <a  href="" class="btn btn-danger" role="button">Supprimer</a>
-            </td>
-        </tr>
-    <?php endfor; ?>
 </table>
 
 

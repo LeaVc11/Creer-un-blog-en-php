@@ -103,7 +103,7 @@ class AdminController
 //    }
     private function uploadImage()
     {
-        $extensionAllowed = ['image/jpeg', 'image/png', 'image/svg+xml'];
+        $extensionAllowed = ['image/jpeg', 'image/png'];
         $errors = [];
         $imageFileName = null;
 
