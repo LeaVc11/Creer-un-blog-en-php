@@ -104,20 +104,11 @@ class ArticleManager extends DbManager
             'updated_at' => $article->getUpdatedAt()->format('Y-m-d H:i:s'),
         ]);
     }
-    public function getByTitle($title): ?Article
-    {
-        $article = null;
-        $req = $this->getBdd()->prepare('SELECT * FROM `articles` WHERE title = :title');
-        $req->execute([
-            'title' => $title
-        ]);
-        $resultat = $req->fetch();
-        if ($resultat) {
-            $article = new Article( $resultat['id'],$resultat['image_link'],$resultat['content'], $resultat['title'],$resultat['author'],
-                $resultat['slug'], $resultat['created_at'], $resultat['updated_at']);
-        }
-        return $article;
-    }
+
+//    public function editArticle(Article $article)
+//    {
+//        $req =$this->getBdd()->prepare("UPDATE `article")
+//    }
 
 
 }

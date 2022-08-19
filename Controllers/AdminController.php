@@ -60,6 +60,7 @@ class AdminController
                     $_POST['slug'],
                     new DateTime($_POST['created_at']),
                     new DateTime($_POST['updated_at']));
+//                dd($article);
                 $this->articleManager->addArticles($article);
                 header('Location: dashboard');
                 exit();
@@ -123,7 +124,9 @@ class AdminController
 
             if (count($errors) == 0) {
                 $imageFileName = uniqid() . '.' . explode('/', $image['type'])[1];
-                move_uploaded_file($image['tmp_name'], realpath('../Public/logo/') ."/" . $imageFileName);
+//                var_dump($imageFileName);
+//                die();
+                move_uploaded_file($image['tmp_name'], realpath('Public/uploads/') ."/" . $imageFileName);
 
             }
         }

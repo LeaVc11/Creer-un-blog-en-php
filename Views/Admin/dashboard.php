@@ -15,10 +15,11 @@ ob_start(); ?>
 <table class="table text-center">
     <tr class="table-dark">
     <tr>
-        <th scope="col">ID</th>
         <th scope="col">Titre</th>
+        <th scope="col">Image</th>
         <th scope="col">Chapô</th>
         <th scope="col">Slug</th>
+        <th scope="col">Content</th>
         <th scope="col">Date de création</th>
         <th scope="col">Date de modification</th>
         <th scope="col">Auteur</th>
@@ -33,12 +34,16 @@ ob_start(); ?>
     </div>
 
         <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+
+            <td><?= $articles[$i]->getTitle() ?></td>
+            <td><?= $articles[$i]->getImageLink() ?></td>
+            <td><?= $articles[$i]->getSlug() ?></td>
+            <td><?= $articles[$i]->getSlug() ?></td>
+            <td><?= $articles[$i]->getContent() ?></td>
+            <td><?= $articles[$i]->getCreatedAt()->format('d/m/Y - H:i:s')  ?></td>
+            <td><?= $articles[$i]->getContent()  ?></td>
+            <td><?= $articles[$i]->getAuthor() ?></td>
+
             <td>
 
             </td>
@@ -47,7 +52,7 @@ ob_start(); ?>
                     >Voir</a>
             </td>
             <td>
-                <a href="" class="btn btn-secondary" role="button">Editer</a>
+                <a href="<?= URL ?>article/e/<?= $articles[$i]->getId(); ?>" class="btn btn-secondary" role="button">Editer</a>
             </td>
             <td>
                 <a  href="" class="btn btn-danger" role="button">Supprimer</a>

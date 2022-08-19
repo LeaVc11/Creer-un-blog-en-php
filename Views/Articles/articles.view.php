@@ -23,6 +23,8 @@ ob_start(); ?>
 
             //var_dump($articles);
             //die();
+
+            // TODO foreach
             for ($i = 0; $i < count($articles); $i++) {
                 ?>
                 <div class="col">
@@ -32,7 +34,7 @@ ob_start(); ?>
 //var_dump($articles);
 //die();
                             ?>
-                            <img src="../Public/images/<?= $articles[$i]->getImageLink() ?>" class="w-75 mb-5 p-3"
+                            <img src="Public/uploads/<?= $articles[$i]->getImageLink() ?>" class="w-50 mb-5 p-3"
                                  alt="image">
 
                             <p class="card-text text-center fw-bold">

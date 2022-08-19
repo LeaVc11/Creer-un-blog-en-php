@@ -37,9 +37,9 @@ class ArticlesController
     {
 
         $articles= $this->articleManager->loadingArticles();
-
-var_dump($articles);
-die();
+//
+//var_dump($articles);
+//die();
         require "Views/Articles/articles.view.php";
     }
 

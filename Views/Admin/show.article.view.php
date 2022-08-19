@@ -8,12 +8,15 @@ ob_start();
     <div class="row">
 <!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
         <div class="col-6 mt-5 text-center">
-            <img src="<?= URL?>/Public/images/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
+<!--            --><?php
+//dd($article->getImageLink());
+//            ?>
+            <img src="<?= URL?>Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">
             <h4><?= $article->getTitle(); ?>
-                <p class="text-end text-secondary mt-5"><?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></p>
-                <p class="text-end text-secondary mt-5"><?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></p>
+                <p class="text-end text-secondary mt-5">Ecrit le : <?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></p>
+                <p class="text-end text-secondary mt-5"> Modifié le <?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></p>
 
         </div>
     </div>
@@ -56,8 +59,7 @@ ob_start();
                                    style="border: 0; outline: 0;  color : #f1f1f1 font-size : 18px"
                                    type="submit"
                                    value="ENVOYER" >
-<!--                            <a href="">Si connecter droit ajouter </a>-->
-<!--                            <a href="">Si pas inscrit => inscription </a>-->
+
                         </div>
                     </form>
                 </div>
