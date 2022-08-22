@@ -32,11 +32,13 @@ ob_start(); ?>
     <div class="d-flex justify-content-end">
         <a href="<?= URL ?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
     </div>
+
     <tr>
         <?php
+
         foreach ($articles as $article) {
         ?>
-
+    <tr>
         <td><?= $article->getTitle() ?></td>
         <td><?= $article->getImageLink() ?></td>
         <td><?= $article->getChapo() ?></td>
@@ -48,22 +50,26 @@ ob_start(); ?>
         <td>
 
             <?php
-//dd($article->getId());
+            //dd($article->getId());
             ?>
             <a href="<?= URL ?>article/s/<?= $article->getId(); ?>" class="btn btn-primary text-center m-1"
                target="_blank" role="button">Voir</a>
         </td>
-        <td>
-            <a href="<?= URL ?>admin/e/<?= $article->getId(); ?>" class="btn btn-secondary"
-               role="button">Modifier</a>
-        </td>
-        <td>
-            <a href="" class="btn btn-danger" role="button">Supprimer</a>
-        </td>
-        <?php } ?>
 
+    <td>
+        <?php
+        //var_dump($article->getId());
+        //die();
+        ?>
+        <a href="<?= URL ?>admin/e/<?= $article->getId(); ?>" class="btn btn-secondary"
+           role="button">Modifier</a>
+    </td>
+    <td>
+        <a href="<?= URL ?>admin/d/<?= $article->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+    </td>
+
+    <?php } ?>
     </tr>
-
 </table>
 
 

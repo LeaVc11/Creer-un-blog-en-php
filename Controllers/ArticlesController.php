@@ -24,7 +24,8 @@ class ArticlesController
     /**
      * @throws Exception
      */
-    public function homePage(){
+    public function homePage(): void
+    {
         $articles= $this->articleManager->loadingArticles();
         require 'Views/Articles/articles.view.php';
     }
@@ -55,5 +56,8 @@ class ArticlesController
         $article = $this->articleManager->showArticle($id);
         require "Views/Admin/show.php";
     }
+
+
+
 
 }

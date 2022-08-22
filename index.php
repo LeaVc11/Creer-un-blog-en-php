@@ -12,62 +12,40 @@ require 'vendor/autoload.php';
 //var_dump($_SESSION['user']);
 
 
-//$router = new App\Routing\Router($_GET);
-//
-//$router->get('/', function () {
-//    require "Views/accueil.view.php";
-//});
-//$router->get('/articles', function () {
-//    getDisplayArticle();
-//});
-//$router->get('/articles/:id-slug', function ($id) {
-//})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
-//
-//$router->get('/posts/:id', function ($id) {
-//});
-//
-//$router->get('/posts/:id', function ($id) {
-//    echo 'Poster pour l\' article' . $id;
-//});
-//
-//try {
-//    $router->run();
-//} catch (Exception $e) {
-//}
-//$router->get('/admin', function () {
-//    echo 'Tous les admin';
-//});
-//$router->get('/admin', function () {
-//    echo 'Article $slug : $id';
-//})->with('id', '[0-9]+')->with('slug', '[a-z\-0-9]+');
-//$router->get('/admin/posts/:id', function ($id) {
-//});
-//
-//$router->get('/admin/posts/:id', function ($id) {
-//    echo 'Poster pour l\' article' . $id;
-//});
-
-//$router->get('/errors/error' ,function(){
-//    echo 'Page Introuvable ';
-//});
-
-
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
+$page = null;
+$id = null;
 
 try {
     if (empty($_GET['page'])) {
         require "Views/accueil.view.php";
     } else {
         $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
+        if (isset($url[1])) {
+            $page = $url[1];
+        }
+        if (isset($url[2])) {
+            $id = $url[2];
+        }
+
+//        match ($url[0]) {
+//
+//            'accueil' => require "Views/accueil.view.php",
+//            'articles' => getDisplayArticle(),
+//            'article' => actionArticle($url[1], $url[2]),
+//            'security' => security($url[1]),
+//            'admin' => admin($url[1], $url[2]),
+//
+//            default => throw new Exception("La page n'existe pas"),
+//        };
         match ($url[0]) {
 
             'accueil' => require "Views/accueil.view.php",
             'articles' => getDisplayArticle(),
-            'article' => actionArticle($url[1], $url[2]),
-            'security' => security($url[1]),
-            'admin' => admin($url[1]),
-//            'home' => home($url[1]),
+            'article' => actionArticle($page, $id),
+            'security' => security($page),
+            'admin' => admin($page, $id),
 
             default => throw new Exception("La page n'existe pas"),
         };
@@ -78,6 +56,7 @@ try {
 }
 /**
  * @return void
+ * @throws Exception
  */
 function getDisplayArticle(): void
 {
@@ -124,24 +103,21 @@ function security(string $parameter): void
 }
 
 /**
+ * @param $parameter
+ * @param $id
  * @throws Exception
  */
-function admin($parameter): void
+function admin(string $parameter, ?int $id): void
 {
     $articles = new AdminController();
     if ($parameter === 'dashboard') {
         $articles->dashboard();
-    } else if ($parameter === "s") {
-        $articles->showArticle($id);
+//    } else if ($parameter === "s") {
+//        $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticles();
     } else if ($parameter === "e") {
         $articles->editArticle($id);
-        if (!empty($_SESSION['user'])) {
-            $controller->delete($_GET['id']);
-        }else{
-            echo ('Interdit');
-        }
     } else if ($parameter === "d") {
         $articles->deleteArticle($id);
     } else {
@@ -149,6 +125,7 @@ function admin($parameter): void
     }
 
 }
+
 /**
  * @throws Exception
  */
