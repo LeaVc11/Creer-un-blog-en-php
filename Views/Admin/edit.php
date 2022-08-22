@@ -10,7 +10,7 @@ if(!empty($errors)):?>
         <?php endforeach;?>
     </div>
 <?php endif;?>
-    <div class=" m-3 fw-bold alert alert-danger">
+    <div class=" m-4 fw-bold " style="background : #f7f1e3">
 
     <h1 class="m-3 text-center text-primary">Modifier un article</h1>
     <form method="POST" action="<?= URL ?>admin/e/<?= $article->getId() ?>" enctype="multipart/form-data">

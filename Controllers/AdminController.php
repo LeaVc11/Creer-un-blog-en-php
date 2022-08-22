@@ -76,6 +76,73 @@ class AdminController
     /**
      * @throws \Exception
      */
+    public function deleteArticle($id): void
+    {
+
+        $article = $this->articleManager->findById($id);
+//        if (is_null($article)) {
+////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
+////            die();
+//        } else {
+        $this->articleManager->delete($article);
+        header('Location: ../dashboard');
+//        }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function editArticle($id): void
+    {
+        $errors = [];
+//        var_dump($id);
+//        die();
+
+        $article = $this->articleManager->findById($id);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $errors = $this->getFormErrors($id);
+//dd($errors);
+            if (count($errors) == 0) {
+//                dd($_FILES['uploads']['size'] != 0);
+//                var_dump($_FILES['uploads']['size'] != 0);
+//                die();
+                if ($_FILES['image_link']['size'] != 0) {
+
+                    $upload = $this->uploadImage();
+                    $errors = $upload['errors'];
+                    $imageFileName = $upload['filename'];
+                } else {
+                    $imageFileName = $article->getImageLink();
+                }
+                if (count($errors) == 0) {
+
+                    $article = new Article($id,
+
+                        $imageFileName,
+                        $_POST['chapo'],
+                        $_POST['title'],
+                        $_POST['content'],
+                        $_POST['author'],
+                        $_POST['slug'],
+                        new DateTime($_POST['created_at']),
+                        new DateTime($_POST['updated_at']));
+
+                    $this->articleManager->editArticle($article);
+
+                    header('Location: ../dashboard');
+                    exit();
+                }
+            }
+        }
+        require 'Views/admin/edit.php';
+    }
+
+
+    /**
+     * @throws \Exception
+     */
     private function getFormErrors($id = null): array
     {
 
@@ -145,71 +212,9 @@ class AdminController
         return ['filename' => $imageFileName, 'errors' => $errors];
     }
 
-    /**
-     * @throws \Exception
-     */
-    public function deleteArticle($id): void
-    {
 
-        $article = $this->articleManager->findById($id);
-//        if (is_null($article)) {
-////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
-////            die();
-//        } else {
-            $this->articleManager->delete($article);
-            header('Location: ../dashboard');
-//        }
-    }
 
-    /**
-     * @throws \Exception
-     */
-    public function editArticle($id): void
-    {
-        $errors = [];
-//        var_dump($id);
-//        die();
 
-        $article = $this->articleManager->findById($id);
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $errors = $this->getFormErrors($id);
-//dd($errors);
-            if (count($errors) == 0) {
-//                dd($_FILES['uploads']['size'] != 0);
-//                var_dump($_FILES['uploads']['size'] != 0);
-//                die();
-                if ($_FILES['image_link']['size'] != 0) {
-
-                    $upload = $this->uploadImage();
-                    $errors = $upload['errors'];
-                    $imageFileName = $upload['filename'];
-                } else {
-                    $imageFileName = $article->getImageLink();
-                }
-                if (count($errors) == 0) {
-
-                    $article = new Article($id,
-
-                        $imageFileName,
-                        $_POST['chapo'],
-                        $_POST['title'],
-                        $_POST['content'],
-                        $_POST['author'],
-                        $_POST['slug'],
-                        new DateTime($_POST['created_at']),
-                        new DateTime($_POST['updated_at']));
-
-                    $this->articleManager->editArticle($article);
-
-                    header('Location: ../dashboard');
-                    exit();
-                }
-            }
-        }
-        require 'Views/admin/edit.php';
-    }
 
 }
 
