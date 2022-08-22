@@ -22,7 +22,7 @@ ob_start();
     </div>
 
 <div class=" text-center">
-    <a href="<?= URL?>admin/dashboard/" class="btn btn-primary text-center text-white fw-bold" target="_blank">Retour</a>
+    <a href="<?= URL?>admin/dashboard" class="btn btn-primary text-center text-white fw-bold" target="_blank">Retour</a>
 </div>
 
     <section class=" w-100 h-100 rounded mt-5 p-1" style="background : #f7f1e3">

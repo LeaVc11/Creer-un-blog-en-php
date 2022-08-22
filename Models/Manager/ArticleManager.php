@@ -131,7 +131,7 @@ SET image_link = :imageLink, chapo = :chapo,
 
     public function delete(Article $article)
     {
-        $req = $this->getBdd()->prepare('DELETE FROM `articles WHERE id = :id');
+        $req = $this->getBdd()->prepare('DELETE FROM `articles` WHERE id = :id');
 
         $req->execute(['id' => $article->getId()]);
     }

@@ -6,7 +6,7 @@ ob_start();
         <div class="row m-5">
             <div class="col text-primary fw-bold ">
                 <label for="title">Titre : </label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text"  class="form-control" id="title" name="title ">
             </div>
             <div class="col text-primary fw-bold ">
                 <label for="chapo">Chapô : </label>
@@ -27,7 +27,7 @@ ob_start();
         <div class="row m-5">
             <div class="col text-primary fw-bold">
                 <label for="content">Content: </label>
-                <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+                <textarea name="content" class="form-control" id="content" cols="30" rows="10" ></textarea>
 
             </div>
 
@@ -52,6 +52,7 @@ ob_start();
         <button class="btn btn-primary text-white  m-3 p-2 w-100 rounded-1 border border-dark form-control"
                 type="submit">Valider
         </button>
+
 
     </form>
 

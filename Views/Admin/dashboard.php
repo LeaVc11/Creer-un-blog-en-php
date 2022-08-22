@@ -39,14 +39,16 @@ ob_start(); ?>
         foreach ($articles as $article) {
         ?>
     <tr>
-        <td><?= $article->getTitle() ?></td>
+
         <td><?= $article->getImageLink() ?></td>
         <td><?= $article->getChapo() ?></td>
-        <td><?= $article->getSlug() ?></td>
+        <td><?= $article->getTitle() ?></td>
         <td><?= $article->getContent() ?></td>
+        <td><?= $article->getSlug() ?></td>
+        <td><?= $article->getAuthor() ?></td>
         <td><?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></td>
         <td><?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></td>
-        <td><?= $article->getAuthor() ?></td>
+
         <td>
 
             <?php

@@ -152,13 +152,13 @@ class AdminController
     {
 
         $article = $this->articleManager->findById($id);
-        if (is_null($article)) {
-            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
-            die();
-        } else {
+//        if (is_null($article)) {
+////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
+////            die();
+//        } else {
             $this->articleManager->delete($article);
-            header('Location: dashboard');
-        }
+            header('Location: ../dashboard');
+//        }
     }
 
     /**
@@ -203,7 +203,7 @@ class AdminController
 
                     $this->articleManager->editArticle($article);
 
-                    header('Location: dashboard');
+                    header('Location: ../dashboard');
                     exit();
                 }
             }
