@@ -110,7 +110,8 @@ class ArticleManager extends DbManager
     /**
      * @throws Exception
      */
-    public function getOne($id){
+    public function getOne($id): ?Article
+    {
         $article = null;
         $req = $this->getBdd()->prepare('SELECT * FROM `articles` WHERE id = :id');
 
@@ -135,7 +136,7 @@ class ArticleManager extends DbManager
         return $article;
 
     }
-    public function editArticle(int $id): Article{
+    public function editArticle(Article $article){
         $req = $this->getBdd()->prepare("UPDATE `articles`
 SET image_link = :imageLink, chapo = :chapo,
     content = :content, title = :title,slug = :slug,

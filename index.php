@@ -137,6 +137,11 @@ function admin($parameter): void
         $articles->addArticles();
     } else if ($parameter === "e") {
         $articles->editArticle($id);
+        if (!empty($_SESSION['user'])) {
+            $controller->delete($_GET['id']);
+        }else{
+            echo ('Interdit');
+        }
     } else if ($parameter === "d") {
         $articles->deleteArticle($id);
     } else {

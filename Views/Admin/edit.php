@@ -8,9 +8,7 @@
 
 <form method="post" enctype="multipart/form-data">
     <label>Titre</label>
-    <input type="text" value="<?php echo($article->getTitle());?>" placeholder="Nom de l'équipe" name="nom">
-
-
+    <input type="text" value="<?php echo($article->getTitle());?>" placeholder="Nom de l'article" name="nom">
 
     <?php
     if(!is_null($article->getImage())){
