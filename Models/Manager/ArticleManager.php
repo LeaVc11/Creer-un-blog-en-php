@@ -4,6 +4,7 @@ namespace App\Models\Manager;
 
 
 use App\Models\Class\Article;
+use App\models\Comment;
 use DateTime;
 use Exception;
 use PDO;
@@ -102,8 +103,8 @@ class ArticleManager extends DbManager
             'content' => $article->getContent(),
             'author' => $article->getAuthor(),
             'slug' => $article->getSlug(),
-            'created_at' => $article->getCreatedAt()->format('Y-m-d H:i:s'),
-            'updated_at' => $article->getUpdatedAt()->format('Y-m-d H:i:s'),
+            'created_at' => $article->getCreatedAt()->format('Y-m-d '),
+            'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
         ]);
     }
 
@@ -123,8 +124,8 @@ SET image_link = :imageLink, chapo = :chapo,
             'content' => $article->getContent(),
             'author' => $article->getAuthor(),
             'slug' => $article->getSlug(),
-            'created_at' => $article->getCreatedAt()->format('Y-m-d H:i:s'),
-            'updated_at' => $article->getUpdatedAt()->format('Y-m-d H:i:s'),
+            'created_at' => $article->getCreatedAt()->format('Y-m-d '),
+            'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
 
         ]);
     }
@@ -188,6 +189,7 @@ SET image_link = :imageLink, chapo = :chapo,
         }
         return $article;
     }
+
 
 
 

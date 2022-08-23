@@ -10,13 +10,13 @@ class Comment
     private $content;
     private $createdAt;
     private $createdBy;
-    private $postId;
+    private $articleId;
 
     const PENDING = 'PENDING';
     const REJECTED = 'REJECTED';
     const APPROVED = 'APPROVED';
 
-   public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $postId)
+   public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
    {
        $this->id = $id;
        $this->title = $title;
@@ -24,13 +24,13 @@ class Comment
        $this->content = $content;
        $this->createdAt = $createdAt;
        $this->createdBy = $createdBy;
-       $this->postId = $postId;
+       $this->articleId = $articleId;
    }
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): mixed
     {
         return $this->id;
     }
@@ -39,7 +39,7 @@ class Comment
      * @param mixed $id
      * @return Comment
      */
-    public function setId($id)
+    public function setId(mixed $id)
     {
         $this->id = $id;
         return $this;
@@ -48,7 +48,7 @@ class Comment
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getTitle(): mixed
     {
         return $this->title;
     }
@@ -57,7 +57,7 @@ class Comment
      * @param mixed $title
      * @return Comment
      */
-    public function setTitle($title)
+    public function setTitle(mixed $title): static
     {
         $this->title = $title;
         return $this;
@@ -66,7 +66,7 @@ class Comment
     /**
      * @return mixed
      */
-    public function getStatus()
+    public function getStatus(): mixed
     {
         return $this->status;
     }
@@ -75,7 +75,7 @@ class Comment
      * @param mixed $status
      * @return Comment
      */
-    public function setStatus($status)
+    public function setStatus(mixed $status): static
     {
         $this->status = $status;
         return $this;
@@ -84,7 +84,7 @@ class Comment
     /**
      * @return mixed
      */
-    public function getContent()
+    public function getContent(): mixed
     {
         return $this->content;
     }
@@ -93,7 +93,7 @@ class Comment
      * @param mixed $content
      * @return Comment
      */
-    public function setContent($content)
+    public function setContent(mixed $content): static
     {
         $this->content = $content;
         return $this;
@@ -102,7 +102,7 @@ class Comment
     /**
      * @return mixed
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): mixed
     {
         return $this->createdAt;
     }
@@ -111,7 +111,7 @@ class Comment
      * @param mixed $createdAt
      * @return Comment
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(mixed $createdAt): static
     {
         $this->createdAt = $createdAt;
         return $this;
@@ -120,7 +120,7 @@ class Comment
     /**
      * @return mixed
      */
-    public function getCreatedBy()
+    public function getCreatedBy(): mixed
     {
         return $this->createdBy;
     }
@@ -129,7 +129,7 @@ class Comment
      * @param mixed $createdBy
      * @return Comment
      */
-    public function setCreatedBy($createdBy)
+    public function setCreatedBy(mixed $createdBy): static
     {
         $this->createdBy = $createdBy;
         return $this;
@@ -138,20 +138,21 @@ class Comment
     /**
      * @return mixed
      */
-    public function getPostId()
+    public function getArticleId(): mixed
     {
-        return $this->postId;
+        return $this->articleId;
     }
 
     /**
-     * @param mixed $postId
+     * @param mixed $articleId
      * @return Comment
      */
-    public function setPostId($postId)
+    public function setArticleId(mixed $articleId): static
     {
-        $this->postId = $postId;
+        $this->articleId = $articleId;
         return $this;
     }
+
 
 
 }

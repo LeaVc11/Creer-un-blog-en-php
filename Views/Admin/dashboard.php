@@ -8,6 +8,7 @@ ob_start(); ?>
 <?php
 //include 'Views/parts/menu.php';
 //?>
+
 <h2 class="text-secondary m-5 ">Articles</h2>
 <p class="lead">Administrez ici les articles du blog.</p>
 

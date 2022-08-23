@@ -50,8 +50,10 @@ if(!empty($errors)):?>
                 <input type="file" class="form-control-file" id="image_link" name="image_link">
             </div>
         </div>
-
-        <button class="btn btn-primary text-white  m-3 p-2 w-100 rounded-1 border border-dark form-control"
+        <div class=" text-center">
+            <a href="<?= URL?>admin/dashboard" class="btn btn-primary text-center text-white" target="_blank">Retour</a>
+        </div>
+        <button class="btn btn-primary text-white  m-3 p-2 w-100 rounded-1 border form-control"
                 type="submit">Valider
         </button>
 

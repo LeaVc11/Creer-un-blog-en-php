@@ -15,8 +15,36 @@ ob_start();
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">
             <h4><?= $article->getTitle(); ?>
-                <p class="text-end text-secondary mt-5">Ecrit le : <?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></p>
-                <p class="text-end text-secondary mt-5"> Modifié le <?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></p>
+                <div class="container mt-5">
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            Auteur :
+                        </div>
+                        <div class="col-md text-success">
+                            <?= $article->getAuthor() ?>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            Ecrit le :
+                        </div>
+                        <div class="col-md">
+                            <?= $article->getCreatedAt()->format('d/m/Y ') ?>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            Modifié le :
+                        </div>
+                        <div class="col-md">
+                            <?= $article->getUpdatedAt()->format('d/m/Y ') ?>
+                        </div>
+                    </div>
+
+
+                </div>
+
 
         </div>
     </div>
@@ -25,7 +53,7 @@ ob_start();
     <a href="<?= URL?>admin/dashboard" class="btn btn-primary text-center text-white fw-bold" target="_blank">Retour</a>
 </div>
 
-    <section class=" w-100 h-100 rounded mt-5 p-1" style="background : #f7f1e3">
+    <section class=" w-100 h-100 rounded mt-5 p-1" >
 
         <h2 class="text-center display-6 m-5 p-2" style="background-color: #333; color: #aaa;"><strong>Commentaires</strong></h2>
 
@@ -48,7 +76,7 @@ ob_start();
                         </div>
                         <div class="form-groupe  fw-bold m-2 text-center " >
                             <textarea class="w-50 h-50 border-2 p-3 "
-                                      style="; outline: 0; background : #ffffff; resize: none; color : #666666;  border-color: #8b97d7; "
+                                      style="; outline: 0; background : #f7f1e3; resize: none; color : #666666;  border-color: #8b97d7; "
                                       id="txt" cols="45" rows="10"
                                       placeholder ="Votre commentaire"></textarea>
                         </div>
@@ -56,7 +84,7 @@ ob_start();
 
                         <div class="form-groupe  fw-bold  text-center">
                             <input class=" button-sub hover-overlay  w-auto p-2  border border-2  btn btn-outline-dark rounded-pill align-center"
-                                   style="border: 0; outline: 0;  color : #f1f1f1 font-size : 18px"
+                                   style="border: 0; outline: 0;   color : #f1f1f1 font-size : 18px"
                                    type="submit"
                                    value="ENVOYER" >
 

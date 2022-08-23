@@ -139,7 +139,6 @@ class AdminController
         require 'Views/admin/edit.php';
     }
 
-
     /**
      * @throws \Exception
      */

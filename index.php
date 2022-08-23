@@ -3,6 +3,7 @@
 
 use App\Controllers\AdminController;
 use App\Controllers\ArticlesController;
+use App\Controllers\CommentController;
 use App\Controllers\Security\SecurityController;
 
 require 'vendor/autoload.php';
@@ -46,6 +47,7 @@ try {
             'article' => actionArticle($page, $id),
             'security' => security($page),
             'admin' => admin($page, $id),
+            'comment' => comment($page, $id),
 
             default => throw new Exception("La page n'existe pas"),
         };
@@ -79,7 +81,6 @@ function actionArticle(string $parameter, int $id): void
         $articles->homePage();
     } else if ($parameter === "s") {
         $articles->showArticle($id);
-
     } else {
         throw new Exception("La page n'existe pas");
     }
@@ -125,6 +126,13 @@ function admin(string $parameter, ?int $id): void
     }
 
 }
+function comment(string $parameter, $id) : void{
+    $comment = new CommentController();
+    if ($parameter === "c"){
+        $comment->addComment();
+    }
+}
+
 
 /**
  * @throws Exception
