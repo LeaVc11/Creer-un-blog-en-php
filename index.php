@@ -81,6 +81,7 @@ function actionArticle(string $parameter, int $id): void
         $articles->homePage();
     } else if ($parameter === "s") {
         $articles->showArticle($id);
+
     } else {
         throw new Exception("La page n'existe pas");
     }

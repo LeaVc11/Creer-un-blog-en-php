@@ -38,6 +38,7 @@ ob_start(); ?>
         }
         ?>
     </tr>
+
     <div class="d-flex justify-content-end">
         <a href="<?= URL ?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
     </div>
@@ -63,8 +64,7 @@ ob_start(); ?>
             <?php
             //dd($article->getId());
             ?>
-            <a href="<?= URL ?>article/s/<?= $article->getId(); ?>" class="btn btn-primary text-center m-1"
-               target="_blank" role="button">Voir</a>
+
         </td>
 
     <td>
@@ -82,7 +82,6 @@ ob_start(); ?>
     <?php } ?>
     </tr>
 </table>
-
 
 <!--contact-->
 

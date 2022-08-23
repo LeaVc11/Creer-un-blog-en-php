@@ -53,7 +53,7 @@ ob_start(); ?>
 
 <?php
 $content = ob_get_clean();
-require "Views/Articles/articles.view.php";
+require "Views/template.php";
 ?>
 
 
