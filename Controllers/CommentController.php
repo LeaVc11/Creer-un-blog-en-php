@@ -16,8 +16,8 @@ class CommentController extends DbManager
     }
     public function listComment(): void
     {
-        $articles = $this->articleManager->loadingArticles();
-        require 'Views/Admin/dashboard.php';
+        $articles = $this->commentManager->listComment();
+        require 'Views/Comment/listComment.php';
     }
     /**
      * @throws \Exception

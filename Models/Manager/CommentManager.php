@@ -3,9 +3,12 @@
 namespace App\models\Manager;
 
 use App\models\Comment;
+use DateTime;
+use PDO;
 
 class CommentManager extends DbManager
 {
+    private array $comments = [];
 
     public function addComment(Comment $comment)
     {
@@ -22,7 +25,37 @@ class CommentManager extends DbManager
             'created_at' => $comment->getCreatedAt()->format('Y-m-d '),
         ]);
     }
+    /**
+     * @throws Exception
+     */
+    public function listComment()
+    {
+        $req = $this->getBdd()->prepare("SELECT * FROM comment");
+        $req->execute();
+        $comments = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
 
+//        dd($articles);
+        foreach ($comments as $comment) {
+            $c = $this->createdObjectComment($comment);
+            $this->comments[] = $c;
+        }
+        return $this->comments;
 
+    }
+    private function createdObjectComment(array $comment): Comment
+    {
+//var_dump($article);
+//die();
 
+        return new Comment(
+            $comment['id'],
+            $comment['title'],
+            $comment['status'],
+            $comment['content'],
+            new DateTime($comment['created_at']),
+            $comment['created_by'],
+            $comment['article_id'],
+        );
+    }
 }
