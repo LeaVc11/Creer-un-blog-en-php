@@ -23,25 +23,6 @@ class CommentManager extends DbManager
         ]);
     }
 
-    public function findByTitle($title): ?Comment
-    {
-        $comment = null;
-        $query = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE title = :title");
-        $query->execute(['title' => $title]);
-        $commentFromBdd = $query->fetch();
-
-        if ($commentFromBdd){
-            $comment = new Comment(
-                $commentFromBdd['id'],
-                $commentFromBdd['title'],
-                $commentFromBdd['status'],
-                $commentFromBdd['content'],
-                $commentFromBdd['createdAt'],
-                $commentFromBdd['createdBy'],
-                $commentFromBdd['articleId']);
-        }
-        return $comment;
-    }
 
 
 }

@@ -8,7 +8,15 @@ ob_start(); ?>
 <?php
 //include 'Views/parts/menu.php';
 //?>
-
+<?php
+//$user = unserialize($_SESSION['user']);
+//
+//if ($user->isAdmin()) {
+//    echo('<a href="admin/dashboard">Administrateur</a>');
+//}
+//echo('Bonjour ' . unserialize($_SESSION['user'])->getUsername());
+//echo('<a href="admin/logout">Se déconnecter</a>');
+////?>
 <h2 class="text-secondary m-5 ">Articles</h2>
 <p class="lead">Administrez ici les articles du blog.</p>
 
