@@ -17,7 +17,7 @@ ob_start(); ?>
 //echo('Bonjour ' . unserialize($_SESSION['user'])->getUsername());
 //echo('<a href="admin/logout">Se déconnecter</a>');
 ////?>
-<h2 class="text-secondary m-5 ">Commentaire</h2>
+<h2 class="text-secondary m-5 ">Articles</h2>
 <p class="lead">Administrez ici les articles du blog.</p>
 
 
@@ -46,10 +46,11 @@ ob_start(); ?>
     <tr>
         <?php
 
-        foreach ($comments as $comment) {
+        foreach ($articles as $article) {
         ?>
     <tr>
 
+        <td><?= $article->getImageLink() ?></td>
         <td><?= $article->getChapo() ?></td>
         <td><?= $article->getTitle() ?></td>
         <td><?= $article->getContent() ?></td>

@@ -14,10 +14,14 @@ class CommentController extends DbManager
     {
         $this->commentManager = new CommentManager();
     }
-    public function listComment(): void
+
+    /**
+     * @throws \Exception
+     */
+    public function list(): void
     {
-        $articles = $this->commentManager->listComment();
-        require 'Views/Comment/listComment.php';
+        $articles = $this->commentManager->list();
+        require 'Views/articles/list.php';
     }
     /**
      * @throws \Exception
@@ -34,9 +38,9 @@ class CommentController extends DbManager
         if (empty($_POST['comment'])) {
             $errors[] = 'Veuillez saisir un commentaire';
         }
-        header('Location');
+        header('Location : ../articles');
 
-        require "Views/Comment/add.php";
+        require "Views/Articles/articles.view.php";
     }
 
 }

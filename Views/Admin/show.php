@@ -53,8 +53,7 @@ ob_start();
     <a href="<?= URL ?>articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
 </div>
 <div class=" text-center">
-
-    <a href="<?= URL?>comment/a" class="btn btn-primary text-center text-white fw-bold" target="_blank">Poster un commentaire</a>
+    <a href="<?= URL ?>articles/a" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Poster un commentaire</a>
 </div>
 
 <!--commentaire-->

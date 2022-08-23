@@ -89,7 +89,6 @@ function actionArticle(string $parameter, int $id): void
 
 function security(string $parameter): void
 {
-
     $controller = new SecurityController();
 
     if ($parameter === 'login') {
@@ -133,7 +132,10 @@ function admin(string $parameter, ?int $id): void
  */
 function comment(string $parameter, $id) : void{
     $comment = new CommentController();
-    if ($parameter === "a"){
+    if ($parameter === 'list'){
+        $comment->list();
+
+    }else if ($parameter === "a"){
         $comment->addComment($id);
     }
 }

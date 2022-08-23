@@ -25,10 +25,11 @@ class CommentManager extends DbManager
             'created_at' => $comment->getCreatedAt()->format('Y-m-d '),
         ]);
     }
+
     /**
-     * @throws Exception
+     * @throws \Exception
      */
-    public function listComment()
+    public function list(): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM comment");
         $req->execute();
@@ -43,6 +44,10 @@ class CommentManager extends DbManager
         return $this->comments;
 
     }
+
+    /**
+     * @throws \Exception
+     */
     private function createdObjectComment(array $comment): Comment
     {
 //var_dump($article);

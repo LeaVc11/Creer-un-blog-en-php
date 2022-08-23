@@ -2,6 +2,8 @@
 
 namespace App\models;
 
+use DateTime;
+
 class Comment
 {
     private $id;
@@ -11,134 +13,118 @@ class Comment
     private $createdAt;
     private $createdBy;
     private $articleId;
-
+    // TODO: if possible when a PHP 8.1 fpm alpine image is released on Docker hub, replace this with an Enum class
     const PENDING = 'PENDING';
     const REJECTED = 'REJECTED';
     const APPROVED = 'APPROVED';
 
-   public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
-   {
-       $this->id = $id;
-       $this->title = $title;
-       $this->status = $status;
-       $this->content = $content;
-       $this->createdAt = $createdAt;
-       $this->createdBy = $createdBy;
-       $this->articleId = $articleId;
-   }
-
     /**
-     * @return mixed
+     * @param $id
+     * @param $title
+     * @param $status
+     * @param $content
+     * @param $createdAt
+     * @param $createdBy
+     * @param $articleId
      */
-    public function getId(): mixed
+    public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
+    {
+        $this->id = $id;
+        $this->title = $title;
+        $this->status = $status;
+        $this->content = $content;
+        $this->createdAt = $createdAt;
+        $this->createdBy = $createdBy;
+        $this->articleId = $articleId;
+    }
+
+    public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     * @return Comment
-     */
-    public function setId(mixed $id)
+    public function setId($id)
     {
-        $this->id = $id;
-        return $this;
+        if (is_string($id) && intval($id) > 0) {
+            $this->id = intval($id);
+        }
+        if (is_int($id) && $id > 0) {
+            $this->id = $id;
+        }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTitle(): mixed
+    public function getTitle()
     {
         return $this->title;
     }
 
-    /**
-     * @param mixed $title
-     * @return Comment
-     */
-    public function setTitle(mixed $title): static
+
+    public function setTitle($title)
     {
-        $this->title = $title;
-        return $this;
+        if (mb_strlen($title) <= 255) {
+            $this->title = $title;
+        } else {
+            $this->title = substr($title, 0, 255);
+        }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStatus(): mixed
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param mixed $status
-     * @return Comment
-     */
-    public function setStatus(mixed $status): static
-    {
-        $this->status = $status;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getContent(): mixed
+    public function getContent()
     {
         return $this->content;
     }
 
-    /**
-     * @param mixed $content
-     * @return Comment
-     */
-    public function setContent(mixed $content): static
+    public function setContent($content)
     {
-        $this->content = $content;
-        return $this;
+        $this->content = strip_tags($content, ['p', 'a', 'i']);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt(): mixed
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param mixed $createdAt
-     * @return Comment
-     */
-    public function setCreatedAt(mixed $createdAt): static
+    public function setCreated_at($createdAt)
     {
-        $this->createdAt = $createdAt;
-        return $this;
+        $format = 'Y-m-d H:i:s';
+        // Teste la validité de la date
+        $d = DateTime::createFromFormat($format, $createdAt);
+        if ($createdAt == $d->format($format)) {
+            $this->createdAt = $d->format($format);
+        } else {
+            $dd = new DateTime();
+            $this->createdAt = $dd->format($format);
+        }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreatedBy(): mixed
+    public function getCreatedBy()
     {
         return $this->createdBy;
     }
 
-    /**
-     * @param mixed $createdBy
-     * @return Comment
-     */
-    public function setCreatedBy(mixed $createdBy): static
+    public function setCreated_by($user)
     {
-        $this->createdBy = $createdBy;
-        return $this;
+        $this->createdBy = $user;
+    }
+
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        /**
+         * Pending status by default for new comments
+         */
+        $status = $status ?? $this::PENDING;
+        $this->status = $status;
     }
 
     /**
      * @return mixed
      */
-    public function getArticleId(): mixed
+    public function getArticleId()
     {
         return $this->articleId;
     }
@@ -147,12 +133,10 @@ class Comment
      * @param mixed $articleId
      * @return Comment
      */
-    public function setArticleId(mixed $articleId): static
+    public function setArticleId($articleId)
     {
         $this->articleId = $articleId;
         return $this;
     }
-
-
 
 }
