@@ -16,7 +16,13 @@ $router = new Router($_GET['url']);
 
 $router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
-$router->get('/posts/:id', 'Articles#showArticle');
+$router->get('/articles/:id', 'Articles#showArticle');
+$router->get('/security/','Admin#login');
+$router->get('/security/','Admin#register');
+$router->get('/security/','Admin#logout');
+$router->get('/admin/','Admin#addArticles');
+$router->get('/admin/:id','Admin#editArticle');
+$router->get('/admin/:id','Admin#deleteArticle');
 
 try {
     $router->run();
@@ -106,12 +112,12 @@ function admin($parameter): void
     $articles = new AdminController();
     if ($parameter === 'dashboard') {
         $articles->dashboard();
-    } else if ($parameter === "s") {
-        $articles->showArticle($id);
+//    } else if ($parameter === "s") {
+//        $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticles();
     } else if ($parameter === "e") {
-        $articles->editArticle();
+        $articles->editArticle($id);
     } else if ($parameter === "d") {
         $articles->deleteArticle($id);
     } else {
