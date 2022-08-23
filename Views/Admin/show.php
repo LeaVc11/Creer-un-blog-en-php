@@ -67,6 +67,7 @@ ob_start();
         <div class="m-5 " id="form">
             <div class="container-form text-center ">
                 <div id="form-row" class="row justify-content-center align-items-center">
+
                     <form class="form-bloc text-center">
                         <div class="form-groupe p-3">
                             <label  style="color: #666666; " for="title" ></label>
@@ -80,16 +81,13 @@ ob_start();
                                       id="txt" cols="45" rows="10"
                                       placeholder ="Votre commentaire"></textarea>
                         </div>
-
-
                         <div class="form-groupe  fw-bold  text-center">
-                            <input class=" button-sub hover-overlay  w-auto p-2  border border-2  btn btn-outline-dark rounded-pill align-center"
-                                   style="border: 0; outline: 0;   color : #f1f1f1 font-size : 18px"
+                            <input class=" button-sub   w-auto p-2  border border-2  btn btn-outline-secondary rounded-pill align-center"
                                    type="submit"
                                    value="ENVOYER" >
-
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

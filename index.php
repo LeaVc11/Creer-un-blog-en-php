@@ -126,6 +126,10 @@ function admin(string $parameter, ?int $id): void
     }
 
 }
+
+/**
+ * @throws Exception
+ */
 function comment(string $parameter, $id) : void{
     $comment = new CommentController();
     if ($parameter === "c"){
