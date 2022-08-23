@@ -54,7 +54,7 @@ ob_start();
 </div>
 <div class=" text-center">
 
-    <a href="<?= URL?>articles/comment" class="btn btn-primary text-center text-white fw-bold" target="_blank">Poster un commentaire</a>
+    <a href="<?= URL?>comment/a" class="btn btn-primary text-center text-white fw-bold" target="_blank">Poster un commentaire</a>
 </div>
 
 <!--commentaire-->

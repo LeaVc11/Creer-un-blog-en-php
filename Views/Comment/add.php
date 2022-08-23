@@ -1,10 +1,24 @@
 <?php
 
 require_once "Models/Class/Comment.php";
-
-
 ob_start(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../Public/css/style.css">
 
+</head>
+<body>
+<?php
+//    var_dump($errors);
+if(!empty($errors)):?>
+    <div class=" m-3 fw-bold alert alert-danger">
+        <?php foreach($errors as $error):?>
+            <p><?=$error;?></p>
+        <?php endforeach;?>
+    </div>
+<?php endif;?>
 <!--commentaire-->
 <section class=" w-100 h-100 rounded mt-5 p-1" >
 
@@ -36,6 +50,7 @@ ob_start(); ?>
                                       id="txt" cols="45" rows="10"
                                       placeholder ="Votre commentaire"></textarea>
                     </div>
+
                     <div class="form-groupe  fw-bold  text-center">
                         <input class=" button-sub   w-auto p-2  border border-2  btn btn-outline-secondary rounded-pill align-center"
                                name="submit_comment"
@@ -49,7 +64,7 @@ ob_start(); ?>
     </div>
 </section>
 
-
+</body>
 
 <?php
 $content = ob_get_clean();
