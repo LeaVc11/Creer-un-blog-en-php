@@ -47,7 +47,7 @@ try {
             'article' => actionArticle($page, $id),
             'security' => security($page),
             'admin' => admin($page, $id),
-            'comments' => getListComments(),
+            'comments' => getDisplayComment(),
             'comment' => actionComment($page, $id),
 
             default => throw new Exception("La page n'existe pas"),
@@ -130,10 +130,10 @@ function admin(string $parameter, ?int $id): void
 /**
  * @throws Exception
  */
-function getListComments(): void
+function getDisplayComment(): void
 {
     $comments = new CommentController();
-    $comments->listComments();
+    $comments->displayComments();
 }
 /**
  * @throws Exception

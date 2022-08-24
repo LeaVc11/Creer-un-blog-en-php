@@ -24,6 +24,14 @@ class CommentController
      */
     public function listComments(): void
     {
+        $articles = $this->commentManager->loadingComments();
+        require 'Views/Articles/articles.view.php';
+    }
+    /**
+     * @throws \Exception
+     */
+    public function displayComments(): void
+    {
         $comments = $this->commentManager->loadingComments();
         require "Views/Admin/listComment.php";
     }
@@ -37,8 +45,7 @@ class CommentController
      */
     public function showComment(int $id): void
     {
-        var_dump($id);
-        die();
+
         $comment = $this->commentManager->showComment($id);
         require "Views/Comment/showComment.php";
     }
