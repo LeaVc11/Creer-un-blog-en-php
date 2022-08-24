@@ -4,7 +4,6 @@ namespace App\Models\Manager;
 
 
 use App\Models\Class\Article;
-use App\models\Comment;
 use DateTime;
 use Exception;
 use PDO;

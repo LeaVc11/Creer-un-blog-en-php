@@ -47,7 +47,8 @@ try {
             'article' => actionArticle($page, $id),
             'security' => security($page),
             'admin' => admin($page, $id),
-            'comment' => comment($page, $id),
+            'comments' => getListComments(),
+            'comment' => actionComment($page, $id),
 
             default => throw new Exception("La page n'existe pas"),
         };
@@ -126,17 +127,26 @@ function admin(string $parameter, ?int $id): void
     }
 
 }
-
 /**
  * @throws Exception
  */
-function comment(string $parameter, $id) : void{
-    $comment = new CommentController();
-    if ($parameter === 'list'){
-        $comment->list();
-
-    }else if ($parameter === "a"){
-        $comment->addComment($id);
+function getListComments(): void
+{
+    $comments = new CommentController();
+    $comments->listComments();
+}
+/**
+ * @throws Exception
+ */
+function actionComment($parameter, $id): void
+{
+    $comments = new CommentController();
+    if ($parameter === 'list') {
+        $comments->listComments();
+    }elseif ($parameter === "s"){
+        $comments->showComment($id);
+    }elseif ($parameter === "a"){
+        $comments->addComment();
     }
 }
 

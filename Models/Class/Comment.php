@@ -13,7 +13,7 @@ class Comment
     private $createdAt;
     private $createdBy;
     private $articleId;
-    // TODO: if possible when a PHP 8.1 fpm alpine image is released on Docker hub, replace this with an Enum class
+
     const PENDING = 'PENDING';
     const REJECTED = 'REJECTED';
     const APPROVED = 'APPROVED';

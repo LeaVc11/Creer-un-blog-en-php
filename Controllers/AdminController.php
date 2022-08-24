@@ -11,7 +11,7 @@ use JetBrains\PhpStorm\ArrayShape;
 class AdminController
 {
 
-    private $articleManager;
+    private ArticleManager $articleManager;
 
     /**
      * @throws \Exception

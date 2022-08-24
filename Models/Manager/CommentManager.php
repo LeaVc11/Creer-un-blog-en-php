@@ -10,26 +10,42 @@ class CommentManager extends DbManager
 {
     private array $comments = [];
 
-    public function addComment(Comment $comment)
+    /**
+     * @throws \Exception
+     */
+    public function showComment(int $id): Comment
     {
-        $req = $this->getBdd()->prepare("INSERT INTO `comment`
-    (`content`,`title`,`created_at`,`created_by`,`article_id`, `status`)
-    VALUE (:content,:title, :created_at, :created_by, :article_id, :status) )");
+        $request = $this->getBdd()->prepare('SELECT * FROM comment WHERE id = :id');
+        $request->bindParam(':id', $id);
+        $request->execute();
+        $comment = $request->fetch(PDO::FETCH_ASSOC);
 
-        $req->execute([
-            'content' => $comment->getContent(),
-            'title' => $comment->getTitle(),
-            'status' => $comment->getStatus(),
-            'created_by' => $comment->getCreatedBy(),
-            'article_id' => $comment->getArticleId(),
-            'created_at' => $comment->getCreatedAt()->format('Y-m-d '),
-        ]);
+        return $this->createdObjectComment($comment);
+    }
+
+
+    /**
+     * @throws \Exception
+     */
+    private function createdObjectComment(array $comment): Comment
+    {
+
+        return new Comment(
+            $comment['id'],
+            $comment['title'],
+            $comment['status'],
+            $comment['content'],
+            new DateTime($comment['created_at']),
+            $comment['created_by'],
+            $comment['articleId'],
+
+        );
     }
 
     /**
      * @throws \Exception
      */
-    public function list(): array
+    public function loadingComments(): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM comment");
         $req->execute();
@@ -42,25 +58,50 @@ class CommentManager extends DbManager
             $this->comments[] = $c;
         }
         return $this->comments;
-
     }
 
     /**
+     *
      * @throws \Exception
      */
-    private function createdObjectComment(array $comment): Comment
+    public function getByTitle($title): ?Comment
     {
-//var_dump($article);
-//die();
+        $comment = null;
+        $query = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE title = :title");
+        $query->execute(['title' => $title]);
+        $commentFromBdd = $query->fetch();
 
-        return new Comment(
-            $comment['id'],
-            $comment['title'],
-            $comment['status'],
-            $comment['content'],
-            new DateTime($comment['created_at']),
-            $comment['created_by'],
-            $comment['article_id'],
-        );
+        if ($commentFromBdd) {
+            $comment = new Comment(
+                $commentFromBdd['id'],
+                $commentFromBdd['title'],
+                $commentFromBdd['status'],
+                $commentFromBdd['content'],
+                new DateTime($commentFromBdd['created_at']),
+                $commentFromBdd['created_by'],
+                $commentFromBdd['articleId']);
+        }
+        return $comment;
     }
+    public function addComment(Comment $comment)
+    {
+
+        $req = $this->getBdd()->prepare("INSERT INTO `comment`
+    (`id`, `title`, `status`, `content`, `createdAt`, `createdBy`, `articleId`) 
+    VALUE (:id, :title, :status, :content, :createdAt, :createdBy, :articleId )");
+
+        $req->execute([
+
+            'title' => $comment->getTitle(),
+            'status' => $comment->getStatus(),
+            'content' => $comment->getContent(),
+            'created_at' => $comment->getCreatedAt()->format('Y-m-d '),
+            'createdBy' => $comment->getCreatedBy(),
+            'articleId' => $comment->getArticleId(),
+        ]);
+    }
+
+
 }
+
+

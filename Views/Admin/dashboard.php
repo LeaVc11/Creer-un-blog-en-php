@@ -46,6 +46,7 @@ ob_start(); ?>
     <tr>
         <?php
 
+
         foreach ($articles as $article) {
         ?>
     <tr>
@@ -56,8 +57,8 @@ ob_start(); ?>
         <td><?= $article->getContent() ?></td>
         <td><?= $article->getSlug() ?></td>
         <td><?= $article->getAuthor() ?></td>
-        <td><?= $article->getCreatedAt()->format('d/m/Y - H:i:s') ?></td>
-        <td><?= $article->getUpdatedAt()->format('d/m/Y - H:i:s') ?></td>
+        <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
+        <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
 
         <td>
 

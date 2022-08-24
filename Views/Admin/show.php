@@ -48,14 +48,15 @@ ob_start();
 
         </div>
     </div>
-
+<div class=" text-center">
+    <a href="<?= URL ?>comment/s" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
+</div>
 <div class=" text-center">
     <a href="<?= URL ?>articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
 </div>
-<div class=" text-center">
-    <a href="<?= URL ?>articles/a" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Poster un commentaire</a>
-</div>
-
+<?php
+include ("Views/Articles/addComment.php");
+?>
 <!--commentaire-->
 <!--    <section class=" w-100 h-100 rounded mt-5 p-1" >-->
 <!---->
