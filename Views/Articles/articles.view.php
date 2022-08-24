@@ -48,10 +48,6 @@ ob_start(); ?>
             <?php } ?>
 
 </section>
-<?php
-include "Views/Contact/formContact.php";
-?>
-
 
 
 <?php

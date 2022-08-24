@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 
-use App\models\Comment;
 use App\Models\Manager\ArticleManager;
 use Exception;
 

@@ -51,7 +51,7 @@ if(!empty($errors)):?>
             </div>
         </div>
 
-        <div class=" text-center">
+        <div class=" text-center m-5">
             <a href="<?= URL?>admin/dashboard" class="btn btn-primary text-white text-center mb-2 w-100 rounded-1 border form-control" target="_blank">Retour</a>
             <button class="btn btn-primary text-white text-center w-100 rounded-1 border form-control"
                     type="submit">Valider

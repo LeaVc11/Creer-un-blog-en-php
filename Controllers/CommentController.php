@@ -25,7 +25,7 @@ class CommentController
     public function listComments(): void
     {
         $articles = $this->commentManager->loadingComments();
-        require 'Views/Articles/articles.view.php';
+        require 'Views/Admin/listComment.php';
     }
     /**
      * @throws \Exception
