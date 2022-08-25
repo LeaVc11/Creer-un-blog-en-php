@@ -84,72 +84,7 @@ ob_start(); ?>
     </tr>
 </table>
 
-<h2 class="text-secondary m-5 ">Articles</h2>
-<p class="lead">Administrez ici les articles du blog.</p>
 
-
-<table class="table text-center">
-    <tr class="table-dark">
-    <tr>
-        <th scope="col">Titre</th>
-        <th scope="col">Image</th>
-        <th scope="col">Chapô</th>
-        <th scope="col">Slug</th>
-        <th scope="col">Content</th>
-        <th scope="col">Date de création</th>
-        <th scope="col">Date de modification</th>
-        <th scope="col">Auteur</th>
-        <?php
-        if (isset($_SESSION['user'])) {
-            echo('<th>Edition</th>');
-        }
-        ?>
-    </tr>
-
-    <div class="d-flex justify-content-end">
-        <a href="<?= URL ?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
-    </div>
-
-    <tr>
-        <?php
-
-
-        foreach ($articles as $article) {
-        ?>
-    <tr>
-
-        <td><?= $article->getImageLink() ?></td>
-        <td><?= $article->getChapo() ?></td>
-        <td><?= $article->getTitle() ?></td>
-        <td><?= $article->getContent() ?></td>
-        <td><?= $article->getSlug() ?></td>
-        <td><?= $article->getAuthor() ?></td>
-        <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
-        <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
-
-        <td>
-
-            <?php
-            //dd($article->getId());
-            ?>
-
-        </td>
-
-        <td>
-            <?php
-            //var_dump($article->getId());
-            //die();
-            ?>
-            <a href="<?= URL ?>admin/e/<?= $article->getId(); ?>" class="btn btn-secondary"
-               role="button">Modifier</a>
-        </td>
-        <td>
-            <a href="<?= URL ?>admin/d/<?= $article->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
-        </td>
-
-        <?php } ?>
-    </tr>
-</table>
 
 <h2 class="text-secondary m-5 ">Articles</h2>
 <p class="lead">Administrez ici les articles du blog.</p>

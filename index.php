@@ -129,11 +129,13 @@ function admin(string $parameter, ?int $id): void
         throw new Exception("La page n'existe pas");
     }
     $comments = new CommentController();
-    if ($parameter === "a") {
+    if ($parameter === "ac") {
         $comments->addComment();
-    } elseif ($parameter === "e") {
+    } elseif ($parameter === "ec") {
         $comments->editComment($id);
-
+    } else {
+        throw new Exception("La page n'existe pas");
+    }
         /**
          * @throws Exception
          */
@@ -169,6 +171,7 @@ function admin(string $parameter, ?int $id): void
                 throw new Exception("La page n'existe pas");
             }
         }
+}
 
 
 
