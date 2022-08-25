@@ -128,49 +128,47 @@ function admin(string $parameter, ?int $id): void
     } else {
         throw new Exception("La page n'existe pas");
     }
-
-}
-
-/**
- * @throws Exception
- */
-function getDisplayComment(): void
-{
     $comments = new CommentController();
-    $comments->displayComments();
-}
-
-/**
- * @throws Exception
- */
-function actionComment($parameter, $id): void
-{
-    $comments = new CommentController();
-    if ($parameter === 'list') {
-        $comments->listComments();
-    } elseif ($parameter === "s") {
-        $comments->showComment($id);
-    } elseif ($parameter === "a") {
+    if ($parameter === "a") {
         $comments->addComment();
     } elseif ($parameter === "e") {
         $comments->editComment($id);
 
-    }
+        /**
+         * @throws Exception
+         */
+        function getDisplayComment(): void
+        {
+            $comments = new CommentController();
+            $comments->displayComments();
+        }
 
-}
+        /**
+         * @throws Exception
+         */
+        function actionComment($parameter, $id): void
+        {
+            $comments = new CommentController();
+            if ($parameter === 'list') {
+                $comments->listComments();
+            } elseif ($parameter === "s") {
+                $comments->showComment($id);
+            }
 
-/**
- * @throws Exception
- */
-function errors($parameter): void
-{
-    $controller = new ExceptionController();
-    if ($parameter === 'errors') {
-        $controller->pageIntrouvable();
-    } else {
-        throw new Exception("La page n'existe pas");
-    }
-}
+        }
+
+        /**
+         * @throws Exception
+         */
+        function errors($parameter): void
+        {
+            $controller = new ExceptionController();
+            if ($parameter === 'errors') {
+                $controller->pageIntrouvable();
+            } else {
+                throw new Exception("La page n'existe pas");
+            }
+        }
 
 
 
