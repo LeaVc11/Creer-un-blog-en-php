@@ -1,7 +1,7 @@
 <?php
 
-require_once "Models/Class/Article.php";
-require_once "Models/Class/comment.php";
+//require_once "Models/Class/Article.php";
+//require_once "Models/Class/comment.php";
 
 ob_start(); ?>
 
@@ -45,8 +45,6 @@ ob_start(); ?>
 
     <tr>
         <?php
-
-
         foreach ($articles as $article) {
         ?>
     <tr>
@@ -84,7 +82,62 @@ ob_start(); ?>
     </tr>
 </table>
 
+<h2 class="text-secondary m-5 ">Commentaires</h2>
+<p class="lead">Administrez ici les commentaires de l'articles.</p>
 
+
+<table class="table text-center">
+    <tr class="table-dark">
+    <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Image</th>
+        <th scope="col">Chapô</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Content</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Date de modification</th>
+        <th scope="col">Auteur</th>
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo('<th>Edition</th>');
+        }
+        ?>
+    </tr>
+    <tr>
+        <?php
+//        var_dump($comments as $comment);
+//        die();
+        foreach ($comments as $comment) {
+        ?>
+    <tr>
+        <td><?= $comment->getTitle() ?></td>
+        <td><?= $comment->getStatus() ?></td>
+        <td><?= $comment->getContent() ?></td>
+        <td><?= $comment->getCreatedBy() ?></td>
+        <td><?= $comment->getCreatedAt()->format('d/m/Y') ?>
+        </td>
+        <td>
+
+            <?php
+
+            ?>
+
+        </td>
+
+        <td>
+            <?php
+
+            ?>
+            <a href="<?= URL ?>article/a/<?= $comment->getId(); ?>" class="btn btn-secondary"
+               role="button">Valider</a>
+        </td>
+        <td>
+            <a href="<?= URL ?>admin/d/<?= $comment->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+        </td>
+
+        <?php } ?>
+    </tr>
+</table>
 
 
 <?php

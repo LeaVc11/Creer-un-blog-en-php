@@ -26,7 +26,6 @@ ob_start(); ?>
 
     <tr>
         <?php
-
         foreach ($comments as $comment) {
         ?>
     <tr>

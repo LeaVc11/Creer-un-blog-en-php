@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Class\Comment;
 use App\Models\Manager\CommentManager;
+use Exception;
 
 
 class CommentController
@@ -12,12 +13,15 @@ class CommentController
 
     private  array $comments = [];
 
+
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct()
     {
+
         $this->commentManager = new CommentManager;
+
         $this->comments =$this->commentManager->loadingComments();
     }
 
@@ -115,6 +119,21 @@ class CommentController
                 }
             }
 
+    /**
+     * @throws \Exception
+     */
+    public function deleteComment($id): void
+    {
+
+        $comment = $this->commentManager->findById($id);
+//        if (is_null($article)) {
+////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
+////            die();
+//        } else {
+        $this->commentManager->delete($comment);
+        header('Location: ../dashboard');
+//        }
+    }
     /**
      * @throws \Exception
      */

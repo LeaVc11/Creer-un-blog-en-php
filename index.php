@@ -133,6 +133,8 @@ function admin(string $parameter, ?int $id): void
         $comments->addComment();
     } elseif ($parameter === "ec") {
         $comments->editComment($id);
+    } else if ($parameter === "d") {
+        $comments->deleteComment($id);
     } else {
         throw new Exception("La page n'existe pas");
     }

@@ -61,7 +61,7 @@ class CommentManager extends DbManager
     }
 
     /**
-     * @throws Exception
+     *
      * @throws \Exception
      */
     public function findById($id): ?Comment
@@ -141,6 +141,12 @@ SET  title = :title,status = :status,content = :content,
             'articleId' => $comment->getArticleId(),
 
         ]);
+    }
+    public function delete(Comment $comment)
+    {
+        $req = $this->getBdd()->prepare('DELETE FROM `comment` WHERE id = :id');
+
+        $req->execute(['id' => $comment->getId()]);
     }
 
 
