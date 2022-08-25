@@ -25,7 +25,6 @@ class SecurityController extends DbManager
     */
     public function login(): void
     {
-
         if (!empty($_SESSION['email'])) {
             header('Location: article.php');
         }
@@ -68,9 +67,11 @@ class SecurityController extends DbManager
         }
         require "Views/Security/login.php";
     }
-    public function logout(){
+
+    public function logout()
+    {
         session_destroy();
-        header('Location: login');
+        header('Location: ../accueil');
     }
 
     /**
@@ -115,6 +116,7 @@ class SecurityController extends DbManager
                 if ($_POST['isAdmin']) { // Si la case est coché
                     $role = "admin"; // on change le role par celui d'admin
                 }
+                $_SESSION['email'] = $_POST['email'];
 
 // Création de l'utilisateur sans id. Ce dernier sera généré par la BDD
                 $user = new User($_POST['email'], $_POST['username'], $_POST['password'], $role);
@@ -126,9 +128,7 @@ class SecurityController extends DbManager
 // Mon utilisateur est enregistré, je redirige donc vers le login
                 header('Location: ../security/login');
                 exit();
-
             }
-
         }
         require "Views/Security/register.php";
     }

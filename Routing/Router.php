@@ -6,8 +6,6 @@ class Router
 {
     private mixed $url;
     private array $routes = [];
-    private array $nameRoutes = [];
-
 
     /**
      * @param mixed $url
@@ -39,7 +37,6 @@ class Router
     {
         return $this->add($path, $callable, $name, 'POST');
     }
-
     /**
      * @throws \Exception
      */

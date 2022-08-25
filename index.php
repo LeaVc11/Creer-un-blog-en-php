@@ -43,6 +43,7 @@ try {
         match ($url[0]) {
 
             'accueil' => require "Views/accueil.view.php",
+            'contact' => require "Views/Contact/formContact.php",
             'articles' => getDisplayArticle(),
             'article' => actionArticle($page, $id),
             'security' => security($page),
@@ -149,7 +150,6 @@ function actionComment($parameter, $id): void
         $comments->addComment();
     }
 }
-
 
 /**
  * @throws Exception

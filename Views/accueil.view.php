@@ -6,11 +6,11 @@
             <div class="col ">
                 <div class=" mb-5 px-1 py-4">
                     <div class="row">
-                        <div class="col-lg-5">
-                            <div class="portrait text-center col-lg-5 ">
+                        <div class="col-md-5">
+                            <div class="portrait text-center col-md-5 ">
                                 <img src="Public/images/photo/Maphoto.jpg" class="rounded-circle" alt="photo img">
                             </div>
-                            <p class="text-animation"></p>
+                            <p class="text-animation text-center "></p>
                         </div>
                         <div class="col-lg-7">
                             <div class="card-body">
@@ -60,35 +60,6 @@
 
     </div>
 
-<!--contact-->
-    <section class="d-flex justify-content-center align-content-center w-100 h-100 m-3" id="contact">
-        <div class="card shadow  p-4 rounded d-flex justify-content-center  ">
-
-            <h1 class="text-center mb-3">Me contacter</h1>
-            <form method="POST" class="d-flex justify-content-center  w-100 h-100 ">
-                <fieldset>
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control" id="nom" placeholder="Votre adresse email">
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="Votre Nom">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="Votre Prénom">
-                        </div>
-                    </div>
-                    <div class="input-group-prepend mb-3"></div>
-                    <textarea class="form-control" aria-label="Message" placeholder="Votre message"></textarea>
-
-                    <input class=" button-sub hover-overlay text-dark border border-2 btn btn-outline-warning  fw-bold mt-2  "
-                           type="submit"
-                           value="ENVOYER">
-                </fieldset>
-            </form>
-        </div>
-    </section>
 
 <?php
 $content = ob_get_clean();

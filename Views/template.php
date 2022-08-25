@@ -36,7 +36,7 @@
                     <a class="nav-link" href="<?= URL ?>articles">Article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                    <a class="nav-link" href="<?= URL ?>contact">Contact</a>
                 </li>
 
             </ul>
@@ -48,6 +48,8 @@
                     if (!isset($_SESSION['id'])) {
                         ?>
                         <a class="text-decoration-none text-secondary" href="<?= URL ?>security/login">Connexion</a> |
+
+                        <a class="text-decoration-none text-secondary" href="<?= URL ?>security/logout">Déconnexion</a> |
 
                         <a class="text-decoration-none text-secondary" href="<?= URL ?>security/register">Inscription</a>
                         <?php
@@ -72,7 +74,7 @@
 
 <!--section footer-->
 
-<footer class="bg-light text-center my-auto p-5 ">
+<footer class=" text-center mt-5  ">
     <span class="mb-3 mb-md-0 text-muted text-decoration-none lh-1 fw-bold">Tout Droits réservés © 2022 Carine Vinagre</span>
     <div id="contact">
         <p> Si vous voulez me contacter, n'hésitez pas à m'envoyer un email à <a

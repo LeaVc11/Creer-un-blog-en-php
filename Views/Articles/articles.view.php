@@ -8,7 +8,7 @@ ob_start(); ?>
 <!--section projet-->
 
 <section class="border-bottom mb-5">
-    <div class="container m-5 pb-5">
+    <div class="container m-5 pb-2">
         <p class="card-text text-center text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur
             d'application
         </p>

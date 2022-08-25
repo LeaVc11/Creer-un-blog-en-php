@@ -1,8 +1,9 @@
+<?php ob_start(); ?>
 <section class="d-flex justify-content-center align-content-center w-100 h-100 m-3 p-3 " id="contact">
     <div class="card shadow  p-4 rounded d-flex justify-content-center  ">
 
         <h1 class="text-center mb-3">Me contacter</h1>
-        <form class="d-flex justify-content-center  w-100 h-100 ">
+        <form method="POST" action="" class="d-flex justify-content-center  w-100 h-100 ">
             <fieldset>
                 <div class="form-group mb-3">
                     <input type="text" class="form-control" id="nom" placeholder="Votre adresse email">
@@ -26,3 +27,8 @@
         </form>
     </div>
 </section>
+
+<?php
+$content = ob_get_clean();
+require "Views/template.php";
+?>
