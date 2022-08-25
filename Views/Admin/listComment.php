@@ -37,7 +37,6 @@ ob_start(); ?>
         <td><?= $comment->getCreatedBy() ?></td>
         <td><?= $comment->getCreatedAt()->format('d/m/Y') ?></td>
 
-
         <td>
 
             <?php

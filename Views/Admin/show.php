@@ -49,13 +49,13 @@ ob_start();
         </div>
     </div>
 <div class=" text-center">
-    <a href="<?= URL ?>comment/s" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
+    <a href="<?= URL ?>comments" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
 </div>
 <div class=" text-center">
     <a href="<?= URL ?>articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
 </div>
 <?php
-include ("Views/Articles/addComment.php");
+require "Views/Articles/addComment.php";
 ?>
 
 

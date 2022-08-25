@@ -15,8 +15,10 @@ require 'vendor/autoload.php';
 
 define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
+session_start();
 $page = null;
 $id = null;
+
 
 try {
     if (empty($_GET['page'])) {
@@ -128,6 +130,7 @@ function admin(string $parameter, ?int $id): void
     }
 
 }
+
 /**
  * @throws Exception
  */
@@ -136,6 +139,7 @@ function getDisplayComment(): void
     $comments = new CommentController();
     $comments->displayComments();
 }
+
 /**
  * @throws Exception
  */
@@ -144,11 +148,15 @@ function actionComment($parameter, $id): void
     $comments = new CommentController();
     if ($parameter === 'list') {
         $comments->listComments();
-    }elseif ($parameter === "s"){
+    } elseif ($parameter === "s") {
         $comments->showComment($id);
-    }elseif ($parameter === "a"){
+    } elseif ($parameter === "a") {
         $comments->addComment();
+    } elseif ($parameter === "e") {
+        $comments->editComment($id);
+
     }
+
 }
 
 /**

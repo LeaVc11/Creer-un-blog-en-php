@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models\Class;
 
 use DateTime;
 
@@ -26,6 +26,7 @@ class Comment
      * @param $createdAt
      * @param $createdBy
      * @param $articleId
+     * @throws \Exception
      */
     public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
     {
@@ -33,7 +34,7 @@ class Comment
         $this->title = $title;
         $this->status = $status;
         $this->content = $content;
-        $this->createdAt = $createdAt;
+        $this->createdAt = new DateTime($createdAt);
         $this->createdBy = $createdBy;
         $this->articleId = $articleId;
     }

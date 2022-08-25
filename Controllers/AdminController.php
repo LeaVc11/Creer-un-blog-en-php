@@ -136,7 +136,7 @@ class AdminController
                 }
             }
         }
-        require 'Views/admin/edit.php';
+        require 'Views/admin/editArticle.php';
     }
 
     /**

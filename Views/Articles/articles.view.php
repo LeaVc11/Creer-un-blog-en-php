@@ -1,7 +1,5 @@
 <?php
 
-require_once "Models/Class/Article.php";
-
 
 ob_start(); ?>
 

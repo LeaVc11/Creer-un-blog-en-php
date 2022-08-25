@@ -2,13 +2,15 @@
 
 namespace App\Controllers;
 
-use App\models\Comment;
-use App\models\Manager\CommentManager;
-use DateTime;
+use App\Models\Class\Comment;
+use App\Models\Manager\CommentManager;
+
 
 class CommentController
 {
     private CommentManager $commentManager;
+
+    private  array $comments = [];
 
     /**
      * @throws \Exception
@@ -16,7 +18,7 @@ class CommentController
     public function __construct()
     {
         $this->commentManager = new CommentManager;
-        $this->commentManager->loadingComments();
+        $this->comments =$this->commentManager->loadingComments();
     }
 
     /**
@@ -24,7 +26,6 @@ class CommentController
      */
     public function listComments(): void
     {
-        $articles = $this->commentManager->loadingComments();
         require 'Views/Admin/listComment.php';
     }
     /**
@@ -32,7 +33,7 @@ class CommentController
      */
     public function displayComments(): void
     {
-        $comments = $this->commentManager->loadingComments();
+        $comments = $this->comments;
         require "Views/Admin/listComment.php";
     }
 
@@ -60,23 +61,59 @@ class CommentController
             $errors = $this->getErrors();
 
             if (count($errors) == 0) {
+                $user = unserialize($_SESSION['user']);
                 $comment = new Comment(null,
-                    $_POST['id'],
                     $_POST['title'],
-                    $_POST['status'],
+                    Comment::PENDING,
                     $_POST['content'],
-                    new DateTime($_POST['created_at']),
-                    $_POST['created_by'],
+                 "NOW",
+                  $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->addComment($comment);
-                header('Location: articles');
+                header('Location: ../articles');
                 exit();
             }
-            require 'Views/Articles/addComment.php';
 
+            header('Location: ../article/s/'.$_POST['articleId']);
+            exit();
 
         }
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function editComment($id): void
+    {
+        $errors = [];
+//        var_dump($id);
+//        die();
+
+        $comment = $this->commentManager->findById($id);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $errors = $this->getErrors($id);
+//dd($errors);
+
+            if (count($errors) == 0) {
+                $user = unserialize($_SESSION['user']);
+                $comment = new Comment(null,
+                    $_POST['title'],
+                    Comment::PENDING,
+                    $_POST['content'],
+                    "NOW",
+                    $user->getId(),
+                    $_POST['articleId']);
+                $this->commentManager->editComment($comment);
+                header('Location: ../articles');
+                exit();
+            }
+
+            header('Location: ../article/s/'.$_POST['articleId']);
+            exit();
+                }
+            }
 
     /**
      * @throws \Exception
@@ -93,9 +130,9 @@ class CommentController
             $errors[] .= 'Veuillez saisir un commentaire';
         }
 
-        $article = $this->commentManager->getByTitle($_POST['title']);
+        $comment = $this->commentManager->getByTitle($_POST['title']);
 
-        if (!is_null($article) && $article->getId() != null) {
+        if (!is_null($comment) && $comment->getId() != null) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
 //        var_dump($errors);

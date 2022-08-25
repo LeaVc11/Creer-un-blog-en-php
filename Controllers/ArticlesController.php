@@ -10,6 +10,8 @@ class ArticlesController
 {
     public ArticleManager $articleManager;
 
+    private array $articles = [];
+
     /**
      * @throws Exception
      */
@@ -17,7 +19,7 @@ class ArticlesController
     {
         $this->articleManager = new ArticleManager;
 
-        $this->articleManager->loadingArticles();
+        $this->articles = $this->articleManager->loadingArticles();
 //        dd($this->articleManager);
     }
 
@@ -26,7 +28,6 @@ class ArticlesController
      */
     public function homePage(): void
     {
-        $articles = $this->articleManager->loadingArticles();
         require 'Views/Articles/articles.view.php';
     }
 
@@ -36,8 +37,7 @@ class ArticlesController
      */
     public function displayArticles(): void
     {
-
-        $articles = $this->articleManager->loadingArticles();
+        $articles = $this->articles;
 //author
 //var_dump($articles);
 //die();
@@ -56,8 +56,6 @@ class ArticlesController
         $article = $this->articleManager->showArticle($id);
         require "Views/Admin/show.php";
     }
-
-
 
 
 }

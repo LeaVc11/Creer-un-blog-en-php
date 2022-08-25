@@ -2,7 +2,7 @@
 
 namespace App\models\Manager;
 
-use App\models\Comment;
+use App\Models\Class\Comment;
 use DateTime;
 use PDO;
 
@@ -35,9 +35,9 @@ class CommentManager extends DbManager
             $comment['title'],
             $comment['status'],
             $comment['content'],
-            new DateTime($comment['created_at']),
+            $comment['created_at'],
             $comment['created_by'],
-            $comment['articleId'],
+            $comment['article_id'],
 
         );
     }
@@ -61,6 +61,30 @@ class CommentManager extends DbManager
     }
 
     /**
+     * @throws Exception
+     * @throws \Exception
+     */
+    public function findById($id): ?Comment
+    {
+        $comment = null;
+        $query = $this->getBdd()->prepare("SELECT * FROM comment WHERE id = :id");
+        $query->execute(['id' => $id]);
+        $commentFromBdd = $query->fetch();
+
+
+        if ($commentFromBdd) {
+            $comment = new Comment(
+                $commentFromBdd['id'],
+                $commentFromBdd['title'],
+                $commentFromBdd['status'],
+                $commentFromBdd['content'],
+                $commentFromBdd['created_at'],
+                $commentFromBdd['created_by'],
+                $commentFromBdd['article_id']);
+        }
+        return $comment;
+    }
+    /**
      *
      * @throws \Exception
      */
@@ -77,9 +101,9 @@ class CommentManager extends DbManager
                 $commentFromBdd['title'],
                 $commentFromBdd['status'],
                 $commentFromBdd['content'],
-                new DateTime($commentFromBdd['created_at']),
+                $commentFromBdd['created_at'],
                 $commentFromBdd['created_by'],
-                $commentFromBdd['articleId']);
+                $commentFromBdd['article_id']);
         }
         return $comment;
     }
@@ -87,19 +111,38 @@ class CommentManager extends DbManager
     {
 
         $req = $this->getBdd()->prepare("INSERT INTO `comment`
-    (`id`, `title`, `status`, `content`, `createdAt`, `createdBy`, `articleId`) 
-    VALUE (:id, :title, :status, :content, :createdAt, :createdBy, :articleId )");
+    (`title`, `status`, `content`, `created_at`, `created_by`, `article_id`) 
+    VALUE (:title, :status, :content, :createdAt, :createdBy, :articleId )");
 
         $req->execute([
 
             'title' => $comment->getTitle(),
             'status' => $comment->getStatus(),
             'content' => $comment->getContent(),
-            'created_at' => $comment->getCreatedAt()->format('Y-m-d '),
+            'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
             'createdBy' => $comment->getCreatedBy(),
             'articleId' => $comment->getArticleId(),
         ]);
+//        dd($comment,$req);
     }
+    public function editComment(Comment $comment)
+    {
+        $req = $this->getBdd()->prepare("UPDATE `comment`
+SET  title = :title,status = :status,content = :content,
+    created_at = :created_at ,created_by = :created_by,article_id = :article_id
+ WHERE id = :id");
+
+        $req->execute([
+            'title' => $comment->getTitle(),
+            'status' => $comment->getStatus(),
+            'content' => $comment->getContent(),
+            'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
+            'createdBy' => $comment->getCreatedBy(),
+            'articleId' => $comment->getArticleId(),
+
+        ]);
+    }
+
 
 
 }
