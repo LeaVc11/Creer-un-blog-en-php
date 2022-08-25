@@ -14,6 +14,7 @@ require 'vendor/autoload.php';
 
 $router = new Router($_GET['url']);
 
+die('url');
 $router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
