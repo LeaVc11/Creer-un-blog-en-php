@@ -204,7 +204,7 @@ class AdminController
                 $imageFileName = uniqid() . '.' . explode('/', $image['type'])[1];
 //                var_dump($imageFileName);
 //                die();
-                move_uploaded_file($image['tmp_name'], realpath('Public/uploads/') . "/" . $imageFileName);
+                move_uploaded_file($image['tmp_name'], realpath('Public/uploads/') . "AdminController.php/" . $imageFileName);
 
             }
         }

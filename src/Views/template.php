@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--    css-->
 
-    <link rel="stylesheet" href="../Public/css/style.css">
+    <link rel="stylesheet" href="../../Public/css/style.css">
 
     <link rel="icon" type="image/jpg" href="image/Photo.jpg">
 
@@ -30,11 +30,11 @@
         <div class="collapse navbar-collapse  " id="navbarColor01">
             <ul class="navbar-nav w-100 d-flex justify-content-start ">
                 <li class="nav-item">
-                    <a class="nav-link " href="/">Carine VINAGRE</a>
+                    <a class="nav-link " href="/P5_Blog_PHP/accueil">Carine VINAGRE</a>
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link" href="/articles">Article</a>
+                    <a class="nav-link" href="">Article</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href=" ">Contact</a>
@@ -75,7 +75,7 @@
     <span class="mb-3 mb-md-0 text-muted text-decoration-none lh-1 fw-bold">Tout Droits réservés © 2022 Carine Vinagre</span>
     <div id="contact">
         <p> Si vous voulez me contacter, n'hésitez pas à m'envoyer un email à <a
-                    href="../../index.php"><b class="mail">vcarine.dev@gmail.com</b></a></p>
+                    href="../../../index.php"><b class="mail">vcarine.dev@gmail.com</b></a></p>
     </div>
 </footer>
 <!--    js -->
@@ -83,6 +83,6 @@
 <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 
-<script src="app.js"></script>
+<script src="../../app.js"></script>
 </body>
 </html>

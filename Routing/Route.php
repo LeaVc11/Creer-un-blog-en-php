@@ -12,11 +12,11 @@ class Route
     private $params = [];
 
     public function __construct($path, $callable){
-        $this->path = trim($path, '/');
+        $this->path = "P5_Blog_PHP/" . trim($path, '/');
         $this->callable = $callable;
     }
 
-    public function with($param, $regex): static
+    public function with($param, $regex): self
     {
         $this->params[$param] = $regex;
         return $this;

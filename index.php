@@ -2,14 +2,14 @@
 
 use App\Routing\Router;
 
-require 'vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 //dump($_SERVER);
 
 $router = new Router($_GET['url']);
 
 $router->get('/', 'Home#index');
-$router->get('/articles', 'ArticlesController#displayArticles');
+$router->get('./articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comments#displayComments');
 $router->get('/comments/:id', 'Comments#showArticle');
