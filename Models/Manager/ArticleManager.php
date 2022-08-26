@@ -34,7 +34,7 @@ class ArticleManager extends DbManager
 //        dd($articles);
         foreach ($articles as $article) {
             $a = $this->createdObjectArticle($article);
-            $this->articles[]= $a;
+            $this->articles[] = $a;
         }
         return $this->articles;
     }
@@ -53,8 +53,9 @@ class ArticleManager extends DbManager
         return new Article(
             $article['id'],
             $article['image_link'],
-            $article['content'],
+            $article['chapo'],
             $article['title'],
+            $article['content'],
             $article['author'],
             $article['slug'],
             new DateTime($article['created_at']),
@@ -89,26 +90,106 @@ class ArticleManager extends DbManager
     {
 
         $req = $this->getBdd()->prepare("INSERT INTO `articles`
-    (`image_link`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
-    VALUE (:image_link, :content, :title, :author, :slug, :created_at, :updated_at )");
+    (`image_link`,`chapo`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
+    VALUE (:image_link,:chapo, :content, :title, :author, :slug, :created_at, :updated_at )");
 //        var_dump($article->getUpdatedAt()->format('Y-m-d H:i:s'));
 //        die();
 
         $req->execute([
             'image_link' => $article->getImageLink(),
+            'chapo' => $article->getChapo(),
             'title' => $article->getTitle(),
             'content' => $article->getContent(),
             'author' => $article->getAuthor(),
             'slug' => $article->getSlug(),
-            'created_at' => $article->getCreatedAt()->format('Y-m-d H:i:s'),
-            'updated_at' => $article->getUpdatedAt()->format('Y-m-d H:i:s'),
+            'created_at' => $article->getCreatedAt()->format('Y-m-d '),
+            'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
         ]);
     }
 
-//    public function editArticle(Article $article)
-//    {
-//        $req =$this->getBdd()->prepare("UPDATE `article")
-//    }
+    public function editArticle(Article $article)
+    {
+        $req = $this->getBdd()->prepare("UPDATE `articles`
+SET image_link = :imageLink, chapo = :chapo,
+    content = :content, title = :title,slug = :slug,
+    created_at = :created_at ,author = :author,updated_at = :updated_at
+ WHERE id = :id");
+
+        $req->execute([
+            'id' => $article->getId(),
+            'imageLink' => $article->getImageLink(),
+            'chapo' => $article->getChapo(),
+            'title' => $article->getTitle(),
+            'content' => $article->getContent(),
+            'author' => $article->getAuthor(),
+            'slug' => $article->getSlug(),
+            'created_at' => $article->getCreatedAt()->format('Y-m-d '),
+            'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
+
+        ]);
+    }
+
+    public function delete(Article $article)
+    {
+        $req = $this->getBdd()->prepare('DELETE FROM `articles` WHERE id = :id');
+
+        $req->execute(['id' => $article->getId()]);
+    }
+
+
+    /**
+     * @throws Exception
+     */
+    public function findById($id): ?Article
+    {
+        $article = null;
+        $query = $this->getBdd()->prepare("SELECT * FROM articles WHERE id = :id");
+        $query->execute(['id' => $id]);
+        $articleFromBdd = $query->fetch();
+
+
+        if ($articleFromBdd) {
+
+            $article = new Article(
+                $articleFromBdd['id'],
+                $articleFromBdd['image_link'],
+                $articleFromBdd['chapo'],
+                $articleFromBdd['title'],
+                $articleFromBdd['content'],
+                $articleFromBdd['author'],
+                $articleFromBdd['slug'],
+                new DateTime($articleFromBdd['created_at']),
+                new DateTime($articleFromBdd['updated_at']));
+        }
+
+        return $article;
+    }
+    /**
+     * @throws Exception
+     */
+    public function getByTitle($title): ?Article
+    {
+        $article = null;
+        $query = $this->getBdd()->prepare("SELECT * FROM `articles` WHERE title = :title");
+        $query->execute(['title' => $title]);
+        $articleFromBdd = $query->fetch();
+
+        if ($articleFromBdd) {
+            $article = new Article(
+                $articleFromBdd['id'],
+                $articleFromBdd['image_link'],
+                $articleFromBdd['chapo'],
+                $articleFromBdd['title'],
+                $articleFromBdd['content'],
+                $articleFromBdd['author'],
+                $articleFromBdd['slug'],
+                new DateTime($articleFromBdd['created_at']),
+                new DateTime($articleFromBdd['updated_at']));
+        }
+        return $article;
+    }
+
+
 
 
 }

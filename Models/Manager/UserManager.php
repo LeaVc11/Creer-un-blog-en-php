@@ -34,13 +34,12 @@ class UserManager extends DbManager
 
         if ($customerFromBdd) {
             $customer = new User(
+                $customerFromBdd['id'],
                 $customerFromBdd['email'],
                 $customerFromBdd['username'],
                 $customerFromBdd['password'],
                 $customerFromBdd['role']);
-
         }
-
         return $customer;
     }
     // Fonction retourne true si un utilisateur à déjà cet email

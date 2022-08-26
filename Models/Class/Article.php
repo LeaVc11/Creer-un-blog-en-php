@@ -8,6 +8,7 @@ class Article
 {
     private ?int $id = null;
     private string $image_link;
+    private string $chapo;
     private string $title;
     private string $content;
     private string $author;
@@ -16,8 +17,20 @@ class Article
     private DateTime $updatedAt;
 
 
+    /**
+     * @param int|null $id
+     * @param string $image_link
+     * @param string $chapo
+     * @param string $title
+     * @param string $content
+     * @param string $author
+     * @param string $slug
+     * @param DateTime $createdAt
+     * @param DateTime $updatedAt
+     */
     public function __construct(?int     $id,
                                 string   $image_link,
+                                string   $chapo,
                                 string   $title,
                                 string   $content,
                                 string   $author,
@@ -27,6 +40,7 @@ class Article
     {
         $this->id = $id;
         $this->image_link = $image_link;
+        $this->chapo = $chapo;
         $this->title = $title;
         $this->content = $content;
         $this->author = $author;
@@ -34,6 +48,24 @@ class Article
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
 
+    }
+
+    /**
+     * @return string
+     */
+    public function getChapo(): string
+    {
+        return $this->chapo;
+    }
+
+    /**
+     * @param string $chapo
+     * @return Article
+     */
+    public function setChapo(string $chapo): Article
+    {
+        $this->chapo = $chapo;
+        return $this;
     }
 
     /**
@@ -57,7 +89,7 @@ class Article
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?string
     {
         return $this->id;
     }

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Security;
 
 
 use App\Models\Class\User;
+use App\models\Manager\DbManager;
 use App\models\Manager\UserManager;
 
 
-class SecurityController extends AbstractController
+class SecurityController extends DbManager
 {
     private UserManager $userManager;
 
@@ -64,13 +65,13 @@ class SecurityController extends AbstractController
                 $errors[] = 'Identifiants incorrects';
             }
         }
-        $this->render('Security/login');
+        require "Views/Security/login.php";
     }
-    public function logout(){
-        session_destroy();
-        header('Location: login');
 
-        $this->render('Security/logout');
+    public function logout()
+    {
+        session_destroy();
+        header('Location: ../accueil');
     }
 
     /**
@@ -115,6 +116,7 @@ class SecurityController extends AbstractController
                 if ($_POST['isAdmin']) { // Si la case est coché
                     $role = "admin"; // on change le role par celui d'admin
                 }
+                $_SESSION['email'] = $_POST['email'];
 
 // Création de l'utilisateur sans id. Ce dernier sera généré par la BDD
                 $user = new User($_POST['email'], $_POST['username'], $_POST['password'], $role);
@@ -126,11 +128,8 @@ class SecurityController extends AbstractController
 // Mon utilisateur est enregistré, je redirige donc vers le login
                 header('Location: ../security/login');
                 exit();
-
             }
-
         }
-        $this->render('Security/register');
-
+        require "Views/Security/register.php";
     }
 }

@@ -6,9 +6,11 @@ namespace App\Controllers;
 use App\Models\Manager\ArticleManager;
 use Exception;
 
-class ArticlesController extends AbstractController
+class ArticlesController
 {
     public ArticleManager $articleManager;
+
+    private array $articles = [];
 
     /**
      * @throws Exception
@@ -17,15 +19,15 @@ class ArticlesController extends AbstractController
     {
         $this->articleManager = new ArticleManager;
 
-        $this->articleManager->loadingArticles();
+        $this->articles = $this->articleManager->loadingArticles();
 //        dd($this->articleManager);
     }
 
     /**
      * @throws Exception
      */
-    public function homePage(){
-        $articles = $this->articleManager->loadingArticles();
+    public function homePage(): void
+    {
         require 'Views/Articles/articles.view.php';
     }
 
@@ -35,8 +37,11 @@ class ArticlesController extends AbstractController
      */
     public function displayArticles(): void
     {
-        $articles = $this->articleManager->loadingArticles();
-        $this->render('Articles/articles.view', compact('articles'));
+        $articles = $this->articles;
+//author
+//var_dump($articles);
+//die();
+        require "Views/Articles/articles.view.php";
     }
 
     /**
@@ -49,7 +54,8 @@ class ArticlesController extends AbstractController
     public function showArticle(int $id): void
     {
         $article = $this->articleManager->showArticle($id);
-        $this->render('Admin/show.article.view', compact('article'));
+        require "Views/Admin/show.php";
     }
+
 
 }
