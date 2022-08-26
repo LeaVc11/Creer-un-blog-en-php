@@ -18,11 +18,11 @@ $router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/security/login','Security#login');
-$router->get('/security/','Admin#register');
-$router->get('/security/','Admin#logout');
-$router->get('/admin/','Admin#addArticles');
-$router->get('/admin/:id','Admin#editArticle');
-$router->get('/admin/:id','Admin#deleteArticle');
+//$router->get('/security/','Admin#register');
+//$router->get('/security/','Admin#logout');
+//$router->get('/admin/','Admin#addArticles');
+//$router->get('/admin/:id','Admin#editArticle');
+//$router->get('/admin/:id','Admin#deleteArticle');
 
 try {
     $router->run();
