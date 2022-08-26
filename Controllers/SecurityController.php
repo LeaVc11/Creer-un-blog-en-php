@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Controllers\Security;
+namespace App\Controllers;
 
 
 use App\Models\Class\User;
-use App\models\Manager\DbManager;
 use App\models\Manager\UserManager;
 
 
-class SecurityController extends DbManager
+class SecurityController extends AbstractController
 {
     private UserManager $userManager;
 
@@ -25,7 +24,6 @@ class SecurityController extends DbManager
     */
     public function login(): void
     {
-
         if (!empty($_SESSION['email'])) {
             header('Location: article.php');
         }
@@ -66,7 +64,7 @@ class SecurityController extends DbManager
                 $errors[] = 'Identifiants incorrects';
             }
         }
-        require "Views/Security/login.php";
+        $this->render('Security/login');
     }
     public function logout(){
         session_destroy();
