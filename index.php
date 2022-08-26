@@ -14,11 +14,11 @@ require 'vendor/autoload.php';
 
 $router = new Router($_GET['url']);
 
-$router->get('/', 'Home#index');
+$router->get('../../', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
-$router->get('/articles/:id', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comments#displayComments');
+$router->get('/articles/:id', 'Comments#showArticle');
 $router->get('/security/login','Security#login');
 $router->get('/security/register','Security#register');
 $router->get('/security/logout','Security#logout');

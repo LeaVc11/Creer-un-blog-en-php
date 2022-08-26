@@ -1,9 +1,4 @@
-<?php
 
-require_once "Models/Class/comment.php";
-
-
-ob_start(); ?>
 
 <h2 class="text-secondary m-5 ">Commentaires</h2>
 <p class="lead">Administrez ici les commentaires du blog.</p>
@@ -61,9 +56,5 @@ ob_start(); ?>
 </table>
 
 
-<?php
-$content = ob_get_clean();
-require "Views/template.php";
-?>
 
 

@@ -2,6 +2,9 @@
 
 namespace App\Routing;
 
+use App\Routing\RouterException;
+
+
 class Router
 {
     private ?string $url;
@@ -28,8 +31,9 @@ class Router
         $this->routes['_POST'][] = $route;
         return $route;
     }
+
     /**
-     * @throws \Exception
+     * @throws \App\Routing\RouterException
      */
     public function run(){
         if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){

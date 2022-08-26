@@ -1,6 +1,7 @@
 <?php
  class ExceptionController {
-     public function pageIntrouvable(){
+     public function pageIntrouvable(): void
+     {
          $message = null;
 
         if($_GET['message']){
