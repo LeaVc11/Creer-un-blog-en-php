@@ -1,9 +1,3 @@
-<?php
-
-
-ob_start(); ?>
-
-<!--section projet-->
 
 <section class="border-bottom mb-5">
     <div class="container m-5 pb-2">

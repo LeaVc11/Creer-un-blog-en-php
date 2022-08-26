@@ -1,6 +1,4 @@
-<?php ob_start(); ?>
-
-    <div class="  d-flex flex-column  mt-5">
+<div class="  d-flex flex-column  mt-5">
 
         <div class="row ">
             <div class="col ">
@@ -59,9 +57,3 @@
         </div
 
     </div>
-
-
-<?php
-$content = ob_get_clean();
-require "Views/template.php";
-?>

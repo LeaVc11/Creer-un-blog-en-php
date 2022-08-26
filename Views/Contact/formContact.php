@@ -1,4 +1,4 @@
-<?php ob_start(); ?>
+
 <section class="d-flex justify-content-center align-content-center w-100 h-100 m-3 p-3 " id="contact">
     <div class="card shadow  p-4 rounded d-flex justify-content-center  ">
 
@@ -28,7 +28,3 @@
     </div>
 </section>
 
-<?php
-$content = ob_get_clean();
-require "Views/template.php";
-?>

@@ -21,6 +21,7 @@ $router->get('/security/login','Security#login');
 $router->get('/security/register','Security#register');
 $router->get('/security/logout','Security#logout');
 $router->get('/admin/','Admin#displayComments');
+$router->get('/admin/','Admin#displayComments');
 //$router->get('/admin/','Admin#addArticles');
 //$router->get('/admin/:id','Admin#editArticle');
 //$router->get('/admin/:id','Admin#deleteArticle');
@@ -106,12 +107,6 @@ function admin($parameter): void
 
 }
 
-//function home($parameter):void{
-//    $homecontroller = new HomeController();
-//    if ($parameter === 'home')
-//    $homecontroller->displayDashboard();
-//
-//}
 
 function errors($parameter): void
 {
