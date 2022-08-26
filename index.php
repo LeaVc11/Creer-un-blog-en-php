@@ -13,8 +13,18 @@ require 'vendor/autoload.php';
 //var_dump($_SESSION['user']);
 
 
-define('URL', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
+$router = new Router($_GET['url']);
 
+$router->get('/', 'Home#index');
+$router->get('/articles', 'Articles#displayArticles');
+$router->get('/articles/:id', 'Articles#showArticle');
+$router->get('/security/login','Security#login');
+$router->get('/security/register','Security#register');
+$router->get('/security/logout','Security#logout');
+$router->get('/admin/','Admin#displayComments');
+//$router->get('/admin/','Admin#addArticles');
+//$router->get('/admin/:id','Admin#editArticle');
+//$router->get('/admin/:id','Admin#deleteArticle')
 session_start();
 $page = null;
 $id = null;
