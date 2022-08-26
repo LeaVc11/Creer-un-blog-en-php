@@ -1,6 +1,4 @@
-<?php
-ob_start();
-?>
+
 <?php
 //    var_dump($errors);
 if (!empty($errors)):?>

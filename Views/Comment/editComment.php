@@ -1,7 +1,4 @@
 <?php
-ob_start();
-?>
-<?php
 //    var_dump($errors);
 if(!empty($errors)):?>
     <div class=" m-3 fw-bold alert alert-danger">
@@ -57,11 +54,3 @@ if(!empty($errors)):?>
             </button>
         </div>
     </form>
-
-
-
-<?php
-$content = ob_get_clean();
-
-require "Views/template.php";
-?>

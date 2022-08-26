@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Controllers\Security;
+namespace App\Controllers;
 
 
 use App\Models\Class\User;
-use App\models\Manager\DbManager;
 use App\models\Manager\UserManager;
 
 
-class SecurityController extends DbManager
+class SecurityController extends AbstractController
 {
     private UserManager $userManager;
 
@@ -65,13 +64,13 @@ class SecurityController extends DbManager
                 $errors[] = 'Identifiants incorrects';
             }
         }
-        require "Views/Security/login.php";
+        $this->render('Security/login');
     }
-
-    public function logout()
-    {
+    public function logout(){
         session_destroy();
-        header('Location: ../accueil');
+        header('Location: login');
+
+        $this->render('Security/logout');
     }
 
     /**
@@ -128,8 +127,11 @@ class SecurityController extends DbManager
 // Mon utilisateur est enregistré, je redirige donc vers le login
                 header('Location: ../security/login');
                 exit();
+
             }
+
         }
-        require "Views/Security/register.php";
+        $this->render('Security/register');
+
     }
 }
