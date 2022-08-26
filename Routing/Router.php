@@ -6,7 +6,6 @@ class Router
 {
     private ?string $url;
     private array $routes = [];
-    private array $nameRoutes = [];
 
 
     /**

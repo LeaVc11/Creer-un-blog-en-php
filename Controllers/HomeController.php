@@ -6,9 +6,8 @@ class HomeController extends AbstractController
 {
     public function index(): void
     {
-        $this->render('accueil');
-        $this->render('articles');
-        $this->render('formContact');
+        $this->render('accueil.view');
+        $this->render('articles.view');
         $this->render('login');
         $this->render('register');
 
