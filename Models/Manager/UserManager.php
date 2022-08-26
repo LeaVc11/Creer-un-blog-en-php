@@ -4,7 +4,7 @@ namespace App\models\Manager;
 
 
 use App\Models\Class\User;
-use PDO;
+
 
 class UserManager extends DbManager
 {

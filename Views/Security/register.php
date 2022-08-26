@@ -1,16 +1,4 @@
-<?php
-require_once "Models/Class/Article.php";
-ob_start(); ?>
 
-    <!DOCTYPE html>
-    <html>
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../../Public/css/style.css">
-
-</head>
-<body>
-<!---->
 <?php
 //    var_dump($errors);
 if(!empty($errors)):?>
@@ -52,15 +40,9 @@ if(!empty($errors)):?>
                     <button class="button bg-danger text-white  m-3 p-2 w-100 rounded-1 border border-dark form-control form-control-lg" type="submit">Se connecter</button>
                 </div>
             </form>
-            <p class="text-secondary text-center m-3 px-3">Déjà sur mon blog ? <a href="<?= URL ?>security/login">Connectez-vous</a>
+            <p class="text-secondary text-center m-3 px-3">Déjà sur mon blog ? <a href="/security/login">Connectez-vous</a>
             </p>
         </div>
     </div>
 
 </section>
-
-</body>
-<?php
-$content = ob_get_clean();
-require "Views/template.php";
-?>

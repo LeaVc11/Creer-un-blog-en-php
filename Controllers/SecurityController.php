@@ -69,6 +69,8 @@ class SecurityController extends AbstractController
     public function logout(){
         session_destroy();
         header('Location: login');
+
+        $this->render('Security/logout');
     }
 
     /**
@@ -128,6 +130,7 @@ class SecurityController extends AbstractController
             }
 
         }
-        require "Views/Security/register.php";
+        $this->render('Security/register');
+
     }
 }
