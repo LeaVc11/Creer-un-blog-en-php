@@ -6,11 +6,14 @@ class HomeController
 {
     public function index(): void
     {
-        require "Views/accueil.view.php";
-        require "Views/Articles/articles.view.php";
-        require "Views/Contact/formContact.php";
-        require "Views/Security/login.php";
-        require "Views/Security/register.php";
+        $this->render('accueil.view');
+        $this->render('articles.view');
+        $this->render('accueil.view');
+        $this->render('login');
+        $this->render('register');
+
     }
+
+
 
 }
