@@ -127,11 +127,8 @@ class SecurityController extends AbstractController
 // Mon utilisateur est enregistré, je redirige donc vers le login
                 header('Location: ../security/login');
                 exit();
-
             }
-
         }
         $this->render('register');
-
     }
 }

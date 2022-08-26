@@ -69,7 +69,7 @@ class AdminController
                 exit();
             }
         }
-        $this->render('../Admin/add');
+
         require 'Views/Admin/add.php';
 
     }

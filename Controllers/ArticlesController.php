@@ -41,7 +41,8 @@ class ArticlesController extends AbstractController
 //author
 //var_dump($articles);
 //die();
-        require "Views/Articles/articles.php";
+        $this->render('articles.view');
+//        require "Views/Articles/articles.php";
     }
 
     /**
