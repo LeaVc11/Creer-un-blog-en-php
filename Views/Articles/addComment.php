@@ -10,6 +10,10 @@ if(!empty($errors)):?>
 <div class="fw-bold " >
 
     <h1 class="m-3 text-center text-primary">Ajouter un commentaire</h1>
+    <div class="m-3 ">
+    <legend>Laisser un commentaire sur cet article</legend>
+    <small class="text-muted">Vous devez <a href="security/login">être connecté(e)</a> à votre compte utilisateur pour pouvoir laisser un commentaire.</small>
+    </div>
     <form method="POST" action="<?= URL ?>comment/a" enctype="multipart/form-data">
         <input type="hidden" name="articleId" value="<?= $article->getId() ?>">
         <div class="row m-5">
