@@ -2,13 +2,12 @@
 
 namespace App\Routing;
 
-use App\Routing\RouterException;
-
-
 class Router
 {
     private ?string $url;
     private array $routes = [];
+    private array $nameRoutes = [];
+
 
     /**
      * @param mixed $url
@@ -33,7 +32,7 @@ class Router
     }
 
     /**
-     * @throws \App\Routing\RouterException
+     * @throws \Exception
      */
     public function run(){
         if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){

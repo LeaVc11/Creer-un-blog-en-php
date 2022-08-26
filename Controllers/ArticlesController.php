@@ -6,7 +6,7 @@ namespace App\Controllers;
 use App\Models\Manager\ArticleManager;
 use Exception;
 
-class ArticlesController
+class ArticlesController extends AbstractController
 {
     public ArticleManager $articleManager;
 
@@ -28,7 +28,7 @@ class ArticlesController
      */
     public function homePage(): void
     {
-        require 'Views/Articles/articles.view.php';
+        require 'Views/Articles/articles.php';
     }
 
     /**
@@ -41,7 +41,7 @@ class ArticlesController
 //author
 //var_dump($articles);
 //die();
-        require "Views/Articles/articles.view.php";
+        require "Views/Articles/articles.php";
     }
 
     /**

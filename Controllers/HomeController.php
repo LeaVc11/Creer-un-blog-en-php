@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-class HomeController
+class HomeController extends AbstractController
 {
     public function index(): void
     {
-        $this->render('accueil.view');
-        $this->render('articles.view');
-        $this->render('accueil.view');
+        $this->render('accueil');
+        $this->render('articles');
+        $this->render('formContact');
         $this->render('login');
         $this->render('register');
 

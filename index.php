@@ -14,11 +14,12 @@ require 'vendor/autoload.php';
 
 $router = new Router($_GET['url']);
 
-$router->get('../../', 'Home#index');
+$router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comments#displayComments');
-$router->get('/articles/:id', 'Comments#showArticle');
+$router->get('/comments/:id', 'Comments#showArticle');
+$router->get('/comments/add','Comment#addArticle');
 $router->get('/security/login','Security#login');
 $router->get('/security/register','Security#register');
 $router->get('/security/logout','Security#logout');
@@ -39,6 +40,7 @@ try {
 
 /**
  * @return void
+ * @throws Exception
  */
 function getDisplayArticle(): void
 {
@@ -98,12 +100,12 @@ function admin($parameter): void
     $articles = new AdminController();
     if ($parameter === 'dashboard') {
         $articles->dashboard();
-//    } else if ($parameter === "s") {
-//        $articles->showArticle($id);
+    } else if ($parameter === "s") {
+        $articles->showArticle($id);
     } else if ($parameter === "a") {
         $articles->addArticles();
     } else if ($parameter === "e") {
-        $articles->editArticle($id);
+        $articles->editArticle();
     } else if ($parameter === "d") {
         $articles->deleteArticle($id);
     } else {
@@ -112,6 +114,12 @@ function admin($parameter): void
 
 }
 
+//function home($parameter):void{
+//    $homecontroller = new HomeController();
+//    if ($parameter === 'home')
+//    $homecontroller->displayDashboard();
+//
+//}
 
 function errors($parameter): void
 {
@@ -122,4 +130,8 @@ function errors($parameter): void
         throw new Exception("La page n'existe pas");
     }
 }
+
+
+
+
 

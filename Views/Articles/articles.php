@@ -28,7 +28,7 @@
                                  alt="image">
 
                             <p class="card-text text-center fw-bold">
-                                <a href="article/s/<?= $article->getId(); ?>" class="btn btn-primary">Voir</a>
+                                <a href="article/showArticle<?= $article->getId(); ?>" class="btn btn-primary">Voir</a>
                             </p>
 
                         </div>
@@ -40,11 +40,4 @@
             <?php } ?>
 
 </section>
-
-
-<?php
-$content = ob_get_clean();
-require "Views/template.php";
-?>
-
 

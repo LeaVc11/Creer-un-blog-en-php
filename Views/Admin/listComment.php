@@ -44,11 +44,11 @@
             //var_dump($article->getId());
             //die();
             ?>
-            <a href="<?= URL ?>admin/e/<?= $comment->getId(); ?>" class="btn btn-secondary"
+            <a href="admin/edit<?= $comment->getId(); ?>" class="btn btn-secondary"
                role="button">Valider</a>
         </td>
         <td>
-            <a href="<?= URL ?>admin/d/<?= $comment->getId(); ?>" class="btn btn-danger" role="button">Publier</a>
+            <a href="admin/delete<?= $comment->getId(); ?>" class="btn btn-danger" role="button">Publier</a>
         </td>
 
         <?php } ?>

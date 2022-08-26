@@ -6,7 +6,7 @@ use Exception;
 
 abstract class AbstractController
 {
-    protected function render(string $view, array $variables = []): void
+    protected function render(string $view, array $variables = [])
     {
         try {
             extract($variables);

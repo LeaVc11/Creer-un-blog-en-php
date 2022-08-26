@@ -1,22 +1,4 @@
-<?php
 
-//require_once "Models/Class/Article.php";
-//require_once "Models/Class/comment.php";
-
-ob_start(); ?>
-
-<?php
-//include 'Views/parts/menu.php';
-//?>
-<?php
-//$user = unserialize($_SESSION['user']);
-//
-//if ($user->isAdmin()) {
-//    echo('<a href="admin/dashboard">Administrateur</a>');
-//}
-//echo('Bonjour ' . unserialize($_SESSION['user'])->getUsername());
-//echo('<a href="admin/logout">Se déconnecter</a>');
-////?>
 <h2 class="text-secondary m-5 ">Articles</h2>
 <p class="lead">Administrez ici les articles du blog.</p>
 
@@ -40,7 +22,7 @@ ob_start(); ?>
     </tr>
 
     <div class="d-flex justify-content-end">
-        <a href="<?= URL ?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
+        <a href="admin/add" class="btn btn-warning  m-1">Ajouter</a>
     </div>
 
     <tr>
@@ -71,11 +53,11 @@ ob_start(); ?>
         //var_dump($article->getId());
         //die();
         ?>
-        <a href="<?= URL ?>admin/e/<?= $article->getId(); ?>" class="btn btn-secondary"
+        <a href="admin/edit<?= $article->getId(); ?>" class="btn btn-secondary"
            role="button">Modifier</a>
     </td>
     <td>
-        <a href="<?= URL ?>admin/d/<?= $article->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+        <a href="admin/delete<?= $article->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
     </td>
 
     <?php } ?>
@@ -128,21 +110,15 @@ ob_start(); ?>
             <?php
 
             ?>
-            <a href="<?= URL ?>article/a/<?= $comment->getId(); ?>" class="btn btn-secondary"
+            <a href="article/add<?= $comment->getId(); ?>" class="btn btn-secondary"
                role="button">Valider</a>
         </td>
         <td>
-            <a href="<?= URL ?>admin/d/<?= $comment->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+            <a href="admin/delete<?= $comment->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
         </td>
 
         <?php } ?>
     </tr>
 </table>
-
-
-<?php
-$content = ob_get_clean();
-require "Views/template.php";
-?>
 
 
