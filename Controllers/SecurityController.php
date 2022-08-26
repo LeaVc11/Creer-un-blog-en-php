@@ -64,13 +64,13 @@ class SecurityController extends AbstractController
                 $errors[] = 'Identifiants incorrects';
             }
         }
-        $this->render('Security/login');
+        $this->render('login');
     }
     public function logout(){
         session_destroy();
         header('Location: login');
 
-        $this->render('Security/logout');
+        $this->render('logout');
     }
 
     /**
@@ -131,7 +131,7 @@ class SecurityController extends AbstractController
             }
 
         }
-        $this->render('Security/register');
+        $this->render('register');
 
     }
 }

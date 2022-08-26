@@ -7,30 +7,28 @@ use App\Controllers\SecurityController;
 use App\Routing\Router;
 
 require 'vendor/autoload.php';
-
+session_start();
+$url = null;
+$id = null;
 //var_dump(md5('johndoe'));die(); //prend le resultat du hashage
 //
 //var_dump($_SESSION['user']);
 
 $router = new Router($_GET['url']);
 
-$router->get('/', 'Home#index');
+$router->get('/', 'HomeController#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comments#displayComments');
 $router->get('/comments/:id', 'Comments#showArticle');
 $router->get('/comments/add','Comment#addArticle');
-$router->get('/security/login','Security#login');
-$router->get('/security/register','Security#register');
-$router->get('/security/logout','Security#logout');
+$router->get('/login','Security#login');
+$router->get('/register','Security#register');
+$router->get('/logout','Security#logout');
 $router->get('/admin/dashboard','Admin#dashboard');
-$router->get('/admin/add','Admin#addArticle');
+$router->get('/admin/addArticle','Admin#addArticle');
 $router->get('/admin/:id','Admin#editArticle');
 $router->get('/admin/:id','Admin#deleteArticle');
-
-//$router->get('/admin/','Admin#addArticles');
-//$router->get('/admin/:id','Admin#editArticle');
-//$router->get('/admin/:id','Admin#deleteArticle');
 
 try {
     $router->run();
