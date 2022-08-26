@@ -6,31 +6,66 @@ use DateTime;
 
 class Article
 {
-    private int $id;
+    private ?int $id = null;
     private string $image_link;
+    private string $chapo;
     private string $title;
     private string $content;
     private string $author;
     private string $slug;
-    private DateTime $created_at;
+    private DateTime $createdAt;
+    private DateTime $updatedAt;
+
 
     /**
-     * @param int $id
+     * @param int|null $id
      * @param string $image_link
+     * @param string $chapo
      * @param string $title
      * @param string $content
      * @param string $author
-     * @param DateTime $created_at
+     * @param string $slug
+     * @param DateTime $createdAt
+     * @param DateTime $updatedAt
      */
-    public function __construct(int $id, string $image_link, string $title, string $content, string $author,string $slug,DateTime $created_at)
+    public function __construct(?int     $id,
+                                string   $image_link,
+                                string   $chapo,
+                                string   $title,
+                                string   $content,
+                                string   $author,
+                                string   $slug,
+                                DateTime $createdAt,
+                                DateTime $updatedAt)
     {
         $this->id = $id;
         $this->image_link = $image_link;
+        $this->chapo = $chapo;
         $this->title = $title;
         $this->content = $content;
         $this->author = $author;
         $this->slug = $slug;
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getChapo(): string
+    {
+        return $this->chapo;
+    }
+
+    /**
+     * @param string $chapo
+     * @return Article
+     */
+    public function setChapo(string $chapo): Article
+    {
+        $this->chapo = $chapo;
+        return $this;
     }
 
     /**
@@ -54,7 +89,7 @@ class Article
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -145,21 +180,39 @@ class Article
     /**
      * @return DateTime
      */
-    public function getCreated_at(): DateTime
+    public function getCreatedAt(): DateTime
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
     /**
-     * @param DateTime $created_at
+     * @param DateTime $createdAt
      * @return Article
      */
-    public function setCreated_at(DateTime $created_at): Article
+    public function setCreatedAt(DateTime $createdAt): Article
     {
-        $this->created_at = $created_at;
-
+        $this->createdAt = $createdAt;
         return $this;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     * @return Article
+     */
+    public function setUpdatedAt(DateTime $updatedAt): Article
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
 
 }
 

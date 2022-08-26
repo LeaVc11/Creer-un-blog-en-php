@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Routing;
- /**
-     * @method preg_replace_callback(string $string, array $array, string $path)
-     */
+/**
+ * @method preg_replace_callback(string $string, array $array, string $path)
+ */
 class Route
 {
     private $path;
@@ -12,7 +12,7 @@ class Route
     private $params = [];
 
     public function __construct($path, $callable){
-        $this->path = trim($path, '/');  // On retire les / inutils
+        $this->path = trim($path, '/');
         $this->callable = $callable;
     }
 
@@ -47,7 +47,7 @@ class Route
     {
         if (is_string($this->callable)) {
             $params = explode('#', $this->callable);
-            $controller = "App\\Controllers\\" . $params[0] . "Controllers";
+            $controller = "App\\Controllers\\" . $params[0] . "Controller";
             $controller = new $controller();
             return call_user_func_array([$controller, $params[1]],$this->matches);
         } else {

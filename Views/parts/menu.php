@@ -1,11 +1,10 @@
-<a href=" <?= URL ?>articles">Ajouter un article </a>
-
-<a href="logout">Se déconnecter</a>
-
 <?php
 $user = unserialize($_SESSION['user']);
+
 if ($user->isAdmin()) {
-    echo('<a href="<?= URL ?>admin/dashboard">Administrateur</a>');
+    echo('<a href="admin/dashboard">Administrateur</a>');
 }
-?>
+    echo('Bonjour ' . unserialize($_SESSION['user'])->getUsername());
+    echo('<a href="admin/logout">Se déconnecter</a>');
+
 

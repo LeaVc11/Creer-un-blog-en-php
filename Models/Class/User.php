@@ -5,25 +5,19 @@ namespace App\Models\Class;
 
 class User
 {
-    private int $id;
+    private ?int $id = null;
+    private string $email;
     private string $username;
     private string $password;
-    private string $email;
     private mixed $role;
 
 
-    /**
-     * @param int $id
-     * @param string $password
-     * @param string $email
-     *
-     */
-    public function __construct(string $email, $username, string $password/*,int $id = null*/, $role = 'user')
+    public function __construct(int $id, string $email, string $username, string $password, string $role = 'user')
     {
-        /*        $this->id = $id ;*/
-        $this->password = $password;
-        $this->user = $username;
+        $this->id = $id;
         $this->email = $email;
+        $this->username = $username;
+        $this->password = $password;
         $this->role = $role;
 
     }
@@ -32,7 +26,7 @@ class User
     {
         if ($this->role == 'admin') {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -101,12 +95,11 @@ class User
 
     /**
      * @param string $password
-     * @return User
      */
-    public function setPassword(string $password): User
+    public function setPassword(string $password): void
     {
         $this->password = $password;
-        return $this;
+
     }
 
     /**

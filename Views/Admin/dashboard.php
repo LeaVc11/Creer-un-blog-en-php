@@ -1,125 +1,144 @@
 <?php
 
-require_once "Models/Class/Article.php";
-
+//require_once "Models/Class/Article.php";
+//require_once "Models/Class/comment.php";
 
 ob_start(); ?>
 
-<!--section projet-->
-<h1>Bonjour , </h1>
-<section class="border-bottom mb-5">
-    <div class="container mb-5 pb-5">
-        <h2 class="text-center mt-mb-5 mt-4 display-4">Algarve</h2>
-        <p class="card-text">Les côtes ensoleillées de l'Algarve sont le lieu idéal pour des escapades en tout genre,
-            que ce soit pour ceux qui recherchent la vie nocturne animée de Lagos la clinquante ou ceux qui rêvent d'un
-            séjour paisible et intime à Sagres. La région la plus méridionale du Portugal offre des attractions
-            historiques dans l'ancienne capitale maure Silves et la fascinante Tavira, d'excellents parcours de golf, de
-            merveilleuses plages de Praia da Luz à Armacao de Pera, des sources thermales à Caldas de Monchique et des
-            kilomètres de grottes, falaises et baies calcaires le long de ses côtes sauvages.
-        </p>
-        <p class="fs-5 text-dark mb-md-5 mb-3 text-center">Le Portugal </p>
+<?php
+//include 'Views/parts/menu.php';
+//?>
+<?php
+//$user = unserialize($_SESSION['user']);
+//
+//if ($user->isAdmin()) {
+//    echo('<a href="admin/dashboard">Administrateur</a>');
+//}
+//echo('Bonjour ' . unserialize($_SESSION['user'])->getUsername());
+//echo('<a href="admin/logout">Se déconnecter</a>');
+////?>
+<h2 class="text-secondary m-5 ">Articles</h2>
+<p class="lead">Administrez ici les articles du blog.</p>
 
-        <!--  carousel-->
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="Public/images/Ponta-da-Piedade-Lagos.jpg" class="d-block w-100" alt="plage Portugal">
-                    <h5 class="card-title text-center mt-4 mb-4">Ponte da Piedade, Lagos </h5>
-                    <p class="card-text pb-4">Ponta da Piedade se définie par ses falaises creusées dans la roche qui
-                        abritent des tunnels naturels et des cavernes secrètes. Ces falaises de couleur doré contrastent
-                        avec le vert et le turquoise de la mer, c’est absolument sublime. Pour visiter ces cavernes, il
-                        faut prendre un petit bâteau qui se trouve au bas des 182 marches.
-                        Il est aussi possible de faire une excursion de kayak ou en paddle board partant de la plage
-                        Batata.. </p>
-                </div>
-                <div class="carousel-item">
-                    <img src="Public/images/istockphoto-658446924-612x612.jpg" class="d-block w-100" alt="...">
-                    <h5 class="card-title text-center mt-4 mb-4">Praia do Gigi, Quinta do lago</h5>
-                    <p class="card-text pb-4 ">Joli paysage au Portugal.
-                        Si vous aimez la tranquillité, cette plage est pour vous. Vous devez traverser à pied un pont
-                        qui traverse la rivière protégée du parc naturelle Ria Formosa.
 
-                </div>
-                <div class="carousel-item">
-                    <img src="Public/images/portugal-Algarve.jpg" class="d-block w-100" alt="...">
-                    <h5 class="card-title text-center mt-4 mb-4">Praia do Gigi, Quinta do lago</h5>
-                    <p class="card-text pb-4 ">Joli paysage au Portugal.
-                        Si vous aimez la tranquillité, cette plage est pour vous. Vous devez traverser à pied un pont
-                        qui traverse la rivière protégée du parc naturelle Ria Formosa,
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+<table class="table text-center">
+    <tr class="table-dark">
+    <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Image</th>
+        <th scope="col">Chapô</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Content</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Date de modification</th>
+        <th scope="col">Auteur</th>
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo('<th>Edition</th>');
+        }
+        ?>
+    </tr>
 
-        <!--     card-->
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+    <div class="d-flex justify-content-end">
+        <a href="<?= URL ?>admin/a" class="btn btn-warning  m-1">Ajouter</a>
+    </div>
+
+    <tr>
+        <?php
+        foreach ($articles as $article) {
+        ?>
+    <tr>
+
+        <td><?= $article->getImageLink() ?></td>
+        <td><?= $article->getChapo() ?></td>
+        <td><?= $article->getTitle() ?></td>
+        <td><?= $article->getContent() ?></td>
+        <td><?= $article->getSlug() ?></td>
+        <td><?= $article->getAuthor() ?></td>
+        <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
+        <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
+
+        <td>
+
+            <?php
+            //dd($article->getId());
+            ?>
+
+        </td>
+
+    <td>
+        <?php
+        //var_dump($article->getId());
+        //die();
+        ?>
+        <a href="<?= URL ?>admin/e/<?= $article->getId(); ?>" class="btn btn-secondary"
+           role="button">Modifier</a>
+    </td>
+    <td>
+        <a href="<?= URL ?>admin/d/<?= $article->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+    </td>
+
+    <?php } ?>
+    </tr>
+</table>
+
+<h2 class="text-secondary m-5 ">Commentaires</h2>
+<p class="lead">Administrez ici les commentaires de l'articles.</p>
+
+
+<table class="table text-center">
+    <tr class="table-dark">
+    <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Image</th>
+        <th scope="col">Chapô</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Content</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Date de modification</th>
+        <th scope="col">Auteur</th>
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo('<th>Edition</th>');
+        }
+        ?>
+    </tr>
+    <tr>
+        <?php
+//        var_dump($comments as $comment);
+//        die();
+        foreach ($comments as $comment) {
+        ?>
+    <tr>
+        <td><?= $comment->getTitle() ?></td>
+        <td><?= $comment->getStatus() ?></td>
+        <td><?= $comment->getContent() ?></td>
+        <td><?= $comment->getCreatedBy() ?></td>
+        <td><?= $comment->getCreatedAt()->format('d/m/Y') ?>
+        </td>
+        <td>
+
             <?php
 
+            ?>
 
-            for ($i = 0; $i < count($articles); $i++) {
-                ?>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
+        </td>
 
-                            <img src="public/images/<?= $articles[$i]->getImageLink() ?>" class="w-100 p-3" alt="Plage">
-                            <p class="card-text text-center fw-bold"><a  class="text-decoration-none" href="<?= URL ?>article/s/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getContent() ?></a></p>
+        <td>
+            <?php
 
-                        </div>
+            ?>
+            <a href="<?= URL ?>article/a/<?= $comment->getId(); ?>" class="btn btn-secondary"
+               role="button">Valider</a>
+        </td>
+        <td>
+            <a href="<?= URL ?>admin/d/<?= $comment->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+        </td>
 
-                        <div class="card-body text-center">
+        <?php } ?>
+    </tr>
+</table>
 
-                            <a href="<?= URL?>article/e/<?= $articles[$i]->getId() ?>" class="btn btn-primary text-center m-1" target="_blank">Modifier</a>
-                            <a href="<?= URL?>article/d/<?= $articles[$i]->getId() ?>" class="btn btn-success text-center m-1" target="_blank">Supprimer</a>
-                            <a href="<?= URL?>article/a/<?= $articles[$i]->getId() ?>" class="btn btn-warning text-center m-1" target="_blank">Editer</a>
-                        </div>
-
-                    </div>
-
-                </div>
-            <?php } ?>
-
-</section>
-
-<!--contact-->
-
-<section class="d-flex justify-content-center align-content-center w-100 h-100 m-3 p-3 " id="contact">
-    <div class="card shadow  p-4 rounded d-flex justify-content-center  ">
-
-        <h1 class="text-center mb-3">Me contacter</h1>
-        <form class="d-flex justify-content-center  w-100 h-100 ">
-            <fieldset>
-                <div class="form-group mb-3">
-                    <input type="text" class="form-control" id="nom" placeholder="Votre adresse email">
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Votre Nom">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Votre Prénom">
-                    </div>
-                </div>
-                <div class="input-group-prepend mb-3"></div>
-                <textarea class="form-control" aria-label="Message" placeholder="Votre message"></textarea>
-
-                <input class=" button-sub hover-overlay text-dark border border-2 btn btn-outline-warning  fw-bold mt-2  "
-                       type="submit"
-                       value="ENVOYER">
-            </fieldset>
-        </form>
-    </div>
-</section>
 
 <?php
 $content = ob_get_clean();
