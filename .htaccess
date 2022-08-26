@@ -1,5 +1,7 @@
 RewriteEngine on
 
+RewriteBase /P5-blog/
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
