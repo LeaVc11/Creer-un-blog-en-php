@@ -16,12 +16,17 @@ $router = new Router($_GET['url']);
 
 $router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
+$router->get('/articles/:id', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
+$router->get('/comments/', 'Comments#displayComments');
 $router->get('/security/login','Security#login');
 $router->get('/security/register','Security#register');
 $router->get('/security/logout','Security#logout');
-$router->get('/admin/','Admin#displayComments');
-$router->get('/admin/','Admin#displayComments');
+$router->get('/admin/dashboard','Admin#dashboard');
+$router->get('/admin/add','Admin#addArticle');
+$router->get('/admin/:id','Admin#editArticle');
+$router->get('/admin/:id','Admin#deleteArticle');
+
 //$router->get('/admin/','Admin#addArticles');
 //$router->get('/admin/:id','Admin#editArticle');
 //$router->get('/admin/:id','Admin#deleteArticle');
