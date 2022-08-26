@@ -30,13 +30,13 @@
         <div class="collapse navbar-collapse  " id="navbarColor01">
             <ul class="navbar-nav w-100 d-flex justify-content-start ">
                 <li class="nav-item">
-                    <a class="nav-link " href="../">Carine VINAGRE</a>
+                    <a class="nav-link " href="/">Carine VINAGRE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../articles">Article</a>
+                    <a class="nav-link" href="/articles">Article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../contact">Contact</a>
+                    <a class="nav-link" href="#contact">Contact</a>
                 </li>
 
             </ul>
