@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse  " id="navbarColor01">
             <ul class="navbar-nav w-100 d-flex justify-content-start ">
                 <li class="nav-item">
-                    <a class="nav-link " href="/P5_Blog_PHP/accueil">Carine VINAGRE</a>
+                    <a class="nav-link " href="<?= \App\Routing\Router::generate("/accueil") ?>">Carine VINAGRE</a>
                 </li>
                 <li class="nav-item">
 
