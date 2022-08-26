@@ -33,6 +33,7 @@ class AdminController
 
     /**
      * @return void
+     * @throws \Exception
      */
     public function addArticles(): void
     {
@@ -66,6 +67,7 @@ class AdminController
                 exit();
             }
         }
+        $this->render('../Admin/add');
         require 'Views/Admin/add.php';
 
     }

@@ -3,7 +3,7 @@
 
 use App\Controllers\AdminController;
 use App\Controllers\ArticlesController;
-use App\Controllers\Security\SecurityController;
+use App\Controllers\SecurityController;
 use App\Routing\Router;
 
 require 'vendor/autoload.php';
@@ -14,13 +14,13 @@ require 'vendor/autoload.php';
 
 $router = new Router($_GET['url']);
 
-//die('url');
-$router->get('/','Home#index');
+$router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
-//$router->get('/security/','Admin#login');
-//$router->get('/security/','Admin#register');
-//$router->get('/security/','Admin#logout');
+$router->get('/security/login','Security#login');
+$router->get('/security/register','Security#register');
+$router->get('/security/logout','Security#logout');
+$router->get('/admin/','Admin#displayComments');
 //$router->get('/admin/','Admin#addArticles');
 //$router->get('/admin/:id','Admin#editArticle');
 //$router->get('/admin/:id','Admin#deleteArticle');
@@ -31,27 +31,6 @@ try {
 }
 
 
-//try {
-//    if (empty($_GET['page'])) {
-//        require "Views/accueil.view.php";
-//    } else {
-//        $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
-//        match ($url[0]) {
-//
-//            'accueil' => require "Views/accueil.view.php",
-//            'articles' => getDisplayArticle(),
-//            'article' => actionArticle($url[1], $url[2]),
-//            'security' => security($url[1]),
-//            'admin' => admin($url[1]),
-////            'home' => home($url[1]),
-//
-//            default => throw new Exception("La page n'existe pas"),
-//        };
-//    }
-//} catch
-//(Exception $e) {
-//    echo $e->getMessage();
-//}
 /**
  * @return void
  */
