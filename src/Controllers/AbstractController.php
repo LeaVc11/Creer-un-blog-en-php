@@ -11,11 +11,11 @@ abstract class AbstractController
         try {
             extract($variables);
             ob_start();
-            require 'Views/' . $view . '.php';
+            require '../Views/' . $view . '.php';
 
             $content = ob_get_clean();
 
-            require "src/Views/template.php";
+            require __DIR__ . '/../Views/template.php';
         } catch (Exception $e) {
         }
     }

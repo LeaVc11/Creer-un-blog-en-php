@@ -13,9 +13,7 @@ $router->get('/posts/:id', function($id){ echo "Voila l'article $id"; });
 //
 //$router = new Router($_GET['url']);
 //
-$router->get('/', 'Home#index');
-//$router->get('/', function (){return new (\App\Controllers\HomeController())->index();});
-$router->run();
+$router->get('', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comments#displayComments');
@@ -28,6 +26,7 @@ $router->get('/admin/dashboard','Admin#dashboard');
 $router->get('/admin/addArticle','Admin#addArticle');
 $router->get('/admin/:id','Admin#editArticle');
 $router->get('/admin/:id','Admin#deleteArticle');
+$router->run();
 
 //try {
 //    $router->run();

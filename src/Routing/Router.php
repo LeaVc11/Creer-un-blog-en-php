@@ -56,5 +56,9 @@ class Router {
         }
         return $this->namedRoutes[$name]->getUrl($params);
     }
+    public static function generate(string $uri): string
+    {
+        return '/P5_Blog_PHP/' . $uri;
+    }
 
 }
