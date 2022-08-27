@@ -28,7 +28,7 @@ class ArticlesController extends AbstractController
      */
     public function homePage(): void
     {
-        require 'Views/Articles/articles.php';
+        require 'Views/Articles/articles.view.php';
     }
 
     /**
@@ -42,7 +42,7 @@ class ArticlesController extends AbstractController
 //var_dump($articles);
 //die();
         $this->render('articles.view');
-//        require "Views/Articles/articles.php";
+//        require "Views/Articles/articles.view.php";
     }
 
     /**

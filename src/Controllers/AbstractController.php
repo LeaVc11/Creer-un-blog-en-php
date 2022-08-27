@@ -15,7 +15,7 @@ abstract class AbstractController
 
             $content = ob_get_clean();
 
-            require "Views/template.php";
+            require "src/Views/template.php";
         } catch (Exception $e) {
         }
     }
