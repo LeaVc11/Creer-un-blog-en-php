@@ -42,9 +42,9 @@ class Route {
     public function call(){
         if(is_string($this->callable)){
             $params = explode('#', $this->callable);
+            dd($controller);
             $controller = "App\\Controller\\" . $params[0] . "Controller";
-//            var_dump($controller);
-//            die();
+            dd($controller);
             $controller = new $controller();
             return call_user_func_array([$controller, $params[1]], $this->matches);
         } else {
