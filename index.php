@@ -8,17 +8,18 @@ require __DIR__ . '/vendor/autoload.php';
 //die();
 $router = new Router("/");
 //$router->get('/', function(){ echo "Bienvenue sur ma homepage !"; });
-$router->get('/posts/:id', function($id){ echo "Voila l'article $id"; });
+//$router->get('/posts/:id', function($id){ echo "Voila l'article $id"; });
 //dump($_SERVER);
 //
 //$router = new Router($_GET['url']);
 //
-$router->get('', 'Home#index');
+$router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comments#displayComments');
 $router->get('/comments/:id', 'Comments#showArticle');
 $router->get('/comments/add','Comment#addArticle');
+$router->get('/contact','Contact#formContact');
 $router->get('/login','Security#login');
 $router->get('/register','Security#register');
 $router->get('/logout','Security#logout');

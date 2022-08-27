@@ -34,10 +34,10 @@
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link" href="">Article</a>
+                    <a class="nav-link" href="<?= \App\Routing\Router::generate("/articles") ?>">Article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=" ">Contact</a>
+                    <a class="nav-link" href=" <?= \App\Routing\Router::generate("/contact") ?>">Contact</a>
                 </li>
 
             </ul>
@@ -46,13 +46,13 @@
                     <?php
                     if (!isset($_SESSION['id'])) {
                         ?>
-                        <a class="text-decoration-none text-secondary" href="/security/login">Connexion</a> |
+                        <a class="text-decoration-none text-secondary" href="<?= \App\Routing\Router::generate("/login") ?>">Connexion</a> |
 
-                        <a class="text-decoration-none text-secondary" href="/security/register">Inscription</a>
+                        <a class="text-decoration-none text-secondary" href="<?= \App\Routing\Router::generate("/register") ?>">Inscription</a>
                         <?php
                     } else {
                         ?>
-                        <a class="text-decoration-none text-secondary" href="/security/logout">Déconnexion</a>
+                        <a class="text-decoration-none text-secondary" href="<?= \App\Routing\Router::generate("/logout") ?>">Déconnexion</a>
                         <?php
                     }
                     ?>

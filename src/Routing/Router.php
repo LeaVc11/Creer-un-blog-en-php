@@ -58,7 +58,7 @@ class Router {
     }
     public static function generate(string $uri): string
     {
-        return '/P5_Blog_PHP/' . $uri;
+        return '/P5_Blog_PHP' . $uri;
     }
 
 }
