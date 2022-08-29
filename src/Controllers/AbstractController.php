@@ -9,6 +9,7 @@ abstract class AbstractController
     protected function render(string $view, array $variables = [])
     {
         try {
+
             extract($variables);
             ob_start();
             require '../../Views/' . $view . '.php';
