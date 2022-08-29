@@ -12,7 +12,7 @@ $router = new Router($_GET['url']);
 //dd($router);
 $router->get('/', 'Home#index');
 $router->get('/articles/', 'Articles#displayArticles');
-$router->get('/articles/:id', 'Articles#showArticle');
+$router->get('/posts/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comments#displayComments');
 $router->get('/comments/:id', 'Comments#showArticle');
 $router->get('/comments/add','Comment#addArticle');

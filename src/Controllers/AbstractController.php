@@ -21,8 +21,8 @@ abstract class AbstractController
 //        }
         ob_start();
         extract($variables);
-        include __DIR__ . "/view/'.$view . '.php";
-        $content = ob_get_clean();
-        return $content;
+        include __DIR__ . "/Views/'.$view . '.php";
+
+        return ob_get_clean();
     }
 }

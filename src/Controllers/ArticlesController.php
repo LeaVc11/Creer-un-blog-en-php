@@ -10,8 +10,6 @@ class ArticlesController extends AbstractController
 {
     public ArticleManager $articleManager;
 
-    private array $articles = [];
-
     /**
      * @throws Exception
      */
@@ -19,17 +17,17 @@ class ArticlesController extends AbstractController
     {
         $this->articleManager = new ArticleManager;
 
-        $this->articles = $this->articleManager->loadingArticles();
-//     dd($this->articleManager);
+        $this->articleManager->loadingArticles();
+//        dd($this->articleManager);
     }
 
     /**
      * @throws Exception
      */
-    public function homePage(): void
-    {
-        require __DIR__ . '../Views/accueil.view.php';
-//        require 'Views/Articles/articles.view.php';
+    public function homePage(){
+        $articles = $this->articleManager->loadingArticles();
+        $this->render('accueil.view');
+
     }
 
     /**
@@ -39,8 +37,6 @@ class ArticlesController extends AbstractController
     public function displayArticles(): void
     {
         $articles = $this->articleManager->loadingArticles();
-//author
-//dd($articles);
         $this->render('Articles/articles.view', compact('articles'));
     }
 
@@ -54,8 +50,7 @@ class ArticlesController extends AbstractController
     public function showArticle(int $id): void
     {
         $article = $this->articleManager->showArticle($id);
-      $this->render('Admin/show.article.view', compact('article'));
-
+        $this->render('Admin/show.article.view', compact('article'));
     }
 
 }
