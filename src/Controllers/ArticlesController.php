@@ -20,7 +20,7 @@ class ArticlesController extends AbstractController
         $this->articleManager = new ArticleManager;
 
         $this->articles = $this->articleManager->loadingArticles();
-//        dd($this->articleManager);
+//     dd($this->articleManager);
     }
 
     /**
@@ -28,7 +28,8 @@ class ArticlesController extends AbstractController
      */
     public function homePage(): void
     {
-        require 'Views/Articles/articles.view.php';
+        require __DIR__ . '../Views/accueil.view.php';
+//        require 'Views/Articles/articles.view.php';
     }
 
     /**
@@ -41,7 +42,7 @@ class ArticlesController extends AbstractController
 //author
 //var_dump($articles);
 //die();
-        $this->render('articles.view');
+        require __DIR__ . '/../Views/Articles/articles.view.php';
 //        require "Views/Articles/articles.view.php";
     }
 
@@ -55,7 +56,8 @@ class ArticlesController extends AbstractController
     public function showArticle(int $id): void
     {
         $article = $this->articleManager->showArticle($id);
-        require "Views/Admin/show.php";
+        require __DIR__ . '/../Views/Admin/show.php';
+
     }
 
 

@@ -39,6 +39,7 @@ class Router {
         if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){
             throw new RouterException('REQUEST_METHOD does not exist');
         }
+//        dd($this->namedRoutes);
         foreach($this->routes[$_SERVER['REQUEST_METHOD']] as $route){
             if($route->match($this->url)){
                 return $route->call();

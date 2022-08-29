@@ -61,9 +61,3 @@ if(!empty($errors)):?>
     </form>
 
 
-
-<?php
-$content = ob_get_clean();
-
-require "Views/template.php";
-?>

@@ -30,10 +30,10 @@
         <div class="collapse navbar-collapse  " id="navbarColor01">
             <ul class="navbar-nav w-100 d-flex justify-content-start ">
                 <li class="nav-item">
+
                     <a class="nav-link " href="<?= \App\Routing\Router::generate("/accueil") ?>">Carine VINAGRE</a>
                 </li>
                 <li class="nav-item">
-
                     <a class="nav-link" href="<?= \App\Routing\Router::generate("/articles") ?>">Article</a>
                 </li>
                 <li class="nav-item">
@@ -62,11 +62,6 @@
         </div>
     </div>
 </nav>
-
-
-<div class="container">
-    <?= $content ?>
-</div>
 
 
 <!--section footer-->
