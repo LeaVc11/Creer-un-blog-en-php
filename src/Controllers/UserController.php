@@ -8,7 +8,7 @@ use App\models\Manager\UserManager;
 
 class UserController extends DbManager
 {
-    private $userManager;
+    private UserManager $userManager;
 
     public function __construct()
     {

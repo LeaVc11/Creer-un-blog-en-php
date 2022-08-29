@@ -29,7 +29,8 @@ class AdminController
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
-        require 'Views/Admin/dashboard.php';
+
+        require '../Views/Admin/dashboard.php';
     }
 
     /**
@@ -70,7 +71,7 @@ class AdminController
             }
         }
 
-        require 'Views/Admin/add.php';
+        require '../Views/Admin/add.php';
 
     }
 
@@ -137,7 +138,7 @@ class AdminController
                 }
             }
         }
-        require 'Views/admin/editArticle.php';
+        require '../Views/admin/editArticle.php';
     }
 
     /**

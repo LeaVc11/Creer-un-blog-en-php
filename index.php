@@ -17,6 +17,7 @@ $router->get('/comments/', 'Comments#displayComments');
 $router->get('/comments/:id', 'Comments#showArticle');
 $router->get('/comments/add','Comment#addArticle');
 $router->get('/contact','Contact#formContact');
+//dd($router->get('/login','Security#login'));
 $router->get('/login','Security#login');
 $router->get('/register','Security#register');
 $router->get('/logout','Security#logout');

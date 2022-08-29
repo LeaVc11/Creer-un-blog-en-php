@@ -30,7 +30,7 @@ class CommentController
      */
     public function listComments(): void
     {
-        require 'Views/Admin/listComment.php';
+        require '../Views/Admin/listComment.php';
     }
     /**
      * @throws \Exception
@@ -38,7 +38,7 @@ class CommentController
     public function displayComments(): void
     {
         $comments = $this->comments;
-        require "Views/Admin/listComment.php";
+        require "../Views/Admin/listComment.php";
     }
 
     /**
@@ -52,7 +52,7 @@ class CommentController
     {
 
         $comment = $this->commentManager->showComment($id);
-        require "Views/Comment/showComment.php";
+        require "../Views/Comment/showComment.php";
     }
 
     /**

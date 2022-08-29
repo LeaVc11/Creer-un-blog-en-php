@@ -8,6 +8,7 @@ use Exception;
 
 class ArticlesController extends AbstractController
 {
+
     public ArticleManager $articleManager;
 
     /**
@@ -15,8 +16,9 @@ class ArticlesController extends AbstractController
      */
     public function __construct()
     {
+//        dd($this->articleManager = new ArticleManager);
         $this->articleManager = new ArticleManager;
-
+//dd($this->articleManager->loadingArticles());
         $this->articleManager->loadingArticles();
 //        dd($this->articleManager);
     }
@@ -25,6 +27,7 @@ class ArticlesController extends AbstractController
      * @throws Exception
      */
     public function homePage(){
+//        dd( $articles = $this->articleManager->loadingArticles());
         $articles = $this->articleManager->loadingArticles();
         $this->render('accueil.view');
 
