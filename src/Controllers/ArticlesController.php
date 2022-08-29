@@ -29,7 +29,7 @@ class ArticlesController extends AbstractController
     public function displayArticles(): void
     {
         $articles = $this->articleManager->loadingArticles();
-        $this->render('articles.view', compact('articles'));
+        $this->render('Articles/articles.view', compact('articles'));
     }
     /**
      * @param int $id

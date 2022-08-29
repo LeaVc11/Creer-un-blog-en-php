@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Exception;
 
 abstract class AbstractController
+
 {
     protected function render(string $view, array $variables = [])
     {
@@ -12,7 +13,7 @@ abstract class AbstractController
 
             extract($variables);
             ob_start();
-            require '../../Views/' . $view . '.php';
+            require  __DIR__ . '../Views/' . $view . '.php';
             $content = ob_get_clean();
 
             require __DIR__ . '/../Views/template.php';
