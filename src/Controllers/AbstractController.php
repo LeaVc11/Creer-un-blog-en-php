@@ -6,23 +6,19 @@ use Exception;
 
 abstract class AbstractController
 {
-
-    protected function render(string $view, array $variables = []): string|bool
+    protected function render(string $view, array $variables = [])
     {
-//        try {
+        try {
+            if ($variables) {
+                extract($variables);
+            }
 //            extract($variables);
-//            ob_start();
-//            require '../Views/' . $view . '.php';
-//
-//            $content = ob_get_clean();
-//
-//            require __DIR__ . '/../Views/template.php';
-//        } catch (Exception $e) {
-//        }
-        ob_start();
-        extract($variables);
-        include __DIR__ . "../Views/'.$view . '.php";
+            ob_start();
+            require '../../Views/' . $view . '.php';
+            $content = ob_get_clean();
 
-        return ob_get_clean();
+            require __DIR__ . '/../Views/template.php';
+        } catch (Exception $e) {
+        }
     }
 }

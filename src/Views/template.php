@@ -6,19 +6,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mon blog</title>
-
     <!--    bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--    css-->
-
     <link rel="stylesheet" href="../../Public/css/style.css">
-
     <link rel="icon" type="image/jpg" href="image/Photo.jpg">
-
-
 </head>
 <body>
-
 <!--Section Barre de navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -26,12 +20,10 @@
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse  " id="navbarColor01">
             <ul class="navbar-nav w-100 d-flex justify-content-start ">
                 <li class="nav-item">
-
-                    <a class="nav-link " href="<?= \App\Routing\Router::generate("/accueil") ?>">Carine VINAGRE</a>
+                    <a class="nav-link " href="<?= \App\Routing\Router::generate("/") ?>">Carine VINAGRE</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= \App\Routing\Router::generate("/articles") ?>">Article</a>
@@ -39,7 +31,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href=" <?= \App\Routing\Router::generate("/contact") ?>">Contact</a>
                 </li>
-
             </ul>
             <ul class="navbar-nav w-100 d-flex justify-content-end">
                 <li class="nav-item">
@@ -77,7 +68,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-
 <script src="../../app.js"></script>
 </body>
 </html>

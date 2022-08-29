@@ -7,7 +7,7 @@ use App\Models\Manager\CommentManager;
 use Exception;
 
 
-class CommentController
+class CommentController extends AbstractController
 {
     private CommentManager $commentManager;
 
