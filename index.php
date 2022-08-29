@@ -3,14 +3,10 @@
 use App\Routing\Router;
 
 require __DIR__ . '/vendor/autoload.php';
-
+session_start();
 //var_dump($_GET['url']);
 //die();
-//$router = new Router("/");
-//$router->get('/', function(){ echo "Bienvenue sur ma homepage !"; });
-//$router->get('/posts/:id', function($id){ echo "Voila l'article $id"; });
-//dump($_SERVER);
-//
+//$router = new Router(dirname(__DIR__) . '/views');
 $router = new Router($_GET['url']);
 //
 //dd($router);
@@ -33,6 +29,6 @@ try {
     $router->run();
 } catch (Exception $e) {
 }
-session_start();
+
 
 

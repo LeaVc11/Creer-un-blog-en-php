@@ -16,11 +16,15 @@ class Route {
         $this->callable = $callable;
     }
 
+    public function with($param, $regex){
+        $this->params[$param] = str_replace('(', '(?:', $regex);
+        return $this; // On retourne tjrs l'objet pour enchainer les arguments
+    }
     /**
      * Permettra de capturer l'url avec les paramètre
-     * get('/posts/:slug-:id') par exemple
      **/
-    public function match($url){
+    public function match($url): bool
+    {
         $url = trim($url, '/');
         $path = preg_replace_callback('#:([\w]+)#', [$this, 'paramMatch'], $this->path);
         $regex = "#^$path$#i";
@@ -52,7 +56,8 @@ class Route {
         }
     }
 
-    public function getUrl($params){
+    public function getUrl($params): array|string
+    {
         $path = $this->path;
         foreach($params as $k => $v){
             $path = str_replace(":$k", $v, $path);
