@@ -49,12 +49,14 @@ ob_start();
         </div>
     </div>
 <div class=" text-center">
-    <a href="comments" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
+    <a href="../comments/<?= $article->getId() ?>" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
 </div>
 <div class=" text-center">
-    <a href="articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
+    <a href="../articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
 </div>
 <?php
-require "Views/Articles/addComment.php";
+//var_dump(__DIR__);
+require __DIR__ . '/../Articles/addComment.php';
+
 ?>
 

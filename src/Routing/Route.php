@@ -48,8 +48,10 @@ class Route {
             $params = explode('#', $this->callable);
 //            dd($controller);
             $controller = "App\\Controllers\\" . $params[0] . "Controller";
-//            dd($controller);
+//            var_dump($controller);
+//            die();
             $controller = new $controller();
+//            dd($controller);
             return call_user_func_array([$controller, $params[1]], $this->matches);
         } else {
             return call_user_func_array($this->callable, $this->matches);

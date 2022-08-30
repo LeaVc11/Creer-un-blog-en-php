@@ -3,7 +3,6 @@
 namespace App\models\Manager;
 
 use App\Models\Class\Comment;
-use DateTime;
 use PDO;
 
 class CommentManager extends DbManager
@@ -84,6 +83,7 @@ class CommentManager extends DbManager
         }
         return $comment;
     }
+
     /**
      *
      * @throws \Exception
@@ -107,6 +107,7 @@ class CommentManager extends DbManager
         }
         return $comment;
     }
+
     public function addComment(Comment $comment)
     {
 
@@ -125,6 +126,7 @@ class CommentManager extends DbManager
         ]);
 //        dd($comment,$req);
     }
+
     public function editComment(Comment $comment)
     {
         $req = $this->getBdd()->prepare("UPDATE `comment`
@@ -142,6 +144,7 @@ SET  title = :title,status = :status,content = :content,
 
         ]);
     }
+
     public function delete(Comment $comment)
     {
         $req = $this->getBdd()->prepare('DELETE FROM `comment` WHERE id = :id');
@@ -149,6 +152,28 @@ SET  title = :title,status = :status,content = :content,
         $req->execute(['id' => $comment->getId()]);
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function findByArticle(int $id)
+    {
+        $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE article_id = :article_id");
+        $req->execute(['article_id' => $id]);
+        $comments = $req->fetchAll();
+
+        foreach ($comments as $comment) {
+            $c = $this->createdObjectComment($comment);
+            $reqAuthor = $this->getBdd()->prepare("SELECT * FROM `user` WHERE id = :user_id");
+            $reqAuthor->execute(['user_id' => $c->getCreatedBy()]);
+            $author=$reqAuthor->fetch();
+
+            $c->setCreated_by($author['username']);
+//            var_dump($c,$author);
+            $this->comments[] = $c;
+        }
+        return $this->comments;
+
+    }
 
 
 }

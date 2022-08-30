@@ -28,7 +28,7 @@
                                  alt="image">
 
                             <p class="card-text text-center fw-bold">
-                                <a href="article/showArticle<?= $article->getId(); ?>" class="btn btn-primary">Voir</a>
+                                <a href="<?= \App\Routing\Router::generate("/articles", $article->getId()) ?>" class="btn btn-primary">Voir</a>
                             </p>
 
                         </div>

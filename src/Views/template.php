@@ -35,7 +35,7 @@
             <ul class="navbar-nav w-100 d-flex justify-content-end">
                 <li class="nav-item">
                     <?php
-                    if (!isset($_SESSION['id'])) {
+                    if (!isset($_SESSION['user'])) {
                         ?>
                         <a class="text-decoration-none text-secondary" href="<?= \App\Routing\Router::generate("/login") ?>">Connexion</a> |
 
@@ -54,7 +54,7 @@
     </div>
 </nav>
 
-
+<?= $content ?>
 <!--section footer-->
 
 <footer class="bg-light text-center my-auto p-5 ">

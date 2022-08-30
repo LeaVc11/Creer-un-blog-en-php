@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class ExceptionController
+class ExceptionController extends AbstractController
 {
     public function pageIntrouvable(): void
     {

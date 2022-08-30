@@ -56,6 +56,7 @@ class SecurityController extends AbstractController
                 if ($loggedUser->isAdmin()) {
                     header('Location: ../admin/dashboard');
                     exit();
+
                 }
                 header('Location: ../articles');
 
@@ -64,7 +65,7 @@ class SecurityController extends AbstractController
                 $errors[] = 'Identifiants incorrects';
             }
         }
-        $this->render('login');
+        $this->render('Security/login');
     }
     public function logout(){
         session_destroy();
@@ -129,6 +130,6 @@ class SecurityController extends AbstractController
                 exit();
             }
         }
-        $this->render('register');
+        $this->render('Security/register');
     }
 }

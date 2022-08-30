@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Class\Comment;
 use App\Models\Manager\CommentManager;
+use App\Routing\Router;
 use Exception;
 
 
@@ -22,23 +23,25 @@ class CommentController extends AbstractController
 
         $this->commentManager = new CommentManager;
 
-        $this->comments =$this->commentManager->loadingComments();
     }
 
     /**
      * @throws \Exception
      */
-    public function listComments(): void
-    {
-        require '../Views/Admin/listComment.php';
+    public function dashboard(): void
+    {;
+
+        $this->render('Admin/dashboard');
+//        require '../Views/Admin/listComment.php';
     }
     /**
      * @throws \Exception
      */
-    public function displayComments(): void
+    public function displayComments(int $id): void
     {
-        $comments = $this->comments;
-        require "../Views/Admin/listComment.php";
+        $comments = $this->commentManager->findByArticle($id);
+        $this->render('Comment/listComment', compact('comments'));
+
     }
 
     /**
@@ -52,7 +55,8 @@ class CommentController extends AbstractController
     {
 
         $comment = $this->commentManager->showComment($id);
-        require "../Views/Comment/showComment.php";
+        $this->render('Comment/showComment');
+//        require "../Views/Comment/showComment.php";
     }
 
     /**
@@ -74,13 +78,12 @@ class CommentController extends AbstractController
                   $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->addComment($comment);
-                header('Location: ../articles');
+                header('Location: '. Router::generate("/articles")  );
                 exit();
             }
 
-            header('Location: ../article/s/'.$_POST['articleId']);
+            header('Location: '. Router::generate("/articles",    $_POST['articleId']));
             exit();
-
         }
     }
 
@@ -110,11 +113,10 @@ class CommentController extends AbstractController
                     $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->editComment($comment);
-                header('Location: ../articles');
+                header('Location: '. Router::generate("/articles")  );
                 exit();
             }
-
-            header('Location: ../article/s/'.$_POST['articleId']);
+            header('Location: '. Router::generate("/articles",    $_POST['articleId']));
             exit();
                 }
             }
@@ -131,7 +133,8 @@ class CommentController extends AbstractController
 ////            die();
 //        } else {
         $this->commentManager->delete($comment);
-        header('Location: ../dashboard');
+        header('Location: '. Router::generate("/dashboard")  );
+        exit();
 //        }
     }
     /**
@@ -148,7 +151,6 @@ class CommentController extends AbstractController
         if (empty($_POST['content'])) {
             $errors[] .= 'Veuillez saisir un commentaire';
         }
-
         $comment = $this->commentManager->getByTitle($_POST['title']);
 
         if (!is_null($comment) && $comment->getId() != null) {

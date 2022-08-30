@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\Manager\ArticleManager;
 use Exception;
 
@@ -41,7 +42,7 @@ class ArticlesController extends AbstractController
     public function showArticle(int $id): void
     {
         $article = $this->articleManager->showArticle($id);
-        $this->render('Admin/show.article.view', compact('article'));
+        $this->render('Admin/show', compact('article'));
     }
 
 }
