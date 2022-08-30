@@ -25,7 +25,7 @@
 </table>
 <div class=" text-center">
     <a href="<?= Router::generate('/articles/') ?>" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
-    <a href="<?= Router::generate("/comments/editComment") ?>" class="btn btn-warning text-center text-white fw-bold mb-2" target="_blank">Modifier</a>
+    <a href="<?= Router::generate('/comments/'.$comment->getId()) ?>" class="btn btn-warning text-center text-white fw-bold mb-2" target="_blank">Modifier</a>
 </div>
 
 
