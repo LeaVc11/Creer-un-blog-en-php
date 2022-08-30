@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--    css-->
     <link rel="stylesheet" href="../../Public/css/style.css">
-    <link rel="icon" type="image/jpg" href="image/Photo.jpg">
+    <link rel="icon" type="image/jpg" href="Public/images/Maphoto">
 </head>
 <body>
 <!--Section Barre de navigation-->

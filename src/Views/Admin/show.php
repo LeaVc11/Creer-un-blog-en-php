@@ -6,11 +6,11 @@ ob_start();
 /** @var Article $article */
 ?>
     <div class="row">
-<!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
+        <!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
         <div class="col-6 mt-5 text-center">
-<!--            --><?php
-//dd($article->getImageLink());
-//            ?>
+            <!--            --><?php
+            //dd($article->getImageLink());
+            //            ?>
             <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">
@@ -48,15 +48,14 @@ ob_start();
 
         </div>
     </div>
-<div class=" text-center">
-    <a href="../comments/<?= $article->getId() ?>" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
-</div>
-<div class=" text-center">
-    <a href="../articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
-</div>
+    <div class=" text-center">
+        <a href="../comments/<?= $article->getId() ?>" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
+    </div>
+    <div class=" text-center">
+        <a href="../articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
+    </div>
 <?php
 //var_dump(__DIR__);
 require __DIR__ . '/../Articles/addComment.php';
 
 ?>
-

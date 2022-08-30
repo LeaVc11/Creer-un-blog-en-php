@@ -24,11 +24,11 @@
 <!--//var_dump($articles);-->
 <!--//die();-->
 
-                            <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
+                            <img src="../Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
                                  alt="image">
 
                             <p class="card-text text-center fw-bold">
-                                <a href="<?= \App\Routing\Router::generate("/articles", $article->getId()) ?>" class="btn btn-primary">Voir</a>
+                                <a href="articles/<?= $article->getId(); ?>" class="btn btn-primary">Voir</a>
                             </p>
 
                         </div>

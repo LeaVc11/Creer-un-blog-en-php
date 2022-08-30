@@ -52,9 +52,9 @@ class Router {
         }
         return $this->namedRoutes[$name]->getUrl($params);
     }
-    public static function generate(string $uri,int $id=null): string
+    public static function generate(string $uri/*,int $id=null*/): string
     {
-        return '/P5_Blog_PHP' . $uri . $id ? "/". $id :"";
+        return '/P5_Blog_PHP' . $uri /*. $id ? "/". $id :""*/;
     }
 
 }

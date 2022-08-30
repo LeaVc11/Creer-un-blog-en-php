@@ -24,7 +24,7 @@ class ArticleManager extends DbManager
     /**
      * @throws Exception
      */
-    public function loadingArticles()
+    public function loadingArticles(): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM articles");
         $req->execute();
@@ -146,7 +146,6 @@ SET image_link = :imageLink, chapo = :chapo,
         $query = $this->getBdd()->prepare("SELECT * FROM articles WHERE id = :id");
         $query->execute(['id' => $id]);
         $articleFromBdd = $query->fetch();
-
 
         if ($articleFromBdd) {
 

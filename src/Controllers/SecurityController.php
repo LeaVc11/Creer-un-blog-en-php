@@ -56,7 +56,6 @@ class SecurityController extends AbstractController
                 if ($loggedUser->isAdmin()) {
                     header('Location: ../admin/dashboard');
                     exit();
-
                 }
                 header('Location: ../articles');
 
@@ -130,6 +129,6 @@ class SecurityController extends AbstractController
                 exit();
             }
         }
-        $this->render('Security/register');
+        $this->render('register');
     }
 }

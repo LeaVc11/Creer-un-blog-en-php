@@ -24,6 +24,3 @@ try {
     $router->run();
 } catch (Exception $e) {
 }
-
-
-

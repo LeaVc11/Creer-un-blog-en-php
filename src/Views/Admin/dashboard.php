@@ -20,17 +20,14 @@
         }
         ?>
     </tr>
-
     <div class="d-flex justify-content-end">
         <a href="admin/add" class="btn btn-warning  m-1">Ajouter</a>
     </div>
-
     <tr>
         <?php
         foreach ($articles as $article) {
         ?>
     <tr>
-
         <td><?= $article->getImageLink() ?></td>
         <td><?= $article->getChapo() ?></td>
         <td><?= $article->getTitle() ?></td>
@@ -39,7 +36,6 @@
         <td><?= $article->getAuthor() ?></td>
         <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
         <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
-
         <td>
 
             <?php
@@ -98,13 +94,7 @@
         <td><?= $comment->getCreatedBy() ?></td>
         <td><?= $comment->getCreatedAt()->format('d/m/Y') ?>
         </td>
-        <td>
 
-            <?php
-
-            ?>
-
-        </td>
 
         <td>
             <?php

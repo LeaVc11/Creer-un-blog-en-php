@@ -30,7 +30,9 @@ class AdminController
     {
         $articles = $this->articleManager->loadingArticles();
 
-        require '../Views/Admin/dashboard.php';
+
+        $this->render('admin/dashboard');
+//        require '../Views/Admin/dashboard.php';
     }
 
     /**
@@ -212,8 +214,6 @@ class AdminController
 
         return ['filename' => $imageFileName, 'errors' => $errors];
     }
-
-
 
 
 

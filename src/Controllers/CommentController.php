@@ -113,10 +113,11 @@ class CommentController extends AbstractController
                     $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->editComment($comment);
-                header('Location: '. Router::generate("/articles")  );
+                header('Location: ../articles');
                 exit();
             }
-            header('Location: '. Router::generate("/articles",    $_POST['articleId']));
+
+            header('Location: ../article/s/'.$_POST['articleId']);
             exit();
                 }
             }
@@ -133,8 +134,7 @@ class CommentController extends AbstractController
 ////            die();
 //        } else {
         $this->commentManager->delete($comment);
-        header('Location: '. Router::generate("/dashboard")  );
-        exit();
+        header('Location: ../dashboard');
 //        }
     }
     /**
