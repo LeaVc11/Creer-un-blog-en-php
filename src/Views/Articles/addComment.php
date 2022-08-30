@@ -1,5 +1,7 @@
 <?php
 //    var_dump($errors);
+use App\Routing\Router;
+
 if(!empty($errors)):?>
     <div class=" m-3 fw-bold alert alert-danger">
         <?php foreach($errors as $error):?>
@@ -14,7 +16,7 @@ if(!empty($errors)):?>
     <legend>Laisser un commentaire sur cet article</legend>
     <small class="text-muted">Vous devez <a href="security/login">être connecté(e)</a> à votre compte utilisateur pour pouvoir laisser un commentaire.</small>
     </div>
-    <form method="POST" action="../comments/add" enctype="multipart/form-data">
+    <form method="POST" action="<?= Router::generate('/comments/add') ?>" enctype="multipart/form-data">
         <input type="hidden" name="articleId" value="<?= $article->getId() ?>">
         <div class="row m-5">
             <div class="col text-primary fw-bold">

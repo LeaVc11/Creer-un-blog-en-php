@@ -29,10 +29,7 @@ class AdminController
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
-
-
-        $this->render('admin/dashboard');
-//        require '../Views/Admin/dashboard.php';
+        require '../Views/Admin/dashboard.php';
     }
 
     /**
@@ -214,6 +211,7 @@ class AdminController
 
         return ['filename' => $imageFileName, 'errors' => $errors];
     }
+
 
 
 

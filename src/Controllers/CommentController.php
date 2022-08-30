@@ -29,8 +29,7 @@ class CommentController extends AbstractController
      * @throws \Exception
      */
     public function dashboard(): void
-    {;
-
+    {
         $this->render('Admin/dashboard');
 //        require '../Views/Admin/listComment.php';
     }
@@ -74,15 +73,14 @@ class CommentController extends AbstractController
                     $_POST['title'],
                     Comment::PENDING,
                     $_POST['content'],
-                 "NOW",
-                  $user->getId(),
+                    "NOW",
+                    $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->addComment($comment);
-                header('Location: '. Router::generate("/articles")  );
+                header('Location: ' . Router::generate("/articles"));
                 exit();
             }
-
-            header('Location: '. Router::generate("/articles",    $_POST['articleId']));
+            header('Location:'. Router::generate("/articles".$_POST['articleId']));
             exit();
         }
     }
@@ -113,11 +111,11 @@ class CommentController extends AbstractController
                     $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->editComment($comment);
-                header('Location: ../articles');
+                header('Location: ' . Router::generate("/articles"));
                 exit();
             }
 
-            header('Location: ../article/s/'.$_POST['articleId']);
+            header('Location:'. Router::generate("/articles".$_POST['articleId']));
             exit();
                 }
             }
@@ -134,9 +132,13 @@ class CommentController extends AbstractController
 ////            die();
 //        } else {
         $this->commentManager->delete($comment);
-        header('Location: ../dashboard');
-//        }
+        header('Location: ' . Router::generate("/articles"));
+        exit();
     }
+
+
+
+
     /**
      * @throws \Exception
      */
