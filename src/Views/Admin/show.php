@@ -50,14 +50,14 @@ ob_start();
         </div>
     </div>
     <div class=" text-center">
-        <a href="../comments/<?= $article->getId() ?>"
-        <a href="<?= Router::generate('/comments/'.$article->getId()) ?>$article->getId() ?>"
+
+        <a href="<?= Router::generate('/comments/'.$article->getId()) ?>"
            class="btn btn-primary text-center text-white fw-bold mb-2"
            target="_blank">Voir commentaires</a>
 
     </div>
     <div class=" text-center">
-        <a href="../articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
+        <a href="<?= Router::generate('/articles/') ?>" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
     </div>
 <?php
 //var_dump(__DIR__);

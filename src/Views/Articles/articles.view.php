@@ -13,6 +13,8 @@
 
             <?php
 //            dd($article);
+            use App\Routing\Router;
+
             foreach ($articles as $article) {
             //var_dump($articles);
             //die();
@@ -23,21 +25,14 @@
 
 <!--//var_dump($articles);-->
 <!--//die();-->
-
                             <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
                                  alt="image">
-
                             <p class="card-text text-center fw-bold">
-                                <a href="articles/<?= $article->getId(); ?>" class="btn btn-primary">Voir</a>
+                                <a href="<?= Router::generate('/comments/'.$article->getId())  ?>" class="btn btn-primary">Voir</a>
                             </p>
-
                         </div>
-
                     </div>
-
-
                 </div>
             <?php } ?>
-
 </section>
 

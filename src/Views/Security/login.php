@@ -1,4 +1,7 @@
 <?php
+
+use App\Routing\Router;
+
 if (!empty($errors)):?>
     <div class=" m-3 fw-bold alert alert-danger">
         <?php foreach ($errors as $error): ?>
@@ -12,7 +15,7 @@ if (!empty($errors)):?>
         <div class="login px-5 py-2">
             <h1 class="text-secondary text-center m-2">S'identifier</h1>
 
-            <form class="form-bloc text-center " method="post" action=" ">
+            <form class="form-bloc text-center " method="post" action="<?= Router::generate('/login') ?>">
                 <div class="form-groupe ">
                     <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control"
                            name="email"

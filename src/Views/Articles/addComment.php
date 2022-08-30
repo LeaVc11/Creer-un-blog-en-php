@@ -30,8 +30,11 @@ if(!empty($errors)):?>
             <div class="col text-primary fw-bold">
                 <label for="content">Content: </label>
                 <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+
             </div>
+
         </div>
+
         <div class=" text-center m-5">
             <a href="../../../Public/index.php"
                class="btn btn-primary text-white text-center mb-2 w-100 rounded-1 border form-control" target="_blank">Retour</a>

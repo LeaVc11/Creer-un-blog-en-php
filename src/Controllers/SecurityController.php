@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use App\Models\Class\User;
 use App\models\Manager\UserManager;
+use App\Routing\Router;
 
 
 class SecurityController extends AbstractController
@@ -44,7 +45,7 @@ class SecurityController extends AbstractController
                 $errors[] = 'Le mot de passe est requis.';
             }
             // J'appel mon manager pour enregistrer en base l'utilisateur
-            // Je lui passe l'utilisateur que je souhaite ajouter en paramètre
+            // Je lui passe l'utilisateur que je souhaite ajouter en paramètrecomment
             $loggedUser = $this->userManager->login($email, $password);
 
             if ($loggedUser) {
@@ -54,15 +55,16 @@ class SecurityController extends AbstractController
 //            die();
                 $_SESSION['user'] = serialize($loggedUser);
                 if ($loggedUser->isAdmin()) {
-                    header('Location: ../admin/dashboard');
+                    header('Location: ' . Router::generate("/admin/dashboard"));
                     exit();
                 }
-                header('Location: ../articles');
-
+                header('Location:'. Router::generate("/articles"));
+                exit();
             } else {
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
             }
+
         }
         $this->render('Security/login');
     }
@@ -129,6 +131,6 @@ class SecurityController extends AbstractController
                 exit();
             }
         }
-        $this->render('register');
+        $this->render('Security/register');
     }
 }

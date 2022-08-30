@@ -7,16 +7,22 @@ session_start();
 //dd($_SERVER);
 $router = new Router($_GET['url']);
 $router->get('/', 'Home#index');
+//articles
 $router->get('/articles/', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
+//comments
 $router->get('/comments/', 'Comment#listComments');
 $router->get('/comments/:id', 'Comment#displayComments');
 $router->post('/comments/addComment','Comment#addComment');
+$router->post('/comments/editComment','Comment#editComment');
+//contact
 $router->get('/contact/','Contact#formContact');
+//security
 $router->get('/login/','Security#login');
 $router->get('/register/','Security#register');
 $router->get('/logout/','Security#logout');
-$router->get('/admin/dashboard/','Admin#dashboard');
+//admin
+$router->get('/admin/dashboard','Admin#dashboard');
 $router->post('/admin/addArticles/','Admin#addArticle');
 $router->get('/admin/editArticle/:id','Admin#editArticle');
 $router->get('/admin/deleteArticle/:id','Admin#deleteArticle');

@@ -1,5 +1,7 @@
 <?php
 //    var_dump($errors);
+use App\Routing\Router;
+
 if(!empty($errors)):?>
     <div class=" m-3 fw-bold alert alert-danger">
         <?php foreach($errors as $error):?>
@@ -10,6 +12,7 @@ if(!empty($errors)):?>
     <div class=" m-4 fw-bold " style="background : #f7f1e3">
 
     <h1 class="m-3 text-center text-primary">Modifier un commentaire</h1>
+    <form method="POST" action="admin/edit<?= Router::generate('/admin/editArticle/'.$_POST['articleId'])?>" enctype="multipart/form-data">
     <form method="POST" action="admin/edit<?= $comment->getId() ?>" enctype="multipart/form-data">
         <div class="row m-5">
             <div class="col text-primary fw-bold ">
@@ -30,18 +33,14 @@ if(!empty($errors)):?>
                 <label for="author">Auteur: </label>
                 <input type="text" class="form-control" id="author" name="author">
             </div>
-
         </div>
         <div class="row m-5">
             <div class="col text-primary fw-bold">
                 <label for="content">Content: </label>
                 <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
-
             </div>
-
         </div>
         <div class="row m-5">
-
             <div class="col text-primary fw-bold">
                 <label for="image_link">Image :</label>
                 <input type="file" class="form-control-file" id="image_link" name="image_link">
