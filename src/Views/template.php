@@ -1,3 +1,8 @@
+<?php
+
+use App\Routing\Router;
+
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -23,13 +28,13 @@
         <div class="collapse navbar-collapse  " id="navbarColor01">
             <ul class="navbar-nav w-100 d-flex justify-content-start ">
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= \App\Routing\Router::generate("/") ?>">Carine VINAGRE</a>
+                    <a class="nav-link " href="<?= Router::generate("/") ?>">Carine VINAGRE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= \App\Routing\Router::generate("/articles") ?>">Article</a>
+                    <a class="nav-link" href="<?= Router::generate("/articles") ?>">Article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=" <?= \App\Routing\Router::generate("/contact") ?>">Contact</a>
+                    <a class="nav-link" href=" <?= Router::generate("/contact") ?>">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav w-100 d-flex justify-content-end">
@@ -37,13 +42,13 @@
                     <?php
                     if (!isset($_SESSION['user'])) {
                         ?>
-                        <a class="text-decoration-none text-secondary" href="<?= \App\Routing\Router::generate("/login") ?>">Connexion</a> |
+                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/login") ?>">Connexion</a> |
 
-                        <a class="text-decoration-none text-secondary" href="<?= \App\Routing\Router::generate("/register") ?>">Inscription</a>
+                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/register") ?>">Inscription</a>
                         <?php
                     } else {
                         ?>
-                        <a class="text-decoration-none text-secondary" href="<?= \App\Routing\Router::generate("/logout") ?>">Déconnexion</a>
+                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/logout") ?>">Déconnexion</a>
                         <?php
                     }
                     ?>

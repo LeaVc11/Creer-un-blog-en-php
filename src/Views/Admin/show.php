@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Class\Article;
+use App\Routing\Router;
 
 ob_start();
 /** @var Article $article */
@@ -11,7 +12,7 @@ ob_start();
             <!--            --><?php
             //dd($article->getImageLink());
             //            ?>
-            <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
+            <img src="../Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">
             <h4><?= $article->getTitle(); ?>
@@ -49,7 +50,11 @@ ob_start();
         </div>
     </div>
     <div class=" text-center">
-        <a href="../comments/<?= $article->getId() ?>" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Voir commentaires</a>
+        <a href="../comments/<?= $article->getId() ?>"
+        <a href="<?= Router::generate('/comments/'.$article->getId()) ?>$article->getId() ?>"
+           class="btn btn-primary text-center text-white fw-bold mb-2"
+           target="_blank">Voir commentaires</a>
+
     </div>
     <div class=" text-center">
         <a href="../articles" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>

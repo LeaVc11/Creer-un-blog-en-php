@@ -1,4 +1,7 @@
 <?php
+
+use App\Routing\Router;
+
 ob_start();
 ?>
 <?php
@@ -14,7 +17,7 @@ if(!empty($errors)):?>
 
     <h1 class="m-3 text-center text-primary">Ajouter un article</h1>
 <!--    <form method="POST" action="/admin/add" enctype="multipart/form-data">-->
-    <form method="POST" action="<?= \App\Routing\Router::generate("/admin/addArticle") ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?= Router::generate("/admin/addArticle") ?>" enctype="multipart/form-data">
         <div class="row m-5">
             <div class="col text-primary fw-bold ">
                 <label for="title">Titre : </label>

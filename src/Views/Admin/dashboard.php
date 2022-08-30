@@ -15,6 +15,9 @@
         <th scope="col">Date de modification</th>
         <th scope="col">Auteur</th>
         <?php
+
+        use App\Routing\Router;
+
         if (isset($_SESSION['user'])) {
             echo('<th>Edition</th>');
         }
@@ -36,24 +39,16 @@
         <td><?= $article->getAuthor() ?></td>
         <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
         <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
-        <td>
-
-            <?php
-            //dd($article->getId());
-            ?>
-
-        </td>
 
     <td>
-        <?php
-        //var_dump($article->getId());
-        //die();
-        ?>
-        <a href="admin/edit<?= $article->getId(); ?>" class="btn btn-secondary"
+
+        <a href="<?= Router::generate('/admin/editArticle/'.$_POST['articleId'])?>" class="btn btn-secondary"
            role="button">Modifier</a>
     </td>
     <td>
-        <a href="admin/delete<?= $article->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+
+        <a href="<?= Router::generate('/admin/deleteArticle/'.$_POST['articleId']) ?>" class="btn btn-danger"
+           role="button">Supprimer</a>
     </td>
 
     <?php } ?>
@@ -95,16 +90,13 @@
         <td><?= $comment->getCreatedAt()->format('d/m/Y') ?>
         </td>
 
-
         <td>
-            <?php
-
-            ?>
-            <a href="article/add<?= $comment->getId(); ?>" class="btn btn-secondary"
+            <a href="<?= Router::generate('/comments/addComment/'.$_POST['articleId']) ?>" class="btn btn-secondary"
                role="button">Valider</a>
         </td>
         <td>
-            <a href="admin/delete<?= $comment->getId(); ?>" class="btn btn-danger" role="button">Supprimer</a>
+            <a href="<?= Router::generate('/admin/deleteComment/'.$_POST['articleId']) ?>" class="btn btn-secondary"
+               role="button">Supprimer</a>
         </td>
 
         <?php } ?>
