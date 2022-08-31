@@ -1,7 +1,19 @@
+<?php
+
+use App\Routing\Router;
+
+?>
+<!--Bienvenue-->
+Bonjour et bienvenue sur le blog <?php echo $_SESSION['user']; ?>
 
 <h2 class="text-secondary m-5 ">Articles</h2>
 <p class="lead">Administrez ici les articles du blog.</p>
+<?php
 
+if (isset($_SESSION['user'])) {
+    echo('<th>Edition</th>');
+}
+?>
 
 <table class="table text-center">
     <tr class="table-dark">
@@ -14,14 +26,7 @@
         <th scope="col">Date de création</th>
         <th scope="col">Date de modification</th>
         <th scope="col">Auteur</th>
-        <?php
 
-        use App\Routing\Router;
-
-        if (isset($_SESSION['user'])) {
-            echo('<th>Edition</th>');
-        }
-        ?>
     </tr>
     <div class="d-flex justify-content-end">
         <a href="admin/add" class="btn btn-warning  m-1">Ajouter</a>
@@ -71,6 +76,7 @@
         <th scope="col">Date de modification</th>
         <th scope="col">Auteur</th>
         <?php
+
         if (isset($_SESSION['user'])) {
             echo('<th>Edition</th>');
         }

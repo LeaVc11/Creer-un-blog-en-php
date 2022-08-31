@@ -1,3 +1,7 @@
+<?php
+//            dd($article);
+use App\Routing\Router;
+?>
 
 <section class="border-bottom mb-5">
     <div class="container m-5 pb-2">
@@ -12,19 +16,14 @@
 
 
             <?php
-//            dd($article);
-            use App\Routing\Router;
 
             foreach ($articles as $article) {
-            //var_dump($articles);
-            //die();
+//var_dump($articles);
+//die();
                 ?>
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body text-center">
-
-<!--//var_dump($articles);-->
-<!--//die();-->
                             <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
                                  alt="image">
                             <p class="card-text text-center fw-bold">
