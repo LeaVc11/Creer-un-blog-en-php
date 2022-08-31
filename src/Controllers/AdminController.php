@@ -30,7 +30,7 @@ class AdminController
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
-        $this->render('Admin/dashboard');
+        $this->render('Admin/dashboard.php');
 
 //        require '../Views/Admin/dashboard.php';
     }

@@ -22,9 +22,9 @@ $router->get('/login/','Security#login');
 $router->get('/register/','Security#register');
 $router->get('/logout/','Security#logout');
 //admin
-$router->get('/admin/dashboard','Admin#dashboard');
+$router->get('/dashboard','Admin#dashboard');
 $router->post('/admin/addArticles/','Admin#addArticle');
-$router->get('/admin/editArticle/:id','Admin#editArticle');
+$router->post('/admin/editArticle/:id','Admin#editArticle');
 $router->get('/admin/deleteArticle/:id','Admin#deleteArticle');
 $router->get('/admin/deleteComment/:id','Admin#deleteComment');
 try {
