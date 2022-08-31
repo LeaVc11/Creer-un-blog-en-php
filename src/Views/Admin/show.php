@@ -1,17 +1,13 @@
 <?php
 
-use App\Models\Class\Article;
 use App\Routing\Router;
 
-ob_start();
-/** @var Article $article */
 ?>
+
     <div class="row">
         <!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
         <div class="col-6 mt-5 text-center">
-            <!--            --><?php
-            //dd($article->getImageLink());
-            //            ?>
+
             <img src="../Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">

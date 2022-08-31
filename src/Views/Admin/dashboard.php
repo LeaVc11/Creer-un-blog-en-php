@@ -95,7 +95,7 @@
                role="button">Valider</a>
         </td>
         <td>
-            <a href="<?= Router::generate('/admin/deleteComment/'.$_POST['articleId']) ?>" class="btn btn-secondary"
+            <a href="<?= Router::generate('/comments/'.$_POST['articleId']) ?>" class="btn btn-secondary"
                role="button">Supprimer</a>
         </td>
 

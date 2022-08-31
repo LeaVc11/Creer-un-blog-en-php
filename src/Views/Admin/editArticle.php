@@ -1,11 +1,8 @@
-<?php
 
-use App\Routing\Router;
-
-ob_start();
-?>
 <?php
 //    var_dump($errors);
+use App\Routing\Router;
+
 if(!empty($errors)):?>
     <div class=" m-3 fw-bold alert alert-danger">
         <?php foreach($errors as $error):?>

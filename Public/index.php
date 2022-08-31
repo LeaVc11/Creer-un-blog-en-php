@@ -14,7 +14,7 @@ $router->get('/articles/:id', 'Articles#showArticle');
 $router->get('/comments/', 'Comment#listComments');
 $router->get('/comments/:id', 'Comment#displayComments');
 $router->post('/comments/addComment','Comment#addComment');
-$router->post('/comments/editComment','Comment#editComment');
+$router->post('/comments/editComment/:id','Comment#editComment');
 //contact
 $router->get('/contact/','Contact#formContact');
 //security

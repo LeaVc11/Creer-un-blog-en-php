@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use App\Models\Class\Article;
 use App\Models\Manager\ArticleManager;
+use App\Routing\Router;
 use DateTime;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -29,7 +30,9 @@ class AdminController
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
-        require '../Views/Admin/dashboard.php';
+        $this->render('Admin/dashboard');
+
+//        require '../Views/Admin/dashboard.php';
     }
 
     /**
@@ -65,12 +68,12 @@ class AdminController
                     new DateTime($_POST['updatedAt']));
 //                dd($article);
                 $this->articleManager->addArticles($article);
-                header('Location: dashboard');
+                header('Location: ' . Router::generate("/articles"));
                 exit();
             }
-        }
+        }            header('Location:'. Router::generate("/admin/addArticles/"));
+        exit();
 
-        require '../Views/Admin/add.php';
 
     }
 
@@ -86,9 +89,12 @@ class AdminController
 ////            die();
 //        } else {
         $this->articleManager->delete($article);
-        header('Location: ../dashboard');
-//        }
-    }
+        header('Location: ' . Router::generate("/admin/dashboard"));
+        exit();
+//        header('Location: ../dashboard');
+     }
+
+
 
     /**
      * @throws \Exception
@@ -132,13 +138,15 @@ class AdminController
 
                     $this->articleManager->editArticle($article);
 
-                    header('Location: ../dashboard');
+                    header('Location: ' . Router::generate("/admin/dashboard"));
                     exit();
                 }
             }
         }
-        require '../Views/admin/editArticle.php';
+        header('Location:'. Router::generate("/admin/editArticle/".$_POST['articleId']));
+        exit();
     }
+
 
     /**
      * @throws \Exception

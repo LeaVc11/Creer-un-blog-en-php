@@ -56,7 +56,7 @@ if(!empty($errors)):?>
         </div>
 
         <div class=" text-center m-5">
-            <a href="/admin/dashboard" class="btn btn-primary text-white text-center mb-2 w-100 rounded-1 border form-control" target="_blank">Retour</a>
+            <a href="<?= Router::generate('admin/dashboard')?>" class="btn btn-primary text-white text-center mb-2 w-100 rounded-1 border form-control" target="_blank">Retour</a>
             <button class="btn btn-primary text-white text-center w-100 rounded-1 border form-control"
                     type="submit">Valider
             </button>
