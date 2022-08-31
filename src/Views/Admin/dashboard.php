@@ -4,16 +4,11 @@ use App\Routing\Router;
 
 ?>
 <!--Bienvenue-->
-Bonjour et bienvenue sur le blog <?php echo $_SESSION['user']; ?>
+<h2 class="text-center fw-bold m-3">Bonjour et bienvenue sur le blog <?= $user->getUsername() ?></h2>
 
 <h2 class="text-secondary m-5 ">Articles</h2>
 <p class="lead">Administrez ici les articles du blog.</p>
-<?php
 
-if (isset($_SESSION['user'])) {
-    echo('<th>Edition</th>');
-}
-?>
 
 <table class="table text-center">
     <tr class="table-dark">
@@ -26,7 +21,12 @@ if (isset($_SESSION['user'])) {
         <th scope="col">Date de création</th>
         <th scope="col">Date de modification</th>
         <th scope="col">Auteur</th>
+        <?php
 
+        if (isset($_SESSION['user'])) {
+            echo('<th>Edition</th>');
+        }
+        ?>
     </tr>
     <div class="d-flex justify-content-end">
         <a href="admin/add" class="btn btn-warning  m-1">Ajouter</a>
@@ -47,12 +47,12 @@ if (isset($_SESSION['user'])) {
 
     <td>
 
-        <a href="<?= Router::generate('/admin/editArticle/'.$_POST['articleId'])?>" class="btn btn-secondary"
+        <a href="<?= Router::generate('/admin/editArticle/'.$article->getId())?>" class="btn btn-secondary"
            role="button">Modifier</a>
     </td>
     <td>
 
-        <a href="<?= Router::generate('/admin/deleteArticle/'.$_POST['articleId']) ?>" class="btn btn-danger"
+        <a href="<?= Router::generate('/admin/deleteArticle/'.$article->getId()) ?>" class="btn btn-danger"
            role="button">Supprimer</a>
     </td>
 
@@ -68,13 +68,11 @@ if (isset($_SESSION['user'])) {
     <tr class="table-dark">
     <tr>
         <th scope="col">Titre</th>
-        <th scope="col">Image</th>
-        <th scope="col">Chapô</th>
-        <th scope="col">Slug</th>
+        <th scope="col">Status</th>
         <th scope="col">Content</th>
-        <th scope="col">Date de création</th>
-        <th scope="col">Date de modification</th>
         <th scope="col">Auteur</th>
+        <th scope="col">Date de création</th>
+
         <?php
 
         if (isset($_SESSION['user'])) {
@@ -97,12 +95,11 @@ if (isset($_SESSION['user'])) {
         </td>
 
         <td>
-            <a href="<?= Router::generate('/comments/addComment/'.$_POST['articleId']) ?>" class="btn btn-secondary"
+            <a href="<?= Router::generate('/comments/addComment/')?>" class="btn btn-secondary"
                role="button">Valider</a>
         </td>
         <td>
-            <a href="<?= Router::generate('/comments/'.$_POST['articleId']) ?>" class="btn btn-secondary"
-               role="button">Supprimer</a>
+
         </td>
 
         <?php } ?>

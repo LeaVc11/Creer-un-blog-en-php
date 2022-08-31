@@ -8,6 +8,7 @@ use PDO;
 class CommentManager extends DbManager
 {
     private array $comments = [];
+    private array $listComments =[];
 
     /**
      * @throws \Exception
@@ -21,8 +22,6 @@ class CommentManager extends DbManager
 
         return $this->createdObjectComment($comment);
     }
-
-
     /**
      * @throws \Exception
      */
@@ -40,7 +39,6 @@ class CommentManager extends DbManager
 
         );
     }
-
     /**
      * @throws \Exception
      */
@@ -58,7 +56,6 @@ class CommentManager extends DbManager
         }
         return $this->comments;
     }
-
     /**
      *
      * @throws \Exception
@@ -83,7 +80,6 @@ class CommentManager extends DbManager
         }
         return $comment;
     }
-
     /**
      *
      * @throws \Exception
@@ -135,12 +131,13 @@ SET  title = :title,status = :status,content = :content,
  WHERE id = :id");
 
         $req->execute([
+            'id'=>$comment->getId(),
             'title' => $comment->getTitle(),
             'status' => $comment->getStatus(),
             'content' => $comment->getContent(),
-            'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
-            'createdBy' => $comment->getCreatedBy(),
-            'articleId' => $comment->getArticleId(),
+            'created_at' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
+            'created_by' => $comment->getCreatedBy(),
+            'article_id' => $comment->getArticleId(),
 
         ]);
     }
@@ -151,7 +148,6 @@ SET  title = :title,status = :status,content = :content,
 
         $req->execute(['id' => $comment->getId()]);
     }
-
     /**
      * @throws \Exception
      */
@@ -175,5 +171,32 @@ SET  title = :title,status = :status,content = :content,
 
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function findByStatusPending($status): ?Comment
+    {
+        $listComments = null;
+        $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE comment.status = PENDING");
+        $req->execute(['status = PENDING' => $status]);
+        $listCommentsFromBdd = $req->fetch();
+
+        if ($listCommentsFromBdd) {
+            $listComments = new Comment(
+                $listCommentsFromBdd['id'],
+                $listCommentsFromBdd['title'],
+                $listCommentsFromBdd['status'],
+                $listCommentsFromBdd['content'],
+                $listCommentsFromBdd['created_at'],
+                $listCommentsFromBdd['created_by'],
+                $listCommentsFromBdd['article_id']);
+        }
+        return  $listComments;
+
+        //findByStatusPending
+        //table comment
+        //req = where= status = pending
+        //return list Comment
+    }
 
 }

@@ -12,7 +12,7 @@ class CommentController extends AbstractController
 {
     private CommentManager $commentManager;
 
-    private  array $comments = [];
+    private array $comments = [];
 
 
     /**
@@ -33,6 +33,7 @@ class CommentController extends AbstractController
         $this->render('Admin/dashboard');
 //        require '../Views/Admin/listComment.php';
     }
+
     /**
      * @throws \Exception
      */
@@ -80,64 +81,10 @@ class CommentController extends AbstractController
                 header('Location: ' . Router::generate("/articles"));
                 exit();
             }
-            header('Location:'. Router::generate("/articles".$_POST['articleId']));
+            header('Location:' . Router::generate("/articles" . $_POST['articleId']));
             exit();
         }
     }
-
-    /**
-     * @throws \Exception
-     */
-    public function editComment($id): void
-    {
-        $errors = [];
-//        var_dump($id);
-//        die();
-
-        $comment = $this->commentManager->findById($id);
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $errors = $this->getErrors($id);
-//dd($errors);
-
-            if (count($errors) == 0) {
-                $user = unserialize($_SESSION['user']);
-                $comment = new Comment(null,
-                    $_POST['title'],
-                    Comment::PENDING,
-                    $_POST['content'],
-                    "NOW",
-                    $user->getId(),
-                    $_POST['articleId']);
-                $this->commentManager->editComment($comment);
-                header('Location: ' . Router::generate("/articles"));
-                exit();
-            }
-
-            header('Location:'. Router::generate("/articles".$_POST['articleId']));
-            exit();
-                }
-            }
-
-    /**
-     * @throws \Exception
-     */
-    public function deleteComment($id): void
-    {
-
-        $comment = $this->commentManager->findById($id);
-//        if (is_null($article)) {
-////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
-////            die();
-//        } else {
-        $this->commentManager->delete($comment);
-        header('Location: ' . Router::generate("/articles"));
-        exit();
-    }
-
-
-
 
     /**
      * @throws \Exception
@@ -155,12 +102,60 @@ class CommentController extends AbstractController
         }
         $comment = $this->commentManager->getByTitle($_POST['title']);
 
-        if (!is_null($comment) && $comment->getId() != null) {
+        if (!is_null($comment) && $comment->getId() != null && $id == null) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
 //        var_dump($errors);
 //        die();
 
         return $errors;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function editComment($id): void
+    {
+        $errors = [];
+//        var_dump($id);
+//        die();
+
+        $comment = $this->commentManager->findById($id);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $errors = $this->getErrors($id);
+//dd($errors);
+//            dd($comment, $_POST, $errors);
+            if (count($errors) == 0) {
+
+                $comment->setTitle($_POST['title']);
+                $comment->setContent($_POST['content']);
+                $this->commentManager->editComment($comment);
+                header('Location: ' . Router::generate("/articles"));
+                exit();
+            }
+
+            header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
+            exit();
+        } else {
+            $this->render('Comment/editComment', compact('comment'));
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function deleteComment($id): void
+    {
+
+        $comment = $this->commentManager->findById($id);
+//        if (is_null($article)) {
+////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
+////            die();
+//        } else {
+        $this->commentManager->delete($comment);
+        header('Location: ' . Router::generate("/articles"));
+        exit();
     }
 }

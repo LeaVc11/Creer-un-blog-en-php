@@ -6,6 +6,7 @@
             <th scope="col" >Contenu</th>
             <th scope="col">Date de création</th>
             <th scope="col">Auteur</th>
+            <th></th>
         </tr>
         <?php
 
@@ -18,8 +19,11 @@
                 <td><?= $comment->getContent() ?></td>
                 <td><?= $comment->getCreatedAt()->format('d/m/Y') ?></td>
                 <td><?= $comment->getCreatedBy() ?></td>
-
+                <td>     <a href="<?= Router::generate('/comments/editComment/'.$comment->getId()) ?>" class="btn btn-primary text-center text-white fw-bold mb-2"
+                            target="_blank">Modifier</a>
+                </td>
             </tr>
+
         <?php } ?>
     </table>
     <div class=" text-center">
@@ -27,8 +31,4 @@
            target="_blank">Retour</a>
     </div>
 </div>
-<?php
-//var_dump(__DIR__);
-require __DIR__ . '/../Comment/editComment.php';
 
-?>

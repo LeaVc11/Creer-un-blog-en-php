@@ -5,14 +5,16 @@ namespace App\Controllers;
 
 use App\Models\Class\Article;
 use App\Models\Manager\ArticleManager;
+use App\models\Manager\CommentManager;
 use App\Routing\Router;
 use DateTime;
 use JetBrains\PhpStorm\ArrayShape;
 
-class AdminController
+class AdminController extends AbstractController
 {
 
     private ArticleManager $articleManager;
+    private CommentManager $commentManager;
 
     /**
      * @throws \Exception
@@ -20,9 +22,11 @@ class AdminController
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
+        $this->commentManager = new CommentManager;
 
 //        dd($this->articleManager);
     }
+
 
     /**
      * @throws \Exception
@@ -30,9 +34,13 @@ class AdminController
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
-        $this->render('Admin/dashboard.php');
+        $comments = $this->commentManager->loadingComments();
+        $listComments = $this->commentManager->findByStatusPending($status);
+        $user = unserialize($_SESSION['user']);
+        $this->render('Admin/dashboard', compact('articles','comments','listComments', 'user'));
 
-//        require '../Views/Admin/dashboard.php';
+
+
     }
 
     /**
@@ -84,10 +92,7 @@ class AdminController
     {
 
         $article = $this->articleManager->findById($id);
-//        if (is_null($article)) {
-////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
-////            die();
-//        } else {
+
         $this->articleManager->delete($article);
         header('Location: ' . Router::generate("/admin/dashboard"));
         exit();
