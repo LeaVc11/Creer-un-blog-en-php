@@ -2,6 +2,9 @@
 //            dd($article);
 use App\Routing\Router;
 ?>
+<h2 class="text-center fw-bold m-5">Bienvenue sur le blog <span
+
+            class="text-decoration-underline"> <?= $user->getUsername() ?></span></h2>
 
 <section class="border-bottom mb-5">
     <div class="container m-5 pb-2">

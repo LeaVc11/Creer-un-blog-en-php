@@ -62,7 +62,7 @@ use App\Routing\Router;
 <?= $content ?>
 <!--section footer-->
 
-<footer class="bg-light text-center my-auto p-5 ">
+<footer class="bg-light text-center mt-5 p-5 ">
     <span class="mb-3 mb-md-0 text-muted text-decoration-none lh-1 fw-bold">Tout Droits réservés © 2022 Carine Vinagre</span>
     <div id="contact">
         <p> Si vous voulez me contacter, n'hésitez pas à m'envoyer un email à <a

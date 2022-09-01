@@ -151,7 +151,7 @@ SET  title = :title,status = :status,content = :content,
     /**
      * @throws \Exception
      */
-    public function findByArticle(int $id)
+    public function findByArticle(int $id): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE article_id = :article_id");
         $req->execute(['article_id' => $id]);
@@ -172,31 +172,23 @@ SET  title = :title,status = :status,content = :content,
     }
 
     /**
+     * @param $listcomment
      * @throws \Exception
      */
-    public function findByStatusPending($status): ?Comment
+    public function findByStatus($status): array
     {
-        $listComments = null;
-        $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE comment.status = PENDING");
-        $req->execute(['status = PENDING' => $status]);
-        $listCommentsFromBdd = $req->fetch();
+        $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE `status`= :status");
+        $req->execute(['status' => $status]);
+        $listComments = $req->fetchAll();
 
-        if ($listCommentsFromBdd) {
-            $listComments = new Comment(
-                $listCommentsFromBdd['id'],
-                $listCommentsFromBdd['title'],
-                $listCommentsFromBdd['status'],
-                $listCommentsFromBdd['content'],
-                $listCommentsFromBdd['created_at'],
-                $listCommentsFromBdd['created_by'],
-                $listCommentsFromBdd['article_id']);
+        foreach ($listComments as $listComment) {
+
+            $lc = $this->createdObjectComment($listComment);
+
+         $listComments[] = $lc;
         }
         return  $listComments;
 
-        //findByStatusPending
-        //table comment
-        //req = where= status = pending
-        //return list Comment
     }
 
 }

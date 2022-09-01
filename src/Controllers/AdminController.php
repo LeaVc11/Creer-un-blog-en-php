@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 use App\Models\Class\Article;
+use App\Models\Class\Comment;
 use App\Models\Manager\ArticleManager;
 use App\models\Manager\CommentManager;
 use App\Routing\Router;
@@ -34,10 +35,9 @@ class AdminController extends AbstractController
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
-        $comments = $this->commentManager->loadingComments();
-        $listComments = $this->commentManager->findByStatusPending($status);
+        $listComments = $this->commentManager->findByStatus(Comment::PENDING);
         $user = unserialize($_SESSION['user']);
-        $this->render('Admin/dashboard', compact('articles','comments','listComments', 'user'));
+        $this->render('Admin/dashboard', compact('articles','listComments', 'user'));
 
 
 

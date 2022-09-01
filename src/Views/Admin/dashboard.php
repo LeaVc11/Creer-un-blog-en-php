@@ -4,7 +4,7 @@ use App\Routing\Router;
 
 ?>
 <!--Bienvenue-->
-<h2 class="text-center fw-bold m-3">Bonjour et bienvenue sur le blog <span
+<h2 class="text-center fw-bold m-5">Bienvenue sur le blog <span
             class="text-decoration-underline"> <?= $user->getUsername() ?></span></h2>
 
 <h2 class=" text-center text-secondary m-5 ">Articles</h2>
@@ -30,13 +30,11 @@ use App\Routing\Router;
             ?>
         </tr>
         <div class="d-flex justify-content-end">
-            <a href="admin/add" class="btn btn-warning  m-1">Ajouter</a>
+            <a href="<?= Router::generate('/admin/addArticles/') ?>" class="btn btn-warning  m-1">Ajouter</a>
         </div>
         <tr>
             <?php
-            foreach ($articles
-
-            as $article) {
+            foreach ($articles as $article) {
             ?>
         <tr>
             <td><?= $article->getImageLink() ?></td>
@@ -85,26 +83,20 @@ use App\Routing\Router;
         </tr>
         <tr>
             <?php
-            //        var_dump($comments as $comment);
-            //        die();
-            foreach ($comments
-
-            as $comment) {
+            foreach ($listComments as $listComment) {
             ?>
         <tr>
-            <td><?= $comment->getTitle() ?></td>
-            <td><?= $comment->getStatus() ?></td>
-            <td><?= $comment->getContent() ?></td>
-            <td><?= $comment->getCreatedBy() ?></td>
-            <td><?= $comment->getCreatedAt()->format('d/m/Y') ?>
+            <td><?= $listComment->getTitle() ?></td>
+            <td><?= $listComment->getStatus() ?></td>
+            <td><?= $listComment->getContent() ?></td>
+            <td><?= $listComment->getCreatedBy() ?></td>
+            <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>
             </td>
-
             <td>
                 <a href="<?= Router::generate('/comments/addComment/') ?>" class="btn btn-secondary"
                    role="button">Valider</a>
-            </td>
-            <td>
-
+                <a href="<?= Router::generate('/admin/deleteComment/'.$comment->getId()) ?>" class="btn btn-secondary"
+                   role="button">Supprimer</a>
             </td>
 
             <?php } ?>
