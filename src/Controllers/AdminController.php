@@ -76,7 +76,7 @@ class AdminController extends AbstractController
                     new DateTime($_POST['updatedAt']));
 //                dd($article);
                 $this->articleManager->addArticles($article);
-                header('Location: ' . Router::generate("/articles"));
+                header('Location: ' . Router::generate("/admin/addArticles"));
                 exit();
             }
         }            header('Location:'. Router::generate("/admin/addArticles/"));
@@ -143,7 +143,8 @@ class AdminController extends AbstractController
 
                     $this->articleManager->editArticle($article);
 
-                    header('Location: ' . Router::generate("/admin/dashboard"));
+//                    header('Location: ' . Router::generate("/admin/dashboard"));
+                    header('Location: ' . Router::generate("/dashboard"));
                     exit();
                 }
             }

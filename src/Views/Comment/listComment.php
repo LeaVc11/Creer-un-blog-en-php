@@ -20,16 +20,19 @@
                 <td><?= $comment->getCreatedAt()->format('d/m/Y') ?></td>
                 <td><?= $comment->getCreatedBy() ?></td>
                 <td>     <a href="<?= Router::generate('/comments/editComment/'.$comment->getId()) ?>"
-                            class="btn btn-primary text-center text-white fw-bold mb-2"
-                            target="_blank">Modifier</a>
+                            class="btn btn-primary text-center text-white fw-bold mb">Modifier</a>
+
                 </td>
+
             </tr>
 
         <?php } ?>
     </table>
     <div class=" text-center">
-        <a href="<?= Router::generate('/articles/') ?>" class="btn btn-primary text-center text-white fw-bold mb-2"
-           target="_blank">Retour</a>
+        <a href="<?= Router::generate('/articles') ?>"
+           class="btn btn-primary text-center text-white fw-bold mb-2">Retour</a>
+        <a href="<?= Router::generate('/contact') ?>"
+           class="btn btn-warning text-center text-white fw-bold mb-2">Envoyer demande</a>
     </div>
 </div>
 

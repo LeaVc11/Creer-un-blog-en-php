@@ -18,7 +18,7 @@ if(!empty($errors)):?>
     <legend class="">Laisser un commentaire sur cet article</legend>
     <small class="text-muted text-center">Vous devez <a href="<?= Router::generate("/login") ?>">être connecté(e)</a> à votre compte utilisateur pour pouvoir laisser un commentaire.</small>
     </div>
-    <form method="POST" action="<?= Router::generate('/comments/addComments') ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?= Router::generate('/comments/addComment') ?>" enctype="multipart/form-data">
         <input type="hidden" name="articleId" value="<?= $article->getId() ?>">
         <div class="row m-5">
             <div class="col text-primary fw-bold">
@@ -40,9 +40,8 @@ if(!empty($errors)):?>
         <div class=" text-center m-5">
             <a href="<?= Router::generate('/articles') ?>"
                class="btn btn-primary text-white text-center mb-2 rounded-1 border ">Retour</a>
-            <button class="btn btn-warning text-dark text-center mb-2  rounded-1 border "
-                    type="submit">Valider
-            </button>
+            <button  class="btn btn-warning text-dark text-center mb-2  rounded-1 border "
+                    type="submit">Valider</button>
         </div>
     </form>
 </div>

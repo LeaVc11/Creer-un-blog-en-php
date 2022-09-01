@@ -78,7 +78,7 @@ class CommentController extends AbstractController
                     $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->addComment($comment);
-                header('Location: ' . Router::generate("/articles"));
+                header('Location: ' . Router::generate("/comments/". $_POST['articleId']));
                 exit();
             }
             header('Location:' . Router::generate("/articles" . $_POST['articleId']));
