@@ -48,12 +48,12 @@ use App\Routing\Router;
     <div class=" text-center">
 
         <a href="<?= Router::generate('/comments/'.$article->getId()) ?>"
-           class="btn btn-primary text-center text-white fw-bold mb-2"
-           target="_blank">Voir commentaires</a>
+           class="btn btn-secondary text-center text-white fw-bold mb-2"
+           >Voir commentaires</a>
 
     </div>
     <div class=" text-center">
-        <a href="<?= Router::generate('/articles/') ?>" class="btn btn-primary text-center text-white fw-bold mb-2" target="_blank">Retour</a>
+        <a href="<?= Router::generate('/articles') ?>" class="btn btn-primary text-center text-white fw-bold mb-2">Retour</a>
     </div>
 <?php
 //var_dump(__DIR__);

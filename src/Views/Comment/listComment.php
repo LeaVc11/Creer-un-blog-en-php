@@ -19,7 +19,8 @@
                 <td><?= $comment->getContent() ?></td>
                 <td><?= $comment->getCreatedAt()->format('d/m/Y') ?></td>
                 <td><?= $comment->getCreatedBy() ?></td>
-                <td>     <a href="<?= Router::generate('/comments/editComment/'.$comment->getId()) ?>" class="btn btn-primary text-center text-white fw-bold mb-2"
+                <td>     <a href="<?= Router::generate('/comments/editComment/'.$comment->getId()) ?>"
+                            class="btn btn-primary text-center text-white fw-bold mb-2"
                             target="_blank">Modifier</a>
                 </td>
             </tr>

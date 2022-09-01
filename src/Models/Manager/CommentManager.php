@@ -179,16 +179,16 @@ SET  title = :title,status = :status,content = :content,
     {
         $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE `status`= :status");
         $req->execute(['status' => $status]);
-        $listComments = $req->fetchAll();
-
-        foreach ($listComments as $listComment) {
-
-            $lc = $this->createdObjectComment($listComment);
-
-         $listComments[] = $lc;
+        $result = $req->fetchAll();
+        $listComments = [];
+        foreach ($result as $comment) {
+            $commentObject = $this->createdObjectComment($comment);
+            $listComments[] = $commentObject;
         }
-        return  $listComments;
+        return $listComments;
 
     }
+
+
 
 }

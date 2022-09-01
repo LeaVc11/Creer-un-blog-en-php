@@ -26,7 +26,8 @@ class SecurityController extends AbstractController
     public function login(): void
     {
         if (!empty($_SESSION['email'])) {
-            header('Location: article.php');
+            header('Location:'. Router::generate("/articles"));
+            exit();
         }
         if (!empty($_POST)) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -85,7 +86,6 @@ class SecurityController extends AbstractController
         if (!empty($_POST)) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             extract($post);
-
             $errors = [];
 
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -127,7 +127,9 @@ class SecurityController extends AbstractController
                 $this->userManager->register($user);
 
 // Mon utilisateur est enregistré, je redirige donc vers le login
-                header('Location: ../security/login');
+//                header('Location: ../security/login');
+
+                header('Location:'. Router::generate("/login"));
                 exit();
             }
         }

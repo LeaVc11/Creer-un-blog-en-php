@@ -2,11 +2,8 @@
 //            dd($article);
 use App\Routing\Router;
 ?>
-<h2 class="text-center fw-bold m-5">Bienvenue sur le blog <span
 
-            class="text-decoration-underline"> <?= $user->getUsername() ?></span></h2>
-
-<section class="border-bottom mb-5">
+<section class="border-bottom mb-5 text-center">
     <div class="container m-5 pb-2">
         <p class="card-text text-center text-primary fw-bold">Mes projets réalisés lors de ma formation de Développeur
             d'application
@@ -30,7 +27,7 @@ use App\Routing\Router;
                             <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
                                  alt="image">
                             <p class="card-text text-center fw-bold">
-                                <a href="<?= Router::generate('/comments/'.$article->getId())  ?>" class="btn btn-primary">Voir</a>
+                                <a href="<?= Router::generate('/articles/'.$article->getId())  ?>" class="btn btn-primary">Voir</a>
                             </p>
                         </div>
                     </div>

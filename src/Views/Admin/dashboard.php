@@ -30,7 +30,7 @@ use App\Routing\Router;
             ?>
         </tr>
         <div class="d-flex justify-content-end">
-            <a href="<?= Router::generate('/admin/addArticles/') ?>" class="btn btn-warning  m-1">Ajouter</a>
+            <a href="<?= Router::generate('/admin/addArticles') ?>" class="btn btn-warning  m-1">Ajouter</a>
         </div>
         <tr>
             <?php
@@ -93,9 +93,9 @@ use App\Routing\Router;
             <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>
             </td>
             <td>
-                <a href="<?= Router::generate('/comments/addComment/') ?>" class="btn btn-secondary"
+                <a href="<?= Router::generate('/comments/addComment/') ?>" class="btn btn-primary"
                    role="button">Valider</a>
-                <a href="<?= Router::generate('/admin/deleteComment/'.$comment->getId()) ?>" class="btn btn-secondary"
+                <a href="<?= Router::generate('/admin/deleteComment/'.$listComment->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
 

@@ -32,7 +32,7 @@ if (!empty($errors)):?>
             </div>
             <div class=" text-center">
                 <a href="<?= Router::generate('/comments/' . $comment->getArticleId()) ?>"
-                   class="btn btn-primary text-white text-center mb-2 rounded-1 border " target="_blank">Retour</a>
+                   class="btn btn-primary text-white text-center mb-2 rounded-1 border ">Retour</a>
                 <button class="btn btn-warning text-dark text-center mb-2  rounded-1 border "
                         type="submit">Valider
                 </button>
