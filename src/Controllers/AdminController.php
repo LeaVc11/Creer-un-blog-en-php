@@ -42,7 +42,7 @@ class AdminController extends AbstractController
      * @return void
      * @throws \Exception
      */
-    public function addArticles(): void
+    public function addArticle(): void
     {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -62,7 +62,6 @@ class AdminController extends AbstractController
                     $imageFileName,
                     $_POST['chapo'],
                     $_POST['title'],
-                    $_POST['title'],
                     $_POST['content'],
                     $_POST['author'],
                     $_POST['slug'],
@@ -70,12 +69,11 @@ class AdminController extends AbstractController
                     new DateTime($_POST['updatedAt']));
 //                dd($article);
                 $this->articleManager->addArticles($article);
-                header('Location: ' . Router::generate("/articles/" . $_POST['articleId']));
+                header('Location: ' . Router::generate("//dashboard"));
                 exit();
             }
         }
-        header('Location:' . Router::generate("/articles" . $_POST['articleId']));
-        exit();
+     $this->render("Admin/add");
     }
 
     /**
@@ -155,7 +153,7 @@ class AdminController extends AbstractController
      */
     public function deleteArticle($id): void
     {
-
+//dd(1);
         $article = $this->articleManager->findById($id);
 
         $this->articleManager->delete($article);
@@ -171,12 +169,13 @@ class AdminController extends AbstractController
         $errors = [];
 //        var_dump($id);
 //        die();
+
         $article = $this->articleManager->findById($id);
+//    dd($article);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = $this->getFormErrors($id);
 //dd($errors);
             if (count($errors) == 0) {
-
                 if ($_FILES['image_link']['size'] != 0) {
 
                     $upload = $this->uploadImage();
@@ -201,11 +200,12 @@ class AdminController extends AbstractController
                 }
                 header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
                 exit();
-            } else {
-                $this->render('Admin/editArticle', compact('article'));
             }
+
+            }
+        $this->render('Admin/editArticle', compact('article'));
         }
-    }
+
 }
 
 

@@ -17,7 +17,6 @@ class ArticlesController extends AbstractController
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
-        $this->articleManager->loadingArticles();
     }
 
     /**
