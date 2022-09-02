@@ -65,7 +65,10 @@ class SecurityController extends AbstractController
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
             }
-            $_SESSION['errors'] = 'tEST';
+            $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
+
+            header('Location:'. Router::generate("/login"));
+            exit();
         }
         $this->render('Security/login');
     }
@@ -73,7 +76,9 @@ class SecurityController extends AbstractController
         //Détruit la session
         session_destroy();
         // Redirige l'utilisateur vers la page de login
-        header('Location: /login');
+        header('Location:'. Router::generate("/login"));
+        exit();
+
     }
     /**
      * @return void

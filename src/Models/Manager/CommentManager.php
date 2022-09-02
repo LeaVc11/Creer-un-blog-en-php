@@ -139,7 +139,7 @@ SET  title = :title,status = :status,content = :content,
         ]);
     }
 
-    public function delete(Comment $comment)
+    public function deleteComment(Comment $comment)
     {
         $req = $this->getBdd()->prepare('DELETE FROM `comment` WHERE id = :id');
 

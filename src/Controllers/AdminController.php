@@ -44,15 +44,13 @@ class AdminController extends AbstractController
      */
     public function addArticle(): void
     {
-        $errors = [];
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $imageFileName = null;
             $errors = $this->getFormErrors();
             $upload = $this->uploadImage();
             $errors = array_merge($errors, $upload['errors']);
             $imageFileName = $upload['filename'];
+
             if (count($errors) == 0) {
                 $article = new Article(null,
                     $imageFileName,
@@ -61,8 +59,9 @@ class AdminController extends AbstractController
                     $_POST['content'],
                     $_POST['author'],
                     $_POST['slug'],
-                    new DateTime($_POST['createdAt']),
-                    new DateTime($_POST['updatedAt']));
+                    new DateTime(),
+                    new DateTime()
+                );
 
                 $this->articleManager->addArticle($article);
 
@@ -80,7 +79,7 @@ class AdminController extends AbstractController
         $article = $this->articleManager->findById($id);
 
         $this->articleManager->delete($article);
-        header('Location: ' . Router::generate("/admin/dashboard"));
+        header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
     /**
@@ -88,7 +87,6 @@ class AdminController extends AbstractController
      */
     public function editArticle($id): void
     {
-        $errors = [];
         $article = $this->articleManager->findById($id);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = $this->getFormErrors($id);
@@ -108,8 +106,8 @@ class AdminController extends AbstractController
                         $_POST['content'],
                         $_POST['author'],
                         $_POST['slug'],
-                        new DateTime($_POST['created_at']),
-                        new DateTime($_POST['updated_at']));
+                        new DateTime(),
+                        new DateTime());
                     $this->articleManager->editArticle($article);
                     header('Location:' . Router::generate("/articles"));
                 }
@@ -128,36 +126,37 @@ class AdminController extends AbstractController
     {
         $errors = [];
         if (empty($_POST['title'])) {
-            $errors[] .= 'Veuillez saisir un titre';
+            $errors[] = 'Veuillez saisir un titre';
+            $article = $this->articleManager->getByTitle($_POST['title']);
+
+            if (!is_null($article) && $article->getId() != $id) {
+                $errors[] = 'Un article avec ce titre existe déjà !';
+            }
         }
+
         if (empty($_POST['chapo'])) {
-            $errors[] .= 'Veuillez saisir un chapo';
+            $errors[] = 'Veuillez saisir un chapo';
         }
 
         if (empty($_POST['content'])) {
-            $errors[] .= 'Veuillez saisir du contenu';
+            $errors[] = 'Veuillez saisir du contenu';
         }
 
         if (empty($_POST['author'])) {
-            $errors[] .= 'Veuillez saisir un auteur';
+            $errors[] = 'Veuillez saisir un auteur';
         }
 
         if (empty($_POST['slug'])) {
-            $errors[] .= 'Veuillez saisir un slug';
+            $errors[] = 'Veuillez saisir un slug';
         }
 
-        $article = $this->articleManager->getByTitle($_POST['title']);
-
-        if (!is_null($article) && $article->getId() != $id) {
-            $errors[] = 'Un article avec ce titre existe déjà !';
-        }
-//        var_dump($errors);
-//        die();
+        $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
 
         return $errors;
     }
 
-    #[ArrayShape(['filename' => "null|string", 'errors' => "array"])] private function uploadImage(): array
+    #[ArrayShape(['filename' => "null|string", 'errors' => "array"])]
+    private function uploadImage(): array
     {
         $extensionAllowed = ['image/jpeg', 'image/png'];
         $errors = [];
@@ -176,7 +175,7 @@ class AdminController extends AbstractController
             if (count($errors) == 0) {
                 $imageFileName = uniqid() . '.' . explode('/', $image['type'])[1];
 
-                move_uploaded_file($image['tmp_name'], realpath('Public/uploads/') . "AdminController.php/" . $imageFileName);
+                move_uploaded_file($image['tmp_name'], realpath(__DIR__ . '/../../Public/uploads/') . $imageFileName);
             }
         }
         return ['filename' => $imageFileName, 'errors' => $errors];

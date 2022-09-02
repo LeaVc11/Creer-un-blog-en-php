@@ -11,7 +11,7 @@ use App\Routing\Router;
         <div class="row m-5">
             <div class="col text-primary fw-bold ">
                 <label for="title">Titre : </label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title" value="<?= $article->getTitle() ?>">
             </div>
             <div class="col text-primary fw-bold ">
                 <label for="chapo">Chapô : </label>

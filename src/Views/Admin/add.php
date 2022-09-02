@@ -8,7 +8,7 @@ use App\Routing\Router;
 
         <h1 class="mt-5 text-center text-primary">Ajouter un article</h1>
 
-        <form method="POST" action="<?= Router::generate("/admin/addArticles") ?>" enctype="multipart/form-data">
+        <form method="POST"  enctype="multipart/form-data">
             <div class="row m-5">
                 <div class="col text-primary fw-bold ">
                     <label for="title">Titre : </label>

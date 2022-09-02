@@ -49,12 +49,11 @@ use App\Routing\Router;
             <td>
                 <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-secondary"
                    role="button">Modifier</a>
-            </td
+            </td>
             <td>
-                <a href="<?= Router::generate('/admin/deleteArticle/')?>" class="btn btn-danger"
+                <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
-
             <?php } ?>
         </tr>
     </table>

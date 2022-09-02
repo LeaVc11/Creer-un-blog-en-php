@@ -48,7 +48,7 @@ use App\Routing\Router;
                         <?php
                     } else {
                         ?>
-                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/logout") ?>">Déconnexion</a>
+                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/logout") ?>">Déconnexion</a> |
                         <a class="text-decoration-none text-secondary" href="<?= Router::generate("/dashboard") ?>">Liste</a>
 
                         <?php
@@ -60,6 +60,16 @@ use App\Routing\Router;
         </div>
     </div>
 </nav>
+<div>
+    <?php
+    if (!empty($_SESSION['flash'])) {
+        foreach($_SESSION['flash'] as $flash) {
+             echo "<div class='alert alert-primary'>$flash</div>";
+        }
+        $_SESSION['flash'] = [];
+    }
+    ?>
+</div>
 
 <?= $content ?>
 <!--section footer-->

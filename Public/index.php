@@ -4,7 +4,9 @@ use App\Routing\Router;
 
 require '../vendor/autoload.php';
 session_start();
-//dd($_SERVER);
+
+$_SESSION['flash'] = [];
+
 $router = new Router($_GET['url']);
 $router->get('/', 'Home#index');
 //articles
@@ -39,7 +41,7 @@ $router->get('/admin/editArticle/:id','Admin#editArticle');
 $router->post('/admin/editArticle/:id','Admin#editArticle');
 
 $router->get('/admin/deleteArticle/:id','Admin#deleteArticle');
-$router->get('/admin/deleteComment/:id','Admin#deleteComment');
+$router->get('/admin/deleteComment/:id','Comment#deleteComment');
 
 try {
     $router->run();
