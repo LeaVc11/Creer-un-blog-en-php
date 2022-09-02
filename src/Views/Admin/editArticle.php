@@ -2,17 +2,11 @@
 <?php
 //    var_dump($errors);
 use App\Routing\Router;
+?>
+<div class="container">
+    <div class=" m-4 fw-bold " >
 
-if(!empty($errors)):?>
-    <div class=" m-3 fw-bold alert alert-danger">
-        <?php foreach($errors as $error):?>
-            <p><?=$error;?></p>
-        <?php endforeach;?>
-    </div>
-<?php endif;?>
-    <div class=" m-4 fw-bold " style="background : #f7f1e3">
-
-    <h1 class="m-3 text-center text-primary">Modifier un article</h1>
+    <h1 class="mt-5 text-center text-primary">Modifier un article</h1>
     <form method="POST" action="<?= Router::generate('/admin/editArticle/'. $article->getId()) ?>" enctype="multipart/form-data">
         <div class="row m-5">
             <div class="col text-primary fw-bold ">
@@ -33,7 +27,6 @@ if(!empty($errors)):?>
                 <label for="author">Auteur: </label>
                 <input type="text" class="form-control" id="author" name="author">
             </div>
-
         </div>
         <div class="row m-5">
             <div class="col text-primary fw-bold">
@@ -41,7 +34,6 @@ if(!empty($errors)):?>
                 <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
 
             </div>
-
         </div>
         <div class="row m-5">
 
@@ -58,3 +50,4 @@ if(!empty($errors)):?>
             </button>
         </div>
     </form>
+    </div>

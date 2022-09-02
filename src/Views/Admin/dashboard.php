@@ -4,11 +4,11 @@ use App\Routing\Router;
 
 ?>
 <!--Bienvenue-->
-<h2 class="text-center fw-bold m-5">Bienvenue sur le blog <span
-            class="text-decoration-underline"> <?= $user->getUsername() ?></span></h2>
+<h1 class="text-center fw-bold m-5">Bienvenue sur le blog <span
+            class="text-decoration-underline"> <?= $user->getUsername() ?></span></h1>
 
-<h2 class=" text-center text-secondary m-5 ">Articles</h2>
-<p class=" text-center lead">Administrez ici les articles du blog.</p>
+<h2 class=" text-center text-danger text-decoration-underline fw-bold m-5"> Articles</h2>
+<p class=" text-center fw-bold lead">Administrez ici les articles du blog.</p>
 
 <div class="container">
     <table class="table text-center">
@@ -40,18 +40,18 @@ use App\Routing\Router;
         <tr>
             <td><?= $article->getTitle() ?></td>
             <td><?= $article->getImageLink() ?></td>
+            <td><?= $article->getSlug() ?></td>
             <td><?= $article->getChapo() ?></td>
             <td><?= $article->getContent() ?></td>
-            <td><?= $article->getSlug() ?></td>
             <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
             <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
             <td><?= $article->getAuthor() ?></td>
             <td>
                 <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-secondary"
                    role="button">Modifier</a>
-            </td>
+            </td
             <td>
-                <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>" class="btn btn-danger"
+                <a href="<?= Router::generate('/admin/deleteArticle/')?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
 
@@ -59,8 +59,8 @@ use App\Routing\Router;
         </tr>
     </table>
 </div>
-<h2 class="text-center text-secondary m-5 ">Commentaires</h2>
-<p class="text-center lead">Administrez ici les commentaires de l'articles.</p>
+<h2 class="text-center text-danger fw-bold text-decoration-underline m-5 ">Commentaires</h2>
+<p class="text-center fw-bold lead">Administrez ici les commentaires de l'articles.</p>
 
 <div class="container">
     <table class="table text-center">

@@ -58,11 +58,6 @@ class ArticleManager extends DbManager
         );
     }
 
-    /**
-     * @param Article $article
-     * @return void
-     */
-
 
     /**
      * @param int $id
@@ -131,9 +126,7 @@ SET image_link = :imageLink, chapo = :chapo,
         $query = $this->getBdd()->prepare("SELECT * FROM articles WHERE id = :id");
         $query->execute(['id' => $id]);
         $articleFromBdd = $query->fetch();
-
         if ($articleFromBdd) {
-
             $article = new Article(
                 $articleFromBdd['id'],
                 $articleFromBdd['image_link'],

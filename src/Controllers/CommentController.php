@@ -113,11 +113,11 @@ class CommentController extends AbstractController
      */
     public function deleteComment($id): void
     {
-        dd(1);
+
         $comment = $this->commentManager->findById($id);
 
         $this->commentManager->delete($comment);
-        header('Location: ' . Router::generate("/comments"));
+        header('Location: ' . Router::generate("/admin/dashboard"));
         exit();
     }
     /**
