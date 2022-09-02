@@ -8,7 +8,6 @@ use PDO;
 class CommentManager extends DbManager
 {
     private array $comments = [];
-    private array $listComments =[];
 
     /**
      * @throws \Exception
@@ -172,7 +171,7 @@ SET  title = :title,status = :status,content = :content,
     }
 
     /**
-     * @param $listcomment
+     * @param
      * @throws \Exception
      */
     public function findByStatus($status): array

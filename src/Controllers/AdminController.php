@@ -176,9 +176,7 @@ class AdminController extends AbstractController
             $errors = $this->getFormErrors($id);
 //dd($errors);
             if (count($errors) == 0) {
-//                dd($_FILES['uploads']['size'] != 0);
-//                var_dump($_FILES['uploads']['size'] != 0);
-//                die();
+
                 if ($_FILES['image_link']['size'] != 0) {
 
                     $upload = $this->uploadImage();
@@ -198,8 +196,8 @@ class AdminController extends AbstractController
                         new DateTime($_POST['created_at']),
                         new DateTime($_POST['updated_at']));
                     $this->articleManager->editArticle($article);
-                    header('Location: ' . Router::generate("/admin/dashboard"));
-//                    header('Location:' . Router::generate("/articles"));
+//                    header('Location: ' . Router::generate("/admin/editArticle"));
+                    header('Location:' . Router::generate("/articles"));
                 }
                 header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
                 exit();

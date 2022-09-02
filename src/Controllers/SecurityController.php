@@ -65,15 +65,15 @@ class SecurityController extends AbstractController
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
             }
-
         }
         $this->render('Security/login');
     }
     public function logout(){
+        //Détruit la session
         session_destroy();
-        header('Location: login');
+        // Redirige l'utilisateur vers la page de login
+        header('Location: /login');
 
-        $this->render('logout');
     }
 
     /**

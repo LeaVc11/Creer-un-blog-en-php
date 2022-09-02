@@ -26,7 +26,7 @@ class ArticleManager extends DbManager
      */
     public function loadingArticles(): array
     {
-        $req = $this->getBdd()->prepare("SELECT * FROM articles ORDER BY created_at ASC ");
+        $req = $this->getBdd()->prepare("SELECT * FROM articles  ");
         $req->execute();
         $articles = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();

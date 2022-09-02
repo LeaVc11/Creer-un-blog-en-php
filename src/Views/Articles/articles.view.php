@@ -27,7 +27,8 @@ use App\Routing\Router;
                             <img src="Public/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-5 p-3"
                                  alt="image">
                             <p class="card-text text-center fw-bold">
-                                <a href="<?= Router::generate('/articles/'.$article->getId())  ?>" class="btn btn-primary">Voir</a>
+                                <a href="<?= Router::generate('/articles/'.$article->getId())  ?>"
+                                   class="btn btn-primary">Voir</a>
                             </p>
                         </div>
                     </div>
