@@ -10,10 +10,11 @@ use App\Routing\Router;
             <img src="../Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
         </div>
         <div class="col-6 mt-5 p-5 text-center fw-bold ">
-            <h4><?= $article->getTitle(); ?>
+            <h3 class=" text-success mb-4"><?= $article->getTitle(); ?></h3>
+            <p><?= $article->getSlug(); ?></p>
                 <div class="container mt-5">
                     <div class="row mt-2">
-                        <div class="col-md">
+                        <div class="col-md mb-2">
                             Auteur :
                         </div>
                         <div class="col-md text-success">
@@ -21,7 +22,7 @@ use App\Routing\Router;
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md">
+                        <div class="col mb-2">
                             Ecrit le :
                         </div>
                         <div class="col-md">

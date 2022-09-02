@@ -65,8 +65,6 @@ class CommentManager extends DbManager
         $query = $this->getBdd()->prepare("SELECT * FROM comment WHERE id = :id");
         $query->execute(['id' => $id]);
         $commentFromBdd = $query->fetch();
-
-
         if ($commentFromBdd) {
             $comment = new Comment(
                 $commentFromBdd['id'],

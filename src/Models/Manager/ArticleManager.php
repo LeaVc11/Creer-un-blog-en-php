@@ -30,15 +30,12 @@ class ArticleManager extends DbManager
         $req->execute();
         $articles = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
-
-//        dd($articles);
         foreach ($articles as $article) {
             $a = $this->createdObjectArticle($article);
             $this->articles[] = $a;
         }
         return $this->articles;
     }
-
     /**
      * @param array $article
      *
@@ -48,8 +45,6 @@ class ArticleManager extends DbManager
      */
     private function createdObjectArticle(array $article): Article
     {
-//var_dump($article);
-//die();
         return new Article(
             $article['id'],
             $article['image_link'],
@@ -85,16 +80,11 @@ class ArticleManager extends DbManager
 
         return $this->createdObjectArticle($article);
     }
-
-    public function addArticles(Article $article)
+    public function addArticle(Article $article)
     {
-
         $req = $this->getBdd()->prepare("INSERT INTO `articles`
     (`image_link`,`chapo`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
     VALUE (:image_link,:chapo, :content, :title, :author, :slug, :created_at, :updated_at )");
-//        var_dump($article->getUpdatedAt()->format('Y-m-d H:i:s'));
-//        die();
-
         $req->execute([
             'image_link' => $article->getImageLink(),
             'chapo' => $article->getChapo(),
@@ -106,7 +96,6 @@ class ArticleManager extends DbManager
             'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
         ]);
     }
-
     public function editArticle(Article $article)
     {
         $req = $this->getBdd()->prepare("UPDATE `articles`
@@ -125,18 +114,14 @@ SET image_link = :imageLink, chapo = :chapo,
             'slug' => $article->getSlug(),
             'created_at' => $article->getCreatedAt()->format('Y-m-d '),
             'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
-
         ]);
     }
-
     public function delete(Article $article)
     {
         $req = $this->getBdd()->prepare('DELETE FROM `articles` WHERE id = :id');
 
         $req->execute(['id' => $article->getId()]);
     }
-
-
     /**
      * @throws Exception
      */
