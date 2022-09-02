@@ -51,8 +51,7 @@ if(!empty($errors)):?>
             </div>
         </div>
         <div class=" text-center">
-            <a href="<?= Router::generate('admin/dashboard')?>"
-<!--            <a href="--><?//= Router::generate('/articles')?><!--"-->
+            <a href="<?= Router::generate('/articles')?>"
                class="btn btn-primary text-white text-center mb-2 w-100 rounded-1 border form-control">Retour</a>
             <button class="btn btn-primary text-white text-center w-100 rounded-1 border form-control"
                     type="submit">Valider

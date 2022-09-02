@@ -16,8 +16,8 @@ if(!empty($errors)):?>
     <div class=" m-4 fw-bold " style="background : #f7f1e3">
 
     <h1 class="m-3 text-center text-primary">Ajouter un article</h1>
-<!--    <form method="POST" action="/admin/add" enctype="multipart/form-data">-->
-    <form method="POST" action="<?= Router::generate("/admin/addArticle") ?>" enctype="multipart/form-data">
+
+    <form method="POST" action="<?= Router::generate("/admin/addArticles") ?>" enctype="multipart/form-data">
         <div class="row m-5">
             <div class="col text-primary fw-bold ">
                 <label for="title">Titre : </label>
@@ -43,9 +43,7 @@ if(!empty($errors)):?>
             <div class="col text-primary fw-bold">
                 <label for="content">Content: </label>
                 <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
-
             </div>
-
         </div>
         <div class="row m-5">
 
@@ -54,7 +52,6 @@ if(!empty($errors)):?>
                 <input type="file" class="form-control-file" id="image_link" name="image_link">
             </div>
         </div>
-
         <div class=" text-center">
             <a href="<?= Router::generate('admin/dashboard')?>"
                class="btn btn-primary text-white text-center mb-2 rounded-1 border ">Retour</a>
@@ -62,7 +59,6 @@ if(!empty($errors)):?>
                     type="submit">Valider
             </button>
         </div>
-
     </form>
 
 

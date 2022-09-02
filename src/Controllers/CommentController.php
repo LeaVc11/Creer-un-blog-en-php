@@ -31,7 +31,6 @@ class CommentController extends AbstractController
     public function dashboard(): void
     {
         $this->render('Admin/dashboard');
-//        require '../Views/Admin/listComment.php';
     }
 
     /**
@@ -85,7 +84,6 @@ class CommentController extends AbstractController
             exit();
         }
     }
-
     /**
      * @throws \Exception
      */
@@ -150,12 +148,10 @@ class CommentController extends AbstractController
     {
 
         $comment = $this->commentManager->findById($id);
-//        if (is_null($article)) {
-////            var_dump('Tu n\'as pas le droit de faire ça utilise un lien !');
-////            die();
-//        } else {
+
         $this->commentManager->delete($comment);
         header('Location: ' . Router::generate("/articles"));
         exit();
     }
+
 }

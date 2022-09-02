@@ -32,6 +32,9 @@ use App\Routing\Router;
                         </div>
                     </div>
                 </div>
+
             <?php } ?>
+
+
 </section>
 

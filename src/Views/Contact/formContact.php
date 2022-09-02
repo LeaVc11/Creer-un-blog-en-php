@@ -3,7 +3,14 @@
 use App\Routing\Router;
 
 ?>
-
+<?php
+if (!empty($errors)):?>
+    <div class=" m-3 fw-bold alert alert-danger">
+        <?php foreach ($errors as $error): ?>
+            <p><?= $error; ?></p>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
 <section class="d-flex justify-content-center align-content-center w-100 h-100 m-3 p-3 " id="contact">
     <div class="card shadow  p-4 rounded d-flex justify-content-center  ">
 
@@ -25,10 +32,9 @@ use App\Routing\Router;
                 <div class="input-group-prepend mb-3"></div>
                 <textarea class="form-control" aria-label="Message" placeholder="Votre message"></textarea>
 
-                <button class=" button-sub hover-overlay text-dark border border-2 btn btn-outline-warning  fw-bold mt-2  " type="submit">Envoyer</button>
-<!--                <input class=" button-sub hover-overlay text-dark border border-2 btn btn-outline-warning  fw-bold mt-2  "-->
-<!--                       type="submit"-->
-<!--                       value="ENVOYER">-->
+                <button class=" button-sub hover-overlay text-dark border border-2 btn btn-outline-warning
+                 fw-bold mt-2  " type="submit">Envoyer</button>
+
             </fieldset>
         </form>
     </div>

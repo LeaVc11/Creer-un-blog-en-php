@@ -49,6 +49,8 @@ use App\Routing\Router;
                     } else {
                         ?>
                         <a class="text-decoration-none text-secondary" href="<?= Router::generate("/logout") ?>">Déconnexion</a>
+                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/dashboard") ?>">Liste</a>
+
                         <?php
                     }
                     ?>

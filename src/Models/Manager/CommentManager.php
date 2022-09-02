@@ -44,7 +44,7 @@ class CommentManager extends DbManager
      */
     public function loadingComments(): array
     {
-        $req = $this->getBdd()->prepare("SELECT * FROM comment");
+        $req = $this->getBdd()->prepare("SELECT * FROM comment ORDER BY created_at ASC ");
         $req->execute();
         $comments = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();

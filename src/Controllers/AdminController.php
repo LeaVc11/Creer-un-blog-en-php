@@ -25,9 +25,7 @@ class AdminController extends AbstractController
         $this->articleManager = new ArticleManager;
         $this->commentManager = new CommentManager;
 
-//        dd($this->articleManager);
     }
-
 
     /**
      * @throws \Exception
@@ -37,10 +35,7 @@ class AdminController extends AbstractController
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
         $user = unserialize($_SESSION['user']);
-        $this->render('Admin/dashboard', compact('articles','listComments', 'user'));
-
-
-
+        $this->render('Admin/dashboard', compact('articles', 'listComments', 'user'));
     }
 
     /**
@@ -62,12 +57,11 @@ class AdminController extends AbstractController
 //            $errors = $upload['errors'];
             $imageFileName = $upload['filename'];
 //dd($errors);
-
             if (count($errors) == 0) {
-
                 $article = new Article(null,
                     $imageFileName,
                     $_POST['chapo'],
+                    $_POST['title'],
                     $_POST['title'],
                     $_POST['content'],
                     $_POST['author'],
@@ -76,83 +70,13 @@ class AdminController extends AbstractController
                     new DateTime($_POST['updatedAt']));
 //                dd($article);
                 $this->articleManager->addArticles($article);
-                header('Location: ' . Router::generate("/admin/addArticles"));
+                header('Location: ' . Router::generate("/articles/" . $_POST['articleId']));
                 exit();
             }
-        }            header('Location:'. Router::generate("/admin/addArticles/"));
-        exit();
-
-
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function deleteArticle($id): void
-    {
-
-        $article = $this->articleManager->findById($id);
-
-        $this->articleManager->delete($article);
-        header('Location: ' . Router::generate("/admin/dashboard"));
-        exit();
-//        header('Location: ../dashboard');
-     }
-
-
-
-    /**
-     * @throws \Exception
-     */
-    public function editArticle($id): void
-    {
-        $errors = [];
-//        var_dump($id);
-//        die();
-
-        $article = $this->articleManager->findById($id);
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $errors = $this->getFormErrors($id);
-//dd($errors);
-            if (count($errors) == 0) {
-//                dd($_FILES['uploads']['size'] != 0);
-//                var_dump($_FILES['uploads']['size'] != 0);
-//                die();
-                if ($_FILES['image_link']['size'] != 0) {
-
-                    $upload = $this->uploadImage();
-                    $errors = $upload['errors'];
-                    $imageFileName = $upload['filename'];
-                } else {
-                    $imageFileName = $article->getImageLink();
-                }
-                if (count($errors) == 0) {
-
-                    $article = new Article($id,
-
-                        $imageFileName,
-                        $_POST['chapo'],
-                        $_POST['title'],
-                        $_POST['content'],
-                        $_POST['author'],
-                        $_POST['slug'],
-                        new DateTime($_POST['created_at']),
-                        new DateTime($_POST['updated_at']));
-
-                    $this->articleManager->editArticle($article);
-
-//                    header('Location: ' . Router::generate("/admin/dashboard"));
-                    header('Location: ' . Router::generate("/dashboard"));
-                    exit();
-                }
-            }
         }
-        header('Location:'. Router::generate("/admin/editArticle/".$_POST['articleId']));
+        header('Location:' . Router::generate("/articles" . $_POST['articleId']));
         exit();
     }
-
 
     /**
      * @throws \Exception
@@ -226,9 +150,67 @@ class AdminController extends AbstractController
         return ['filename' => $imageFileName, 'errors' => $errors];
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function deleteArticle($id): void
+    {
 
+        $article = $this->articleManager->findById($id);
 
+        $this->articleManager->delete($article);
+        header('Location: ' . Router::generate("/admin/dashboard"));
+        exit();
+    }
 
+    /**
+     * @throws \Exception
+     */
+    public function editArticle($id): void
+    {
+        $errors = [];
+//        var_dump($id);
+//        die();
+        $article = $this->articleManager->findById($id);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $errors = $this->getFormErrors($id);
+//dd($errors);
+            if (count($errors) == 0) {
+//                dd($_FILES['uploads']['size'] != 0);
+//                var_dump($_FILES['uploads']['size'] != 0);
+//                die();
+                if ($_FILES['image_link']['size'] != 0) {
+
+                    $upload = $this->uploadImage();
+                    $errors = $upload['errors'];
+                    $imageFileName = $upload['filename'];
+                } else {
+                    $imageFileName = $article->getImageLink();
+                }
+                if (count($errors) == 0) {
+                    $article = new Article($id,
+                        $imageFileName,
+                        $_POST['chapo'],
+                        $_POST['title'],
+                        $_POST['content'],
+                        $_POST['author'],
+                        $_POST['slug'],
+                        new DateTime($_POST['created_at']),
+                        new DateTime($_POST['updated_at']));
+                    $this->articleManager->editArticle($article);
+                    header('Location: ' . Router::generate("/admin/dashboard"));
+//                    header('Location:' . Router::generate("/articles"));
+                }
+                header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
+                exit();
+            } else {
+                $this->render('Admin/editArticle', compact('article'));
+            }
+        }
+    }
 }
+
+
+
 
 

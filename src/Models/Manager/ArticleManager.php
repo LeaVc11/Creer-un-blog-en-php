@@ -26,7 +26,7 @@ class ArticleManager extends DbManager
      */
     public function loadingArticles(): array
     {
-        $req = $this->getBdd()->prepare("SELECT * FROM articles");
+        $req = $this->getBdd()->prepare("SELECT * FROM articles ORDER BY created_at ASC ");
         $req->execute();
         $articles = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
@@ -172,7 +172,6 @@ SET image_link = :imageLink, chapo = :chapo,
         $query = $this->getBdd()->prepare("SELECT * FROM `articles` WHERE title = :title");
         $query->execute(['title' => $title]);
         $articleFromBdd = $query->fetch();
-
         if ($articleFromBdd) {
             $article = new Article(
                 $articleFromBdd['id'],

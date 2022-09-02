@@ -30,29 +30,27 @@ use App\Routing\Router;
             ?>
         </tr>
         <div class="d-flex justify-content-end">
-            <a href="<?= Router::generate('/admin/addArticles') ?>" class="btn btn-warning  m-1">Ajouter</a>
+            <a href="<?= Router::generate('/admin/addArticles') ?>"
+               class="btn btn-warning  m-1">Ajouter</a>
         </div>
         <tr>
             <?php
             foreach ($articles as $article) {
             ?>
         <tr>
+            <td><?= $article->getTitle() ?></td>
             <td><?= $article->getImageLink() ?></td>
             <td><?= $article->getChapo() ?></td>
-            <td><?= $article->getTitle() ?></td>
             <td><?= $article->getContent() ?></td>
             <td><?= $article->getSlug() ?></td>
-            <td><?= $article->getAuthor() ?></td>
             <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
             <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
-
+            <td><?= $article->getAuthor() ?></td>
             <td>
-
                 <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-secondary"
                    role="button">Modifier</a>
             </td>
             <td>
-
                 <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
@@ -71,7 +69,6 @@ use App\Routing\Router;
             <th scope="col">Titre</th>
             <th scope="col">Status</th>
             <th scope="col">Content</th>
-            <th scope="col">Auteur</th>
             <th scope="col">Date de création</th>
 
             <?php
@@ -89,12 +86,15 @@ use App\Routing\Router;
             <td><?= $listComment->getTitle() ?></td>
             <td><?= $listComment->getStatus() ?></td>
             <td><?= $listComment->getContent() ?></td>
-            <td><?= $listComment->getCreatedBy() ?></td>
             <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>
             </td>
             <td>
                 <a href="<?= Router::generate('/comments/addComment/') ?>" class="btn btn-primary"
                    role="button">Valider</a>
+
+            </td>
+            <td>
+
                 <a href="<?= Router::generate('/admin/deleteComment/'.$listComment->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>

@@ -29,10 +29,10 @@ $router->post('/login','Security#login');
 $router->get('/register','Security#register');
 $router->post('/register','Security#register');
 
-
 $router->get('/logout','Security#logout');
 //admin
 $router->get('/dashboard','Admin#dashboard');
+$router->get('/admin/addArticles','Admin#addArticle');
 $router->post('/admin/addArticles','Admin#addArticle');
 
 $router->get('/admin/editArticle/:id','Admin#editArticle');

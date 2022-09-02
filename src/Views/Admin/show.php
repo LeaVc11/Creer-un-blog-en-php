@@ -5,7 +5,6 @@ use App\Routing\Router;
 ?>
 
     <div class="row">
-        <!--        <p class=" fw-bold text-center text-info display-6 m-5"></p>-->
         <div class="col-6 mt-5 text-center">
 
             <img src="../Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">

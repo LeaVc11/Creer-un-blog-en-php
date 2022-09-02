@@ -31,8 +31,6 @@
     <div class=" text-center">
         <a href="<?= Router::generate('/articles') ?>"
            class="btn btn-primary text-center text-white fw-bold mb-2">Retour</a>
-        <a href="<?= Router::generate('/contact') ?>"
-           class="btn btn-warning text-center text-white fw-bold mb-2">Envoyer demande</a>
     </div>
 </div>
 
