@@ -84,30 +84,7 @@ class CommentController extends AbstractController
             exit();
         }
     }
-    /**
-     * @throws \Exception
-     */
-    private function getErrors($id = null): array
-    {
-        $errors = [];
-//dd($_POST['title']);
 
-        if (empty($_POST['title'])) {
-            $errors[] .= 'Veuillez saisir un titre';
-        }
-        if (empty($_POST['content'])) {
-            $errors[] .= 'Veuillez saisir un commentaire';
-        }
-        $comment = $this->commentManager->getByTitle($_POST['title']);
-
-        if (!is_null($comment) && $comment->getId() != null && $id == null) {
-            $errors[] = 'Un commentaire avec ce titre existe déjà !';
-        }
-//        var_dump($errors);
-//        die();
-
-        return $errors;
-    }
 
     /**
      * @throws \Exception

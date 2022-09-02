@@ -65,7 +65,9 @@ class SecurityController extends AbstractController
                 // Sinon, les identifiants ne sont pas correctes
                 $errors[] = 'Identifiants incorrects';
             }
-            $_SESSION['errors'] = 'tEST';
+//            $_SESSION['errors'] = 'tEST';
+            header('Location:'. Router::generate("/login"));
+            exit();
         }
         $this->render('Security/login');
     }

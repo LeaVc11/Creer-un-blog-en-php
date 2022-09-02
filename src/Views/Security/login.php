@@ -2,18 +2,18 @@
 
 use App\Routing\Router;
 
-if(isset($_SESSION['errors'])) {
-    $message = $_SESSION['errors'];
-    unset($_SESSION['errors']);
-    echo $message;
-}
+//if(isset($_SESSION['errors'])) {
+//    $message = $_SESSION['errors'];
+//    unset($_SESSION['errors']);
+//    echo $message;
+//}
 ?>
 
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md">
     <div class="m-5 rounded-3 opacity-25 bg-dark ">
         <div class="login px-5 py-2">
             <h1 class="text-secondary text-center m-2">S'identifier</h1>
-            <?= $message ?>
+
 
             <form class="form-bloc text-center " method="post" action="<?= Router::generate('/login') ?>">
                 <div class="form-groupe ">

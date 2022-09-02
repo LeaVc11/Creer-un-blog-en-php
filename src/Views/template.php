@@ -42,7 +42,7 @@ use App\Routing\Router;
                     <?php
                     if (!isset($_SESSION['user'])) {
                         ?>
-                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/login") ?>">Connexion</a> |
+                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/login")  ?>">Connexion</a> |
 
                         <a class="text-decoration-none text-secondary" href="<?= Router::generate("/register") ?>">Inscription</a>
                         <?php
