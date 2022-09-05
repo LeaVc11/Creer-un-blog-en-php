@@ -125,7 +125,7 @@ class CommentController extends AbstractController
     private function getErrors($id = null): array
     {
         $errors = [];
-//dd($_POST['title']);
+
 
         if (empty($_POST['title'])) {
             $errors[] .= 'Veuillez saisir un titre';
@@ -138,9 +138,6 @@ class CommentController extends AbstractController
         if (!is_null($comment) && $comment->getId() != null && $id == null) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
-//        var_dump($errors);
-//        die();
-
         return $errors;
     }
 

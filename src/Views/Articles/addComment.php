@@ -2,7 +2,7 @@
 //    var_dump($errors);
 use App\Routing\Router;
 
-if(!empty($errors)):?>
+if(isset($_SESSION['flash'])):?>
     <div class=" m-3 fw-bold alert alert-danger">
         <?php foreach($errors as $error):?>
             <p><?=$error;?></p>
