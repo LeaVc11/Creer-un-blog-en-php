@@ -25,8 +25,7 @@ if(isset($_SESSION['flash'])):?>
                 <label for="title">Titre : </label>
                 <input type="text" class="form-control" id="title" name="title">
             </div>
-            <div class="col text-primary fw-bold ">
-            </div>
+
         </div>
         <div class="row m-5">
             <div class="col text-primary fw-bold">

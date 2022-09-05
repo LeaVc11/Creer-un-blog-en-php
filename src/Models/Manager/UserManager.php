@@ -10,14 +10,12 @@ class UserManager extends DbManager
 {
     public function login($email, $password): ?User
     {
-        // De base mon utilisateur est nulle
         $customer = null;
 
-        // Je retrouve un utilisateur en fonction de son username
         $user = $this->findByEmail($email);
 
         if ($user) {
-            // Il a trouvé un utilisateur il vérifie si le hash correspond
+
             if (password_verify($password, $user->getPassword())) {
                 $customer = $user;
             }
@@ -42,8 +40,6 @@ class UserManager extends DbManager
         }
         return $customer;
     }
-    // Fonction retourne true si un utilisateur à déjà cet email
-    // Sinon elle retourne false
     public function testExistUserByEmail($email): bool
     {
         $user = $this->findByEmail($email);
@@ -57,8 +53,7 @@ class UserManager extends DbManager
 
     public function register(User $user)
     {
-//var_dump($user);
-//die();
+
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
         $query = $this->getBdd()->prepare("INSERT INTO `user` (`email`,`username`,`password`,`role`)
@@ -71,7 +66,6 @@ class UserManager extends DbManager
             'role'=> $user->getRole(),
 
         ]);
-//var_dump($res);
-//die();
+
     }
 }

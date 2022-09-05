@@ -65,24 +65,6 @@ class SecurityController extends AbstractController
         }
         $this->render('Security/login');
     }
-    private function getErrors($user, $id = null): array
-    {
-        $errors = [];
-
-
-        if (empty($_POST['title'])) {
-            $errors[] .= 'Veuillez saisir un titre';
-        }
-        if (empty($_POST['content'])) {
-            $errors[] .= 'Veuillez saisir un commentaire';
-        }
-        $loggedUser = $this->userManager->login($email, $password);
-
-        if (!is_null($user) && $user->getId() != null && $id == null) {
-            $errors[] = 'Un commentaire avec ce titre existe déjà !';
-        }
-        return $errors;
-    }
     public function logout(){
         session_destroy();
         header('Location:'. Router::generate("/login"));
@@ -112,7 +94,6 @@ class SecurityController extends AbstractController
 
                 $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
             }
-            $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
 
             if (count($errors) == 0) {
                 $testByEmail = $this->userManager->testExistUserByEmail($_POST['email']);
@@ -121,6 +102,7 @@ class SecurityController extends AbstractController
                     $errors[] = 'Email déjà existant !';
                 }
             }
+
             if (count($errors) == 0) {
 
                 $role = 'user';
@@ -130,11 +112,10 @@ class SecurityController extends AbstractController
                 }
                 $_SESSION['email'] = $_POST['email'];
 
+
                 $user = new User($_POST['email'], $_POST['username'], $_POST['password'], $role);
 
                 $this->userManager->register($user);
-
-
 
                 header('Location:'. Router::generate("/login"));
                 exit();
@@ -142,5 +123,4 @@ class SecurityController extends AbstractController
         }
         $this->render('Security/register');
     }
-
 }

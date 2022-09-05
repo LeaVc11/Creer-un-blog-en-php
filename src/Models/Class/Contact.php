@@ -5,18 +5,21 @@ class Contact
     private $id;
     private $username;
     private $email;
+    private $message;
 
     /**
      * @param $id
      * @param $username
      * @param $email
      */
-    public function __construct($id, $username, $email)
+    public function __construct($id, $username, $email, $message)
     {
 
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
+        $this->message = $message;
+
     }
 
     /**
@@ -71,6 +74,20 @@ class Contact
     {
         $this->email = $email;
         return $this;
-    }
+    }/**
+ * @return mixed
+ */
+public function getMessage()
+{
+    return $this->message;
+}/**
+ * @param mixed $message
+ * @return Contact
+ */
+public function setMessage($message)
+{
+    $this->message = $message;
+    return $this;
+}
 
 }

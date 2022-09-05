@@ -16,9 +16,5 @@ class UserController extends DbManager
     }
 
 
-
-
-
-
 }
 

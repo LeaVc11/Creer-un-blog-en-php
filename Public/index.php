@@ -22,8 +22,8 @@ $router->post('/comments/addComment','Comment#addComment');
 $router->get('/comments/editComment/:id','Comment#editComment');
 $router->post('/comments/editComment/:id','Comment#editComment');
 //contact
-$router->get('/contact','Contact#formContact');
-$router->post('/contact','Contact#formContact');
+$router->get('/contact','Contact#Contact');
+$router->post('/contact','Contact#Contact');
 //security
 $router->get('/login','Security#login');
 $router->post('/login','Security#login');
