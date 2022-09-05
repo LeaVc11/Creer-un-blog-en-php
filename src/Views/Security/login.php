@@ -9,7 +9,7 @@ use App\Routing\Router;
     <div class="m-5 rounded-3 opacity-25 bg-dark ">
         <div class="login px-5 py-2">
             <h1 class="text-secondary text-center m-2">S'identifier</h1>
-
+            <?= $message ?>
 
             <form class="form-bloc text-center " method="post" action="<?= Router::generate('/login') ?>">
                 <div class="form-groupe ">

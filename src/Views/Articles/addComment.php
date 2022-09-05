@@ -16,14 +16,14 @@ if(!empty($errors)):?>
     <h1 class="m-3 text-center text-primary">Ajouter un commentaire</h1>
     <div class="m-3 text-center">
     <legend class="">Laisser un commentaire sur cet article</legend>
-    <small class="text-muted text-center">Vous devez <a href="<?= Router::generate("/login") ?>">être connecté(e)</a> à votre compte utilisateur pour pouvoir laisser un commentaire.</small>
+    <small class="text-muted text-center ">Vous devez <a class="text-danger  text-uppercase fw-bold" href" href="<?= Router::generate("/login") ?>">être connecté(e)</a> à votre compte utilisateur pour pouvoir laisser un commentaire.</small>
     </div>
     <form method="POST" action="<?= Router::generate('/comments/addComment') ?>" enctype="multipart/form-data">
         <input type="hidden" name="articleId" value="<?= $article->getId() ?>">
         <div class="row m-5">
             <div class="col text-primary fw-bold">
-                <label for="slug">Titre : </label>
-                <input type="text" class="form-control" id="slug" name="title">
+                <label for="title">Titre : </label>
+                <input type="text" class="form-control" id="title" name="title">
             </div>
             <div class="col text-primary fw-bold ">
             </div>

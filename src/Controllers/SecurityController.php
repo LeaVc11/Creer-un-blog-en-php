@@ -20,9 +20,6 @@ class SecurityController extends AbstractController
         $this->userManager = new UserManager();
     }
 
-    /*
-    * @return void
-    */
     public function login(): void
     {
         if (!empty($_SESSION['email'])) {
@@ -45,15 +42,11 @@ class SecurityController extends AbstractController
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis.';
             }
-            // J'appel mon manager pour enregistrer en base l'utilisateur
-            // Je lui passe l'utilisateur que je souhaite ajouter en paramètrecomment
+
             $loggedUser = $this->userManager->login($email, $password);
 
             if ($loggedUser) {
-                // Si jamais j'ai un utilisateur :
-                // C'est ok je l'ajoute dans ma session et je redirige vers une page sécurisée
-//            var_dump($loggedUser);
-//            die();
+
                 $_SESSION['user'] = serialize($loggedUser);
                 if ($loggedUser->isAdmin()) {
                     header('Location: ' . Router::generate("/dashboard"));
@@ -62,7 +55,7 @@ class SecurityController extends AbstractController
                 header('Location:'. Router::generate("/articles"));
                 exit();
             } else {
-                // Sinon, les identifiants ne sont pas correctes
+
                 $errors[] = 'Identifiants incorrects';
             }
             $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
@@ -73,9 +66,7 @@ class SecurityController extends AbstractController
         $this->render('Security/login');
     }
     public function logout(){
-        //Détruit la session
         session_destroy();
-        // Redirige l'utilisateur vers la page de login
         header('Location:'. Router::generate("/login"));
         exit();
 
@@ -85,8 +76,7 @@ class SecurityController extends AbstractController
      */
     public function register(): void
     {
-//        var_dump($_POST);
-//        die();
+
         if (!empty($_POST)) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             extract($post);
@@ -104,8 +94,7 @@ class SecurityController extends AbstractController
 
                 $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
             }
-            // Si j'ai pas d'erreurs je vais aller vérifier si il n'y a pas un utilisateur qui a
-            // Cet username et ce password
+
             if (count($errors) == 0) {
                 $testByEmail = $this->userManager->testExistUserByEmail($_POST['email']);
 
@@ -113,26 +102,21 @@ class SecurityController extends AbstractController
                     $errors[] = 'Email déjà existant !';
                 }
             }
-            // Aucune erreur, je vais enregistrer mon utilisateur
+
             if (count($errors) == 0) {
 
-                $role = 'user'; // role par défaut
+                $role = 'user';
 
-                if ($_POST['isAdmin']) { // Si la case est coché
-                    $role = "admin"; // on change le role par celui d'admin
+                if ($_POST['isAdmin']) {
+                    $role = "admin";
                 }
                 $_SESSION['email'] = $_POST['email'];
 
-// Création de l'utilisateur sans id. Ce dernier sera généré par la BDD
                 $user = new User($_POST['email'], $_POST['username'], $_POST['password'], $role);
 
-// J'appel mon manager pour enregistrer en base l'utilisateur
-// Je lui passe l'utilisateur que je souhaite ajouter en paramètre
                 $this->userManager->register($user);
 
-// Mon utilisateur est enregistré, je redirige donc vers le login
-//                header('Location: ../security/login');
-
+                $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
                 header('Location:'. Router::generate("/login"));
                 exit();
             }

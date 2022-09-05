@@ -20,6 +20,10 @@ if (!empty($errors)):?>
                     <label for="title">Titre : </label>
                     <input type="text" class="form-control" id="title" name="title" value="<?= $comment->getTitle() ?>">
                 </div>
+                <div class="col text-primary fw-bold ">
+                    <label for="CreatedBy">Auteur : </label>
+                    <input type="text" class="form-control" id="CreatedBy" name="CreatedBy" value="<?= $comment->getCreatedBy() ?>">
+                </div>
             </div>
             <div class="row m-5">
                 <div class="col text-primary fw-bold">
