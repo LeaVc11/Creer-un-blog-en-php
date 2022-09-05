@@ -5,8 +5,6 @@ use App\Routing\Router;
 require '../vendor/autoload.php';
 session_start();
 
-$_SESSION['flash'] = [];
-
 $router = new Router($_GET['url']);
 $router->get('/', 'Home#index');
 //articles

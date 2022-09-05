@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
 
     public function login(): void
     {
-        if (!empty($_SESSION['email'])) {
+        if (!empty($_SESSION['user'])) {
             header('Location:'. Router::generate("/articles"));
             exit();
         }
@@ -31,18 +31,12 @@ class SecurityController extends AbstractController
             extract($post);
 
             $errors = [];
-            if (empty($_POST['username'])) {
-                $errors[] = 'Veuillez saisir un username';
-            }
-
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = 'L\'adresse email n\'est pas valide.';
             }
-
             if (empty($password)) {
                 $errors[] = 'Le mot de passe est requis.';
             }
-
             $loggedUser = $this->userManager->login($email, $password);
 
             if ($loggedUser) {
@@ -58,10 +52,11 @@ class SecurityController extends AbstractController
 
                 $errors[] = 'Identifiants incorrects';
             }
-            $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
 
-            header('Location:'. Router::generate("/login"));
-            exit();
+         $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
+
+//            header('Location:'. Router::generate("/login"));
+//            exit();
         }
         $this->render('Security/login');
     }
@@ -94,6 +89,7 @@ class SecurityController extends AbstractController
 
                 $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
             }
+            $_SESSION['flash']=$errors;
 
             if (count($errors) == 0) {
                 $testByEmail = $this->userManager->testExistUserByEmail($_POST['email']);
@@ -120,6 +116,7 @@ class SecurityController extends AbstractController
                 header('Location:'. Router::generate("/login"));
                 exit();
             }
+
         }
         $this->render('Security/register');
     }

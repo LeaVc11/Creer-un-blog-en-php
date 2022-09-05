@@ -1,19 +1,12 @@
 <?php
 
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
-
 ?>
-<?php
-if (!empty($errors)):?>
-    <div class=" m-3 fw-bold alert alert-danger">
-        <?php foreach ($errors as $error): ?>
-            <p><?= $error; ?></p>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
+
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md" id="contact">
     <div class="container ">
-
+        <?php FlashManager::displayFlash(); ?>
         <h1 class="text-center mb-3 p-5">Me contacter</h1>
         <form method="POST" action="<?= Router::generate("/contact") ?>"
               enctype="multipart/form-data">

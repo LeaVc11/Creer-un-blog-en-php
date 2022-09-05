@@ -1,16 +1,10 @@
 <?php
 //    var_dump($errors);
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
-
-if (!empty($errors)):?>
-    <div class=" m-3 fw-bold alert alert-danger">
-        <?php foreach ($errors as $error): ?>
-            <p><?= $error; ?></p>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
+ ?>
 <div class=" m-4 fw-bold ">
-
+    <?php FlashManager::displayFlash(); ?>
     <h1 class="m-3 text-center text-primary">Modifier un commentaire</h1>
     <div class="container">
         <form method="POST" action="<?= Router::generate('/comments/editComment/' . $comment->getId()) ?>"

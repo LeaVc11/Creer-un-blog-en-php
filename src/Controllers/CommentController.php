@@ -61,10 +61,11 @@ class CommentController extends AbstractController
     public function addComment(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // je traite mon formulaire
+
             $errors = $this->getErrors();
 
             if (count($errors) == 0) {
+                //si pas d'erreur
                 $user = unserialize($_SESSION['user']);
                 $comment = new Comment(null,
                     $_POST['title'],
@@ -77,7 +78,8 @@ class CommentController extends AbstractController
                 header('Location: ' . Router::generate("/comments/". $_POST['articleId']));
                 exit();
             }
-            header('Location:' . Router::generate("/articles" . $_POST['articleId']));
+            //
+            header('Location: ' . Router::generate("/articles/" . $_POST['articleId']));
             exit();
         }
     }
@@ -126,18 +128,19 @@ class CommentController extends AbstractController
     {
         $errors = [];
 
-
         if (empty($_POST['title'])) {
-            $errors[] .= 'Veuillez saisir un titre';
+            $errors[] = 'Veuillez saisir un titre';
         }
         if (empty($_POST['content'])) {
-            $errors[] .= 'Veuillez saisir un commentaire';
+            $errors[] = 'Veuillez saisir un commentaire';
         }
         $comment = $this->commentManager->getByTitle($_POST['title']);
 
         if (!is_null($comment) && $comment->getId() != null && $id == null) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
+        $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
+
         return $errors;
     }
 

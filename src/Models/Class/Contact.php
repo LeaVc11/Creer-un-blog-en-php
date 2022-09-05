@@ -1,18 +1,14 @@
 <?php
+
 namespace App\Models\Class;
 class Contact
 {
-    private $id;
-    private $username;
-    private $email;
-    private $message;
+    private ?int $id;
+    private ?string $username;
+    private ?string $email;
+    private ?string $message;
 
-    /**
-     * @param $id
-     * @param $username
-     * @param $email
-     */
-    public function __construct($id, $username, $email, $message)
+    public function __construct($id = null, $username = null, $email = null , $message = null)
     {
 
         $this->id = $id;
@@ -30,64 +26,44 @@ class Contact
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     * @return Contact
-     */
     public function setId($id)
     {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getUsername()
     {
         return $this->username;
     }
 
-    /**
-     * @param mixed $username
-     * @return Contact
-     */
-    public function setUsername($username)
+    public function setUsername($username): static
     {
         $this->username = $username;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @param mixed $email
-     * @return Contact
-     */
-    public function setEmail($email)
+    public function setEmail($email): static
     {
         $this->email = $email;
         return $this;
-    }/**
- * @return mixed
- */
-public function getMessage()
-{
-    return $this->message;
-}/**
- * @param mixed $message
- * @return Contact
- */
-public function setMessage($message)
-{
-    $this->message = $message;
-    return $this;
-}
+    }
+
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    public function setMessage($message): static
+    {
+        $this->message = $message;
+        return $this;
+    }
 
 }

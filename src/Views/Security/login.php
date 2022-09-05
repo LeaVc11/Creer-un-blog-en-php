@@ -1,40 +1,22 @@
 <?php
 
 use App\Routing\Router;
+use App\Models\Manager\FlashManager;
 
-//if (!empty($_SESSION['flash'])) {
-//    foreach ($_SESSION['flash'] as $flash) {
-//        echo "<div class='alert alert-primary'>$flash</div>";
-//    }
-//
-//    $_SESSION['flash'] = [];
-//}
-if (isset($_SESSION['flash'])) {
-    $errors = $_SESSION['flash'];
-
-    unset($_SESSION['flash']);
-
-    echo "
-
-<div class=' container alert alert-danger'>$errors</div>";
-}
-$errors = '';
-$_SESSION['flash'] = $errors;
+//dd($_SESSION);
 ?>
 
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md">
     <div class="m-5 rounded-3 opacity-25 bg-dark ">
         <div class="login px-5 py-2">
             <h1 class="text-secondary text-center m-2">S'identifier</h1>
-            <?= $errors?>
-
+            <?php FlashManager::displayFlash(); ?>
             <form class="form-bloc text-center " method="post" action="<?= Router::generate('/login') ?>">
                 <div class="form-groupe ">
                     <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control"
                            name="email"
                            placeholder="Votre email"
                            value="<?= $email ?? ''; ?>"
-
                 </div>
                 <div class="form-groupe">
                     <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control" type="password"
