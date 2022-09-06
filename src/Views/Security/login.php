@@ -3,11 +3,11 @@
 use App\Routing\Router;
 use App\Models\Manager\FlashManager;
 
-//dd($_SESSION);
+
 ?>
 <div class="container  ">
-<!--    --><?php //FlashManager::displayFlash(); ?>
-    <?php FlashManager::setFlash() ?>
+    <?php FlashManager::displayFlash(); ?>
+
 </div>
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md">
     <div class="m-5 rounded-3 opacity-25 bg-dark ">
