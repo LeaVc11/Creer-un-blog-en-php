@@ -20,8 +20,8 @@ $router->post('/comments/addComment','Comment#addComment');
 $router->get('/comments/editComment/:id','Comment#editComment');
 $router->post('/comments/editComment/:id','Comment#editComment');
 //contact
-$router->get('/contact','Contact#Contact');
-$router->post('/contact','Contact#Contact');
+$router->get('/contact/addContact','Contact#addContact');
+$router->post('/contact/addContact','Contact#addContact');
 //security
 $router->get('/login','Security#login');
 $router->post('/login','Security#login');

@@ -62,9 +62,7 @@ class AdminController extends AbstractController
                     new DateTime(),
                     new DateTime()
                 );
-
                 $this->articleManager->addArticle($article);
-
                 header('Location: ' . Router::generate("/dashboard"));
                 exit();
             }

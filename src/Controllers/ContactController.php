@@ -15,24 +15,35 @@ class ContactController extends AbstractController
         $this->contactManager = new ContactManager();
     }
 
-    public function contact(): void
+    public function addContact(): void
     {
-        $contact = new Contact();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $errors = $this->getFormErrors();
-
+            if (count($errors) == 0) {
+                $contact = new Contact(
+                $_POST['email'],
+                $_POST['username'],
+                $_POST['message'],
+                );
+                dd(1);
+                $this->contactManager->addContact($contact);
+                header('Location: ' . Router::generate("/articles"));
+                exit();
+            }
+        }else{
+        $this->render("Contact/addContact");
         }
-        $this->render('Contact/contact');
-
     }
+
     private function getFormErrors($id = null): array
     {
         $errors = [];
 
         if (empty($_POST['email'])) {
             $errors[] = 'Veuillez saisir un email';
-            $contact= $this->contactManager->getByEmail($_POST['email']);
+            $contact = $this->contactManager->getByEmail($_POST['email']);
         }
         if (empty($_POST['username'])) {
             $errors[] = 'Veuillez saisir un pseudo';

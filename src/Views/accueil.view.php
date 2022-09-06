@@ -1,3 +1,8 @@
+<?php
+
+use App\Routing\Router;
+
+?>
 <div class="  d-flex flex-column  mt-5">
     <div class="row ">
         <div class="col ">
@@ -5,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="portrait text-center col-md-5 ">
-                            <img src="Public/images/photo/Maphoto.jpg" class="rounded-circle" alt="photo img">
+                            <img src="<?= Router::generate('/Public/')?>images/photo/Maphoto.jpg" class="rounded-circle" alt="photo img">
                         </div>
                         <p class="text-animation text-center "></p>
                     </div>

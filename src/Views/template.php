@@ -34,7 +34,7 @@ use App\Routing\Router;
                     <a class="nav-link" href="<?= Router::generate("/articles") ?>">Article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=" <?= Router::generate("/contact") ?>">Contact</a>
+                    <a class="nav-link" href=" <?= Router::generate("/contact/addContact") ?>">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav w-100 d-flex justify-content-end">

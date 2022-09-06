@@ -78,7 +78,7 @@ class CommentController extends AbstractController
                 header('Location: ' . Router::generate("/comments/". $_POST['articleId']));
                 exit();
             }
-            //
+
             header('Location: ' . Router::generate("/articles/" . $_POST['articleId']));
             exit();
         }
@@ -121,9 +121,7 @@ class CommentController extends AbstractController
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
-    /**
-     * @throws \Exception
-     */
+
     private function getErrors($id = null): array
     {
         $errors = [];
@@ -143,10 +141,6 @@ class CommentController extends AbstractController
 
         return $errors;
     }
-
-    /**
-     * @throws \Exception
-     */
 
 
 }
