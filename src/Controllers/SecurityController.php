@@ -53,10 +53,10 @@ class SecurityController extends AbstractController
                 $errors[] = 'Identifiants incorrects';
             }
 
-         $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
+            $_SESSION['flash']=$errors;
 
-//            header('Location:'. Router::generate("/login"));
-//            exit();
+            header('Location:'. Router::generate("/login"));
+            exit();
         }
         $this->render('Security/login');
     }

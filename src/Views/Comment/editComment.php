@@ -3,8 +3,10 @@
 use App\models\Manager\FlashManager;
 use App\Routing\Router;
  ?>
-<div class=" m-4 fw-bold ">
+<div class="container  ">
     <?php FlashManager::displayFlash(); ?>
+</div>
+<div class=" m-4 fw-bold ">
     <h1 class="m-3 text-center text-primary">Modifier un commentaire</h1>
     <div class="container">
         <form method="POST" action="<?= Router::generate('/comments/editComment/' . $comment->getId()) ?>"

@@ -7,7 +7,6 @@ use App\Models\Manager\FlashManager;
 ?>
 <div class="container  ">
     <?php FlashManager::displayFlash(); ?>
-
 </div>
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md">
     <div class="m-5 rounded-3 opacity-25 bg-dark ">

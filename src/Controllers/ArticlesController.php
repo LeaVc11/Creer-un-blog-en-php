@@ -19,32 +19,19 @@ class ArticlesController extends AbstractController
         $this->articleManager = new ArticleManager;
     }
 
-    /**
-     * @throws Exception
-     */
     public function homePage()
     {
 //        $articles = $this->articleManager->loadingArticles();
         $this->render('accueil.view');
     }
 
-    /**
-     * @return void
-     * @throws Exception
-     */
+
     public function displayArticles(): void
     {
         $articles = $this->articleManager->loadingArticles();
         $this->render('Articles/articles.view', compact('articles'));
     }
 
-    /**
-     * @param int $id
-     *
-     * @return void
-     *
-     * @throws Exception
-     */
     public function showArticle(int $id): void
     {
         $article = $this->articleManager->showArticle($id);

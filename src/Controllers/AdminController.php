@@ -17,9 +17,7 @@ class AdminController extends AbstractController
     private ArticleManager $articleManager;
     private CommentManager $commentManager;
 
-    /**
-     * @throws \Exception
-     */
+
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
@@ -27,9 +25,6 @@ class AdminController extends AbstractController
 
     }
 
-    /**
-     * @throws \Exception
-     */
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
@@ -38,10 +33,7 @@ class AdminController extends AbstractController
         $this->render('Admin/dashboard', compact('articles', 'listComments', 'user'));
     }
 
-    /**
-     * @return void
-     * @throws \Exception
-     */
+
     public function addArticle(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -70,9 +62,7 @@ class AdminController extends AbstractController
         }
      $this->render("Admin/add");
     }
-    /**
-     * @throws \Exception
-     */
+
     public function deleteArticle($id): void
     {
         $article = $this->articleManager->findById($id);
@@ -81,9 +71,7 @@ class AdminController extends AbstractController
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
-    /**
-     * @throws \Exception
-     */
+
     public function editArticle($id): void
     {
         $article = $this->articleManager->findById($id);
@@ -117,10 +105,6 @@ class AdminController extends AbstractController
         $this->render('Admin/editArticle', compact('article'));
     }
 
-
-    /**
-     * @throws \Exception
-     */
     private function getFormErrors($id = null): array
     {
         $errors = [];
@@ -148,18 +132,11 @@ class AdminController extends AbstractController
         if (empty($_POST['slug'])) {
             $errors[] = 'Veuillez saisir un slug';
         }
-
         $_SESSION['flash']=$errors;
 
         return $errors;
     }
 
-    public function getFormSucess($id = null): array
-    {
-        $success = [];
-
-
-    }
 
     #[ArrayShape(['filename' => "null|string", 'errors' => "array"])]
     private function uploadImage(): array
