@@ -1,11 +1,12 @@
 
 <?php
-//    var_dump($errors);
+
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
 ?>
+<?php FlashManager::displayFlash(); ?>
 <div class="container">
     <div class=" m-4 fw-bold " >
-
     <h1 class="mt-5 text-center text-primary">Modifier un article</h1>
     <form method="POST" action="<?= Router::generate('/admin/editArticle/'. $article->getId()) ?>" enctype="multipart/form-data">
         <div class="row m-5">
@@ -15,17 +16,17 @@ use App\Routing\Router;
             </div>
             <div class="col text-primary fw-bold ">
                 <label for="chapo">Chapô : </label>
-                <input type="text" class="form-control" id="chapo" name="chapo">
+                <input type="text" class="form-control" id="chapo" name="chapo" value="<?= $article->getChapo() ?>">
             </div>
         </div>
         <div class="row m-5">
             <div class="col text-primary fw-bold">
                 <label for="slug">Slug : </label>
-                <input type="text" class="form-control" id="slug" name="slug">
+                <input type="text" class="form-control" id="slug" name="slug" value="<?= $article->getSlug() ?>">
             </div>
             <div class="col text-primary fw-bold ">
                 <label for="author">Auteur: </label>
-                <input type="text" class="form-control" id="author" name="author">
+                <input type="text" class="form-control" id="author" name="author" value="<?= $article->getAuthor() ?>">
             </div>
         </div>
         <div class="row m-5">
@@ -44,10 +45,11 @@ use App\Routing\Router;
         </div>
         <div class=" text-center">
             <a href="<?= Router::generate('/articles')?>"
-               class="btn btn-primary text-white text-center mb-2 w-100 rounded-1 border form-control">Retour</a>
-            <button class="btn btn-primary text-white text-center w-100 rounded-1 border form-control"
+               class="btn btn-primary text-white text-center mb-2 rounded-1 border">Retour</a>
+            <button class="btn btn-warning text-white text-center mb-2 rounded-1 border"
                     type="submit">Valider
             </button>
         </div>
+
     </form>
     </div>

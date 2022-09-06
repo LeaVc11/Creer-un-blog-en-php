@@ -26,8 +26,7 @@ use App\Routing\Router;
                               rows="10"><?= $comment->getContent() ?> </textarea>
                 </div>
             </div>
-            <div class="row m-5">
-            </div>
+
             <div class=" text-center">
                 <a href="<?= Router::generate('/comments/' . $comment->getArticleId()) ?>"
                    class="btn btn-primary text-white text-center mb-2 rounded-1 border ">Retour</a>

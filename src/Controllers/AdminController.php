@@ -62,6 +62,7 @@ class AdminController extends AbstractController
                     new DateTime(),
                     new DateTime()
                 );
+
                 $this->articleManager->addArticle($article);
                 header('Location: ' . Router::generate("/dashboard"));
                 exit();
@@ -148,9 +149,15 @@ class AdminController extends AbstractController
             $errors[] = 'Veuillez saisir un slug';
         }
 
-        $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
+        $_SESSION['flash']=$errors;
 
         return $errors;
+    }
+
+    public function getFormSucess($id = null): array
+    {
+        $success = [];
+
     }
 
     #[ArrayShape(['filename' => "null|string", 'errors' => "array"])]

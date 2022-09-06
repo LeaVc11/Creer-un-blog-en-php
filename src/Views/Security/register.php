@@ -2,16 +2,12 @@
 <?php
 
 //    var_dump($errors);
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
-
-if(!empty($errors)):?>
-    <div class=" m-3 fw-bold alert alert-danger">
-        <?php foreach($errors as $error):?>
-            <p><?=$error;?></p>
-        <?php endforeach;?>
-    </div>
-<?php endif;?>
-
+;?>
+<div class="container  ">
+<?php FlashManager::displayFlash(); ?>
+</div>
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md">
     <div class="m-5 rounded-3 opacity-25 bg-dark ">
         <div class="login px-5 py-2">

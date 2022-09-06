@@ -1,11 +1,13 @@
 <?php
 
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
 
 ?>
+
+<?php FlashManager::displayFlash(); ?>
 <div class="container">
     <div class=" m-4 fw-bold ">
-
         <h1 class="mt-5 text-center text-primary">Ajouter un article</h1>
 
         <form method="POST"  enctype="multipart/form-data">

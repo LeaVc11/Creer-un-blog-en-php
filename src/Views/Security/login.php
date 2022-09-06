@@ -5,12 +5,14 @@ use App\Models\Manager\FlashManager;
 
 //dd($_SESSION);
 ?>
-
+<div class="container  ">
+<!--    --><?php //FlashManager::displayFlash(); ?>
+    <?php FlashManager::setFlash() ?>
+</div>
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md">
     <div class="m-5 rounded-3 opacity-25 bg-dark ">
         <div class="login px-5 py-2">
             <h1 class="text-secondary text-center m-2">S'identifier</h1>
-            <?php FlashManager::displayFlash(); ?>
             <form class="form-bloc text-center " method="post" action="<?= Router::generate('/login') ?>">
                 <div class="form-groupe ">
                     <input class=" rounded w-100  m-3 p-2 border border-light border-3 form-control"

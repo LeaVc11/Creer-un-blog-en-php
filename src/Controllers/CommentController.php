@@ -137,7 +137,7 @@ class CommentController extends AbstractController
         if (!is_null($comment) && $comment->getId() != null && $id == null) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
-        $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
+        $_SESSION['flash']=$errors;
 
         return $errors;
     }
