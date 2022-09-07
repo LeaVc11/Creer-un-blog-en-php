@@ -7,7 +7,6 @@ use App\Models\Class\Contact;
 
 class ContactManager extends DbManager
 {
-    private array $listContact = [];
     public function addContact(Contact $contact)
     {
         $req = $this->getBdd()->prepare("INSERT INTO `contact`(`email`,`username`,`message`)
@@ -18,7 +17,6 @@ class ContactManager extends DbManager
             'message' => $contact->getMessage(),
         ]);
     }
-
 
     public function getByEmail($email): ?Contact
     {

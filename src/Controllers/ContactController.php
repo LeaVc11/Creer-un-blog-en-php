@@ -36,13 +36,16 @@ class ContactController extends AbstractController
         }
     }
 
-    private function getFormErrors($id = null): array
+    private function getFormErrors(): array
     {
         $errors = [];
 
         if (empty($_POST['email'])) {
             $errors[] = 'Veuillez saisir un email';
             $contact = $this->contactManager->getByEmail($_POST['email']);
+            if (!is_null($contact) && $contact->getId() != null) {
+                $errors[] = 'Un contact avec ce titre existe déjà !';
+            }
         }
         if (empty($_POST['username'])) {
             $errors[] = 'Veuillez saisir un pseudo';
