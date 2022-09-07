@@ -64,8 +64,7 @@ class CommentController extends AbstractController
     }
     public function editComment($id): void
     {
-        $errors = [];
-        $success = [];
+
         $comment = $this->commentManager->findById($id);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -83,6 +82,7 @@ class CommentController extends AbstractController
             header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
             exit();
         } else {
+
             $this->render('Comment/editComment', compact('comment'));
         }
     }
