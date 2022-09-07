@@ -143,9 +143,7 @@ SET  title = :title,status = :status,content = :content,
             $reqAuthor = $this->getBdd()->prepare("SELECT * FROM `user` WHERE id = :user_id");
             $reqAuthor->execute(['user_id' => $c->getCreatedBy()]);
             $author=$reqAuthor->fetch();
-
             $c->setCreated_by($author['username']);
-//            var_dump($c,$author);
             $this->comments[] = $c;
         }
         return $this->comments;

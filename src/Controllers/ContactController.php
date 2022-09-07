@@ -21,6 +21,7 @@ class ContactController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $errors = $this->getFormErrors();
+            $success = $this->getFormSuccess();
             if (count($errors) == 0) {
                 $contact = new Contact(
 
@@ -37,6 +38,14 @@ class ContactController extends AbstractController
             exit();
         }
         $this->render("contact/addContact");
+    }
+    public function deleteContact($id): void
+    {
+        $contact = $this->contactManager->findById($id);
+
+        $this->contactManager->deleteContact($contact);
+        header('Location: ' . Router::generate("/dashboard"));
+        exit();
     }
 
 

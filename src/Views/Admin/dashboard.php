@@ -101,3 +101,37 @@ use App\Routing\Router;
     </table>
 </div>
 
+<h2 class="text-center text-danger fw-bold text-decoration-underline m-5 ">Contact</h2>
+
+<div class="container">
+    <table class="table text-center">
+        <tr class="table-dark">
+        <tr>
+            <th scope="col">Email</th>
+            <th scope="col">Pseudo</th>
+            <th scope="col">Message</th>
+
+            <?php
+
+            if (isset($_SESSION['user'])) {
+                echo('<th>Edition</th>');
+            }
+            ?>
+        </tr>
+        <tr>
+            <?php
+            foreach ($listContacts as $listContact) {
+            ?>
+        <tr>
+            <td><?= $listContact->getEmail() ?></td>
+            <td><?= $listContact->getUsername() ?></td>
+            <td><?= $listContact->getMessage() ?></td>
+
+
+                <a href="<?= Router::generate('/admin/deleteContact/'.$listContact->getId()) ?>" class="btn btn-danger"
+                   role="button">Supprimer</a>
+            </td>
+            <?php } ?>
+        </tr>
+    </table>
+</div>
