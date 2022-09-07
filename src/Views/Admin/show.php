@@ -7,7 +7,7 @@ use App\Routing\Router;
     <div class="row">
         <div class="col-6 mt-5 text-center">
 
-            <img src="../Public/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
+            <img src="<?= Router::generate('../Public')?>/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
             <h3 class=" text-success fw-bold mb-4"><?= $article->getTitle(); ?></h3>
             <p class="fw-bold"><?= $article->getSlug(); ?></p>
             <p class="fw-bold"><?= $article->getContent(); ?>></p>

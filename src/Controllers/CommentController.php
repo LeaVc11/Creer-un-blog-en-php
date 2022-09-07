@@ -43,9 +43,7 @@ class CommentController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $errors = $this->getErrors();
-
             if (count($errors) == 0) {
-                //si pas d'erreur
                 $user = unserialize($_SESSION['user']);
                 $comment = new Comment(null,
                     $_POST['title'],
@@ -67,12 +65,13 @@ class CommentController extends AbstractController
     public function editComment($id): void
     {
         $errors = [];
-
+        $success = [];
         $comment = $this->commentManager->findById($id);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $errors = $this->getErrors($id);
+            $success = $this->getFormSuccess($id);
             if (count($errors) == 0) {
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
@@ -115,6 +114,17 @@ class CommentController extends AbstractController
         $_SESSION['flash']=$errors;
 
         return $errors;
+    }
+    private function getFormSuccess($id = null): array
+    {
+        $success = [];
+        $comment = $this->commentManager->getByTitle($_POST['title']);
+        if (!is_null($comment) && $comment->getId() != null && $id == null) {
+            $success[] = 'Votre commentaire a été pris en compte !';
+        }
+        $_SESSION['success']=$success;
+
+        return $success;
     }
 
 }

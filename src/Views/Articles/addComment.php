@@ -26,9 +26,7 @@ use App\Routing\Router;
             <div class="col text-primary fw-bold">
                 <label for="content">Content: </label>
                 <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
-
             </div>
-
         </div>
 
         <div class=" text-center m-5">

@@ -11,16 +11,13 @@ class Contact
     public function __construct($id = null, $username = null, $email = null , $message = null)
     {
 
-        $this->id = $id;
+        $this->id = $id ;
         $this->username = $username;
         $this->email = $email;
         $this->message = $message;
 
     }
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
@@ -31,7 +28,6 @@ class Contact
         $this->id = $id;
         return $this;
     }
-
 
     public function getUsername()
     {
@@ -65,6 +61,4 @@ class Contact
         $this->message = $message;
         return $this;
     }
-
-
 }

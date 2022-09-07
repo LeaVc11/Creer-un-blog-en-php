@@ -23,18 +23,22 @@ class ContactController extends AbstractController
             $errors = $this->getFormErrors();
             if (count($errors) == 0) {
                 $contact = new Contact(
-                $_POST['email'],
-                $_POST['username'],
-                $_POST['message'],
+
+                    $_POST['id'],
+                    $_POST['email'],
+                    $_POST['username'],
+                    $_POST['message'],
                 );
                 $this->contactManager->addContact($contact);
-                header('Location: ' . Router::generate("/dashboard"));
+                header('Location: ' . Router::generate("/articles"));
                 exit();
             }
-        }else{
-        $this->render("Contact/addContact");
+            header('Location: ' . Router::generate("/contact/addContact"));
+            exit();
         }
+        $this->render("contact/addContact");
     }
+
 
     private function getFormErrors(): array
     {
@@ -55,7 +59,7 @@ class ContactController extends AbstractController
             $errors[] = 'Veuillez saisir un message';
         }
 
-        $_SESSION['flash'] = array_merge($_SESSION['flash'], $errors);
+        $_SESSION['flash']=$errors;
 
         return $errors;
     }

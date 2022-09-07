@@ -6,6 +6,8 @@ use App\Routing\Router;
 ?>
 
 <?php FlashManager::displayFlash(); ?>
+<?php FlashManager::displayFlashSuccess(); ?>
+
 <div class="container">
     <div class=" m-4 fw-bold ">
         <h1 class="mt-5 text-center text-primary">Ajouter un article</h1>
@@ -14,7 +16,7 @@ use App\Routing\Router;
             <div class="row m-5">
                 <div class="col text-primary fw-bold ">
                     <label for="title">Titre : </label>
-                    <input type="text" class="form-control" id="title" name="title">
+                    <input type="text" class="form-control" id="title" name="title" >
                 </div>
                 <div class="col text-primary fw-bold ">
                     <label for="chapo">Chapô : </label>

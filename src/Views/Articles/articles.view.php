@@ -19,11 +19,11 @@ use App\Routing\Router;
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body text-center">
-                            <img src="<?= Router::generate('/Public/')?>uploads/<?= $article->getImageLink() ?>" class="w-50 mb-2"
+                            <img src="<?= Router::generate('../Public')?>/uploads/<?= $article->getImageLink() ?>" class="w-50 mb-2"
                                  alt="image">
                             <p class="card-text text-center fw-bold">
-                                <h5 class="mb-3">Projet WordPress</h5>
-                            <p>Intégrez un thème Wordpress pour un client</p>
+                                <h5 class="mb-3"><?= $article->getTitle() ?></h5>
+                            <p><?= $article->getSlug()?></p>
                                 <a href="<?= Router::generate('/articles/'.$article->getId())  ?>"
                                    class="btn btn-primary">Voir</a>
                             </p>

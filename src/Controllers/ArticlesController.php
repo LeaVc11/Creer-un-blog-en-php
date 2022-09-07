@@ -21,7 +21,6 @@ class ArticlesController extends AbstractController
 
     public function homePage()
     {
-//        $articles = $this->articleManager->loadingArticles();
         $this->render('accueil.view');
     }
 

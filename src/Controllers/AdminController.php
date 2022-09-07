@@ -119,7 +119,6 @@ class AdminController extends AbstractController
                 $errors[] = 'Un article avec ce titre existe déjà !';
             }
         }
-
         if (empty($_POST['chapo'])) {
             $errors[] = 'Veuillez saisir un chapo';
         }
@@ -140,17 +139,17 @@ class AdminController extends AbstractController
 
         return $errors;
 
-//        $success = 'article ajouté';
-//
-//
-//        if ($errors['flash'] == 0){
-//            $_SESSION['flash']=$errors;
-//
-//            return $errors;
-//        }else{
-//            $_SESSION['flash']=$success;
-//            return $success;
-//        }
+    }
+    private function getFormSuccess($id = null): array
+    {
+        $success = [];
+        $article = $this->articleManager->getByTitle($_POST['title']);
+        if (!is_null($article) && $article->getId() != null && $id == null) {
+            $success[] = 'Votre nouvelle article a été pris en compte !';
+        }
+        $_SESSION['success']=$success;
+
+        return $success;
     }
 
     #[ArrayShape(['filename' => "null|string", 'errors' => "array"])]

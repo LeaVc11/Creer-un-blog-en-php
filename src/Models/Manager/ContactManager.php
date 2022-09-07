@@ -9,29 +9,30 @@ class ContactManager extends DbManager
 {
     public function addContact(Contact $contact)
     {
-        $req = $this->getBdd()->prepare("INSERT INTO `contact`(`email`,`username`,`message`)
-      VALUE (:email,:username ,:message)");
+        $req = $this->getBdd()->prepare("INSERT INTO `contact`(`id`,`email`,`username`,`message`)
+      VALUE (:id,:email,:username ,:message)");
         $req->execute([
-            'email' => $contact->getEmail(),
+            'id'=>$contact->getId(),
             'username' => $contact->getUsername(),
+            'email' => $contact->getEmail(),
             'message' => $contact->getMessage(),
         ]);
     }
 
-    public function getByEmail($email): ?Contact
-    {
-        $contact = null;
-        $query = $this->getBdd()->prepare("SELECT * FROM `contact` WHERE email = :email");
-        $query->execute(['email' => $email]);
-        $contactFromBdd = $query->fetch();
-        if ($contactFromBdd) {
-            $contact = new Contact(
-                $contactFromBdd['id'],
-                $contactFromBdd['image_link'],
-                $contactFromBdd['chapo'],
-                $contactFromBdd['title']);
-        }
-        return $contact;
-    }
+//    public function getByEmail($email): ?Contact
+//    {
+//        $contact = null;
+//        $query = $this->getBdd()->prepare("SELECT * FROM `contact` WHERE email = :email");
+//        $query->execute(['email' => $email]);
+//        $contactFromBdd = $query->fetch();
+//        if ($contactFromBdd) {
+//            $contact = new Contact(
+//                $contactFromBdd['id'],
+//                $contactFromBdd['email'],
+//                $contactFromBdd['username'],
+//                $contactFromBdd['mesage']);
+//        }
+//        return $contact;
+//    }
 
 }

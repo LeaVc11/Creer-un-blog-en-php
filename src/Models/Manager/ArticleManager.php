@@ -136,4 +136,5 @@ SET image_link = :imageLink, chapo = :chapo,
         return $article;
     }
 
+
 }

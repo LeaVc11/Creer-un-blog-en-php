@@ -14,17 +14,17 @@ use App\Routing\Router;
             <div class="row m-5">
                 <div class="col text-primary fw-bold">
                     <input type="text" class="form-control"
-                           id="title" name="email" placeholder="Votre email">
+                           id="title" name="username" placeholder="Votre pseudo">
                 </div>
                 <div class="col text-primary fw-bold">
                     <input type="text" class="form-control"
-                           id="title" name="username" placeholder="Votre pseudo">
+                           id="title" name="email" placeholder="Votre email">
                 </div>
             </div>
             <div class="row m-5">
                 <div class="col text-primary fw-bold">
                     <div class="col text-primary fw-bold">
-                        <textarea name="content" class="form-control"
+                        <textarea name="message" class="form-control"
                                   id="content" cols="30"
                                   rows="10"
                         placeholder="Votre message"></textarea>
