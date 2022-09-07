@@ -66,4 +66,5 @@ class Contact
         return $this;
     }
 
+
 }

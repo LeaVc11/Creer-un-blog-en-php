@@ -13,17 +13,10 @@ class ArticleManager extends DbManager
 {
     private array $articles = [];
 
-    /**
-     * @return array
-     */
     public function getArticles(): array
     {
         return $this->articles;
     }
-
-    /**
-     * @throws Exception
-     */
     public function loadingArticles(): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM articles  ORDER BY articles.created_at DESC ");
@@ -36,13 +29,6 @@ class ArticleManager extends DbManager
         }
         return $this->articles;
     }
-    /**
-     * @param array $article
-     *
-     * @return Article
-     *
-     * @throws Exception
-     */
     private function createdObjectArticle(array $article): Article
     {
         return new Article(
@@ -57,15 +43,6 @@ class ArticleManager extends DbManager
             new DateTime($article['updated_at'])
         );
     }
-
-
-    /**
-     * @param int $id
-     *
-     * @return Article
-     *
-     * @throws Exception
-     */
     public function showArticle(int $id): Article
     {
         $request = $this->getBdd()->prepare('SELECT * FROM articles WHERE id = :id');
@@ -117,9 +94,6 @@ SET image_link = :imageLink, chapo = :chapo,
 
         $req->execute(['id' => $article->getId()]);
     }
-    /**
-     * @throws Exception
-     */
     public function findById($id): ?Article
     {
         $article = null;
@@ -141,9 +115,6 @@ SET image_link = :imageLink, chapo = :chapo,
 
         return $article;
     }
-    /**
-     * @throws Exception
-     */
     public function getByTitle($title): ?Article
     {
         $article = null;
@@ -164,8 +135,5 @@ SET image_link = :imageLink, chapo = :chapo,
         }
         return $article;
     }
-
-
-
 
 }

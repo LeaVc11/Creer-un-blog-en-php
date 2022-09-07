@@ -11,7 +11,6 @@ $router->get('/', 'Home#index');
 $router->get('/articles', 'Articles#displayArticles');
 $router->get('/articles/:id', 'Articles#showArticle');
 //comments
-//$router->get('/comments', 'Comment#listComments');
 $router->get('/comments/:id', 'Comment#displayComments');
 
 $router->get('/comments/addComment','Comment#addComment');

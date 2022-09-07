@@ -9,9 +9,7 @@ class CommentManager extends DbManager
 {
     private array $comments = [];
 
-    /**
-     * @throws \Exception
-     */
+
     public function showComment(int $id): Comment
     {
         $request = $this->getBdd()->prepare('SELECT * FROM comment WHERE id = :id');
@@ -21,9 +19,7 @@ class CommentManager extends DbManager
 
         return $this->createdObjectComment($comment);
     }
-    /**
-     * @throws \Exception
-     */
+
     private function createdObjectComment(array $comment): Comment
     {
 
@@ -38,9 +34,6 @@ class CommentManager extends DbManager
 
         );
     }
-    /**
-     * @throws \Exception
-     */
     public function loadingComments(): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM comment ORDER BY created_at ASC ");
@@ -48,17 +41,13 @@ class CommentManager extends DbManager
         $comments = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
-//        dd($articles);
         foreach ($comments as $comment) {
             $c = $this->createdObjectComment($comment);
             $this->comments[] = $c;
         }
         return $this->comments;
     }
-    /**
-     *
-     * @throws \Exception
-     */
+
     public function findById($id): ?Comment
     {
         $comment = null;
@@ -77,10 +66,7 @@ class CommentManager extends DbManager
         }
         return $comment;
     }
-    /**
-     *
-     * @throws \Exception
-     */
+
     public function getByTitle($title): ?Comment
     {
         $comment = null;
@@ -117,7 +103,7 @@ class CommentManager extends DbManager
             'createdBy' => $comment->getCreatedBy(),
             'articleId' => $comment->getArticleId(),
         ]);
-//        dd($comment,$req);
+
     }
 
     public function editComment(Comment $comment)
@@ -145,9 +131,7 @@ SET  title = :title,status = :status,content = :content,
 
         $req->execute(['id' => $comment->getId()]);
     }
-    /**
-     * @throws \Exception
-     */
+
     public function findByArticle(int $id): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE article_id = :article_id");
@@ -168,10 +152,6 @@ SET  title = :title,status = :status,content = :content,
 
     }
 
-    /**
-     * @param
-     * @throws \Exception
-     */
     public function findByStatus($status): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE `status`= :status");

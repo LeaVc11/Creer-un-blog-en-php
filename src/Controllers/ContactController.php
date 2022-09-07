@@ -27,9 +27,8 @@ class ContactController extends AbstractController
                 $_POST['username'],
                 $_POST['message'],
                 );
-                dd(1);
                 $this->contactManager->addContact($contact);
-                header('Location: ' . Router::generate("/articles"));
+                header('Location: ' . Router::generate("/dashboard"));
                 exit();
             }
         }else{

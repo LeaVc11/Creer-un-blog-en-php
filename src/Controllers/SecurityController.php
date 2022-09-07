@@ -43,6 +43,7 @@ class SecurityController extends AbstractController
 
                 $_SESSION['user'] = serialize($loggedUser);
                 if ($loggedUser->isAdmin()) {
+
                     header('Location: ' . Router::generate("/dashboard"));
                     exit();
                 }

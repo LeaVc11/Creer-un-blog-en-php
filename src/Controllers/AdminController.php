@@ -7,6 +7,7 @@ use App\Models\Class\Article;
 use App\Models\Class\Comment;
 use App\Models\Manager\ArticleManager;
 use App\models\Manager\CommentManager;
+use App\models\Manager\ContactManager;
 use App\Routing\Router;
 use DateTime;
 use JetBrains\PhpStorm\ArrayShape;
@@ -16,12 +17,15 @@ class AdminController extends AbstractController
 
     private ArticleManager $articleManager;
     private CommentManager $commentManager;
+    private ContactManager $contactManager;
 
 
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
         $this->commentManager = new CommentManager;
+        $this->contactManager = new ContactManager;
+  
 
     }
 
@@ -29,10 +33,10 @@ class AdminController extends AbstractController
     {
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
+        $listContacts = $this->contactManager->findById($id);
         $user = unserialize($_SESSION['user']);
-        $this->render('Admin/dashboard', compact('articles', 'listComments', 'user'));
+        $this->render('Admin/dashboard', compact('articles', 'listComments', 'listContacts', 'user'));
     }
-
 
     public function addArticle(): void
     {
@@ -132,11 +136,23 @@ class AdminController extends AbstractController
         if (empty($_POST['slug'])) {
             $errors[] = 'Veuillez saisir un slug';
         }
+
         $_SESSION['flash']=$errors;
 
         return $errors;
-    }
 
+//        $success = 'article ajouté';
+//
+//
+//        if ($errors['flash'] == 0){
+//            $_SESSION['flash']=$errors;
+//
+//            return $errors;
+//        }else{
+//            $_SESSION['flash']=$success;
+//            return $success;
+//        }
+    }
 
     #[ArrayShape(['filename' => "null|string", 'errors' => "array"])]
     private function uploadImage(): array

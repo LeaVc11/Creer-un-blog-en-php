@@ -14,49 +14,29 @@ class CommentController extends AbstractController
 
     private array $comments = [];
 
-
-    /**
-     * @throws Exception
-     */
     public function __construct()
     {
 
         $this->commentManager = new CommentManager;
 
     }
-
-    /**
-     * @throws \Exception
-     */
     public function dashboard(): void
     {
         $this->render('Admin/dashboard');
     }
-
-    /**
-     * @throws \Exception
-     */
     public function displayComments(int $id): void
     {
         $comments = $this->commentManager->findByArticle($id);
         $this->render('Comment/listComment', compact('comments'));
-
     }
-
-    /**
-     * @param int $id
-     *
-     * @return void
-     *
-     * @throws \Exception
-     */
     public function showComment(int $id): void
     {
         $comment = $this->commentManager->showComment($id);
         $this->render('Comment/showComment');
     }
+
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function addComment(): void
     {
@@ -75,6 +55,7 @@ class CommentController extends AbstractController
                     $user->getId(),
                     $_POST['articleId']);
                 $this->commentManager->addComment($comment);
+
                 header('Location: ' . Router::generate("/comments/". $_POST['articleId']));
                 exit();
             }
@@ -83,10 +64,6 @@ class CommentController extends AbstractController
             exit();
         }
     }
-
-    /**
-     * @throws Exception
-     */
     public function editComment($id): void
     {
         $errors = [];
@@ -100,6 +77,7 @@ class CommentController extends AbstractController
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
                 $this->commentManager->editComment($comment);
+
                 header('Location: ' . Router::generate("/articles"));
                 exit();
             }
@@ -110,9 +88,6 @@ class CommentController extends AbstractController
         }
     }
 
-    /**
-     * @throws \Exception
-     */
     public function deleteComment($id): void
     {
         $comment = $this->commentManager->findById($id);
@@ -141,6 +116,5 @@ class CommentController extends AbstractController
 
         return $errors;
     }
-
 
 }

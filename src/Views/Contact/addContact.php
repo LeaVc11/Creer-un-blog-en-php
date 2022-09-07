@@ -29,7 +29,6 @@ use App\Routing\Router;
                                   rows="10"
                         placeholder="Votre message"></textarea>
                     </div>
-
             </div>
             <div class=" text-center">
                 <button class="btn btn-warning text-dark text-center my-2  rounded-1 border "
