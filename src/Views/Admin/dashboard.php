@@ -4,10 +4,11 @@ use App\Routing\Router;
 
 ?>
 <!--Bienvenue-->
-<h1 class="text-center fw-bold m-5">Bienvenue sur le blog <span
-            class="text-decoration-underline"> <?= $user->getUsername() ?></span></h1>
+<h1 class="text-center fw-bold my-2">Bienvenue sur le blog de
+    <br>
+    <span class="text-decoration-underline mt-2"> <?= $user->getUsername() ?></span></h1>
 
-<h2 class=" text-center text-danger text-decoration-underline fw-bold m-5"> Articles</h2>
+<h2 class=" text-center text-danger text-decoration-underline fw-bold m-2"> Articles</h2>
 <p class=" text-center fw-bold lead">Administrez ici les articles du blog.</p>
 <div class="container">
     <table class="table text-center">
@@ -101,33 +102,3 @@ use App\Routing\Router;
 </div>
 
 
-<h2 class="text-center text-danger fw-bold text-decoration-underline m-5 ">Contact</h2>
-<p class="text-center fw-bold lead"> Les contact utilisateurs.</p>
-
-<div class="container">
-    <table class="table text-center">
-        <tr class="table-dark">
-        <tr>
-            <th scope="col">Pseudo</th>
-            <th scope="col">Email</th>
-            <th scope="col">Message</th>
-            <?php
-
-            if (isset($_SESSION['user'])) {
-                echo('<th>Edition</th>');
-            }
-            ?>
-        </tr>
-        <tr>
-            <?php
-            foreach ($listContacts as $listContact) {
-            ?>
-        <tr>
-            <td><?= $listContact->getUsername() ?></td>
-            <td><?= $listContact->getEmail() ?></td>
-            <td><?= $listContact->getMessage() ?></td>
-
-            <?php } ?>
-        </tr>
-    </table>
-</div>

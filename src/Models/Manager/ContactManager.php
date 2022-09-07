@@ -19,22 +19,6 @@ class ContactManager extends DbManager
         ]);
     }
 
-    public function findById($id): ?Contact
-    {
-        $contact = null;
-        $query = $this->getBdd()->prepare("SELECT * FROM contact WHERE id = :id");
-        $query->execute(['id' => $id]);
-        $contactFromBdd = $query->fetch();
-        if ($contactFromBdd) {
-            $contact = new Contact(
-                $contactFromBdd['id'],
-                $contactFromBdd['email'],
-                $contactFromBdd['username'],
-                $contactFromBdd['message']);
-        }
-
-        return $contact;
-    }
 
     public function getByEmail($email): ?Contact
     {
@@ -51,25 +35,5 @@ class ContactManager extends DbManager
         }
         return $contact;
     }
-    public function loadingContacts($id): array
-    {
-        $req = $this->getBdd()->prepare("SELECT * FROM `contact` WHERE id = :id ");
-        $req->execute(['id'=> $id]);
-        $listContacts = $req->fetchAll();
 
-        foreach ($listContacts as $listContact) {
-            $contactObject= $this->createdObjectContact($listContact);
-            $listContacts[] = $contactObject;
-        }
-        return $listContacts;
-    }
-    private function createdObjectContact(array $contact): Contact
-    {
-        return new Contact(
-            $contact['id'],
-            $contact['email'],
-            $contact['username'],
-            $contact['message'],
-        );
-    }
 }
