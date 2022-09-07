@@ -8,6 +8,8 @@ use PDO;
 
 class ContactManager extends DbManager
 {
+    private array $contacts = [];
+
     public function addContact(Contact $contact)
     {
         $req = $this->getBdd()->prepare("INSERT INTO `contact`(`id`,`email`,`username`,`message`)
@@ -35,32 +37,31 @@ class ContactManager extends DbManager
         }
         return $contact;
     }
-    public function loadingComments($id): ?array
-    {
-        $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE id = :id");
-        $req->execute(['id' => $id]);
-        $result = $req->fetchAll();
-        $listContacts = [];
-        foreach ($result as $contact) {
-            $contactObject = $this->createdObjectContact($contact);
-            $listContacts[] = $contactObject;
-        }
-        return $listContacts;
-    }
 
+    public function loadingContacts(): array
+    {
+        $req = $this->getBdd()->prepare("SELECT * FROM contact  ");
+        $req->execute();
+        $contacts = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        foreach ( $contacts  as $contact) {
+            $c = $this->createdObjectContact($contact);
+            $this->contacts[] = $c;
+        }
+        return $contacts;
+    }
     private function createdObjectContact(array $contact): Contact
     {
-
         return new Contact(
             $contact['id'],
             $contact['email'],
             $contact['username'],
             $contact['message'],
+
         );
     }
     public function findById($id): ?Contact
     {
-        $contact = null;
         $query = $this->getBdd()->prepare("SELECT * FROM contact WHERE id = :id");
         $query->execute(['id' => $id]);
         $contactFromBdd = $query->fetch();
@@ -69,7 +70,7 @@ class ContactManager extends DbManager
                 $contactFromBdd ['id'],
                 $contactFromBdd ['email'],
                 $contactFromBdd ['status'],
-                $contactFromBdd ['content']);
+                $contactFromBdd ['message']);
         }
         return $contact;
     }

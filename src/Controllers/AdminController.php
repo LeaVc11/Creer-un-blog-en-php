@@ -33,8 +33,11 @@ class AdminController extends AbstractController
     {
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
+
+        $contacts = $this->contactManager->loadingContacts();
+//        dd($contacts);
         $user = unserialize($_SESSION['user']);
-        $this->render('Admin/dashboard', compact('articles', 'listComments'/*, 'listContacts'*/, 'user'));
+        $this->render('Admin/dashboard', compact('articles', 'listComments', 'contacts', 'user'));
     }
 
     public function addArticle(): void

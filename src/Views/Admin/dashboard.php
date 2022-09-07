@@ -120,17 +120,17 @@ use App\Routing\Router;
         </tr>
         <tr>
             <?php
-            foreach ($listContacts as $listContact) {
+            foreach ($contacts as $contact) {
             ?>
         <tr>
-            <td><?= $listContact->getEmail() ?></td>
-            <td><?= $listContact->getUsername() ?></td>
-            <td><?= $listContact->getMessage() ?></td>
+            <td><?= $contact->getEmail() ?></td>
+            <td><?= $contact->getUsername() ?></td>
+            <td><?= $contact->getMessage() ?></td>
 
 
-                <a href="<?= Router::generate('/admin/deleteContact/'.$listContact->getId()) ?>" class="btn btn-danger"
+                <a href="<?= Router::generate('/admin/deleteContact/'.$contact->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
-            </td>
+
             <?php } ?>
         </tr>
     </table>

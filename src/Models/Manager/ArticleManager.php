@@ -13,10 +13,6 @@ class ArticleManager extends DbManager
 {
     private array $articles = [];
 
-    public function getArticles(): array
-    {
-        return $this->articles;
-    }
     public function loadingArticles(): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM articles  ORDER BY articles.created_at DESC ");
