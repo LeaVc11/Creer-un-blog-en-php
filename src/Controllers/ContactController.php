@@ -63,6 +63,17 @@ class ContactController extends AbstractController
 
         return $errors;
     }
+    private function getFormSuccess($id = null): array
+    {
+        $success = [];
+        $contact = $this->contactManager->getByEmail($_POST['email']);
+        if (!is_null($contact) && $contact->getId() != null && $id == null) {
+            $success[] = 'Votre demande a été pris en compte !';
+        }
+        $_SESSION['success']=$success;
+
+        return $success;
+    }
 
 }
 

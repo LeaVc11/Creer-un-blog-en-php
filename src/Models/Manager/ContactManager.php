@@ -19,20 +19,22 @@ class ContactManager extends DbManager
         ]);
     }
 
-//    public function getByEmail($email): ?Contact
-//    {
-//        $contact = null;
-//        $query = $this->getBdd()->prepare("SELECT * FROM `contact` WHERE email = :email");
-//        $query->execute(['email' => $email]);
-//        $contactFromBdd = $query->fetch();
-//        if ($contactFromBdd) {
-//            $contact = new Contact(
-//                $contactFromBdd['id'],
-//                $contactFromBdd['email'],
-//                $contactFromBdd['username'],
-//                $contactFromBdd['mesage']);
-//        }
-//        return $contact;
-//    }
+    public function getByEmail($email): ?Contact
+    {
+        $contact = null;
+        $query = $this->getBdd()->prepare("SELECT * FROM `contact` WHERE email = :email");
+        $query->execute(['email' => $email]);
+        $contactFromBdd = $query->fetch();
+        if ($contactFromBdd) {
+            $contact = new Contact(
+                $contactFromBdd['id'],
+                $contactFromBdd['email'],
+                $contactFromBdd['username'],
+                $contactFromBdd['message']);
+        }
+        return $contact;
+    }
+
+
 
 }
