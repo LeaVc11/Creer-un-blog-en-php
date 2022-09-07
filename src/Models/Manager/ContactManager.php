@@ -48,7 +48,7 @@ class ContactManager extends DbManager
             $c = $this->createdObjectContact($contact);
             $this->contacts[] = $c;
         }
-        return $contacts;
+        return $this->contacts;
     }
     private function createdObjectContact(array $contact): Contact
     {
