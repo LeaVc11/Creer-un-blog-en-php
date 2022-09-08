@@ -105,12 +105,12 @@ class SecurityController extends AbstractController
                     $role = "admin";
                 }
                 $_SESSION['email'] = $_POST['email'];
-                $user = new User($_POST['email'], $_POST['username'], $_POST['password'], $role);
+
+                $user = new User(null,$_POST['email'], $_POST['username'], $_POST['password'], $role);
                 $this->userManager->register($user);
                 header('Location:'. Router::generate("/login"));
                 exit();
             }
-
         }
         $this->render('Security/register');
     }

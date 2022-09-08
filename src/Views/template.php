@@ -1,6 +1,10 @@
 <?php
 
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
+if (isset($_SESSION['user'])){
+    $user =unserialize($_SESSION['user']);
+}
 
 ?>
 <!doctype html>
@@ -18,6 +22,7 @@ use App\Routing\Router;
     <link rel="icon" type="image/jpg" href="<?= Router::generate('/Public')?>/images/Maphoto">
 </head>
 <body>
+
 <!--Section Barre de navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -49,9 +54,12 @@ use App\Routing\Router;
                     } else {
                         ?>
                         <a class="text-decoration-none text-secondary" href="<?= Router::generate("/logout") ?>">Déconnexion</a> |
-                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/dashboard") ?>">Liste</a>
-
                         <?php
+                        if ($user->getRole() == 'admin'){
+                        ?>
+                        <a class="text-decoration-none text-secondary" href="<?= Router::generate("/dashboard") ?>">Liste</a>
+                        <?php
+                        }
                     }
                     ?>
 
@@ -62,12 +70,8 @@ use App\Routing\Router;
 </nav>
 <div>
     <?php
-    if (!empty($_SESSION['flash'])) {
-        foreach($_SESSION['flash'] as $flash) {
-             echo "<div class='alert alert-primary'>$flash</div>";
-        }
-        $_SESSION['flash'] = [];
-    }
+    FlashManager::displayFlashSuccess();
+    FlashManager::displayFlash();
     ?>
 </div>
 
@@ -85,6 +89,6 @@ use App\Routing\Router;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="../../app.js"></script>
+<script src="<?= Router::generate('/Public/')?>js/app.js"></script>
 </body>
 </html>

@@ -6,7 +6,8 @@ use App\Routing\Router;
 
 <div class="container">
 <div class="fw-bold " >
-    <?php FlashManager::displayFlash(); ?>
+
+
     <h1 class="m-3 text-center text-primary">Ajouter un commentaire</h1>
     <div class="m-3 text-center">
     <legend class="">Laisser un commentaire sur cet article</legend>

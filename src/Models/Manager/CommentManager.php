@@ -137,8 +137,8 @@ SET  title = :title,status = :status,content = :content,
 
     public function findByArticle(int $id): array
     {
-        $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE article_id = :article_id");
-        $req->execute(['article_id' => $id]);
+        $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE article_id = :article_id AND status = :status");
+        $req->execute(['article_id' => $id,'status'=>Comment::APPROVED]);
         $comments = $req->fetchAll();
 
         foreach ($comments as $comment) {

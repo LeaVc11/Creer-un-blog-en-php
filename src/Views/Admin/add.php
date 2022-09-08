@@ -28,10 +28,6 @@ use App\Routing\Router;
                     <label for="slug">Slug : </label>
                     <input type="text" class="form-control" id="slug" name="slug">
                 </div>
-                <div class="col text-primary fw-bold ">
-                    <label for="author">Auteur: </label>
-                    <input type="text" class="form-control" id="author" name="author">
-                </div>
 
             </div>
             <div class="row m-5">

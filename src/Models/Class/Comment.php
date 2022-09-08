@@ -13,7 +13,7 @@ class Comment
     private $createdAt;
     private $createdBy;
     private $articleId;
-    private $userId;
+
 
     const PENDING = 'PENDING';
     const REJECTED = 'REJECTED';
@@ -31,7 +31,7 @@ class Comment
 //     * @param $userId
      * @throws \Exception
      */
-    public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId/*, $userId*/)
+    public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
     {
         $this->id = $id;
         $this->title = $title;

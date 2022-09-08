@@ -12,7 +12,7 @@ class User
     private mixed $role;
 
 
-    public function __construct(int $id, string $email, string $username, string $password, string $role = 'user')
+    public function __construct(?int $id, string $email, string $username, string $password, string $role = 'user')
     {
         $this->id = $id;
         $this->email = $email;
@@ -22,7 +22,7 @@ class User
 
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         if ($this->role == 'admin') {
             return true;

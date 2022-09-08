@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Class\Comment;
 use App\Models\Manager\CommentManager;
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
 use Exception;
 
@@ -53,6 +54,7 @@ class CommentController extends AbstractController
                     $user->getId(),
                     $_POST['articleId'],);
                 $this->commentManager->addComment($comment);
+                FlashManager::addSuccess('Votre commentaire a été bien enregistré');
                 header('Location: ' . Router::generate("/Comments/". $_POST['articleId']));
                 exit();
             }
@@ -68,12 +70,15 @@ class CommentController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $errors = $this->getErrors($id);
-            $success = $this->getFormSuccess($id);
+
             if (count($errors) == 0) {
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
+                if (isset($_POST['status'])){
+                    $comment->setStatus($_POST['status']);
+                }
                 $this->commentManager->editComment($comment);
-
+                FlashManager::addSuccess('Votre commentaire a été modifié');
                 header('Location: ' . Router::generate("/articles"));
                 exit();
             }
@@ -112,17 +117,6 @@ class CommentController extends AbstractController
         $_SESSION['flash']=$errors;
 
         return $errors;
-    }
-    private function getFormSuccess($id = null): array
-    {
-        $success = [];
-        $comment = $this->commentManager->getByTitle($_POST['title']);
-        if (!is_null($comment) && $comment->getId() != null && $id == null) {
-            $success[] = 'Votre commentaire a été pris en compte !';
-        }
-        $_SESSION['success']=$success;
-
-        return $success;
     }
 
 }

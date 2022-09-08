@@ -87,12 +87,9 @@ use App\Routing\Router;
             <td><?= $listComment->getContent() ?></td>
             <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>
             </td>
-<!--            <td>-->
-<!--                <a href="--><?//= Router::generate('/comments/addComment/') ?><!--" class="btn btn-primary"-->
-<!--                   role="button">Valider</a>-->
-<!---->
-<!--            </td>-->
             <td>
+                <a href="<?= Router::generate('/comments/editComment/'.$listComment->getId()) ?>" class="btn btn-primary"
+                   role="button">Modifier</a>
                 <a href="<?= Router::generate('/admin/deleteComment/'.$listComment->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>

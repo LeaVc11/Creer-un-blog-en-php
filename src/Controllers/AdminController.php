@@ -5,13 +5,14 @@ namespace App\Controllers;
 
 use App\Models\Class\Article;
 use App\Models\Class\Comment;
+use App\Models\Class\User;
 use App\Models\Manager\ArticleManager;
-use App\models\Manager\CommentManager;
+use App\Models\Manager\CommentManager;
 use App\models\Manager\ContactManager;
 use App\models\Manager\UserManager;
 use App\Routing\Router;
 use DateTime;
-use JetBrains\PhpStorm\ArrayShape;
+
 
 class AdminController extends AbstractController
 {
@@ -32,15 +33,18 @@ class AdminController extends AbstractController
     }
     public function dashboard(): void
     {
+        $user = unserialize($_SESSION['user']);
+        $this->isAdmin($user);
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
         $contacts = $this->contactManager->loadingContacts();
         $users = $this->userManager->loadingUsers();
-        $user = unserialize($_SESSION['user']);
+
         $this->render('Admin/dashboard', compact('articles', 'listComments', 'contacts', 'users', 'user'));
     }
     public function addArticle(): void
     {
+        $this->isAdmin();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $errors = $this->getFormErrors();
@@ -49,12 +53,13 @@ class AdminController extends AbstractController
             $imageFileName = $upload['filename'];
 
             if (count($errors) == 0) {
+                $author= unserialize($_SESSION['user']);
                 $article = new Article(null,
                     $imageFileName,
                     $_POST['chapo'],
                     $_POST['title'],
                     $_POST['content'],
-                    $_POST['author'],
+                    $author->getUsername(),
                     $_POST['slug'],
                     new DateTime(),
                     new DateTime()
@@ -69,6 +74,7 @@ class AdminController extends AbstractController
     }
     public function deleteArticle($id): void
     {
+        $this->isAdmin();
         $article = $this->articleManager->findById($id);
 
         $this->articleManager->delete($article);
@@ -77,6 +83,7 @@ class AdminController extends AbstractController
     }
     public function editArticle($id): void
     {
+        $this->isAdmin();
         $article = $this->articleManager->findById($id);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = $this->getFormErrors($id);
@@ -126,10 +133,6 @@ class AdminController extends AbstractController
             $errors[] = 'Veuillez saisir du contenu';
         }
 
-        if (empty($_POST['author'])) {
-            $errors[] = 'Veuillez saisir un auteur';
-        }
-
         if (empty($_POST['slug'])) {
             $errors[] = 'Veuillez saisir un slug';
         }
@@ -139,19 +142,6 @@ class AdminController extends AbstractController
         return $errors;
 
     }
-    private function getFormSuccess($id = null): array
-    {
-        $success = [];
-        $article = $this->articleManager->getByTitle($_POST['title']);
-        if (!is_null($article) && $article->getId() != null && $id == null) {
-            $success[] = 'Votre nouvelle article a été pris en compte !';
-        }
-        $_SESSION['success']=$success;
-
-        return $success;
-    }
-
-    #[ArrayShape(['filename' => "null|string", 'errors' => "array"])]
     private function uploadImage(): array
     {
         $extensionAllowed = ['image/jpeg', 'image/png'];
@@ -171,10 +161,19 @@ class AdminController extends AbstractController
             if (count($errors) == 0) {
                 $imageFileName = uniqid() . '.' . explode('/', $image['type'])[1];
 
-                move_uploaded_file($image['tmp_name'], realpath(__DIR__ . '/../../Public/uploads/') . $imageFileName);
+                move_uploaded_file($image['tmp_name'], realpath(__DIR__ . '/../../Public/uploads/') ."/". $imageFileName);
             }
         }
         return ['filename' => $imageFileName, 'errors' => $errors];
+    }
+    private function isAdmin(?User $user=null){
+        if (is_null($user)){
+            $user = unserialize($_SESSION['user']);
+        }
+        if ($user->getRole() != 'admin'){
+            header('Location: ' . Router::generate("/"));
+            exit();
+        }
     }
 
 
