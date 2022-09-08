@@ -20,6 +20,9 @@ class CommentManager extends DbManager
         return $this->createdObjectComment($comment);
     }
 
+    /**
+     * @throws \Exception
+     */
     private function createdObjectComment(array $comment): Comment
     {
 
@@ -139,11 +142,14 @@ SET  title = :title,status = :status,content = :content,
         $comments = $req->fetchAll();
 
         foreach ($comments as $comment) {
+
             $c = $this->createdObjectComment($comment);
             $reqAuthor = $this->getBdd()->prepare("SELECT * FROM `user` WHERE id = :user_id");
             $reqAuthor->execute(['user_id' => $c->getCreatedBy()]);
             $author=$reqAuthor->fetch();
+
             $c->setCreated_by($author['username']);
+
             $this->comments[] = $c;
         }
         return $this->comments;

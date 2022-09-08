@@ -51,14 +51,12 @@ class CommentController extends AbstractController
                     $_POST['content'],
                     "NOW",
                     $user->getId(),
-                    $_POST['articleId']);
+                    $_POST['articleId'],);
                 $this->commentManager->addComment($comment);
-
-                header('Location: ' . Router::generate("/comments/". $_POST['articleId']));
+                header('Location: ' . Router::generate("/Comments/". $_POST['articleId']));
                 exit();
             }
-
-            header('Location: ' . Router::generate("/articles/" . $_POST['articleId']));
+            header('Location:' . Router::generate("/articles" . $_POST['articleId']));
             exit();
         }
     }

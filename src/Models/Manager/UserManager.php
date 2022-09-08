@@ -4,10 +4,12 @@ namespace App\models\Manager;
 
 
 use App\Models\Class\User;
+use PDO;
 
 
 class UserManager extends DbManager
 {
+    private array $users = [];
     public function login($email, $password): ?User
     {
         $customer = null;
@@ -22,7 +24,6 @@ class UserManager extends DbManager
         }
         return $customer;
     }
-
     public function findByEmail($email): ?User
     {
         $customer = null;
@@ -50,7 +51,6 @@ class UserManager extends DbManager
             return false;
         }
     }
-
     public function register(User $user)
     {
 
@@ -66,6 +66,51 @@ class UserManager extends DbManager
             'role'=> $user->getRole(),
 
         ]);
+    }
+    public function deleteUser(User $user)
+    {
+        $req = $this->getBdd()->prepare('DELETE FROM `user` WHERE id = :id');
 
+        $req->execute(['id' => $user->getId()]);
+    }
+    public function loadingUsers(): array
+    {
+        $req = $this->getBdd()->prepare("SELECT * FROM user  ");
+        $req->execute();
+        $users = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        foreach ($users as $user) {
+            $u = $this->createdObjectUser($user);
+            $this->users[] = $u;
+        }
+        return $this->users;
+    }
+    private function createdObjectUser(array $user): User
+    {
+        return new User(
+            $user['id'],
+            $user['email'],
+            $user['username'],
+            $user['password'],
+            $user['role'],
+
+        );
+    }
+    public function findById($id): ?User
+    {
+        $user = null;
+        $query = $this->getBdd()->prepare("SELECT * FROM user WHERE id = :id");
+        $query->execute(['id' => $id]);
+        $userFromBdd = $query->fetch();
+        if ($userFromBdd) {
+            $user = new User(
+                $userFromBdd['id'],
+                $userFromBdd['email'],
+                $userFromBdd['username'],
+                $userFromBdd['password'],
+                $userFromBdd['role']);
+        }
+
+        return $user;
     }
 }

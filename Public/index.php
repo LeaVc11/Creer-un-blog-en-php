@@ -39,6 +39,8 @@ $router->post('/admin/editArticle/:id','Admin#editArticle');
 
 $router->get('/admin/deleteArticle/:id','Admin#deleteArticle');
 $router->get('/admin/deleteComment/:id','Comment#deleteComment');
+$router->get('/admin/deleteContact/:id','Contact#deleteContact');
+$router->get('/admin/deleteUser/:id','User#deleteUser');
 
 try {
     $router->run();

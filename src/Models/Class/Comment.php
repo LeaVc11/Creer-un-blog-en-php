@@ -13,10 +13,12 @@ class Comment
     private $createdAt;
     private $createdBy;
     private $articleId;
+    private $userId;
 
     const PENDING = 'PENDING';
     const REJECTED = 'REJECTED';
     const APPROVED = 'APPROVED';
+
 
     /**
      * @param $id
@@ -26,9 +28,10 @@ class Comment
      * @param $createdAt
      * @param $createdBy
      * @param $articleId
+//     * @param $userId
      * @throws \Exception
      */
-    public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
+    public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId/*, $userId*/)
     {
         $this->id = $id;
         $this->title = $title;
@@ -37,6 +40,7 @@ class Comment
         $this->createdAt = new DateTime($createdAt);
         $this->createdBy = $createdBy;
         $this->articleId = $articleId;
+     /*   $this->userId = $userId;*/
     }
 
     public function getId()
@@ -139,5 +143,23 @@ class Comment
         $this->articleId = $articleId;
         return $this;
     }
+
+//    /**
+//     * @return mixed
+//     */
+//    public function getUserId()
+//    {
+//        return $this->userId;
+//    }
+//
+//    /**
+//     * @param mixed $userId
+//     * @return Comment
+//     */
+//    public function setUserId($userId)
+//    {
+//        $this->userId = $userId;
+//        return $this;
+//    }
 
 }

@@ -14,7 +14,6 @@ class ContactController extends AbstractController
     {
         $this->contactManager = new ContactManager();
     }
-
     public function addContact(): void
     {
 
@@ -47,8 +46,6 @@ class ContactController extends AbstractController
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
-
-
     private function getFormErrors(): array
     {
         $errors = [];

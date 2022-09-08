@@ -8,6 +8,7 @@ use App\Models\Class\Comment;
 use App\Models\Manager\ArticleManager;
 use App\models\Manager\CommentManager;
 use App\models\Manager\ContactManager;
+use App\models\Manager\UserManager;
 use App\Routing\Router;
 use DateTime;
 use JetBrains\PhpStorm\ArrayShape;
@@ -18,28 +19,26 @@ class AdminController extends AbstractController
     private ArticleManager $articleManager;
     private CommentManager $commentManager;
     private ContactManager $contactManager;
-
+    private UserManager $userManager;
 
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
         $this->commentManager = new CommentManager;
         $this->contactManager = new ContactManager;
-  
+        $this->userManager = new UserManager;
+
 
     }
-
     public function dashboard(): void
     {
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
-
         $contacts = $this->contactManager->loadingContacts();
-//        dd($contacts);
+        $users = $this->userManager->loadingUsers();
         $user = unserialize($_SESSION['user']);
-        $this->render('Admin/dashboard', compact('articles', 'listComments', 'contacts', 'user'));
+        $this->render('Admin/dashboard', compact('articles', 'listComments', 'contacts', 'users', 'user'));
     }
-
     public function addArticle(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -68,7 +67,6 @@ class AdminController extends AbstractController
         }
      $this->render("Admin/add");
     }
-
     public function deleteArticle($id): void
     {
         $article = $this->articleManager->findById($id);
@@ -77,7 +75,6 @@ class AdminController extends AbstractController
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
-
     public function editArticle($id): void
     {
         $article = $this->articleManager->findById($id);
@@ -110,7 +107,6 @@ class AdminController extends AbstractController
         }
         $this->render('Admin/editArticle', compact('article'));
     }
-
     private function getFormErrors($id = null): array
     {
         $errors = [];

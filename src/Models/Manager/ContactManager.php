@@ -62,6 +62,7 @@ class ContactManager extends DbManager
     }
     public function findById($id): ?Contact
     {
+        $contact = null;
         $query = $this->getBdd()->prepare("SELECT * FROM contact WHERE id = :id");
         $query->execute(['id' => $id]);
         $contactFromBdd = $query->fetch();
