@@ -7,8 +7,9 @@ use App\Models\Class\Article;
 use App\Models\Class\Comment;
 use App\Models\Class\User;
 use App\Models\Manager\ArticleManager;
-use App\Models\Manager\CommentManager;
+use App\models\Manager\CommentManager;
 use App\models\Manager\ContactManager;
+use App\models\Manager\FlashManager;
 use App\models\Manager\UserManager;
 use App\Routing\Router;
 use DateTime;
@@ -64,7 +65,7 @@ class AdminController extends AbstractController
                     new DateTime(),
                     new DateTime()
                 );
-
+                FlashManager::addSuccess('Votre article a été bien enregistré');
                 $this->articleManager->addArticle($article);
                 header('Location: ' . Router::generate("/dashboard"));
                 exit();
@@ -96,15 +97,18 @@ class AdminController extends AbstractController
                     $imageFileName = $article->getImageLink();
                 }
                 if (count($errors) == 0) {
-                    $article = new Article($id,
+                    $author= unserialize($_SESSION['user']);
+                    $article = new Article(null,
                         $imageFileName,
                         $_POST['chapo'],
                         $_POST['title'],
                         $_POST['content'],
-                        $_POST['author'],
+                        $author->getUsername(),
                         $_POST['slug'],
                         new DateTime(),
                         new DateTime());
+                    FlashManager::addSuccess('Votre article a été modifié');
+
                     $this->articleManager->editArticle($article);
                     header('Location:' . Router::generate("/articles"));
                 }

@@ -24,10 +24,6 @@ use App\Routing\Router;
                 <label for="slug">Slug : </label>
                 <input type="text" class="form-control" id="slug" name="slug" value="<?= $article->getSlug() ?>">
             </div>
-            <div class="col text-primary fw-bold ">
-                <label for="author">Auteur: </label>
-                <input type="text" class="form-control" id="author" name="author" value="<?= $article->getAuthor() ?>">
-            </div>
         </div>
         <div class="row m-5">
             <div class="col text-primary fw-bold">
