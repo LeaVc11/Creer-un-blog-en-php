@@ -99,21 +99,14 @@ class SecurityController extends AbstractController
                     $errors[] = 'Email déjà existant !';
                 }
             }
-
             if (count($errors) == 0) {
-
                 $role = 'user';
-
                 if ($_POST['isAdmin']) {
                     $role = "admin";
                 }
                 $_SESSION['email'] = $_POST['email'];
-
-
                 $user = new User($_POST['email'], $_POST['username'], $_POST['password'], $role);
-
                 $this->userManager->register($user);
-
                 header('Location:'. Router::generate("/login"));
                 exit();
             }
