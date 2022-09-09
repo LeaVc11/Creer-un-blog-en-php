@@ -11,51 +11,58 @@ use App\Routing\Router;
 <h2 class=" text-center text-danger text-decoration-underline fw-bold m-2"> Articles</h2>
 <p class=" text-center fw-bold lead">Administrez ici les articles du blog.</p>
 <div class="container ">
-    <table class="table  text-center table-hover table table-bordered p-5">
-        <thead class="table-primary">
-        <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Image</th>
-            <th scope="col">Chapô</th>
-            <th scope="col">Slug</th>
-            <th scope="col">Content</th>
-            <th scope="col">Date de création</th>
-            <th scope="col">Date de modification</th>
-            <th scope="col">Auteur</th>
-            <?php
+    <div class="row">
+        <table class="table  text-center table-hover table table-bordered p-5">
+            <thead class="table-primary">
+            <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Image</th>
+                <th scope="col">Chapô</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Content</th>
+                <th scope="col">Date de création</th>
+                <th scope="col">Date de modification</th>
+                <th scope="col">Auteur</th>
+                <?php
 
-            if (isset($_SESSION['user'])) {
-                echo('<th >Edition</th>');
-            }
-            ?>
-        </tr>
-        </thead>
-        <div class="d-flex justify-content-end">
-            <a href="<?= Router::generate('/admin/addArticles') ?>"
-               class="btn btn-warning  m-1">Ajouter</a>
-        </div>
-        <tr>
-            <?php
-            foreach ($articles as $article) {
-            ?>
-        <tr>
-            <td><?= $article->getTitle() ?></td>
-            <td><?= $article->getImageLink() ?></td>
-            <td><?= $article->getSlug() ?></td>
-            <td><?= $article->getChapo() ?></td>
-            <td><?= $article->getContent() ?></td>
-            <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
-            <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
-            <td><?= $article->getAuthor() ?></td>
-            <td>
-                <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-primary"
-                   role="button">Modifier</a>
-                <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>" class="btn btn-danger"
-                   role="button">Supprimer</a>
-            </td>
-            <?php } ?>
-        </tr>
-    </table>
+                if (isset($_SESSION['user'])) {
+                    echo('<th >Edition</th>');
+                }
+                ?>
+                </th>
+            </tr>
+            </thead>
+            <div class="d-flex justify-content-end">
+                <a href="<?= Router::generate('/admin/addArticles') ?>"
+                   class="btn btn-warning  m-1">Ajouter</a>
+            </div>
+            <tr>
+                <?php
+                foreach ($articles
+
+                as $article) {
+                ?>
+            <tr>
+                <td><?= $article->getTitle() ?></td>
+                <td><?= $article->getImageLink() ?></td>
+                <td><?= $article->getSlug() ?></td>
+                <td><?= $article->getChapo() ?></td>
+                <td><?= $article->getContent() ?></td>
+                <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
+                <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
+                <td><?= $article->getAuthor() ?></td>
+                <td >
+                    <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-primary mb-2"
+                       role="button">Modifier</a>
+                    <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>"
+                       class="btn btn-danger"
+                       role="button">Supprimer</a>
+                </td>
+                <?php } ?>
+            </tr>
+
+        </table>
+    </div>
 </div>
 
 <h2 class="text-center text-danger fw-bold text-decoration-underline m-2 ">Commentaires</h2>
@@ -80,7 +87,9 @@ use App\Routing\Router;
         </thead>
         <tr>
             <?php
-            foreach ($listComments as $listComment) {
+            foreach ($listComments
+
+            as $listComment) {
             ?>
         <tr>
             <td><?= $listComment->getTitle() ?></td>
@@ -89,9 +98,11 @@ use App\Routing\Router;
             <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>
             </td>
             <td>
-                <a href="<?= Router::generate('/comments/editComment/'.$listComment->getId()) ?>" class="btn btn-primary"
+                <a href="<?= Router::generate('/comments/editComment/' . $listComment->getId()) ?>"
+                   class="btn btn-primary"
                    role="button">Modifier</a>
-                <a href="<?= Router::generate('/admin/deleteComment/'.$listComment->getId()) ?>" class="btn btn-danger"
+                <a href="<?= Router::generate('/admin/deleteComment/' . $listComment->getId()) ?>"
+                   class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
             <?php } ?>
@@ -119,7 +130,9 @@ use App\Routing\Router;
         </thead>
         <tr>
             <?php
-            foreach ($contacts as $contact) {
+            foreach ($contacts
+
+            as $contact) {
             ?>
         <tr>
             <td><?= $contact->getEmail() ?></td>
@@ -127,7 +140,7 @@ use App\Routing\Router;
             <td><?= $contact->getMessage() ?></td>
 
             <td>
-                <a href="<?= Router::generate('/admin/deleteContact/'.$contact->getId()) ?>" class="btn btn-danger"
+                <a href="<?= Router::generate('/admin/deleteContact/' . $contact->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
 
@@ -157,7 +170,9 @@ use App\Routing\Router;
         </thead>
         <tr>
             <?php
-            foreach ($users as $user) {
+            foreach ($users
+
+            as $user) {
             ?>
         <tr>
             <td><?= $user->getEmail() ?></td>
@@ -166,7 +181,7 @@ use App\Routing\Router;
             <td><?= $user->getRole() ?></td>
 
             <td>
-                <a href="<?= Router::generate('/admin/deleteUser/'.$user->getId()) ?>" class="btn btn-danger"
+                <a href="<?= Router::generate('/admin/deleteUser/' . $user->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
 

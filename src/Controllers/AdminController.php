@@ -114,9 +114,8 @@ class AdminController extends AbstractController
                         $_POST['slug'],
                         new DateTime(),
                         new DateTime());
-                    FlashManager::addSuccess('Votre article a été modifié');
-
                     $this->articleManager->editArticle($article);
+                    FlashManager::addSuccess('Votre article a été modifié');
                     header('Location:' . Router::generate("/articles"));
                 }
                 header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
