@@ -23,6 +23,10 @@ use App\Routing\Router;
         <form method="POST" action="<?= Router::generate('/comments/addComment') ?>" enctype="multipart/form-data">
 
             <input type="hidden" name="articleId" value="<?= $article->getId() ?>">
+            <?php
+        } else {
+            ?>
+
             <div class="row m-5">
 
                 <div class="col text-primary fw-bold">
