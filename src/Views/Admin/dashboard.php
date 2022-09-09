@@ -13,7 +13,6 @@ use App\Routing\Router;
 <div class="container ">
     <table class="table  text-center table-hover table table-bordered p-5">
         <thead class="table-primary">
-
         <tr>
             <th scope="col">Titre</th>
             <th scope="col">Image</th>
@@ -31,7 +30,6 @@ use App\Routing\Router;
             ?>
         </tr>
         </thead>
-
         <div class="d-flex justify-content-end">
             <a href="<?= Router::generate('/admin/addArticles') ?>"
                class="btn btn-warning  m-1">Ajouter</a>
@@ -49,14 +47,12 @@ use App\Routing\Router;
             <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
             <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
             <td><?= $article->getAuthor() ?></td>
-
             <td>
                 <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-primary"
                    role="button">Modifier</a>
                 <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
-
             <?php } ?>
         </tr>
     </table>

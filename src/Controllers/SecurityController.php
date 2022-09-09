@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 use App\Models\Class\User;
+use App\models\Manager\FlashManager;
 use App\models\Manager\UserManager;
 use App\Routing\Router;
 
@@ -43,10 +44,11 @@ class SecurityController extends AbstractController
 
                 $_SESSION['user'] = serialize($loggedUser);
                 if ($loggedUser->isAdmin()) {
-
+                    FlashManager::addSuccess('Vous êtes connecté(e)');
                     header('Location: ' . Router::generate("/dashboard"));
                     exit();
                 }
+                FlashManager::addSuccess('Vous êtes connecté(e)');
                 header('Location:'. Router::generate("/articles"));
                 exit();
             } else {
@@ -108,6 +110,7 @@ class SecurityController extends AbstractController
 
                 $user = new User(null,$_POST['email'], $_POST['username'], $_POST['password'], $role);
                 $this->userManager->register($user);
+                FlashManager::addSuccess('Votre inscription a été enregistré');
                 header('Location:'. Router::generate("/login"));
                 exit();
             }

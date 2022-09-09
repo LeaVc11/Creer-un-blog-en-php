@@ -2,11 +2,12 @@
 //    var_dump($errors);
 use App\models\Manager\FlashManager;
 use App\Routing\Router;
-if (isset($_SESSION['user'])){
-    $user =unserialize($_SESSION['user']);
+
+if (isset($_SESSION['user'])) {
+    $user = unserialize($_SESSION['user']);
 }
 
- ?>
+?>
 <div class="container  ">
     <?php FlashManager::displayFlash(); ?>
 </div>
@@ -16,20 +17,19 @@ if (isset($_SESSION['user'])){
         <form method="POST" action="<?= Router::generate('/comments/editComment/' . $comment->getId()) ?>"
               enctype="multipart/form-data">
             <div class="row m-5">
-                <div class="col text-primary fw-bold ">
-                    <label for="title">Titre : </label>
-                    <input type="text" class="form-control" id="title" name="title" value="<?= $comment->getTitle() ?>">
+                <div class="col text-primary fw-bold">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Titre" value="<?= $comment->getTitle() ?>">
                 </div>
-
+                <div class="col text-primary fw-bold">
                     <?php
 
-                    if (isset($user) && $user->getRole() == 'admin' ) {
+                    if (isset($user) && $user->getRole() == 'admin') {
 
                         ?>
                         <select class="form-control" name="status">
-                            <option value="PENDING">Attente </option>
-                            <option value="APPROVED">Valider </option>
-                            <option value="REJECTED">Supprimer </option>
+                            <option value="PENDING">Attente</option>
+                            <option value="APPROVED">Valider</option>
+                            <option value="REJECTED">Supprimer</option>
                         </select>
 
                         <?php
@@ -37,7 +37,6 @@ if (isset($_SESSION['user'])){
                     ?>
                 </div>
             </div>
-
             <div class="row m-5">
                 <div class="col text-primary fw-bold">
                     <label for="content">Content: </label>
@@ -46,12 +45,16 @@ if (isset($_SESSION['user'])){
                 </div>
             </div>
 
-            <div class=" text-center">
-                <a href="<?= Router::generate('/comments/' . $comment->getArticleId()) ?>"
-                   class="btn btn-primary text-white text-center mb-2 rounded-1 border ">Retour</a>
-                <button class="btn btn-warning text-dark text-center mb-2  rounded-1 border "
-                        type="submit">Valider
-                </button>
-            </div>
-        </form>
     </div>
+
+
+
+    <div class=" text-center">
+        <a href="<?= Router::generate('/comments/' . $comment->getArticleId()) ?>"
+           class="btn btn-primary text-white text-center mb-2 rounded-1 border ">Retour</a>
+        <button class="btn btn-warning text-dark text-center mb-2  rounded-1 border "
+                type="submit">Valider
+        </button>
+    </div>
+    </form>
+</div>
