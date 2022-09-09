@@ -32,6 +32,7 @@ class AdminController extends AbstractController
 
 
     }
+
     public function dashboard(): void
     {
         $user = unserialize($_SESSION['user']);
@@ -43,6 +44,18 @@ class AdminController extends AbstractController
 
         $this->render('Admin/dashboard', compact('articles', 'listComments', 'contacts', 'users', 'user'));
     }
+
+    private function isAdmin(?User $user = null)
+    {
+        if (is_null($user)) {
+            $user = unserialize($_SESSION['user']);
+        }
+        if ($user->getRole() != 'admin') {
+            header('Location: ' . Router::generate("/"));
+            exit();
+        }
+    }
+
     public function addArticle(): void
     {
         $this->isAdmin();
@@ -54,8 +67,8 @@ class AdminController extends AbstractController
             $imageFileName = $upload['filename'];
 
             if (count($errors) == 0) {
-                $author= unserialize($_SESSION['user']);
-            $article = new Article(null,
+                $author = unserialize($_SESSION['user']);
+                $article = new Article(null,
                     $imageFileName,
                     $_POST['chapo'],
                     $_POST['title'],
@@ -71,56 +84,9 @@ class AdminController extends AbstractController
                 exit();
             }
         }
-     $this->render("Admin/add");
+        $this->render("Admin/add");
     }
-    public function deleteArticle($id): void
-    {
-        $this->isAdmin();
-        $article = $this->articleManager->findById($id);
 
-        $this->articleManager->delete($article);
-        FlashManager::addSuccess('Votre article a été supprimé');
-
-        header('Location: ' . Router::generate("/articles"));
-        exit();
-    }
-    public function editArticle($id): void
-    {
-        $this->isAdmin();
-        $article = $this->articleManager->findById($id);
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $errors = $this->getFormErrors($id);
-            if (count($errors) == 0) {
-                if ($_FILES['image_link']['size'] != 0) {
-                    $upload = $this->uploadImage();
-                    $errors = $upload['errors'];
-                    $imageFileName = $upload['filename'];
-                } else {
-                    $imageFileName = $article->getImageLink();
-                }
-                if (count($errors) == 0) {
-                    $author= unserialize($_SESSION['user']);
-                    $article = new Article($id,
-                        $imageFileName,
-                        $_POST['chapo'],
-                        $_POST['title'],
-                        $_POST['content'],
-                        $author->getUsername(),
-                        $_POST['slug'],
-                        new DateTime(),
-                        new DateTime());
-
-                    $this->articleManager->editArticle($article);
-
-                    FlashManager::addSuccess('Votre article a été modifié');
-                    header('Location:' . Router::generate("/articles"));
-                }
-                header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
-                exit();
-            }
-        }
-        $this->render('Admin/editArticle', compact('article'));
-    }
     private function getFormErrors($id = null): array
     {
         $errors = [];
@@ -144,11 +110,12 @@ class AdminController extends AbstractController
             $errors[] = 'Veuillez saisir un slug';
         }
 
-        $_SESSION['flash']=$errors;
+        $_SESSION['flash'] = $errors;
 
         return $errors;
 
     }
+
     private function uploadImage(): array
     {
         $extensionAllowed = ['image/jpeg', 'image/png'];
@@ -168,19 +135,60 @@ class AdminController extends AbstractController
             if (count($errors) == 0) {
                 $imageFileName = uniqid() . '.' . explode('/', $image['type'])[1];
 
-                move_uploaded_file($image['tmp_name'], realpath(__DIR__ . '/../../Public/uploads/') ."/". $imageFileName);
+                move_uploaded_file($image['tmp_name'], realpath(__DIR__ . '/../../Public/uploads/') . "/" . $imageFileName);
             }
         }
         return ['filename' => $imageFileName, 'errors' => $errors];
     }
-    private function isAdmin(?User $user=null){
-        if (is_null($user)){
-            $user = unserialize($_SESSION['user']);
+
+    public function deleteArticle($id): void
+    {
+        $this->isAdmin();
+        $article = $this->articleManager->findById($id);
+
+        $this->articleManager->delete($article);
+        FlashManager::addSuccess('Votre article a été supprimé');
+
+        header('Location: ' . Router::generate("/articles"));
+        exit();
+    }
+
+    public function editArticle($id): void
+    {
+        $this->isAdmin();
+        $article = $this->articleManager->findById($id);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $errors = $this->getFormErrors($id);
+            if (count($errors) == 0) {
+                if ($_FILES['image_link']['size'] != 0) {
+                    $upload = $this->uploadImage();
+                    $errors = $upload['errors'];
+                    $imageFileName = $upload['filename'];
+                } else {
+                    $imageFileName = $article->getImageLink();
+                }
+                if (count($errors) == 0) {
+                    $author = unserialize($_SESSION['user']);
+                    $article = new Article($id,
+                        $imageFileName,
+                        $_POST['chapo'],
+                        $_POST['title'],
+                        $_POST['content'],
+                        $author->getUsername(),
+                        $_POST['slug'],
+                        new DateTime(),
+                        new DateTime());
+
+                    $this->articleManager->editArticle($article);
+
+                    FlashManager::addSuccess('Votre article a été modifié');
+                    header('Location:' . Router::generate("/articles"));
+                }
+                header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
+                exit();
+            }
         }
-        if ($user->getRole() != 'admin'){
-            header('Location: ' . Router::generate("/"));
-            exit();
-        }
+        $this->render('Admin/editArticle', compact('article'));
     }
 
 

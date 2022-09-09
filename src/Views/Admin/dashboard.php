@@ -54,7 +54,7 @@ use App\Routing\Router;
 
                 <td>
                     <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>"
-                       class="btn btn-primary"
+                       class="btn btn-primary m-2"
                        role="button">Modifier</a>
                     <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>"
                        class="btn btn-danger"
