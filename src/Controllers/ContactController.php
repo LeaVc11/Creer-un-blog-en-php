@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Class\Contact;
 use App\models\Manager\ContactManager;
+use App\models\Manager\FlashManager;
 use App\Routing\Router;
 
 class ContactController extends AbstractController
@@ -20,7 +21,7 @@ class ContactController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $errors = $this->getFormErrors();
-            $success = $this->getFormSuccess();
+
             if (count($errors) == 0) {
                 $contact = new Contact(
 
@@ -30,6 +31,8 @@ class ContactController extends AbstractController
                     $_POST['message'],
                 );
                 $this->contactManager->addContact($contact);
+                FlashManager::addSuccess('Votre message a été modifié');
+
                 header('Location: ' . Router::generate("/articles"));
                 exit();
             }
@@ -43,6 +46,9 @@ class ContactController extends AbstractController
         $contact = $this->contactManager->findById($id);
 
         $this->contactManager->deleteContact($contact);
+
+        FlashManager::addSuccess('Votre message a été supprimé');
+
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
@@ -68,17 +74,6 @@ class ContactController extends AbstractController
         $_SESSION['flash']=$errors;
 
         return $errors;
-    }
-    private function getFormSuccess($id = null): array
-    {
-        $success = [];
-        $contact = $this->contactManager->getByEmail($_POST['email']);
-        if (!is_null($contact) && $contact->getId() != null && $id == null) {
-            $success[] = 'Votre demande a été pris en compte !';
-        }
-        $_SESSION['success']=$success;
-
-        return $success;
     }
 
 }

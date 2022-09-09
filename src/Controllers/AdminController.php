@@ -64,6 +64,7 @@ class AdminController extends AbstractController
                     $_POST['slug'],
                     new DateTime(),
                     new DateTime()
+
                 );
                 FlashManager::addSuccess('Votre article a été bien enregistré');
                 $this->articleManager->addArticle($article);
