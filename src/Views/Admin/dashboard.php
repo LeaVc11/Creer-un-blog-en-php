@@ -51,8 +51,10 @@ use App\Routing\Router;
                 <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
                 <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
                 <td><?= $article->getAuthor() ?></td>
-                <td >
-                    <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-primary mb-2"
+
+                <td>
+                    <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>"
+                       class="btn btn-primary"
                        role="button">Modifier</a>
                     <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>"
                        class="btn btn-danger"
@@ -97,8 +99,9 @@ use App\Routing\Router;
             <td><?= $listComment->getStatus() ?></td>
             <td><?= $listComment->getContent() ?></td>
             <td><?= $listComment->getCreatedBy() ?></td>
-            <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>
-            </td>
+            <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>  </td>
+
+
             <td>
                 <a href="<?= Router::generate('/comments/editComment/' . $listComment->getId()) ?>"
                    class="btn btn-primary"

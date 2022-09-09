@@ -19,18 +19,6 @@ class Comment
     const REJECTED = 'REJECTED';
     const APPROVED = 'APPROVED';
 
-
-    /**
-     * @param $id
-     * @param $title
-     * @param $status
-     * @param $content
-     * @param $createdAt
-     * @param $createdBy
-     * @param $articleId
-//     * @param $userId
-     * @throws \Exception
-     */
     public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
     {
         $this->id = $id;
@@ -40,7 +28,7 @@ class Comment
         $this->createdAt = new DateTime($createdAt);
         $this->createdBy = $createdBy;
         $this->articleId = $articleId;
-     /*   $this->userId = $userId;*/
+
     }
 
     public function getId()

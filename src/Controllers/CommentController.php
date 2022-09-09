@@ -72,6 +72,7 @@ class CommentController extends AbstractController
             $errors = $this->getErrors($id);
 
             if (count($errors) == 0) {
+
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
                 $comment->setCreated_by($_POST['created_by']);
@@ -96,6 +97,7 @@ class CommentController extends AbstractController
         $comment = $this->commentManager->findById($id);
 
         $this->commentManager->deleteComment($comment);
+        FlashManager::addSuccess('Votre commentaire a été supprimé');
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }

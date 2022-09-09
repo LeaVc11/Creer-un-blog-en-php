@@ -3,7 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Manager\DbManager;
-use App\models\Manager\UserManager;
+use App\Models\Manager\FlashManager;
+use App\Models\Manager\UserManager;
 use App\Routing\Router;
 
 
@@ -20,6 +21,7 @@ class UserController extends DbManager
         $user = $this->userManager->findById($id);
 
         $this->userManager->deleteUser($user);
+        FlashManager::addSuccess('Votre compte a été supprimé');
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
