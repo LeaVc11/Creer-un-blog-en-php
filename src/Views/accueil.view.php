@@ -9,7 +9,7 @@ use App\Routing\Router;
             <div class=" mb-5 px-1 py-4">
                 <div class="row">
                     <div class="col-md-5">
-                        <div class="portrait text-center col-md-5 ">
+                        <div class="portrait text-center">
                             <img src="<?= Router::generate('/Public/')?>images/photo/Maphoto.jpg" class="rounded-circle" alt="photo img">
                         </div>
                         <p class="text-animation text-center "></p>

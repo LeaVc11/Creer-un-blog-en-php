@@ -20,8 +20,7 @@ if (isset($_SESSION['user'])){
                     <label for="title">Titre : </label>
                     <input type="text" class="form-control" id="title" name="title" value="<?= $comment->getTitle() ?>">
                 </div>
-                <div class="col text-primary fw-bold ">
-                    <label for="chapo">Status: </label>
+
                     <?php
 
                     if (isset($user) && $user->getRole() == 'admin' ) {

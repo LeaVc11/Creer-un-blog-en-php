@@ -55,7 +55,7 @@ class AdminController extends AbstractController
 
             if (count($errors) == 0) {
                 $author= unserialize($_SESSION['user']);
-                $article = new Article(null,
+            $article = new Article(null,
                     $imageFileName,
                     $_POST['chapo'],
                     $_POST['title'],
@@ -65,6 +65,12 @@ class AdminController extends AbstractController
                     new DateTime(),
                     new DateTime()
 
+//                $article->setImageLink($imageFileName);
+//                $article->setChapo($_POST['chapo']);
+//                $article->setTitle($_POST['title']);
+//                $article->setContent($_POST['content']);
+//                $article->setSlug($_POST['slug']);
+//                $article->setUpdatedAt(new DateTime()
                 );
                 FlashManager::addSuccess('Votre article a été bien enregistré');
                 $this->articleManager->addArticle($article);

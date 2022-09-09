@@ -10,7 +10,7 @@ use App\Routing\Router;
 
 <h2 class=" text-center text-danger text-decoration-underline fw-bold m-2"> Articles</h2>
 <p class=" text-center fw-bold lead">Administrez ici les articles du blog.</p>
-<div class="container">
+<div class="container ">
     <table class="table  text-center table-hover table table-bordered p-5">
         <thead class="table-primary">
 
@@ -23,10 +23,15 @@ use App\Routing\Router;
             <th scope="col">Date de création</th>
             <th scope="col">Date de modification</th>
             <th scope="col">Auteur</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </thead>
+            <?php
+
+            if (isset($_SESSION['user'])) {
+                echo('<th >Edition</th>');
+            }
+            ?>
         </tr>
+        </thead>
+
         <div class="d-flex justify-content-end">
             <a href="<?= Router::generate('/admin/addArticles') ?>"
                class="btn btn-warning  m-1">Ajouter</a>
@@ -44,14 +49,14 @@ use App\Routing\Router;
             <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
             <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
             <td><?= $article->getAuthor() ?></td>
+
             <td>
-                <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-secondary"
+                <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>" class="btn btn-primary"
                    role="button">Modifier</a>
-            </td>
-            <td>
                 <a href="<?= Router::generate('/admin/deleteArticle/' . $article->getId()) ?>" class="btn btn-danger"
                    role="button">Supprimer</a>
             </td>
+
             <?php } ?>
         </tr>
     </table>
@@ -59,7 +64,7 @@ use App\Routing\Router;
 
 <h2 class="text-center text-danger fw-bold text-decoration-underline m-2 ">Commentaires</h2>
 <p class="text-center fw-bold lead"> Les status des commentaires.</p>
-<div class="container">
+<div class="container ">
     <table class="table table-light text-center table-hover table-bordered p-5">
         <thead class="table-primary">
 
