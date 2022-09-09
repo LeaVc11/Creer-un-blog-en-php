@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 
 use App\Models\Class\User;
-use App\models\Manager\FlashManager;
-use App\models\Manager\UserManager;
+use App\Models\Manager\FlashManager;
+use App\Models\Manager\UserManager;
 use App\Routing\Router;
 
 

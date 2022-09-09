@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Class\Comment;
 use App\Models\Manager\CommentManager;
-use App\models\Manager\FlashManager;
+use App\Models\Manager\FlashManager;
 use App\Routing\Router;
 use Exception;
 
@@ -74,6 +74,7 @@ class CommentController extends AbstractController
             if (count($errors) == 0) {
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
+                $comment->setCreated_by($_POST['created_by']);
                 if (isset($_POST['status'])){
                     $comment->setStatus($_POST['status']);
                 }

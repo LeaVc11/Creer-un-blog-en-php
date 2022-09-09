@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models\Manager;
+namespace App\Models\Manager;
 
 use App\Models\Class\Comment;
 use PDO;

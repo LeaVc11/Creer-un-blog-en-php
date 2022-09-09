@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models\Manager;
+namespace App\Models\Manager;
 
 class FlashManager
 {

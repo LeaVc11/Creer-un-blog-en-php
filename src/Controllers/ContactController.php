@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Class\Contact;
-use App\models\Manager\ContactManager;
-use App\models\Manager\FlashManager;
+use App\Models\Manager\ContactManager;
+use App\Models\Manager\FlashManager;
 use App\Routing\Router;
 
 class ContactController extends AbstractController

@@ -7,10 +7,10 @@ use App\Models\Class\Article;
 use App\Models\Class\Comment;
 use App\Models\Class\User;
 use App\Models\Manager\ArticleManager;
-use App\models\Manager\CommentManager;
-use App\models\Manager\ContactManager;
-use App\models\Manager\FlashManager;
-use App\models\Manager\UserManager;
+use App\Models\Manager\CommentManager;
+use App\Models\Manager\ContactManager;
+use App\Models\Manager\FlashManager;
+use App\Models\Manager\UserManager;
 use App\Routing\Router;
 use DateTime;
 
@@ -86,7 +86,9 @@ class AdminController extends AbstractController
         $article = $this->articleManager->findById($id);
 
         $this->articleManager->delete($article);
-        header('Location: ' . Router::generate("/dashboard"));
+        FlashManager::addSuccess('Votre article a été supprimé');
+
+        header('Location: ' . Router::generate("/articles"));
         exit();
     }
     public function editArticle($id): void
@@ -105,7 +107,7 @@ class AdminController extends AbstractController
                 }
                 if (count($errors) == 0) {
                     $author= unserialize($_SESSION['user']);
-                    $article = new Article(null,
+                    $article = new Article($id,
                         $imageFileName,
                         $_POST['chapo'],
                         $_POST['title'],
@@ -114,7 +116,9 @@ class AdminController extends AbstractController
                         $_POST['slug'],
                         new DateTime(),
                         new DateTime());
+
                     $this->articleManager->editArticle($article);
+
                     FlashManager::addSuccess('Votre article a été modifié');
                     header('Location:' . Router::generate("/articles"));
                 }

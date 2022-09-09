@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Manager\ArticleManager;
-use App\Routing\Router;
+
 use Exception;
 
 class ArticlesController extends AbstractController

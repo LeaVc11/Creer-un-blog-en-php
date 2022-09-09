@@ -5,7 +5,6 @@ namespace App\Models\Manager;
 
 use App\Models\Class\Article;
 use DateTime;
-use Exception;
 use PDO;
 
 
@@ -73,6 +72,7 @@ SET image_link = :imageLink, chapo = :chapo,
  WHERE id = :id");
 
         $req->execute([
+
             'id' => $article->getId(),
             'imageLink' => $article->getImageLink(),
             'chapo' => $article->getChapo(),
@@ -82,13 +82,16 @@ SET image_link = :imageLink, chapo = :chapo,
             'slug' => $article->getSlug(),
             'created_at' => $article->getCreatedAt()->format('Y-m-d '),
             'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
+
         ]);
+
     }
     public function delete(Article $article)
     {
         $req = $this->getBdd()->prepare('DELETE FROM `articles` WHERE id = :id');
 
         $req->execute(['id' => $article->getId()]);
+
     }
     public function findById($id): ?Article
     {

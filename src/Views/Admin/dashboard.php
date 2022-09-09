@@ -13,7 +13,7 @@ use App\Routing\Router;
 <div class="container ">
     <div class="row">
         <table class="table  text-center table-hover table table-bordered p-5">
-            <thead class="table-primary">
+            <thead class="table-primary col-3">
             <tr>
                 <th scope="col">Titre</th>
                 <th scope="col">Image</th>
@@ -75,6 +75,7 @@ use App\Routing\Router;
             <th scope="col">Titre</th>
             <th scope="col">Status</th>
             <th scope="col">Content</th>
+            <th scope="col">Auteur</th>
             <th scope="col">Date de création</th>
 
             <?php
@@ -95,6 +96,7 @@ use App\Routing\Router;
             <td><?= $listComment->getTitle() ?></td>
             <td><?= $listComment->getStatus() ?></td>
             <td><?= $listComment->getContent() ?></td>
+            <td><?= $listComment->getCreatedBy() ?></td>
             <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>
             </td>
             <td>
@@ -130,9 +132,7 @@ use App\Routing\Router;
         </thead>
         <tr>
             <?php
-            foreach ($contacts
-
-            as $contact) {
+            foreach ($contacts as $contact) {
             ?>
         <tr>
             <td><?= $contact->getEmail() ?></td>
