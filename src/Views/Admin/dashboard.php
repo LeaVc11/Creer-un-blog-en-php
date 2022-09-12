@@ -49,7 +49,7 @@ use App\Routing\Router;
                 <td><?= $article->getChapo() ?></td>
                 <td><?= $article->getContent() ?></td>
                 <td><?= $article->getCreatedAt()->format('d/m/Y ') ?></td>
-                <td><?= $article->getUpdatedAt()->format('d/m/Y ') ?></td>
+                <td><?= $article->getUpdatedAt()->format('d/m/Y  ') ?></td>
                 <td><?= $article->getAuthor() ?></td>
                 <td>
                     <a href="<?= Router::generate('/admin/editArticle/' . $article->getId()) ?>"
@@ -98,7 +98,7 @@ use App\Routing\Router;
             <td><?= $listComment->getStatus() ?></td>
             <td><?= $listComment->getContent() ?></td>
             <td><?= $listComment->getCreatedBy() ?></td>
-            <td><?= $listComment->getCreatedAt()->format('d/m/Y') ?>  </td>
+            <td><?= $listComment->getCreatedAt()->format('d/m/Y ') ?>  </td>
 
 
             <td>

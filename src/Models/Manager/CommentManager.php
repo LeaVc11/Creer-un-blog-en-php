@@ -121,7 +121,7 @@ SET  title = :title,status = :status,content = :content,
             'title' => $comment->getTitle(),
             'status' => $comment->getStatus(),
             'content' => $comment->getContent(),
-            'created_at' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
+            'created_at' => $comment->getCreatedAt()->format('d/m/Y H:i:s'),
             'created_by' => $comment->getCreatedBy(),
             'article_id' => $comment->getArticleId(),
 

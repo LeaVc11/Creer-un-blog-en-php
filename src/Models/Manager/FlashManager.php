@@ -8,7 +8,7 @@ class FlashManager
     {
         if (!empty($_SESSION['flash'])) {
             foreach ($_SESSION['flash'] as $flash) {
-                echo "<div class='text-dark text-center mt-2 mb-2 alert alert-danger'>$flash</div>";
+                echo "<div class='text-dark text-center fw-bold mt-1 alert alert-danger'>$flash</div>";
             }
             $_SESSION['flash'] = [];
         }
@@ -17,7 +17,7 @@ class FlashManager
     {
         if (!empty($_SESSION['success'])) {
             foreach ($_SESSION['success'] as $success) {
-                echo "<div class='text-dark text-center mt-2 mb-2 alert alert-success'>$success</div>";
+                echo "<div class='text-dark text-center fw-bold  mt-4 alert alert-success'>$success</div>";
             }
             $_SESSION['success'] = [];
         }
