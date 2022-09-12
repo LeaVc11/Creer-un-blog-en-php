@@ -38,9 +38,7 @@ use App\Routing\Router;
             </div>
             <tr>
                 <?php
-                foreach ($articles
-
-                as $article) {
+                foreach ($articles as $article) {
                 ?>
             <tr>
                 <td><?= $article->getTitle() ?></td>
@@ -89,9 +87,7 @@ use App\Routing\Router;
         </thead>
         <tr>
             <?php
-            foreach ($listComments
-
-            as $listComment) {
+            foreach ($listComments as $listComment) {
             ?>
         <tr>
             <td><?= $listComment->getTitle() ?></td>

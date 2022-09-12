@@ -39,6 +39,11 @@ class AdminController extends AbstractController
         $this->isAdmin($user);
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
+        foreach ($listComments as $comment){
+            $author=$this->userManager->findById($comment->getCreatedBy());
+            $comment->setCreated_by($author->getUsername());
+        }
+
         $contacts = $this->contactManager->loadingContacts();
         $users = $this->userManager->loadingUsers();
 

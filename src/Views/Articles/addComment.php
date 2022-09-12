@@ -17,11 +17,13 @@ use App\Routing\Router;
                  href="<?= Router::generate("/login") ?>">être connecté(e)</a>
                 à votre compte utilisateur pour pouvoir laisser un commentaire.</small>
         </div>
+        <?php
 
+        if (isset($_SESSION['user'])) {
+        ?>
         <form method="POST" action="<?= Router::generate('/comments/addComment') ?>" enctype="multipart/form-data">
 
             <input type="hidden" name="articleId" value="<?= $article->getId() ?>">
-
 
             <div class="row m-5">
 
@@ -46,5 +48,7 @@ use App\Routing\Router;
                 </button>
             </div>
         </form>
-
+        <?php
+        }
+        ?>
     </div>

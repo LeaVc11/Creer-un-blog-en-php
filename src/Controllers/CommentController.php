@@ -28,6 +28,7 @@ class CommentController extends AbstractController
     public function displayComments(int $id): void
     {
         $comments = $this->commentManager->findByArticle($id);
+
         $this->render('Comment/listComment', compact('comments'));
     }
     public function showComment(int $id): void
