@@ -42,6 +42,8 @@ $router->get('/admin/deleteComment/:id','Comment#deleteComment');
 $router->get('/admin/deleteContact/:id','Contact#deleteContact');
 $router->get('/admin/deleteUser/:id','User#deleteUser');
 
+
+
 try {
     $router->run();
     extract(compact('router'));

@@ -10,7 +10,7 @@ use App\Routing\Router;
                 <div class="row">
                     <div class="col-md-5">
                         <div class="portrait text-center">
-                            <img src="<?= Router::generate('/Public/')?>images/photo/Maphoto.jpg" class="rounded-circle" alt="photo img">
+                            <img src="<?= Router::generate('/public/')?>images/photo/Maphoto.jpg" class="rounded-circle" alt="photo img">
 
                         </div>
                         <p class="text-animation text-center "></p>
@@ -38,7 +38,7 @@ use App\Routing\Router;
                             <a class="btn btn-success btn-lg rounded mt-5 ms-4" role="button" type="submit"
                                href="https://monportfolio.carine-dev.fr/ ">Mon Site </a>
                             <a class="btn btn-primary btn-lg rounded mt-5" role="button" type="submit"
-                               href="<?= Router::generate('/Public/')?>images/Carine%20Vinagre.pdf" >Mon CV</a>
+                               href="<?= Router::generate('/public/')?>images/Carine%20Vinagre.pdf" >Mon CV</a>
                             <a class="btn btn-info btn-lg rounded mt-5" role="button" type="submit"
                                href="https://github.com/vcarine" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"

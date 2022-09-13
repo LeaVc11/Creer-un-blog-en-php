@@ -23,6 +23,7 @@ use App\Routing\Router;
                             <div class="card h-150">
                                 <div class="card-body text-center ">
                                     <img src="<?= Router::generate('/Public/') ?>uploads/<?= $article->getImageLink() ?>"
+                                    <img src="<?= Router::generate('/public/') ?>uploads/<?= $article->getImageLink() ?>"
                                          class="w-50 mb-2"
                                          alt="image">
                                     <p class="card-text text-center fw-bold mt -2">

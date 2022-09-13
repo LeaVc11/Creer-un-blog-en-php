@@ -35,7 +35,14 @@ class AdminController extends AbstractController
 
     public function dashboard(): void
     {
+
+
         $user = unserialize($_SESSION['user']);
+
+        if (!$user){
+            $user = null;
+        }
+
         $this->isAdmin($user);
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
@@ -50,14 +57,17 @@ class AdminController extends AbstractController
         $this->render('Admin/dashboard', compact('articles', 'listComments', 'contacts', 'users', 'user'));
     }
 
-    private function isAdmin(?User $user = null)
+    private function isAdmin(?User $user =null ):void
     {
-        if (is_null($user)) {
+
+        if (is_null($user)&& isset($_SESSION['user'])) {
             $user = unserialize($_SESSION['user']);
         }
-        if ($user->getRole() != 'admin') {
+
+        if (is_null($user) || $user->getRole() != 'admin') {
             header('Location: ' . Router::generate("/"));
             exit();
+
         }
     }
 
@@ -92,7 +102,7 @@ class AdminController extends AbstractController
         $this->render("Admin/add");
     }
 
-    private function getFormErrors($id = null): array
+    private function getFormErrors(?int $id = null): array
     {
         $errors = [];
         if (empty($_POST['title'])) {

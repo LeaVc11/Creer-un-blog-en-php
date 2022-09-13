@@ -115,12 +115,11 @@ class CommentController extends AbstractController
         }
         $comment = $this->commentManager->getByTitle($_POST['title']);
 
-        if (!is_null($comment) && $comment->getId() != null && $id == null) {
+        if (!is_null($comment) && $comment->getId() != null && $id === null) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
         $_SESSION['flash']=$errors;
 
         return $errors;
     }
-
 }

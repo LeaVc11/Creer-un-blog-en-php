@@ -79,7 +79,7 @@ class Comment
     public function setCreated_at($createdAt)
     {
         $format = 'Y-m-d H:i:s';
-        // Teste la validité de la date
+
         $d = DateTime::createFromFormat($format, $createdAt);
         if ($createdAt == $d->format($format)) {
             $this->createdAt = $d->format($format);

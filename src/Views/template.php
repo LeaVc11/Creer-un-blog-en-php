@@ -1,6 +1,6 @@
 <?php
 
-use App\models\Manager\FlashManager;
+use App\Models\Manager\FlashManager;
 use App\Routing\Router;
 if (isset($_SESSION['user'])){
     $user =unserialize($_SESSION['user']);
@@ -18,8 +18,14 @@ if (isset($_SESSION['user'])){
     <!--    bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--    css-->
-    <link rel="stylesheet" href="<?= Router::generate('/Public')?>/css/style.css">
-    <link rel="icon" type="image/jpg" href="<?= Router::generate('/Public')?>/images/Maphoto">
+
+    <link rel="stylesheet" href="<?= Router::generate('/public')?>/css/style.css">
+
+    <link rel="icon" type="image/jpg" href="<?= Router::generate('/public')?>/images/Maphoto">
+
+    <link href="<?= Router::generate('/public')?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
 </head>
 <body>
 
@@ -89,6 +95,6 @@ if (isset($_SESSION['user'])){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="<?= Router::generate('/Public/')?>js/app.js"></script>
+<script src="<?= Router::generate('/public/')?>js/app.js"></script>
 </body>
 </html>
