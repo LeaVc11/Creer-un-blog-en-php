@@ -41,7 +41,7 @@ class ContactController extends AbstractController
         }
         $this->render("contact/addContact");
     }
-    public function deleteContact($id): void
+    public function deleteContact(int $id): void
     {
         $contact = $this->contactManager->findById($id);
 

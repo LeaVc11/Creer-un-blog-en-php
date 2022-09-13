@@ -63,7 +63,7 @@ class CommentController extends AbstractController
             exit();
         }
     }
-    public function editComment($id): void
+    public function editComment(int $id): void
     {
 
         $comment = $this->commentManager->findById($id);
@@ -93,7 +93,7 @@ class CommentController extends AbstractController
         }
     }
 
-    public function deleteComment($id): void
+    public function deleteComment(int $id): void
     {
         $comment = $this->commentManager->findById($id);
 
@@ -103,7 +103,7 @@ class CommentController extends AbstractController
         exit();
     }
 
-    private function getErrors($id = null): array
+    private function getErrors(int $id = null): array
     {
         $errors = [];
 

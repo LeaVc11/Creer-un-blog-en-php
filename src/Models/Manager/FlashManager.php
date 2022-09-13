@@ -22,7 +22,7 @@ class FlashManager
             $_SESSION['success'] = [];
         }
     }
-    public static function addSuccess($messageSuccess): void
+    public static function addSuccess(string $messageSuccess): void
     {
         $_SESSION['success'][]=$messageSuccess;
     }

@@ -8,16 +8,16 @@ class Router {
     private $routes = [];
     private $namedRoutes = [];
 
-    public function __construct($url){
+    public function __construct(string $url){
         $this->url = $url;
     }
-    public function get($path, $callable, $name = null){
+    public function get(string $path, string $callable, ?string $name = null){
         return $this->add($path, $callable, $name, 'GET');
     }
-    public function post($path, $callable, $name = null){
+    public function post(string $path, string $callable, ?string $name= null){
         return $this->add($path, $callable, $name, 'POST');
     }
-    private function add($path, $callable, $name, $method){
+    private function add(string $path, string $callable, ?string $name, $method){
         $route = new Route($path, $callable);
         $this->routes[$method][] = $route;
         if(is_string($callable) && $name === null){

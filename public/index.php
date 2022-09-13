@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ExceptionController;
 use App\Routing\Router;
 
 require '../vendor/autoload.php';
@@ -43,9 +44,9 @@ $router->get('/admin/deleteContact/:id','Contact#deleteContact');
 $router->get('/admin/deleteUser/:id','User#deleteUser');
 
 
-
+extract(compact('router'));
 try {
     $router->run();
-    extract(compact('router'));
 } catch (Exception $e) {
+    (new ExceptionController)->pageIntrouvable();
 }
