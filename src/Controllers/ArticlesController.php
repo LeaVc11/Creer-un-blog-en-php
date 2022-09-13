@@ -19,7 +19,7 @@ class ArticlesController extends AbstractController
         $this->articleManager = new ArticleManager;
     }
 
-    public function homePage()
+    public function homePage():void
     {
         $this->render('accueil.view');
     }
