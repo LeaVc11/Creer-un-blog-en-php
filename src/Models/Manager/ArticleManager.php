@@ -47,7 +47,7 @@ class ArticleManager extends DbManager
 
         return $this->createdObjectArticle($article);
     }
-    public function addArticle(Article $article)
+    public function addArticle( Article  $article):string
     {
         $req = $this->getBdd()->prepare("INSERT INTO `articles`
     (`image_link`,`chapo`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
