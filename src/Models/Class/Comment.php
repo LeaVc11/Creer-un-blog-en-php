@@ -10,9 +10,9 @@ class Comment
     private string $title;
     private string $status;
     private string $content;
-    private $createdAt;
-    private string $createdBy;
-    private $articleId;
+    private mixed $createdAt;
+    private ?string $createdBy;
+    private int $articleId;
 
 
     const PENDING = 'PENDING';
@@ -23,9 +23,9 @@ class Comment
                                 string $title,
                                 string $status,
                                 string $content,
-                                $createdAt,
-                                string $createdBy,
-                                $articleId)
+                                mixed $createdAt,
+                                ?string $createdBy,
+                                int $articleId)
     {
         $this->id = $id;
         $this->title = $title;
@@ -90,7 +90,7 @@ class Comment
     {
         return $this->createdBy;
     }
-    public function setCreated_by($user):void
+    public function setCreated_by(?string $user): void
     {
         $this->createdBy = $user;
     }
@@ -98,7 +98,7 @@ class Comment
     {
         return $this->status;
     }
-    public function setStatus(string $status): void
+    public function setStatus(string $status):void
     {
         $status = $status ?? $this::PENDING;
         $this->status = $status;
