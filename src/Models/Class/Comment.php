@@ -11,7 +11,7 @@ class Comment
     private string $status;
     private string $content;
     private $createdAt;
-    private $createdBy;
+    private string $createdBy;
     private $articleId;
 
 
@@ -24,7 +24,7 @@ class Comment
                                 string $status,
                                 string $content,
                                 $createdAt,
-                                $createdBy,
+                                string $createdBy,
                                 $articleId)
     {
         $this->id = $id;
@@ -90,7 +90,7 @@ class Comment
     {
         return $this->createdBy;
     }
-    public function setCreated_by(string $user): void
+    public function setCreated_by(string $user)
     {
         $this->createdBy = $user;
     }
