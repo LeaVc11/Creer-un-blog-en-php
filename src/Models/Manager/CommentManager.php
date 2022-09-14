@@ -90,7 +90,7 @@ class CommentManager extends DbManager
         return $comment;
     }
 
-    public function addComment(Comment $comment)
+    public function addComment(Comment $comment):void
     {
 
         $req = $this->getBdd()->prepare("INSERT INTO `comment`
@@ -109,7 +109,7 @@ class CommentManager extends DbManager
 
     }
 
-    public function editComment(Comment $comment)
+    public function editComment(Comment $comment):void
     {
         $req = $this->getBdd()->prepare("UPDATE `comment`
 SET  title = :title,status = :status,content = :content,
@@ -128,7 +128,7 @@ SET  title = :title,status = :status,content = :content,
         ]);
     }
 
-    public function deleteComment(Comment $comment)
+    public function deleteComment(Comment $comment):void
     {
         $req = $this->getBdd()->prepare('DELETE FROM `comment` WHERE id = :id');
 

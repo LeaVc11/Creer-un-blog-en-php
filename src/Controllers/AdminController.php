@@ -42,7 +42,9 @@ class AdminController extends AbstractController
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
         foreach ($listComments as $comment){
             $author=$this->userManager->findById($comment->getCreatedBy());
+
             $comment->setCreated_by($author->getUsername());
+            dd($comment);
         }
         $contacts = $this->contactManager->loadingContacts();
         $users = $this->userManager->loadingUsers();
@@ -60,7 +62,7 @@ class AdminController extends AbstractController
             exit();
         }
     }
-    public function addArticle()
+    public function addArticle():void
     {
         $this->isAdmin();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
