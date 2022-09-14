@@ -51,7 +51,7 @@ class CommentManager extends DbManager
         return $this->comments;
     }
 
-    public function findById($id): ?Comment
+    public function findById(int $id): ?Comment
     {
         $comment = null;
         $query = $this->getBdd()->prepare("SELECT * FROM comment WHERE id = :id");
@@ -70,7 +70,7 @@ class CommentManager extends DbManager
         return $comment;
     }
 
-    public function getByTitle($title): ?Comment
+    public function getByTitle(string $title): ?Comment
     {
         $comment = null;
         $query = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE title = :title");
@@ -156,7 +156,7 @@ SET  title = :title,status = :status,content = :content,
 
     }
 
-    public function findByStatus($status): array
+    public function findByStatus(string $status): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE `status`= :status");
         $req->execute(['status' => $status]);

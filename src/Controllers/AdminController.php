@@ -142,7 +142,7 @@ class AdminController extends AbstractController
         }
         return ['filename' => $imageFileName, 'errors' => $errors];
     }
-    public function deleteArticle($id): void
+    public function deleteArticle(int $id): void
     {
         $this->isAdmin();
         $article = $this->articleManager->findById($id);
@@ -153,7 +153,7 @@ class AdminController extends AbstractController
         header('Location: ' . Router::generate("/articles"));
         exit();
     }
-    public function editArticle($id): void
+    public function editArticle(int $id): void
     {
         $this->isAdmin();
         $article = $this->articleManager->findById($id);
