@@ -30,7 +30,7 @@ class AdminController extends AbstractController
         $this->contactManager = new ContactManager;
         $this->userManager = new UserManager;
     }
-    public function dashboard(): void
+    public function dashboard()
     {
         $user = unserialize($_SESSION['user']);
 
@@ -42,10 +42,9 @@ class AdminController extends AbstractController
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
         foreach ($listComments as $comment){
             $author=$this->userManager->findById($comment->getCreatedBy());
-//            dd($author);
 
             $comment->setCreated_by($author->getUsername());
-//            dd($comment);
+
         }
         $contacts = $this->contactManager->loadingContacts();
         $users = $this->userManager->loadingUsers();

@@ -21,7 +21,6 @@ class User
         $this->role = $role;
 
     }
-
     public function isAdmin(): bool
     {
         if ($this->role == 'admin') {
@@ -30,90 +29,55 @@ class User
             return false;
         }
     }
-
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @param string $username
-     * @return User
-     */
     public function setUsername(string $username): User
     {
         $this->username = $username;
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return User
-     */
     public function setId(int $id): User
     {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     * @return User
-     */
     public function setEmail(string $email): User
     {
         $this->email = $email;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     */
     public function setPassword(string $password): void
     {
         $this->password = $password;
 
     }
 
-    /**
-     * @return mixed|string
-     */
     public function getRole(): mixed
     {
         return $this->role;
     }
 
-    /**
-     * @param mixed|string $role
-     * @return User
-     */
     public function setRole(mixed $role): User
     {
         $this->role = $role;
