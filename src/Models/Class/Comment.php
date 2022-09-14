@@ -54,7 +54,7 @@ class Comment
     {
         return $this->title;
     }
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         if (mb_strlen($title) <= 255) {
             $this->title = $title;
@@ -66,7 +66,7 @@ class Comment
     {
         return $this->content;
     }
-    public function setContent(string $content)
+    public function setContent(string $content): void
     {
         $this->content = strip_tags($content, ['p', 'a', 'i']);
     }
@@ -74,7 +74,7 @@ class Comment
     {
         return $this->createdAt;
     }
-    public function setCreated_at(DateTime $createdAt)
+    public function setCreated_at(DateTime $createdAt): void
     {
         $format = 'Y-m-d H:i:s';
 
@@ -90,7 +90,7 @@ class Comment
     {
         return $this->createdBy;
     }
-    public function setCreated_by(string $user)
+    public function setCreated_by(string $user): void
     {
         $this->createdBy = $user;
     }
@@ -98,7 +98,7 @@ class Comment
     {
         return $this->status;
     }
-    public function setStatus(string $status)
+    public function setStatus(string $status): void
     {
         $status = $status ?? $this::PENDING;
         $this->status = $status;
@@ -108,7 +108,7 @@ class Comment
         return $this->articleId;
     }
 
-    public function setArticleId($articleId)
+    public function setArticleId($articleId): static
     {
         $this->articleId = $articleId;
         return $this;

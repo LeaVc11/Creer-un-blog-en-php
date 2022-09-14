@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
     public function login(): void
     {
         if (!empty($_SESSION['user'])) {
-            header('Location:'. Router::generate("/articles"));
+            header('Location:' . Router::generate("/articles"));
             exit();
         }
         if (!empty($_POST)) {
@@ -49,26 +49,29 @@ class SecurityController extends AbstractController
                     exit();
                 }
                 FlashManager::addSuccess('Vous êtes connecté(e)');
-                header('Location:'. Router::generate("/articles"));
+                header('Location:' . Router::generate("/articles"));
                 exit();
             } else {
 
                 $errors[] = 'Identifiants incorrects';
             }
 
-            $_SESSION['flash']=$errors;
+            $_SESSION['flash'] = $errors;
 
-            header('Location:'. Router::generate("/login"));
+            header('Location:' . Router::generate("/login"));
             exit();
         }
         $this->render('Security/login');
     }
-    public function logout(){
+
+    public function logout():void
+    {
         session_destroy();
-        header('Location:'. Router::generate("/login"));
+        header('Location:' . Router::generate("/login"));
         exit();
 
     }
+
     /**
      * @return void
      */
@@ -92,7 +95,7 @@ class SecurityController extends AbstractController
 
                 $errors[] = 'Veuillez saisir 5 caractères pour le mot de passe';
             }
-            $_SESSION['flash']=$errors;
+            $_SESSION['flash'] = $errors;
 
             if (count($errors) == 0) {
                 $testByEmail = $this->userManager->testExistUserByEmail($_POST['email']);
@@ -108,10 +111,10 @@ class SecurityController extends AbstractController
                 }
                 $_SESSION['email'] = $_POST['email'];
 
-                $user = new User(null,$_POST['email'], $_POST['username'], $_POST['password'], $role);
+                $user = new User(null, $_POST['email'], $_POST['username'], $_POST['password'], $role);
                 $this->userManager->register($user);
                 FlashManager::addSuccess('Votre inscription a été enregistré');
-                header('Location:'. Router::generate("/login"));
+                header('Location:' . Router::generate("/login"));
                 exit();
             }
         }
