@@ -90,7 +90,7 @@ class Comment
     {
         return $this->createdBy;
     }
-    public function setCreated_by(string $user)
+    public function setCreated_by($user):void
     {
         $this->createdBy = $user;
     }
