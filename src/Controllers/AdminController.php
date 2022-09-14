@@ -42,6 +42,7 @@ class AdminController extends AbstractController
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
         foreach ($listComments as $comment){
             $author=$this->userManager->findById($comment->getCreatedBy());
+//            dd($author);
 
             $comment->setCreated_by($author->getUsername());
             dd($comment);

@@ -74,7 +74,7 @@ class Comment
     {
         return $this->createdAt;
     }
-    public function setCreated_at(DateTime $createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $format = 'Y-m-d H:i:s';
 
