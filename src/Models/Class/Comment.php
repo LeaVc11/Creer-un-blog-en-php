@@ -10,7 +10,7 @@ class Comment
     private string $title;
     private string $status;
     private string $content;
-    private DateTime $createdAt;
+    private $createdAt;
     private $createdBy;
     private $articleId;
 
@@ -23,7 +23,7 @@ class Comment
                                 string $title,
                                 string $status,
                                 string $content,
-                                Datetime $createdAt,
+                                $createdAt,
                                 $createdBy,
                                 $articleId)
     {
@@ -41,7 +41,6 @@ class Comment
     {
         return $this->id;
     }
-
     public function setId($id): void
     {
         if (is_string($id) && intval($id) > 0) {
@@ -51,14 +50,11 @@ class Comment
             $this->id = $id;
         }
     }
-
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
-
-
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         if (mb_strlen($title) <= 255) {
             $this->title = $title;
@@ -66,23 +62,19 @@ class Comment
             $this->title = substr($title, 0, 255);
         }
     }
-
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
-
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = strip_tags($content, ['p', 'a', 'i']);
     }
-
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
-
-    public function setCreated_at($createdAt)
+    public function setCreated_at(DateTime $createdAt)
     {
         $format = 'Y-m-d H:i:s';
 
@@ -94,66 +86,31 @@ class Comment
             $this->createdAt = $dd->format($format);
         }
     }
-
-    public function getCreatedBy()
+    public function getCreatedBy():string
     {
         return $this->createdBy;
     }
-
-    public function setCreated_by($user)
+    public function setCreated_by(string $user)
     {
         $this->createdBy = $user;
     }
-
-
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
-
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
-        /**
-         * Pending status by default for new comments
-         */
         $status = $status ?? $this::PENDING;
         $this->status = $status;
     }
-
-    /**
-     * @return mixed
-     */
     public function getArticleId()
     {
         return $this->articleId;
     }
 
-    /**
-     * @param mixed $articleId
-     * @return Comment
-     */
     public function setArticleId($articleId)
     {
         $this->articleId = $articleId;
         return $this;
     }
-
-//    /**
-//     * @return mixed
-//     */
-//    public function getUserId()
-//    {
-//        return $this->userId;
-//    }
-//
-//    /**
-//     * @param mixed $userId
-//     * @return Comment
-//     */
-//    public function setUserId($userId)
-//    {
-//        $this->userId = $userId;
-//        return $this;
-//    }
-
 }
