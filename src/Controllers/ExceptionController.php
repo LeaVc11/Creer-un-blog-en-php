@@ -11,7 +11,7 @@ class ExceptionController extends AbstractController
 
         http_response_code(404);
 
-        $this->render("errors/404");
+        $this->render("Errors/404");
 
 
     }

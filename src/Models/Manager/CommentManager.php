@@ -148,7 +148,7 @@ SET  title = :title,status = :status,content = :content,
             $reqAuthor->execute(['user_id' => $c->getCreatedBy()]);
             $author=$reqAuthor->fetch();
 
-            $c->setCreated_by($author['username']);
+            $c->setCreatedBy($author['username']);
 
             $this->comments[] = $c;
         }

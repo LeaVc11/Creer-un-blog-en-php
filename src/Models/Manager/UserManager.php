@@ -51,7 +51,7 @@ class UserManager extends DbManager
             return false;
         }
     }
-    public function register(User $user):string
+    public function register(User $user):void
     {
 
         $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
@@ -67,7 +67,7 @@ class UserManager extends DbManager
 
         ]);
     }
-    public function deleteUser(User $user):string
+    public function deleteUser(User $user):void
     {
         $req = $this->getBdd()->prepare('DELETE FROM `user` WHERE id = :id');
 

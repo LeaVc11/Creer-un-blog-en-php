@@ -13,14 +13,10 @@ class SecurityController extends AbstractController
 {
     private UserManager $userManager;
 
-    /*
-    * @param $userManager
-    */
     public function __construct()
     {
         $this->userManager = new UserManager();
     }
-
     public function login(): void
     {
         if (!empty($_SESSION['user'])) {
@@ -69,12 +65,7 @@ class SecurityController extends AbstractController
         session_destroy();
         header('Location:' . Router::generate("/login"));
         exit();
-
     }
-
-    /**
-     * @return void
-     */
     public function register(): void
     {
 

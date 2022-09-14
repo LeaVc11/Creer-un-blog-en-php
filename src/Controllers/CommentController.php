@@ -76,7 +76,7 @@ class CommentController extends AbstractController
 
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
-                $comment->setCreated_by($_POST['created_by']);
+                $comment->setCreatedBy($_POST['created_by']);
                 if (isset($_POST['status'])){
                     $comment->setStatus($_POST['status']);
                 }

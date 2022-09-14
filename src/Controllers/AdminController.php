@@ -32,19 +32,17 @@ class AdminController extends AbstractController
     }
     public function dashboard():void
     {
+        $this->isAdmin();
         $user = unserialize($_SESSION['user']);
 
         if (!$user){
             $user = null;
         }
-        $this->isAdmin($user);
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
         foreach ($listComments as $comment){
             $author=$this->userManager->findById($comment->getCreatedBy());
-
-            $comment->setCreated_by($author->getUsername());
-
+            $comment->setCreatedBy($author->getUsername());
         }
         $contacts = $this->contactManager->loadingContacts();
         $users = $this->userManager->loadingUsers();
@@ -58,8 +56,8 @@ class AdminController extends AbstractController
         }
 
         if (is_null($user) || $user->getRole() != 'admin') {
-            header('Location: ' . Router::generate("/"));
-            exit();
+            $this->render('Errors/401');
+            exit;
         }
     }
     public function addArticle():void
@@ -69,7 +67,7 @@ class AdminController extends AbstractController
 
             $errors = $this->getFormErrors();
             $upload = $this->uploadImage();
-            $errors = array_merge($errors, $upload['errors']);
+            $errors = array_merge($errors, $upload['Errors']);
             $imageFileName = $upload['filename'];
 
             if (count($errors) == 0) {
@@ -142,7 +140,7 @@ class AdminController extends AbstractController
                 move_uploaded_file($image['tmp_name'], realpath(__DIR__ . '/../../Public/uploads/') . "/" . $imageFileName);
             }
         }
-        return ['filename' => $imageFileName, 'errors' => $errors];
+        return ['filename' => $imageFileName, 'Errors' => $errors];
     }
     public function deleteArticle(int $id): void
     {
@@ -164,7 +162,7 @@ class AdminController extends AbstractController
             if (count($errors) == 0) {
                 if ($_FILES['image_link']['size'] != 0) {
                     $upload = $this->uploadImage();
-                    $errors = $upload['errors'];
+                    $errors = $upload['Errors'];
                     $imageFileName = $upload['filename'];
                 } else {
                     $imageFileName = $article->getImageLink();

@@ -10,7 +10,7 @@ class ContactManager extends DbManager
 {
     private array $contacts = [];
 
-    public function addContact(Contact $contact):string
+    public function addContact(Contact $contact):void
     {
         $req = $this->getBdd()->prepare("INSERT INTO `contact`(`id`,`email`,`username`,`message`)
       VALUE (:id,:email,:username ,:message)");
@@ -38,7 +38,7 @@ class ContactManager extends DbManager
         return $contact;
     }
 
-    public function loadingContacts(): array
+    public function loadingContacts()
     {
         $req = $this->getBdd()->prepare("SELECT * FROM contact  ");
         $req->execute();
@@ -70,12 +70,11 @@ class ContactManager extends DbManager
             $contact = new Contact(
                 $contactFromBdd ['id'],
                 $contactFromBdd ['email'],
-                $contactFromBdd ['status'],
                 $contactFromBdd ['message']);
         }
         return $contact;
     }
-    public function deleteContact(Contact $contact):string
+    public function deleteContact(Contact $contact):void
     {
         $req = $this->getBdd()->prepare('DELETE FROM `contact` WHERE id = :id');
 

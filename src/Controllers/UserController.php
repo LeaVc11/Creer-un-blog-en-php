@@ -17,7 +17,7 @@ class UserController extends DbManager
         $this->userManager = new UserManager();
     }
 
-    public function deleteUser(int $id): void
+    public function deleteUser(int $id)
     {
         $user = $this->userManager->findById($id);
 
