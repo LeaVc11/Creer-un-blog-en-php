@@ -4,9 +4,9 @@ namespace App\Routing;
 
 class Router {
 
-    private $url;
-    private $routes = [];
-    private $namedRoutes = [];
+    private string $url;
+    private array $routes = [];
+    private array $namedRoutes = [];
 
     public function __construct(string $url){
         $this->url = $url;
@@ -45,7 +45,7 @@ class Router {
         throw new RouterException('No matching routes');
     }
 
-    public function url($name, $params = []): array|string
+    public function url(string $name, array $params = []): array|string
     {
         if(!isset($this->namedRoutes[$name])){
             throw new RouterException('No route matches this name');
