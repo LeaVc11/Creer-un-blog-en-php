@@ -45,7 +45,7 @@ class AdminController extends AbstractController
 //            dd($author);
 
             $comment->setCreated_by($author->getUsername());
-            dd($comment);
+//            dd($comment);
         }
         $contacts = $this->contactManager->loadingContacts();
         $users = $this->userManager->loadingUsers();
