@@ -103,7 +103,7 @@ class Comment
         $status = $status ?? $this::PENDING;
         $this->status = $status;
     }
-    public function getArticleId()
+    public function getArticleId():string
     {
         return $this->articleId;
     }
