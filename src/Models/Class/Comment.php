@@ -37,11 +37,11 @@ class Comment
 
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
-    public function setId($id): void
+    public function setId(int $id): void
     {
         if (is_string($id) && intval($id) > 0) {
             $this->id = intval($id);
