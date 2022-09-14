@@ -86,7 +86,7 @@ class Comment
             $this->createdAt = $dd->format($format);
         }
     }
-    public function getCreatedBy():string
+    public function getCreatedBy():?string
     {
         return $this->createdBy;
     }
