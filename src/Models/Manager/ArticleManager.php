@@ -63,7 +63,7 @@ class ArticleManager extends DbManager
             'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
         ]);
     }
-    public function editArticle(Article $article)
+    public function editArticle(Article $article):string
     {
         $req = $this->getBdd()->prepare("UPDATE `articles`
 SET image_link = :imageLink, chapo = :chapo,
@@ -86,7 +86,7 @@ SET image_link = :imageLink, chapo = :chapo,
         ]);
 
     }
-    public function delete(Article $article)
+    public function delete(Article $article):string
     {
         $req = $this->getBdd()->prepare('DELETE FROM `articles` WHERE id = :id');
 

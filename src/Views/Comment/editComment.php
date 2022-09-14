@@ -1,5 +1,5 @@
 <?php
-//    var_dump($errors);
+
 use App\models\Manager\FlashManager;
 use App\Routing\Router;
 

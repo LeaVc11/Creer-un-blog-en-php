@@ -107,7 +107,6 @@ class Comment
     {
         return $this->articleId;
     }
-
     public function setArticleId(string $articleId): static
     {
         $this->articleId = $articleId;

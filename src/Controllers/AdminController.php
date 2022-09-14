@@ -29,20 +29,14 @@ class AdminController extends AbstractController
         $this->commentManager = new CommentManager;
         $this->contactManager = new ContactManager;
         $this->userManager = new UserManager;
-
-
     }
-
     public function dashboard(): void
     {
-
-
         $user = unserialize($_SESSION['user']);
 
         if (!$user){
             $user = null;
         }
-
         $this->isAdmin($user);
         $articles = $this->articleManager->loadingArticles();
         $listComments = $this->commentManager->findByStatus(Comment::PENDING);
@@ -50,16 +44,13 @@ class AdminController extends AbstractController
             $author=$this->userManager->findById($comment->getCreatedBy());
             $comment->setCreated_by($author->getUsername());
         }
-
         $contacts = $this->contactManager->loadingContacts();
         $users = $this->userManager->loadingUsers();
 
         $this->render('Admin/dashboard', compact('articles', 'listComments', 'contacts', 'users', 'user'));
     }
-
     private function isAdmin(?User $user =null ):void
     {
-
         if (is_null($user)&& isset($_SESSION['user'])) {
             $user = unserialize($_SESSION['user']);
         }
@@ -67,10 +58,9 @@ class AdminController extends AbstractController
         if (is_null($user) || $user->getRole() != 'admin') {
             header('Location: ' . Router::generate("/"));
             exit();
-
         }
     }
-    public function addArticle(): void
+    public function addArticle()
     {
         $this->isAdmin();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -100,7 +90,6 @@ class AdminController extends AbstractController
         }
         $this->render("Admin/add");
     }
-
     private function getFormErrors(?int $id = null): array
     {
         $errors = [];
@@ -129,7 +118,6 @@ class AdminController extends AbstractController
         return $errors;
 
     }
-
     private function uploadImage(): array
     {
         $extensionAllowed = ['image/jpeg', 'image/png'];
@@ -154,8 +142,7 @@ class AdminController extends AbstractController
         }
         return ['filename' => $imageFileName, 'errors' => $errors];
     }
-
-    public function deleteArticle(int $id): void
+    public function deleteArticle($id): void
     {
         $this->isAdmin();
         $article = $this->articleManager->findById($id);
@@ -166,8 +153,7 @@ class AdminController extends AbstractController
         header('Location: ' . Router::generate("/articles"));
         exit();
     }
-
-    public function editArticle(int $id): void
+    public function editArticle($id): void
     {
         $this->isAdmin();
         $article = $this->articleManager->findById($id);
@@ -204,8 +190,6 @@ class AdminController extends AbstractController
         }
         $this->render('Admin/editArticle', compact('article'));
     }
-
-
 }
 
 

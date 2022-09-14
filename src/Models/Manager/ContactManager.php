@@ -10,7 +10,7 @@ class ContactManager extends DbManager
 {
     private array $contacts = [];
 
-    public function addContact(Contact $contact)
+    public function addContact(Contact $contact):string
     {
         $req = $this->getBdd()->prepare("INSERT INTO `contact`(`id`,`email`,`username`,`message`)
       VALUE (:id,:email,:username ,:message)");
@@ -75,7 +75,7 @@ class ContactManager extends DbManager
         }
         return $contact;
     }
-    public function deleteContact(Contact $contact)
+    public function deleteContact(Contact $contact):string
     {
         $req = $this->getBdd()->prepare('DELETE FROM `contact` WHERE id = :id');
 
