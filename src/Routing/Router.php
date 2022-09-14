@@ -11,13 +11,16 @@ class Router {
     public function __construct(string $url){
         $this->url = $url;
     }
-    public function get(string $path, string $callable, ?string $name = null){
+    public function get(string $path, string $callable, ?string $name = null): Route
+    {
         return $this->add($path, $callable, $name, 'GET');
     }
-    public function post(string $path, string $callable, ?string $name= null){
+    public function post(string $path, string $callable, ?string $name= null): Route
+    {
         return $this->add($path, $callable, $name, 'POST');
     }
-    private function add(string $path, string $callable, ?string $name, $method){
+    private function add(string $path, string $callable, ?string $name, $method): Route
+    {
         $route = new Route($path, $callable);
         $this->routes[$method][] = $route;
         if(is_string($callable) && $name === null){
@@ -28,14 +31,12 @@ class Router {
         }
         return $route;
     }
-    /**
-     * @throws RouterException
-     */
-    public function run(){
+
+    public function run():mixed
+    {
         if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){
             throw new RouterException('REQUEST_METHOD does not exist');
         }
-
         foreach($this->routes[$_SERVER['REQUEST_METHOD']] as $route){
             if($route->match($this->url)){
                 return $route->call();
@@ -43,10 +44,9 @@ class Router {
         }
         throw new RouterException('No matching routes');
     }
-    /**
-     * @throws RouterException
-     */
-    public function url($name, $params = []){
+
+    public function url($name, $params = []): array|string
+    {
         if(!isset($this->namedRoutes[$name])){
             throw new RouterException('No route matches this name');
         }

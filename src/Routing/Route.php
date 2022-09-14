@@ -6,17 +6,18 @@ namespace App\Routing;
  */
 class Route {
 
-    private $path;
-    private $callable;
+    private string $path;
+    private string $callable;
     private $matches = [];
     private $params = [];
 
-    public function __construct($path, $callable){
+    public function __construct(string $path, string $callable){
         $this->path = trim($path, '/');
         $this->callable = $callable;
     }
 
-    public function with($param, $regex){
+    public function with($param, $regex): static
+    {
         $this->params[$param] = str_replace('(', '(?:', $regex);
         return $this;
     }
@@ -41,7 +42,8 @@ class Route {
         }
         return '([^/]+)';
     }
-    public function call(){
+    public function call():mixed
+    {
         if(is_string($this->callable)){
             $params = explode('#', $this->callable);
 
