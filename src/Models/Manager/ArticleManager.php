@@ -114,7 +114,7 @@ SET image_link = :imageLink, chapo = :chapo,
 
         return $article;
     }
-    public function getByTitle($title): ?Article
+    public function getByTitle(string $title): ?Article
     {
         $article = null;
         $query = $this->getBdd()->prepare("SELECT * FROM `articles` WHERE title = :title");

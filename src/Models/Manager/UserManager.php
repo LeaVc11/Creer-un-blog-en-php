@@ -10,7 +10,7 @@ use PDO;
 class UserManager extends DbManager
 {
     private array $users = [];
-    public function login($email, $password): ?User
+    public function login(string $email,string $password): ?User
     {
         $customer = null;
 
@@ -24,7 +24,7 @@ class UserManager extends DbManager
         }
         return $customer;
     }
-    public function findByEmail($email): ?User
+    public function findByEmail(string $email): ?User
     {
         $customer = null;
         $query = $this->getBdd()->prepare("SELECT * FROM user WHERE email = :email");
@@ -41,7 +41,7 @@ class UserManager extends DbManager
         }
         return $customer;
     }
-    public function testExistUserByEmail($email): bool
+    public function testExistUserByEmail( string $email): bool
     {
         $user = $this->findByEmail($email);
 
@@ -96,7 +96,7 @@ class UserManager extends DbManager
 
         );
     }
-    public function findById($id): ?User
+    public function findById(int $id): ?User
     {
         $user = null;
         $query = $this->getBdd()->prepare("SELECT * FROM user WHERE id = :id");

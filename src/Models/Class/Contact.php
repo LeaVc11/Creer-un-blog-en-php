@@ -34,7 +34,7 @@ class Contact
         return $this->username;
     }
 
-    public function setUsername($username): static
+    public function setUsername(string $username): static
     {
         $this->username = $username;
         return $this;
@@ -45,7 +45,7 @@ class Contact
         return $this->email;
     }
 
-    public function setEmail($email): static
+    public function setEmail(string $email): static
     {
         $this->email = $email;
         return $this;
@@ -56,7 +56,7 @@ class Contact
         return $this->message;
     }
 
-    public function setMessage($message): static
+    public function setMessage(string $message): static
     {
         $this->message = $message;
         return $this;

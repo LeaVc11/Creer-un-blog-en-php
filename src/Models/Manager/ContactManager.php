@@ -22,7 +22,7 @@ class ContactManager extends DbManager
         ]);
     }
 
-    public function getByEmail($email): ?Contact
+    public function getByEmail(string $email): ?Contact
     {
         $contact = null;
         $query = $this->getBdd()->prepare("SELECT * FROM `contact` WHERE email = :email");
@@ -60,7 +60,7 @@ class ContactManager extends DbManager
 
         );
     }
-    public function findById($id): ?Contact
+    public function findById(int $id): ?Contact
     {
         $contact = null;
         $query = $this->getBdd()->prepare("SELECT * FROM contact WHERE id = :id");
