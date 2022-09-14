@@ -47,7 +47,7 @@ class ArticleManager extends DbManager
 
         return $this->createdObjectArticle($article);
     }
-    public function addArticle( Article  $article)
+    public function addArticle( Article  $article):void
     {
         $req = $this->getBdd()->prepare("INSERT INTO `articles`
     (`image_link`,`chapo`, `content`, `title` , `author`, `slug`, `created_at`,`updated_at`) 
@@ -63,7 +63,7 @@ class ArticleManager extends DbManager
             'updated_at' => $article->getUpdatedAt()->format('Y-m-d '),
         ]);
     }
-    public function editArticle(Article $article)
+    public function editArticle(Article $article):void
     {
         $req = $this->getBdd()->prepare("UPDATE `articles`
 SET image_link = :imageLink, chapo = :chapo,
@@ -86,7 +86,7 @@ SET image_link = :imageLink, chapo = :chapo,
         ]);
 
     }
-    public function delete(Article $article)
+    public function delete(Article $article):void
     {
         $req = $this->getBdd()->prepare('DELETE FROM `articles` WHERE id = :id');
 

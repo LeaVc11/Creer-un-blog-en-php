@@ -30,7 +30,7 @@ class AdminController extends AbstractController
         $this->contactManager = new ContactManager;
         $this->userManager = new UserManager;
     }
-    public function dashboard()
+    public function dashboard():void
     {
         $user = unserialize($_SESSION['user']);
 
