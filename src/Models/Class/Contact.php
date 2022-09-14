@@ -8,7 +8,7 @@ class Contact
     private ?string $email;
     private ?string $message;
 
-    public function __construct($id = null, $username = null, $email = null , $message = null)
+    public function __construct(?int $id = null, ?string  $username = null, ?string  $email = null , ?string  $message = null)
     {
 
         $this->id = $id ;

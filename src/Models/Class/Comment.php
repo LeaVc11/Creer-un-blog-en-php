@@ -6,11 +6,11 @@ use DateTime;
 
 class Comment
 {
-    private $id;
-    private $title;
-    private $status;
-    private $content;
-    private $createdAt;
+    private ?int $id;
+    private string $title;
+    private string $status;
+    private string $content;
+    private DateTime $createdAt;
     private $createdBy;
     private $articleId;
 
@@ -19,7 +19,13 @@ class Comment
     const REJECTED = 'REJECTED';
     const APPROVED = 'APPROVED';
 
-    public function __construct($id, $title, $status, $content, $createdAt, $createdBy, $articleId)
+    public function __construct(?int $id,
+                                string $title,
+                                string $status,
+                                string $content,
+                                Datetime $createdAt,
+                                $createdBy,
+                                $articleId)
     {
         $this->id = $id;
         $this->title = $title;
@@ -31,12 +37,12 @@ class Comment
 
     }
 
-    public function getId():?int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId($id)
+    public function setId($id): void
     {
         if (is_string($id) && intval($id) > 0) {
             $this->id = intval($id);
