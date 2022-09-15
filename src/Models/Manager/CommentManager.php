@@ -135,7 +135,7 @@ SET  title = :title,status = :status,content = :content,
         $req->execute(['id' => $comment->getId()]);
     }
 
-    public function findByArticle(int $id): array
+    public function findByArticle(bool $id): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE article_id = :article_id AND status = :status");
         $req->execute(['article_id' => $id,'status'=>Comment::APPROVED]);
