@@ -18,30 +18,23 @@ if (isset($_SESSION['user'])){
             <th></th>
         </tr>
         <?php
-
-
         foreach ($comments as $comment) {
             ?>
             <tr>
-                <td><?= $comment->getTitle() ?></td>
+                <td><?= $comment->getTitle()?></td>
                 <td><?= $comment->getContent() ?></td>
                 <td><?= $comment->getCreatedAt()->format('d/m/Y') ?></td>
-                <td><?= $comment->getCreatedBy() ?></td>
-
+                <td><?= $comment->getCreatedBy()?></td>
                 <td>
                     <?php
-
                     if (isset($user) && $comment->getCreatedBy() == $user->getUsername() ) {
-
                         ?>
-
                         <a href="<?= Router::generate('/comments/editComment/' . $comment->getId()) ?>"
                            class="btn btn-primary text-center text-white fw-bold mb">Modifier</a>
                         <?php
                     }
                     ?>
                 </td>
-
             </tr>
 
         <?php } ?>

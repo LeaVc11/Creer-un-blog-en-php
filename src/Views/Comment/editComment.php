@@ -18,11 +18,11 @@ if (isset($_SESSION['user'])) {
               enctype="multipart/form-data">
             <div class="row m-5">
                 <div class="col text-primary fw-bold">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Titre" value="<?= $comment->getTitle() ?>">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Titre"
+                           value="<?= $comment->getTitle() ?>">
                 </div>
                 <div class="col text-primary fw-bold">
                     <?php
-
                     if (isset($user) && $user->getRole() == 'admin') {
 
                         ?>
@@ -46,9 +46,6 @@ if (isset($_SESSION['user'])) {
             </div>
 
     </div>
-
-
-
     <div class=" text-center">
         <a href="<?= Router::generate('/comments/' . $comment->getArticleId()) ?>"
            class="btn btn-primary text-white text-center mb-2 rounded-1 border ">Retour</a>
@@ -56,5 +53,5 @@ if (isset($_SESSION['user'])) {
                 type="submit">Valider
         </button>
     </div>
-    </form>
+
 </div>

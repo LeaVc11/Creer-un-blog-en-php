@@ -13,7 +13,7 @@ class ContactManager extends DbManager
     public function addContact(Contact $contact):void
     {
         $req = $this->getBdd()->prepare("INSERT INTO `contact`(`id`,`email`,`username`,`message`)
-      VALUE (:id,:username,:email ,:message)");
+      VALUE (:id,:email ,:username,:message)");
         $req->execute([
             'id'=>$contact->getId(),
             'email' => $contact->getEmail(),

@@ -65,12 +65,12 @@ class CommentController extends AbstractController
             $errors = $this->getErrors($id);
 
             if (count($errors) == 0) {
-
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
                 $comment->setCreatedBy($_POST['created_by']);
                 if (isset($_POST['status'])){
                     $comment->setStatus($_POST['status']);
+
                 }
                 $this->commentManager->editComment($comment);
                 FlashManager::addSuccess('Votre commentaire a été modifié');
