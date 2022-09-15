@@ -38,7 +38,7 @@ class ContactManager extends DbManager
         return $contact;
     }
 
-    public function loadingContacts()
+    public function loadingContacts(): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM contact  ");
         $req->execute();
