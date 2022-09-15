@@ -46,7 +46,7 @@ class ContactController extends AbstractController
         $contact = $this->contactManager->findById($id);
 
         $this->contactManager->deleteContact($contact);
-//        dd($contact);
+
         FlashManager::addSuccess('Votre message a été supprimé');
 
         header('Location: ' . Router::generate("/dashboard"));
