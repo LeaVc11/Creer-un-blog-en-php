@@ -4,16 +4,16 @@ namespace App\Models\Class;
 class Contact
 {
     private ?int $id;
-    private ?string $username;
     private ?string $email;
+    private ?string $username;
     private ?string $message;
 
-    public function __construct(?int $id = null, ?string  $username = null, ?string  $email = null , ?string  $message = null)
+    public function __construct(?int $id = null, ?string  $email = null , ?string  $username = null, ?string  $message = null)
     {
 
         $this->id = $id ;
-        $this->username = $username;
         $this->email = $email;
+        $this->username = $username;
         $this->message = $message;
 
     }

@@ -19,12 +19,9 @@ class ContactController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $errors = $this->getFormErrors();
-
             if (count($errors) == 0) {
                 $contact = new Contact(
-
                     $_POST['id'],
                     $_POST['email'],
                     $_POST['username'],

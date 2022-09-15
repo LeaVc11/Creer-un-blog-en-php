@@ -12,14 +12,10 @@ use Exception;
 class CommentController extends AbstractController
 {
     private CommentManager $commentManager;
-
     private array $comments = [];
-
     public function __construct()
     {
-
         $this->commentManager = new CommentManager;
-
     }
     public function dashboard(): void
     {
@@ -36,10 +32,6 @@ class CommentController extends AbstractController
         $comment = $this->commentManager->showComment($id);
         $this->render('Comment/showComment');
     }
-
-    /**
-     * @throws Exception
-     */
     public function addComment(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -92,7 +84,6 @@ class CommentController extends AbstractController
             $this->render('Comment/editComment', compact('comment'));
         }
     }
-
     public function deleteComment(int $id): void
     {
         $comment = $this->commentManager->findById($id);
@@ -102,11 +93,9 @@ class CommentController extends AbstractController
         header('Location: ' . Router::generate("/dashboard"));
         exit();
     }
-
     private function getErrors(int $id = null): array
     {
         $errors = [];
-
         if (empty($_POST['title'])) {
             $errors[] = 'Veuillez saisir un titre';
         }
@@ -119,7 +108,6 @@ class CommentController extends AbstractController
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
         $_SESSION['flash']=$errors;
-
         return $errors;
     }
 }
