@@ -70,6 +70,7 @@ class ContactManager extends DbManager
             $contact = new Contact(
                 $contactFromBdd ['id'],
                 $contactFromBdd ['email'],
+                $contactFromBdd ['status'],
                 $contactFromBdd ['message']);
         }
         return $contact;
