@@ -10,10 +10,6 @@ class ArticlesController extends AbstractController
 {
     public ArticleManager $articleManager;
 
-
-    /**
-     * @throws Exception
-     */
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
@@ -23,8 +19,6 @@ class ArticlesController extends AbstractController
     {
         $this->render('accueil.view');
     }
-
-
     public function displayArticles(): void
     {
         $articles = $this->articleManager->loadingArticles();
