@@ -4,15 +4,15 @@ use App\Routing\Router;
 
 ?>
 
-    <div class="row">
-        <div class="col-6 mt-5 text-center">
+    <div class="row ms-3">
+        <div class="col-7 mt-5 text-center">
 
-            <img src="<?= Router::generate('../public')?>/uploads/<?= $article->getImageLink() ?>" class="w-50 p-3" alt="">
-            <h3 class=" text-success fw-bold mb-4"><?= $article->getTitle(); ?></h3>
+            <img src="<?= Router::generate('../public')?>/uploads/<?= $article->getImageLink() ?>" class="w-25" alt="">
+            <h3 class=" text-success fw-bold mb-2"><?= $article->getTitle(); ?></h3>
             <p class="fw-bold"><?= $article->getSlug(); ?></p>
             <p class="fw-bold"><?= $article->getContent(); ?></p>
         </div>
-        <div class="col-6 mt-5 p-5 text-center fw-bold ">
+        <div class="col-5 mt-5 p-5 text-center fw-bold ">
             <table class="table">
                 <thead>
                 <tr class="table-secondary">
