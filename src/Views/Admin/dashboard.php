@@ -94,7 +94,7 @@ use App\Routing\Router;
             <td><?= $listComment->getStatus() ?></td>
             <td><?= $listComment->getContent() ?></td>
             <td><?= $listComment->getCreatedBy() ?></td>
-            <td><?= $listComment->getCreatedAt()->format('d/m/Y ') ?>  </td>
+            <td><?= $listComment->getCreatedAt()->format('d/m/Y H:i:s ') ?>  </td>
 
 
             <td>

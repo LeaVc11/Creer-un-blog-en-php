@@ -1,12 +1,9 @@
 <?php
-
 use App\models\Manager\FlashManager;
 use App\Routing\Router;
-
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
 }
-
 ?>
 <div class="container  ">
     <?php FlashManager::displayFlash(); ?>
@@ -24,14 +21,12 @@ if (isset($_SESSION['user'])) {
                 <div class="col text-primary fw-bold">
                     <?php
                     if (isset($user) && $user->getRole() == 'admin') {
-
                         ?>
                         <select class="form-control" name="status">
                             <option value="PENDING">Attente</option>
                             <option value="APPROVED">Valider</option>
                             <option value="REJECTED">Supprimer</option>
                         </select>
-
                         <?php
                     }
                     ?>
@@ -44,7 +39,6 @@ if (isset($_SESSION['user'])) {
                               rows="10"><?= $comment->getContent() ?> </textarea>
                 </div>
             </div>
-
     </div>
     <div class=" text-center">
         <a href="<?= Router::generate('/comments/' . $comment->getArticleId()) ?>"
@@ -53,5 +47,4 @@ if (isset($_SESSION['user'])) {
                 type="submit">Valider
         </button>
     </div>
-
 </div>

@@ -92,13 +92,10 @@ class CommentManager extends DbManager
 
     public function addComment(Comment $comment):void
     {
-
         $req = $this->getBdd()->prepare("INSERT INTO `comment`
     (`title`, `status`, `content`, `created_at`, `created_by`, `article_id`) 
     VALUE (:title, :status, :content, :createdAt, :createdBy, :articleId )");
-
         $req->execute([
-
             'title' => $comment->getTitle(),
             'status' => $comment->getStatus(),
             'content' => $comment->getContent(),
@@ -106,27 +103,19 @@ class CommentManager extends DbManager
             'createdBy' => $comment->getCreatedBy(),
             'articleId' => $comment->getArticleId(),
         ]);
-
     }
-
     public function editComment(Comment $comment):void
     {
-        $req = $this->getBdd()->prepare("UPDATE `comment`
-SET  title = :title,status = :status,content = :content,
-    created_at = :created_at ,created_by = :created_by,article_id = :article_id
- WHERE id = :id");
-
+        $req = $this->getBdd()->prepare("UPDATE `comment` 
+SET title = :title, status = :status, content = :content WHERE id = :id");
         $req->execute([
-            'id'=>$comment->getId(),
+            'id' => $comment->getId(),
             'title' => $comment->getTitle(),
             'status' => $comment->getStatus(),
             'content' => $comment->getContent(),
-            'created_at' => $comment->getCreatedAt()->format('d/m/Y H:i:s'),
-            'created_by' => $comment->getCreatedBy(),
-            'article_id' => $comment->getArticleId(),
-
         ]);
     }
+
 
     public function deleteComment(Comment $comment):void
     {
@@ -135,7 +124,7 @@ SET  title = :title,status = :status,content = :content,
         $req->execute(['id' => $comment->getId()]);
     }
 
-    public function findByArticle(bool $id): array
+    public function findByArticle($id): array
     {
         $req = $this->getBdd()->prepare("SELECT * FROM `comment` WHERE article_id = :article_id AND status = :status");
         $req->execute(['article_id' => $id,'status'=>Comment::APPROVED]);
@@ -148,6 +137,7 @@ SET  title = :title,status = :status,content = :content,
             $reqAuthor->execute(['user_id' => $c->getCreatedBy()]);
             $author=$reqAuthor->fetch();
             $c->setCreatedBy($author['username']);
+
             $this->comments[] = $c;
         }
         return $this->comments;

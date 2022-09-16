@@ -96,7 +96,7 @@ class UserManager extends DbManager
 
         );
     }
-    public function findById(int $id): ?User
+    public function findById(?int $id): ?User
     {
         $user = null;
         $query = $this->getBdd()->prepare("SELECT * FROM user WHERE id = :id");
@@ -110,7 +110,6 @@ class UserManager extends DbManager
                 $userFromBdd['password'],
                 $userFromBdd['role']);
         }
-
         return $user;
     }
 

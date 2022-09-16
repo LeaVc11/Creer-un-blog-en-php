@@ -25,6 +25,7 @@ class CommentController extends AbstractController
     {
         $comments = $this->commentManager->findByArticle($id);
 
+
         $this->render('Comment/listComment', compact('comments'));
     }
     public function showComment(int $id): void
@@ -39,13 +40,16 @@ class CommentController extends AbstractController
             $errors = $this->getErrors();
             if (count($errors) == 0) {
                 $user = unserialize($_SESSION['user']);
-                $comment = new Comment(null,
+                $comment = new Comment(
+                    null,
                     $_POST['title'],
                     Comment::PENDING,
                     $_POST['content'],
                     "NOW",
                     $user->getId(),
-                    $_POST['articleId'],);
+                    $_POST['articleId'],
+
+                );
                 $this->commentManager->addComment($comment);
                 FlashManager::addSuccess('Votre commentaire a été bien enregistré');
                 header('Location: ' . Router::generate("/Comments/". $_POST['articleId']));
@@ -67,10 +71,8 @@ class CommentController extends AbstractController
             if (count($errors) == 0) {
                 $comment->setTitle($_POST['title']);
                 $comment->setContent($_POST['content']);
-                $comment->setCreatedBy($_POST['created_by']);
                 if (isset($_POST['status'])){
                     $comment->setStatus($_POST['status']);
-
                 }
                 $this->commentManager->editComment($comment);
                 FlashManager::addSuccess('Votre commentaire a été modifié');
