@@ -56,7 +56,7 @@ class CommentController extends AbstractController
                 exit();
             }
             header('Location:' . Router::generate("/articles" . $_POST['articleId']));
-            exit();
+
         }
     }
     public function editComment(int $id): void
@@ -80,7 +80,7 @@ class CommentController extends AbstractController
                 exit();
             }
             header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
-            exit();
+
         } else {
 
             $this->render('Comment/editComment', compact('comment'));
@@ -106,7 +106,7 @@ class CommentController extends AbstractController
         }
         $comment = $this->commentManager->getByTitle($_POST['title']);
 
-        if (!is_null($comment) && $comment->getId() != null && $id === null) {
+        if (!is_null($comment) && $comment->getId() != null) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
         $_SESSION['flash']=$errors;

@@ -15,6 +15,7 @@ class ContactController extends AbstractController
     {
         $this->contactManager = new ContactManager();
     }
+
     public function addContact(): void
     {
 
@@ -29,26 +30,15 @@ class ContactController extends AbstractController
                 );
                 $this->contactManager->addContact($contact);
                 FlashManager::addSuccess('Votre message a été modifié');
-
                 header('Location: ' . Router::generate("/articles"));
-
+                exit();
             }
             header('Location: ' . Router::generate("/contact/addContact"));
 
         }
         $this->render("contact/addContact");
     }
-    public function deleteContact(int $id): void
-    {
-        $contact = $this->contactManager->findById($id);
 
-        $this->contactManager->deleteContact($contact);
-
-        FlashManager::addSuccess('Votre message a été supprimé');
-
-        header('Location: ' . Router::generate("/dashboard"));
-
-    }
     private function getFormErrors(): array
     {
         $errors = [];
@@ -68,9 +58,21 @@ class ContactController extends AbstractController
             $errors[] = 'Veuillez saisir un message';
         }
 
-        $_SESSION['flash']=$errors;
+        $_SESSION['flash'] = $errors;
 
         return $errors;
+    }
+
+    public function deleteContact(int $id): void
+    {
+        $contact = $this->contactManager->findById($id);
+
+        $this->contactManager->deleteContact($contact);
+
+        FlashManager::addSuccess('Votre message a été supprimé');
+
+        header('Location: ' . Router::generate("/dashboard"));
+
     }
 
 }
