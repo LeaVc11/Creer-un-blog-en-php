@@ -6,8 +6,7 @@ if (isset($_SESSION['user'])) {
 }
 ?>
 <div class="container  ">
-    <?php FlashManager::displayFlash(); ?>
-</div>
+
 <div class=" m-4 fw-bold ">
     <h1 class="m-3 text-center text-primary">Modifier un commentaire</h1>
     <div class="container">

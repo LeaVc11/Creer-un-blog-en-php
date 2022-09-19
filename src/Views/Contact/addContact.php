@@ -1,12 +1,12 @@
 <?php
 
+use App\Models\Manager\FlashManager;
 use App\Routing\Router;
 
 ?>
 
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md" id="contact">
     <div class="container ">
-
         <h1 class="text-center my-3 ">Me contacter</h1>
         <form method="POST" action="<?= Router::generate("/contact/addContact") ?>"
               enctype="multipart/form-data">
