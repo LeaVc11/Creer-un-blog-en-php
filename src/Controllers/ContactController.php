@@ -20,7 +20,7 @@ class ContactController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $errors = $this->getFormErrors();
+            $errors = $this->getErrors();
             if (count($errors) == 0) {
                 $contact = new Contact(
                     $_POST['id'],
@@ -30,6 +30,7 @@ class ContactController extends AbstractController
                 );
                 $this->contactManager->addContact($contact);
                 FlashManager::addSuccess('Votre message a été modifié');
+
                 header('Location: ' . Router::generate("/articles"));
                 exit();
             }
@@ -39,7 +40,7 @@ class ContactController extends AbstractController
         $this->render("contact/addContact");
     }
 
-    private function getFormErrors(): array
+    private function getErrors(int $id = null): array
     {
         $errors = [];
 
@@ -59,7 +60,6 @@ class ContactController extends AbstractController
         }
 
         $_SESSION['flash'] = $errors;
-
         return $errors;
     }
 
