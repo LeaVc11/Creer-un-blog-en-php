@@ -24,7 +24,7 @@ class UserController extends DbManager
         $this->userManager->deleteUser($user);
         FlashManager::addSuccess('Votre compte a été supprimé');
         header('Location: ' . Router::generate("/dashboard"));
-//        exit();
+
     }
 
 }
