@@ -82,7 +82,7 @@ class AdminController extends AbstractController
                 FlashManager::addSuccess('Votre article a été bien enregistré');
                 $this->articleManager->addArticle($article);
                 header('Location: ' . Router::generate("/dashboard"));
-                exit();
+//                exit();
             }
         }
         $this->render("Admin/add");

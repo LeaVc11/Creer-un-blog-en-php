@@ -31,7 +31,7 @@ class ContactController extends AbstractController
                 FlashManager::addSuccess('Votre message a été modifié');
 
                 header('Location: ' . Router::generate("/articles"));
-                exit();
+//                exit();
             }
             header('Location: ' . Router::generate("/contact/addContact"));
 
