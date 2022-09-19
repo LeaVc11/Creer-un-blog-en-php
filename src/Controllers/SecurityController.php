@@ -21,7 +21,7 @@ class SecurityController extends AbstractController
     {
         if (!empty($_SESSION['user'])) {
             header('Location:' . Router::generate("/articles"));
-            exit();
+//            exit();
         }
         if (!empty($_POST)) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -42,11 +42,11 @@ class SecurityController extends AbstractController
                 if ($loggedUser->isAdmin()) {
                     FlashManager::addSuccess('Vous êtes connecté(e)');
                     header('Location: ' . Router::generate("/dashboard"));
-                    exit();
+//                    exit();
                 }
                 FlashManager::addSuccess('Vous êtes connecté(e)');
                 header('Location:' . Router::generate("/articles"));
-                exit();
+//                exit();
             } else {
 
                 $errors[] = 'Identifiants incorrects';
@@ -55,7 +55,7 @@ class SecurityController extends AbstractController
             $_SESSION['flash'] = $errors;
 
             header('Location:' . Router::generate("/login"));
-            exit();
+//            exit();
         }
         $this->render('Security/login');
     }
@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
     {
         session_destroy();
         header('Location:' . Router::generate("/login"));
-        exit();
+//        exit();
     }
     public function register(): void
     {
@@ -106,7 +106,7 @@ class SecurityController extends AbstractController
                 $this->userManager->register($user);
                 FlashManager::addSuccess('Votre inscription a été enregistré');
                 header('Location:' . Router::generate("/login"));
-                exit();
+//                exit();
             }
         }
         $this->render('Security/register');

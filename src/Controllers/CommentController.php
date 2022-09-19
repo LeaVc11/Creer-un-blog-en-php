@@ -77,7 +77,7 @@ class CommentController extends AbstractController
                 $this->commentManager->editComment($comment);
                 FlashManager::addSuccess('Votre commentaire a été modifié');
                 header('Location: ' . Router::generate("/articles"));
-                exit();
+//                exit();
             }
             header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
 
