@@ -40,7 +40,7 @@ class ContactController extends AbstractController
         $this->render("contact/addContact");
     }
 
-    private function getErrors(int $id = null): array
+    private function getErrors(): array
     {
         $errors = [];
 
