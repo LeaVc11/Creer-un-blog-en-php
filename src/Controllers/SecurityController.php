@@ -46,7 +46,7 @@ class SecurityController extends AbstractController
                 }
                 FlashManager::addSuccess('Vous êtes connecté(e)');
                 header('Location:' . Router::generate("/articles"));
-                exit();
+
             } else {
 
                 $errors[] = 'Identifiants incorrects';
@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
     {
         session_destroy();
         header('Location:' . Router::generate("/login"));
-        exit();
+
     }
     public function register(): void
     {
