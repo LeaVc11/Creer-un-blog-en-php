@@ -34,7 +34,7 @@ class ContactController extends AbstractController
                 exit();
             }
             header('Location: ' . Router::generate("/contact/addContact"));
-            exit();
+
         }
         $this->render("contact/addContact");
     }
@@ -47,7 +47,7 @@ class ContactController extends AbstractController
         FlashManager::addSuccess('Votre message a été supprimé');
 
         header('Location: ' . Router::generate("/dashboard"));
-        exit();
+
     }
     private function getFormErrors(): array
     {

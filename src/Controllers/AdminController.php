@@ -63,7 +63,7 @@ class AdminController extends AbstractController
 
         if (is_null($user) || $user->getRole() != 'admin') {
             $this->render('Errors/401');
-            exit;
+
         }
     }
     public function addArticle():void
@@ -91,7 +91,7 @@ class AdminController extends AbstractController
                 FlashManager::addSuccess('Votre article a été bien enregistré');
                 $this->articleManager->addArticle($article);
                 header('Location: ' . Router::generate("/dashboard"));
-                exit();
+
             }
         }
         $this->render("Admin/add");
@@ -157,7 +157,7 @@ class AdminController extends AbstractController
         FlashManager::addSuccess('Votre article a été supprimé');
 
         header('Location: ' . Router::generate("/articles"));
-        exit();
+
     }
     public function editArticle(int $id): void
     {
@@ -191,7 +191,7 @@ class AdminController extends AbstractController
                     header('Location:' . Router::generate("/articles"));
                 }
                 header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
-                exit();
+
             }
         }
         $this->render('Admin/editArticle', compact('article'));

@@ -15,11 +15,11 @@ use App\Routing\Router;
 
             <!--     card-->
 
-                <div class="row row-cols-1 row-cols-md-3 mt-4">
+                <div class="row row-cols-1 row-cols-md-3 mt-4 ">
                     <?php
                     foreach ($articles as $article) {
                         ?>
-                        <div class="col">
+                        <div class="col mb-5">
                             <div class="card h-150">
                                 <div class="card-body text-center ">
                                     <img src="<?= Router::generate('/public/') ?>uploads/<?= $article->getImageLink() ?>"

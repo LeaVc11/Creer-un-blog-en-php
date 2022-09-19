@@ -56,7 +56,7 @@ class CommentController extends AbstractController
                 exit();
             }
             header('Location:' . Router::generate("/articles" . $_POST['articleId']));
-            exit();
+
         }
     }
     public function editComment(int $id): void
@@ -80,7 +80,7 @@ class CommentController extends AbstractController
                 exit();
             }
             header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
-            exit();
+
         } else {
 
             $this->render('Comment/editComment', compact('comment'));
@@ -93,7 +93,7 @@ class CommentController extends AbstractController
         $this->commentManager->deleteComment($comment);
         FlashManager::addSuccess('Votre commentaire a été supprimé');
         header('Location: ' . Router::generate("/dashboard"));
-        exit();
+
     }
     private function getErrors(int $id = null): array
     {
