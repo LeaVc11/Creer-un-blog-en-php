@@ -47,7 +47,7 @@ class ContactController extends AbstractController
         if (empty($_POST['email'])) {
             $errors[] = 'Veuillez saisir un email';
             $contact = $this->contactManager->getByEmail($_POST['email']);
-            if (!is_null($contact) && $contact->getId() != null) {
+            if (!is_null($contact) && $contact->getId() === null) {
                 $errors[] = 'Un contact avec ce titre existe déjà !';
             }
         }
