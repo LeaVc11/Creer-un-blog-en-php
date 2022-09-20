@@ -1,13 +1,13 @@
 <?php
 
+use App\Models\Manager\FlashManager;
 use App\Routing\Router;
 
 ?>
-
+<?php FlashManager::displayFlash(); ?>
+<?php FlashManager::displayFlashSuccess(); ?>
 <div class="container">
     <div class="fw-bold ">
-
-
         <h1 class="m-3 text-center text-primary">Ajouter un commentaire</h1>
         <div class="m-3 text-center">
             <legend class="">Laisser un commentaire sur cet article</legend>

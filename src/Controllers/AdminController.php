@@ -62,7 +62,7 @@ class AdminController extends AbstractController
         $this->isAdmin();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $errors = $this->getFormErrors();
+            $errors = $this->getErrors();
             $upload = $this->uploadImage();
             $errors = array_merge($errors, $upload['Errors']);
             $imageFileName = $upload['filename'];
@@ -79,6 +79,7 @@ class AdminController extends AbstractController
                     new DateTime(),
                     new DateTime()
                 );
+
                 FlashManager::addSuccess('Votre article a été bien enregistré');
                 $this->articleManager->addArticle($article);
                 header('Location: ' . Router::generate("/dashboard"));

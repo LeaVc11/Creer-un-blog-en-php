@@ -20,16 +20,20 @@ class ContactController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $errors = $this->getErrors();
+            $errors = $this->getFormErrors();
+
             if (count($errors) == 0) {
                 $contact = new Contact(
-                    $_POST['id'],
+                    null,
                     $_POST['email'],
                     $_POST['username'],
                     $_POST['message'],
                 );
-                $this->contactManager->addContact($contact);
+
                 FlashManager::addSuccess('Votre message a été modifié');
+                $this->contactManager->addContact($contact);
+
+
 
                 header('Location: ' . Router::generate("/articles"));
                 exit();
@@ -40,14 +44,13 @@ class ContactController extends AbstractController
         $this->render("contact/addContact");
     }
 
-    private function getErrors(): array
+    private function getFormErrors(?int $id = null): array
     {
         $errors = [];
-
         if (empty($_POST['email'])) {
             $errors[] = 'Veuillez saisir un email';
             $contact = $this->contactManager->getByEmail($_POST['email']);
-            if (!is_null($contact) && $contact->getId() === null) {
+            if (!is_null($contact) && $contact->getId()!= $id ) {
                 $errors[] = 'Un contact avec ce titre existe déjà !';
             }
         }
