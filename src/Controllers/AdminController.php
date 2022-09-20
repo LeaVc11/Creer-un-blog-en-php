@@ -62,7 +62,7 @@ class AdminController extends AbstractController
         $this->isAdmin();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $errors = $this->getErrors();
+            $errors = $this->getFormErrors();
             $upload = $this->uploadImage();
             $errors = array_merge($errors, $upload['Errors']);
             $imageFileName = $upload['filename'];

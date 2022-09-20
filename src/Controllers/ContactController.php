@@ -20,7 +20,7 @@ class ContactController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $errors = $this->getFormErrors();
+            $errors = $this->getErrors();
 
             if (count($errors) == 0) {
                 $contact = new Contact(
@@ -44,13 +44,14 @@ class ContactController extends AbstractController
         $this->render("contact/addContact");
     }
 
-    private function getFormErrors(?int $id = null): array
+    private function getErrors(): array
     {
         $errors = [];
+
         if (empty($_POST['email'])) {
             $errors[] = 'Veuillez saisir un email';
             $contact = $this->contactManager->getByEmail($_POST['email']);
-            if (!is_null($contact) && $contact->getId()!= $id ) {
+            if (!is_null($contact) && $contact->getId() === null) {
                 $errors[] = 'Un contact avec ce titre existe déjà !';
             }
         }
