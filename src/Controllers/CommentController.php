@@ -46,20 +46,20 @@ class CommentController extends AbstractController
                 $user = unserialize($_SESSION['user']);
                 $comment = new Comment(
                     null,
-                    $_POST['title'],
+                    htmlspecialchars($_POST['title']),
                     Comment::PENDING,
-                    $_POST['content'],
+                    htmlspecialchars($_POST['content']),
                     "NOW",
                     $user->getId(),
                     $_POST['articleId'],
 
                 );
                 $this->commentManager->addComment($comment);
-                FlashManager::addSuccess('Votre commentaire a été bien enregistré');
-                header('Location: ' . Router::generate("/Comments/" . $_POST['articleId']));
 
+                FlashManager::addSuccess('Votre commentaire a été bien enregistré');
+                header('Location: ' . Router::generate("/comments/" . $_POST['articleId']));
             }
-            header('Location:' . Router::generate("/articles" . $_POST['articleId']));
+            header('Location:' . Router::generate("/articles/" . $_POST['articleId']));
 
         }
     }
@@ -92,10 +92,10 @@ class CommentController extends AbstractController
             $errors = $this->getErrors($id);
 
             if (count($errors) == 0) {
-                $comment->setTitle($_POST['title']);
-                $comment->setContent($_POST['content']);
+                $comment->setTitle(  htmlspecialchars($_POST['title']));
+                $comment->setContent(htmlspecialchars($_POST['content']));
                 if (isset($_POST['status'])) {
-                    $comment->setStatus($_POST['status']);
+                    $comment->setStatus(htmlspecialchars($_POST['status']));
                 }
                 $this->commentManager->editComment($comment);
                 FlashManager::addSuccess('Votre commentaire a été modifié');

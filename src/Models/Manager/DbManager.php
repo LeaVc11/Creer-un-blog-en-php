@@ -28,7 +28,7 @@ abstract class DbManager
     {
 
         try {
-            self::$pdo = new PDO("mysql:host=localhost;dbname=blog_php;charset=utf8", "root", "");
+            self::$pdo = new PDO("mysql:host=localhost;dbname=blog_php;charset=utf8", "blog_php", "Cz4U2GpWe48b");
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         } catch (PDOException $e) {
             print "error in connection" . $e->getMessage();

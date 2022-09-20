@@ -4,7 +4,7 @@ use App\Models\Manager\FlashManager;
 use App\Routing\Router;
 
 ?>
-<?php FlashManager::displayFlash(); ?>
+<?php FlashManager::displayFlash();?>
 <?php FlashManager::displayFlashSuccess(); ?>
 
 <section class="d-flex justify-content-center align-content-center w-100 h-100 col-md" id="contact">

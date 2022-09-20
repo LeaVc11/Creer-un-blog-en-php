@@ -29,7 +29,7 @@ vous devrez d'abord cloner le référentiel de ce projet à l'aide de Git.
 A la racine de votre projet, vous devez créer un fichier .env (même niveau que .env.example)
 dans lequel vous devez configurer les valeurs appropriées pour que votre blog fonctionne :
 
-self::$pdo = new PDO("mysql:host=localhost;dbname=blog_php;charset=utf8", "root", "");
+self::$pdo = new PDO("mysql:host=localhost;dbname=blog_php;charset=utf8", "blog_php", "Cz4U2GpWe48b");
 
 Installer sur le serveur Web local
 Si vous ne parvenez pas à utiliser Docker, vous pouvez installer ce projet sur votre WAMP, Laragon, MAMP ou un autre serveur Web local. Pour ce faire, vous devrez d'abord vous assurer que les conditions suivantes sont remplies.
