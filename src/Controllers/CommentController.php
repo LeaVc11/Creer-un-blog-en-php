@@ -56,10 +56,10 @@ class CommentController extends AbstractController
                 );
                 $this->commentManager->addComment($comment);
                 FlashManager::addSuccess('Votre commentaire a été bien enregistré');
-                header('Location: ' . Router::generate("/comments/" . $_POST['articleId']));
-                exit();
+                header('Location: ' . Router::generate("/Comments/" . $_POST['articleId']));
+
             }
-            header('Location:' . Router::generate("/articles" ));
+            header('Location:' . Router::generate("/articles" . $_POST['articleId']));
 
         }
     }
@@ -75,7 +75,7 @@ class CommentController extends AbstractController
         }
         $comment = $this->commentManager->getByTitle($_POST['title']);
 
-        if (!is_null($comment) && $comment->getId() != null && $id === null) {
+        if (!is_null($comment) && $comment->getId() != $id ) {
             $errors[] = 'Un commentaire avec ce titre existe déjà !';
         }
         $_SESSION['flash'] = $errors;
