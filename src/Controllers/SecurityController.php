@@ -111,5 +111,4 @@ class SecurityController extends AbstractController
         }
         $this->render('Security/register');
     }
-
 }
