@@ -7,7 +7,6 @@ class Router {
     private string $url;
     private array $routes = [];
     private array $namedRoutes = [];
-
     public function __construct(string $url){
         $this->url = $url;
     }
