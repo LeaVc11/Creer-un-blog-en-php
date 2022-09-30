@@ -51,3 +51,4 @@ composer install
 Importer des fichiers de base de données
 Pour générer une base de données vide, vous devez importer le fichier blog_empty.sql dans votre SGBD.
 Vous devrez peut-être modifier le nom de la base de données par défaut (blog) dans le fichier SQL pour qu'il corresponde au nom de la base de données allouée fourni par votre hébergeur.
+
